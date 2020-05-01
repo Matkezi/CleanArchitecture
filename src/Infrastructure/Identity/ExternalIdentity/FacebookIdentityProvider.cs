@@ -20,6 +20,16 @@ namespace CleanArchitecture.Infrastructure.Identity.ExternalIdentity
         private readonly IJwtServicecs _jwtFactory;
         private readonly IConfiguration _configuration;
         private readonly IHttpClient _httpClient;
+
+        public FacebookIdentityProvider(UserManager<AppUser> userManager, IIdentityService identityService, IJwtServicecs jwtFactory, IConfiguration configuration, IHttpClient httpClient)
+        {
+            _userManager = userManager;
+            _identityService = identityService;
+            _jwtFactory = jwtFactory;
+            _configuration = configuration;
+            _httpClient = httpClient;
+        }
+
         public async Task<(Result, LoginResponse)> ExternalLogin(string authToken)
         {
             var userInfoResponse = await _httpClient.GetStringAsync($"https://graph.facebook.com/v2.8/me?fields=id,email,first_name,last_name,name,picture&access_token={authToken}");
