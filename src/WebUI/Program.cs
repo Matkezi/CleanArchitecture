@@ -1,4 +1,3 @@
-using CleanArchitecture.Infrastructure.Identity;
 using CleanArchitecture.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -6,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SkipperBooking.Base.Enums;
+using CleanArchitecture.Infrastructure.Persistence.Entities;
 using System;
 using System.Threading.Tasks;
 
@@ -23,17 +24,18 @@ namespace CleanArchitecture.WebUI
 
                 try
                 {
-                    var context = services.GetRequiredService<ApplicationDbContext>();
+                    var context = services.GetRequiredService<SkipperAgencyDbContext>();
 
                     if (context.Database.IsSqlServer())
                     {
                         context.Database.Migrate();
                     }                   
 
-                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-
-                    await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager);
-                    await ApplicationDbContextSeed.SeedSampleDataAsync(context);
+                    var userManager = services.GetRequiredService<UserManager<AppUser>>();
+                    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    var rolesFromEnum = Enum.GetNames(typeof(RoleEnum));
+                    await SkipperAgencyDbContextSeed.SeedDefaultUserAsync(userManager);
+                    await SkipperAgencyDbContextSeed.SeedDefaultRolesAsync(roleManager, rolesFromEnum);
                 }
                 catch (Exception ex)
                 {

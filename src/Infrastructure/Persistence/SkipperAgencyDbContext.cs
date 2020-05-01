@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Options;
+using CleanArchitecture.Infrastructure.Persistence.Entities;
 using System.Data;
 using System.Reflection;
 using System.Threading;
@@ -14,13 +15,13 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Infrastructure.Persistence
 {
-    public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, IApplicationDbContext
+    public class SkipperAgencyDbContext : ApiAuthorizationDbContext<AppUser>, IApplicationDbContext
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
         private IDbContextTransaction _currentTransaction;
 
-        public ApplicationDbContext(
+        public SkipperAgencyDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions,
             ICurrentUserService currentUserService,
@@ -33,6 +34,23 @@ namespace CleanArchitecture.Infrastructure.Persistence
         public DbSet<TodoList> TodoLists { get; set; }
 
         public DbSet<TodoItem> TodoItems { get; set; }
+        public DbSet<AppUser> AppUser { get; set; }
+        public DbSet<Skipper> Skipper { get; set; }
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<Charter> Charter { get; set; }
+        public DbSet<Availability> Availabilities { get; set; }
+        public DbSet<Boat> Boats { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<BookingHistory> BookingHistories { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Licence> Licences { get; set; }
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<RegionAvailability> RegionAvailabilities { get; set; }
+        public DbSet<TrustedCharterSkipper> TrustedSkippers { get; set; }
+        public DbSet<UnTrustedCharterSkipper> UnTrustedSkippers { get; set; }
+        public DbSet<SkipperSkill> SkipperSkills { get; set; }
+        public DbSet<PreRegisterSkipper> SkipperPreRegistration { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {

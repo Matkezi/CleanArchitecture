@@ -37,7 +37,7 @@ namespace CleanArchitecture.WebUI
             services.AddHttpContextAccessor();
 
             services.AddHealthChecks()
-                .AddDbContextCheck<ApplicationDbContext>();
+                .AddDbContextCheck<SkipperAgencyDbContext>();
 
             services.AddControllersWithViews(options => 
                 options.Filters.Add(new ApiExceptionFilter()));

@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Domain.Entities;
 using CleanArchitecture.Infrastructure.Identity;
 using CleanArchitecture.Infrastructure.Persistence;
 using CleanArchitecture.WebUI;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using NUnit.Framework;
 using Respawn;
+using CleanArchitecture.Infrastructure.Persistence.Entities;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -70,7 +72,7 @@ public class Testing
     {
         using var scope = _scopeFactory.CreateScope();
 
-        var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
+        var context = scope.ServiceProvider.GetService<SkipperAgencyDbContext>();
 
         context.Database.Migrate();
     }
@@ -93,9 +95,9 @@ public class Testing
     {
         using var scope = _scopeFactory.CreateScope();
 
-        var userManager = scope.ServiceProvider.GetService<UserManager<ApplicationUser>>();
+        var userManager = scope.ServiceProvider.GetService<UserManager<Developer>>();
 
-        var user = new ApplicationUser { UserName = userName, Email = userName };
+        var user = new Developer { UserName = userName, Email = userName };
 
         var result = await userManager.CreateAsync(user, password);
 
@@ -115,7 +117,7 @@ public class Testing
     {
         using var scope = _scopeFactory.CreateScope();
 
-        var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
+        var context = scope.ServiceProvider.GetService<SkipperAgencyDbContext>();
 
         return await context.FindAsync<TEntity>(id);
     }
@@ -125,7 +127,7 @@ public class Testing
     {
         using var scope = _scopeFactory.CreateScope();
 
-        var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
+        var context = scope.ServiceProvider.GetService<SkipperAgencyDbContext>();
 
         context.Add(entity);
 
