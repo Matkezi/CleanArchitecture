@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CleanArchitecture.Infrastructure.Persistence.Entities;
 using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace CleanArchitecture.Infrastructure
 {
@@ -44,6 +45,15 @@ namespace CleanArchitecture.Infrastructure
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
+
+            // Add Fluent Email
+            if (!int.TryParse(configuration["EmailSettings:Port"], out int port))
+            {
+                throw new ArgumentException("Email port from configuration exception.");
+            }
+            services.AddFluentEmail(configuration["EmailSettings:FromEmail"])
+                .AddRazorRenderer()
+                .AddSmtpSender(configuration["EmailSettings:Host"], port, configuration["EmailSettings:FromEmail"], configuration["EmailSettings:Password"]);
 
             return services;
         }

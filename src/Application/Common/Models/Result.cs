@@ -20,6 +20,11 @@ namespace CleanArchitecture.Application.Common.Models
             return new Result(true, new string[] { });
         }
 
+        public static Result Failure(string error)
+        {
+            return Failure(new string[1] { error });
+        }
+
         public static Result Failure(IEnumerable<string> errors)
         {
             return new Result(false, errors);
