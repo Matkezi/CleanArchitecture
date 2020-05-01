@@ -18,26 +18,26 @@ namespace CleanArchitecture.WebUI.Controllers
             _identityService = identityService;
         }
 
-        [AllowAnonymous]
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
-        {
-            try
-            {
-                var loginData = await _identityService.Login(loginModel.Email, loginModel.Password, loginModel.RememberMe);
-                if (loginData == null)
-                {
-                    return Unauthorized();
-                }
-                return Ok(loginData);
-            }
-            catch (UnauthorizedAccessException e)
-            {
-                return BadRequest("Email or password aren't correct!");
-            }
+        //[AllowAnonymous]
+        //[HttpPost("login")]
+        //public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
+        //{
+        //    try
+        //    {
+        //        var loginData = await _identityService.Login(loginModel.Email, loginModel.Password, loginModel.RememberMe);
+        //        if (loginData == null)
+        //        {
+        //            return Unauthorized();
+        //        }
+        //        return Ok(loginData);
+        //    }
+        //    catch (UnauthorizedAccessException e)
+        //    {
+        //        return BadRequest("Email or password aren't correct!");
+        //    }
 
 
-        }
+        //}
 
         [AllowAnonymous]
         [HttpPost("facebook-login")]

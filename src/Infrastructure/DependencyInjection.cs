@@ -43,7 +43,7 @@ namespace CleanArchitecture.Infrastructure
                 .AddUserManager<UserManager<AppUser>>()
                 .AddDefaultTokenProviders();
 
-            services.AddSingleton<IJwtServicecs, JwtService>();
+            services.AddScoped<IJwtServicecs, JwtService>();
 
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IIdentityService, IdentityService>();
@@ -56,6 +56,10 @@ namespace CleanArchitecture.Infrastructure
                 .AddScoped<IExternalIdentityProvider, FacebookIdentityProvider>(s => s.GetService<FacebookIdentityProvider>());
             services.AddScoped<GoogleIdentityProvider>()
                 .AddScoped<IExternalIdentityProvider, GoogleIdentityProvider>(s => s.GetService<GoogleIdentityProvider>());
+
+            services.AddTransient<ICloudStorageService, AzureStorageService>();
+            services.AddTransient<IFilesStorageService, FilesStorageService>();
+
 
             if (!int.TryParse(configuration["EmailSettings:Port"], out int port))
             {
