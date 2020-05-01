@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using CleanArchitecture.Infrastructure.Persistence.Entities;
 using Microsoft.AspNetCore.Identity;
 using System;
+using CleanArchitecture.Infrastructure.HttpClients;
+using CleanArchitecture.Infrastructure.Emails;
 
 namespace CleanArchitecture.Infrastructure
 {
@@ -35,16 +37,22 @@ namespace CleanArchitecture.Infrastructure
 
             services.AddIdentity<AppUser, IdentityRole>()
                     .AddEntityFrameworkStores<SkipperAgencyDbContext>();
-            
-            services.AddIdentityServer()
-                .AddApiAuthorization<AppUser, SkipperAgencyDbContext>();
+
+            // Identity configuration
+            services.AddIdentity<AppUser, IdentityRole>()
+                .AddEntityFrameworkStores<SkipperAgencyDbContext>()
+                .AddSignInManager<SignInManager<AppUser>>()
+                .AddUserManager<UserManager<AppUser>>()
+                .AddDefaultTokenProviders();
+
+            services.AddSingleton<IJwtFactory, JwtFactory>();
 
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<IExternalIdentityService, ExternalIdentityService>();
             services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
-
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
+            services.AddTransient<IHttpClient, BasicHttpClient>();
+            services.AddTransient<IEmailService, EmailService>();
 
             // Add Fluent Email
             if (!int.TryParse(configuration["EmailSettings:Port"], out int port))

@@ -29,11 +29,11 @@ namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
 
         public class Handler : IRequestHandler<RegisterSkipperCommand>
         {
-            private readonly IEmailer _emailer;
+            private readonly IEmailService _emailer;
             private readonly IIdentityService _identityService;
             private readonly Microsoft.Extensions.Configuration.IConfiguration _configuration;
 
-            public Handler(IEmailer emailer, IIdentityService identityService)
+            public Handler(IEmailService emailer, IIdentityService identityService)
             {
 
                 _emailer = emailer;

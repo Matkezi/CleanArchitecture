@@ -16,17 +16,21 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace CleanArchitecture.Infrastructure.Identity
 {
     public class IdentityService : IIdentityService
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly SignInManager<AppUser> _signInManager;
+        private readonly IConfiguration _configuration;
+        private readonly IJwtFactory _jwtFactory;
 
-        public IdentityService(UserManager<AppUser> userManager)
+        public IdentityService(UserManager<AppUser> userManager, IConfiguration configuration, IJwtFactory jwtFactory)
         {
             _userManager = userManager;
+            _configuration = configuration;
+            _jwtFactory = jwtFactory;
         }
 
         public async Task<string> GetUserNameAsync(string userId)
@@ -46,7 +50,7 @@ namespace CleanArchitecture.Infrastructure.Identity
         public async Task<(Result Result, string UserId, string emailConfirmationToken)> CreateUserAsync(AppUser user, RoleEnum role, string password)
         {
             user.UserName = user.Email;
-            var result = await _userManager.CreateAsync(user, password);            
+            var result = await _userManager.CreateAsync(user, password);
             if (!result.Succeeded)
             {
                 return (result.ToApplicationResult(), user.Id, null);
@@ -87,42 +91,45 @@ namespace CleanArchitecture.Infrastructure.Identity
             return result.ToApplicationResult();
         }
 
-        public async Task<(Result, LoginResponse)> Login(string email, string password, bool rememberMe)
+        public async Task<(Result, LoginResponse)> Login(string userName, string password, bool rememberMe)
         {
-            AppUser user = await _userManager.FindByNameAsync(email);
-            if (user is null) return (Result.Failure("User not foud."), null); 
+            AppUser user = await _userManager.FindByNameAsync(userName);
+            if (user is null) return (Result.Failure("User not foud."), null);
 
-            // TODO: Uncomment this!
-            //var isUserEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
-            //if (!isUserEmailConfirmed)
-            //{
-            //    string errorMessage = $"Login failed. Email Not Confirmed. User: {email}";
-            //    _logger.LogError(errorMessage);
-            //    throw new Exception(errorMessage);
-            //}
+            // get the user to verifty
+            //var userToVerify = await _userManager.FindByNameAsync(userName);
 
-            var result = await _signInManager.PasswordSignInAsync(email, password, rememberMe, lockoutOnFailure: false);
-            if (!result.Succeeded)
+            //if (userToVerify == null) return await Task.FromResult<ClaimsIdentity>(null);
+
+            // check the credentials
+            if (await _userManager.CheckPasswordAsync(user, password))
             {
-                return (result.ToApplicationResult(), null);
+                // TODO: Uncomment this!
+                //var isUserEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+                //if (!isUserEmailConfirmed)
+                //{
+                //    string errorMessage = $"Login failed. Email Not Confirmed. User: {email}";
+                //    _logger.LogError(errorMessage);
+                //    throw new Exception(errorMessage);
+                //}
+
+                var token = await _jwtFactory.GenerateEncodedToken(user);
+                var roles = await GetUserRoles(user.UserName);
+                return (Result.Success(),
+                    new LoginResponse
+                    {
+                        Token = token,
+                        Username = user.UserName,
+                        Role = roles.First().ToString(),
+                        Id = user.Id,
+                        UserPhotoUrl = user.UserPhotoUrl
+                    });
+                //return await Task.FromResult(_jwtFactory.GenerateClaimsIdentity(userName, userToVerify.Id));
             }
-            var token = await GetToken(user);
-            var roles = await GetUserRoles(user.Email);
-            return (result.ToApplicationResult(),
-                new LoginResponse 
-                { 
-                    Token = token, 
-                    Username = user.Email, 
-                    Role = roles.First().ToString(), 
-                    Id = user.Id, 
-                    UserPhotoUrl = user.UserPhotoUrl 
-                });
+
+            return (Result.Failure("Wrong credentials"), null);
         }
 
-        public Task<(Result, LoginResponse)> FacebookLogin(string authToken)
-        {
-            throw new NotImplementedException();
-        }
 
         public Task<Result> ChangePassword(string userName, string newPassword, string token)
         {
@@ -154,49 +161,17 @@ namespace CleanArchitecture.Infrastructure.Identity
             throw new NotImplementedException();
         }
 
-        public Task<IList<RoleEnum>> GetUserRoles(string userName)
+        public async Task<IList<RoleEnum>> GetUserRoles(string userName)
         {
-            throw new NotImplementedException();
-        }
+            var user = await _userManager.FindByNameAsync(userName);
+            // Get the roles for the user
+            var roles = await _userManager.GetRolesAsync(user);
 
-        private async Task<string> GetToken(AppUser user)
-        {
-            try
+            return roles.Select(role =>
             {
-                var utcNow = DateTime.UtcNow;
-                var userRoles = await _userManager.GetRolesAsync(user);
-                var userRolesString = string.Join(", ", userRoles.ToList());
-
-                var claims = new Claim[]
-                {
-                        new Claim(JwtRegisteredClaimNames.Sub, user.Id),
-                        new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
-                        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                        new Claim(JwtRegisteredClaimNames.Iat, utcNow.ToString()),
-                        new Claim(JwtRegisteredClaimNames.Exp, utcNow.AddSeconds(Convert.ToDouble(_settings.TokenExpiration)).ToString()),
-                        new Claim(ClaimTypes.Role, userRolesString),
-                        new Claim("UserId", user.Id)
-                };
-
-                var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.Secret));
-                var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
-                var jwt = new JwtSecurityToken(
-                    signingCredentials: signingCredentials,
-                    claims: claims,
-                    notBefore: utcNow,
-                    expires: utcNow.AddSeconds(Convert.ToDouble(_settings.TokenExpiration)),
-                    audience: _settings.Audience,
-                    issuer: _settings.Issuer
-                    );
-
-                return new JwtSecurityTokenHandler().WriteToken(jwt);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Generate token error. User: {user.Email}");
-                throw ex;
-            }
+                Enum.TryParse(role, out RoleEnum roleEnum);
+                return roleEnum;
+            }).ToList();
         }
-
     }
 }

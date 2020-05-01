@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Infrastructure.Emails
 {
-    public class EmailService : IEmailer
+    public class EmailService : IEmailService
     {
         private readonly IFluentEmail _fluentEmail;
 
