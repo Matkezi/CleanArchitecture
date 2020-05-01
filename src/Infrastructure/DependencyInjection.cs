@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using CleanArchitecture.Infrastructure.HttpClients;
 using CleanArchitecture.Infrastructure.Emails;
+using CleanArchitecture.Infrastructure.Identity.ExternalIdentity;
 
 namespace CleanArchitecture.Infrastructure
 {
@@ -35,9 +36,6 @@ namespace CleanArchitecture.Infrastructure
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<SkipperAgencyDbContext>());
 
-            services.AddIdentity<AppUser, IdentityRole>()
-                    .AddEntityFrameworkStores<SkipperAgencyDbContext>();
-
             // Identity configuration
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<SkipperAgencyDbContext>()
@@ -49,12 +47,16 @@ namespace CleanArchitecture.Infrastructure
 
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IIdentityService, IdentityService>();
-            services.AddTransient<IExternalIdentityProvider, ExternalIdentityService>();
             services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
             services.AddTransient<IHttpClient, BasicHttpClient>();
             services.AddTransient<IEmailService, EmailService>();
 
-            // Add Fluent Email
+            services.AddScoped<IExternalIdentityProviderFactory, ExternalIdentityProviderFactory>();
+            services.AddScoped<FacebookIdentityProvider>()
+                .AddScoped<IExternalIdentityProvider, FacebookIdentityProvider>(s => s.GetService<FacebookIdentityProvider>());
+            services.AddScoped<GoogleIdentityProvider>()
+                .AddScoped<IExternalIdentityProvider, GoogleIdentityProvider>(s => s.GetService<GoogleIdentityProvider>());
+
             if (!int.TryParse(configuration["EmailSettings:Port"], out int port))
             {
                 throw new ArgumentException("Email port from configuration exception.");
