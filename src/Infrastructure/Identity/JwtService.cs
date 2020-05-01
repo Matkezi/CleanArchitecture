@@ -11,12 +11,12 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 namespace CleanArchitecture.Infrastructure.Identity
 {
-    public class JwtFactory : IJwtFactory
+    public class JwtService : IJwtServicecs
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IConfiguration _configuration;
 
-        public JwtFactory(UserManager<AppUser> userManager, IConfiguration configuration)
+        public JwtService(UserManager<AppUser> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _configuration = configuration;

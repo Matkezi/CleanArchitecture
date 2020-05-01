@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Application.Common.Models;
+﻿using CleanArchitecture.Infrastructure.Persistence.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Common.Interfaces
 {
-    public interface IExternalIdentityService
+    public interface IJwtServicecs
     {
-        Task<(Result, LoginResponse)> FacebookLogin(string authToken);
+        Task<string> GenerateEncodedToken(AppUser user);
     }
 }

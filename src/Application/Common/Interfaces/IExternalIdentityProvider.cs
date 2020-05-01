@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Infrastructure.Persistence.Entities;
+﻿using CleanArchitecture.Application.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Common.Interfaces
 {
-    public interface IJwtFactory
+    public interface IExternalIdentityProvider
     {
-        Task<string> GenerateEncodedToken(AppUser user);
+        Task<(Result, LoginResponse)> ExternalLogin(string authToken);
     }
 }

@@ -45,11 +45,11 @@ namespace CleanArchitecture.Infrastructure
                 .AddUserManager<UserManager<AppUser>>()
                 .AddDefaultTokenProviders();
 
-            services.AddSingleton<IJwtFactory, JwtFactory>();
+            services.AddSingleton<IJwtServicecs, JwtService>();
 
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IIdentityService, IdentityService>();
-            services.AddTransient<IExternalIdentityService, ExternalIdentityService>();
+            services.AddTransient<IExternalIdentityProvider, ExternalIdentityService>();
             services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
             services.AddTransient<IHttpClient, BasicHttpClient>();
             services.AddTransient<IEmailService, EmailService>();

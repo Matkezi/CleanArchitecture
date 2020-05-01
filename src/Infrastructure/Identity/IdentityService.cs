@@ -24,9 +24,9 @@ namespace CleanArchitecture.Infrastructure.Identity
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IConfiguration _configuration;
-        private readonly IJwtFactory _jwtFactory;
+        private readonly IJwtServicecs _jwtFactory;
 
-        public IdentityService(UserManager<AppUser> userManager, IConfiguration configuration, IJwtFactory jwtFactory)
+        public IdentityService(UserManager<AppUser> userManager, IConfiguration configuration, IJwtServicecs jwtFactory)
         {
             _userManager = userManager;
             _configuration = configuration;

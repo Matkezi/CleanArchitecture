@@ -5,31 +5,23 @@ using CleanArchitecture.Infrastructure.Persistence.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Infrastructure.Identity
+namespace CleanArchitecture.Infrastructure.Identity.ExternalIdentity
 {
-    public class ExternalIdentityService : IExternalIdentityService
+    public class FacebookIdentityProvider : IExternalIdentityProvider
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IIdentityService _identityService;
-        private readonly IJwtFactory _jwtFactory;
+        private readonly IJwtServicecs _jwtFactory;
         private readonly IConfiguration _configuration;
         private readonly IHttpClient _httpClient;
-
-        public ExternalIdentityService(UserManager<AppUser> userManager, IIdentityService identityService, IJwtFactory jwtFactory, IConfiguration configuration, IHttpClient httpClient)
+        public async Task<(Result, LoginResponse)> ExternalLogin(string authToken)
         {
-            _userManager = userManager;
-            _identityService = identityService;
-            _jwtFactory = jwtFactory;
-            _configuration = configuration;
-            _httpClient = httpClient;
-        }
-
-        public async Task<(Result, LoginResponse)> FacebookLogin(string authToken)
-        {
-
             var userInfoResponse = await _httpClient.GetStringAsync($"https://graph.facebook.com/v2.8/me?fields=id,email,first_name,last_name,name,picture&access_token={authToken}");
             var userInfo = JsonConvert.DeserializeObject<FacebookUserData>(userInfoResponse);
 
