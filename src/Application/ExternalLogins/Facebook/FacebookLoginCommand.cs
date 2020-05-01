@@ -16,26 +16,25 @@ using System.Web;
 
 namespace CleanArchitecture.Application.ExternalLogins.Facebook
 {
-    public class FacebookLoginCommand : IRequest
+    public class FacebookLoginCommand : IRequest<string>
     {
         public string AuthToken { get; set; }
 
-        public class Handler : IRequestHandler<FacebookLoginCommand>
+        public class Handler : IRequestHandler<FacebookLoginCommand, string>
         {
             private readonly IExternalIdentityProviderFactory _externalIdentityProviderFactory;
 
 
             public Handler(IExternalIdentityProviderFactory externalIdentityProviderFactory)
             {
-
                 _externalIdentityProviderFactory = externalIdentityProviderFactory;
             }
 
-            public async Task<Unit> Handle(FacebookLoginCommand request, CancellationToken cancellationToken)
+            public async Task<string> Handle(FacebookLoginCommand request, CancellationToken cancellationToken)
             {
                 var externalIdentityProvider = _externalIdentityProviderFactory.GetExternalIdentityProvider(ExternalIdentityProviderEnum.Facebook);
-                await externalIdentityProvider.ExternalLogin(request.AuthToken);
-                return Unit.Value;
+                var result = await externalIdentityProvider.ExternalLogin(request.AuthToken);
+                return result.loginResponse.Token;
             }
         }
     }

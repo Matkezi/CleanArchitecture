@@ -9,7 +9,7 @@ namespace CleanArchitecture.Infrastructure.Identity.ExternalIdentity
 {
     public class GoogleIdentityProvider : IExternalIdentityProvider
     {
-        public Task<(Result, LoginResponse)> ExternalLogin(string authToken)
+        public Task<(Result result, LoginResponse loginResponse)> ExternalLogin(string authToken)
         {
             throw new NotImplementedException();
         }

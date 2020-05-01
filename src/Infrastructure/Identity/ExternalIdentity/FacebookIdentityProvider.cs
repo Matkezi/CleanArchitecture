@@ -30,7 +30,7 @@ namespace CleanArchitecture.Infrastructure.Identity.ExternalIdentity
             _httpClient = httpClient;
         }
 
-        public async Task<(Result, LoginResponse)> ExternalLogin(string authToken)
+        public async Task<(Result result, LoginResponse loginResponse)> ExternalLogin(string authToken)
         {
             var userInfoResponse = await _httpClient.GetStringAsync($"https://graph.facebook.com/v2.8/me?fields=id,email,first_name,last_name,name,picture&access_token={authToken}");
             var userInfo = JsonConvert.DeserializeObject<FacebookUserData>(userInfoResponse);

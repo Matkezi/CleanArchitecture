@@ -1,5 +1,4 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
 {
@@ -18,7 +17,5 @@ namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
 
             RuleFor(x => x.GDPRConsentAccepted).Must(x => x is true);
         }
-
-
     }
 }

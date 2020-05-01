@@ -8,6 +8,6 @@ namespace CleanArchitecture.Application.Common.Interfaces
 {
     public interface IExternalIdentityProvider
     {
-        Task<(Result, LoginResponse)> ExternalLogin(string authToken);
+        Task<(Result result, LoginResponse loginResponse)> ExternalLogin(string authToken);
     }
 }
