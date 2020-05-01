@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Mails\" />
     <Folder Include="Persistence\Migrations\" />
   </ItemGroup>
 
