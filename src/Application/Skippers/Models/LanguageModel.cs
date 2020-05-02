@@ -2,7 +2,7 @@
 using CleanArchitecture.Application.Common.Mappings;
 using CleanArchitecture.Infrastructure.Persistence.Entities;
 
-namespace SkipperBooking.Web.Models
+namespace CleanArchitecture.Application.Skippers.Models
 {
     public class LanguageModel : IMapFrom<SkipperLanguage>
     {

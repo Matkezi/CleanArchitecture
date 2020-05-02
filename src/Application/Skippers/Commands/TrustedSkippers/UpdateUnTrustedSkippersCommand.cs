@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Skippers.Commands.TrustedSkippers
 {
-    public partial class UpdateTrustedSkippersCommand : IRequest
+    public partial class UpdateUnTrustedSkippersCommand : IRequest
     {
         public IEnumerable<string> Ids { get; set; }
 
-        public class Handler : IRequestHandler<UpdateTrustedSkippersCommand>
+        public class Handler : IRequestHandler<UpdateUnTrustedSkippersCommand>
         {
             private readonly IApplicationDbContext _context;
             private readonly ICurrentUserService _currentUserService;
@@ -27,22 +27,22 @@ namespace CleanArchitecture.Application.Skippers.Commands.TrustedSkippers
                 _currentUserService = currentUserService;
             }
 
-            public async Task<Unit> Handle(UpdateTrustedSkippersCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(UpdateUnTrustedSkippersCommand request, CancellationToken cancellationToken)
             {
                 var charter = await _context.Charter.Include(c => c.UnTrustedSkippers).Include(c => c.TrustedSkippers).FirstAsync(x => x.Id == _currentUserService.UserId);
                 request.Ids.ToList().ForEach(skipperId =>
                 {
-                    if (!charter.TrustedSkippers.Select(x => x.SkipperID).Contains(skipperId))
-                    {
-                        charter.TrustedSkippers.Add(new TrustedCharterSkipper { CharterID = charter.Id, SkipperID = skipperId });
-                    }
-                    charter.UnTrustedSkippers.RemoveAll(x => x.SkipperID == skipperId);
-                });
+                    if (!charter.UnTrustedSkippers.Select(x => x.SkipperID).Contains(skipperId))
+                        charter.UnTrustedSkippers.Add(new UnTrustedCharterSkipper { CharterID = charter.Id, SkipperID = skipperId });
 
+                     charter.TrustedSkippers.RemoveAll(x => x.SkipperID == skipperId);
+
+                });
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }
         }
     }
+
 }
