@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using CleanArchitecture.Application.Common.Mappings;
 using CleanArchitecture.Infrastructure.Persistence.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CleanArchitecture.Application.Common.Models
 {

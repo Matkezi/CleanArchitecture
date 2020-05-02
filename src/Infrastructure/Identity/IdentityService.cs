@@ -23,13 +23,11 @@ namespace CleanArchitecture.Infrastructure.Identity
     public class IdentityService : IIdentityService
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly IConfiguration _configuration;
         private readonly IJwtServicecs _jwtFactory;
 
-        public IdentityService(UserManager<AppUser> userManager, IConfiguration configuration, IJwtServicecs jwtFactory)
+        public IdentityService(UserManager<AppUser> userManager, IJwtServicecs jwtFactory)
         {
             _userManager = userManager;
-            _configuration = configuration;
             _jwtFactory = jwtFactory;
         }
 
@@ -91,7 +89,7 @@ namespace CleanArchitecture.Infrastructure.Identity
             return result.ToApplicationResult();
         }
 
-        public async Task<(Result, LoginResponse)> Login(string userName, string password, bool rememberMe)
+        public async Task<(Result result, LoginResponse loginResponse)> Login(string userName, string password, bool rememberMe)
         {
             AppUser user = await _userManager.FindByNameAsync(userName);
             if (user is null) return (Result.Failure("User not foud."), null);
