@@ -1,6 +1,6 @@
-﻿namespace CleanArchitecture.Application.Common.Models
+﻿namespace CleanArchitecture.Domain.Common
 {
-    public class EmailMessage
+    public abstract class EmailMessage
     {
         protected EmailMessage(string toEmail)
         {

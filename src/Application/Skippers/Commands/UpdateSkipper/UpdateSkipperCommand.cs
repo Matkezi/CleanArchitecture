@@ -29,10 +29,9 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
         public string City { get; set; }
         public string PhoneNumber { get; set; }
         public int CountryId { get; set; }
-        public FileModel UserPhoto { get; set; }
-        public LicenceModel UserLicence { get; set; }
-
         public string PersonalSummary { get; set; }
+        public FileModel UserPhoto { get; set; }
+        public LicenceModel UserLicence { get; set; }        
         public IEnumerable<SkillModel> ListOfSkills { get; set; }
         public IEnumerable<LanguageModel> ListOfLanguages { get; set; }
 
@@ -86,25 +85,25 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
                     }), x => x.SkillId);
 
 
-                entity.ListOfLanguages.Clear();
-                foreach (var language in request.ListOfLanguages)
-                {
-                    entity.ListOfLanguages.Add(new SkipperLanguage
-                    {
-                        LanguageId = language.LanguageId,
-                        LevelOfKnowledge = language.LevelOfKnowledge,
-                        SkipperId = language.SkipperId
-                    });
-                }
+                //entity.ListOfLanguages.Clear();
+                //foreach (var language in request.ListOfLanguages)
+                //{
+                //    entity.ListOfLanguages.Add(new SkipperLanguage
+                //    {
+                //        LanguageId = language.LanguageId,
+                //        LevelOfKnowledge = language.LevelOfKnowledge,
+                //        SkipperId = language.SkipperId
+                //    });
+                //}
 
-                entity.ListOfLanguages.ForEach(language => _context.SkipperLanguages.Remove(language));
-                entity.ListOfLanguages = request.ListOfLanguages.ToList()
-                    .ConvertAll(language => new SkipperLanguage
-                    {
-                        LanguageId = language.LanguageId,
-                        LevelOfKnowledge = language.LevelOfKnowledge,
-                        SkipperId = language.SkipperId
-                    });
+                //entity.ListOfLanguages.ForEach(language => _context.SkipperLanguages.Remove(language));
+                //entity.ListOfLanguages = request.ListOfLanguages.ToList()
+                //    .ConvertAll(language => new SkipperLanguage
+                //    {
+                //        LanguageId = language.LanguageId,
+                //        LevelOfKnowledge = language.LevelOfKnowledge,
+                //        SkipperId = language.SkipperId
+                //    });
 
 
                 if (!string.IsNullOrEmpty(request.NewEmail))

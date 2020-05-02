@@ -1,7 +1,4 @@
-﻿using CleanArchitecture.Application.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CleanArchitecture.Domain.Common;
 
 namespace CleanArchitecture.Application.Common.Interfaces
 {
