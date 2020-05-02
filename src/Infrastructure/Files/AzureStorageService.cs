@@ -42,15 +42,13 @@ namespace CleanArchitecture.Infrastructure.Files
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="base64data"></param>
-        /// <param name="ext"></param>
-        /// <returns>Absolute URL.</returns>
         public async Task<string> UploadFileAsync(byte[] byteArray, string ext)
         {
-            string uniqueFileName = Guid.NewGuid().ToString() + ext;
+            string uniqueFileName = Guid.NewGuid().ToString();
+            if (ext.StartsWith("."))
+                uniqueFileName = string.Join("", uniqueFileName, ext);
+            else
+                uniqueFileName = string.Join(".", uniqueFileName, ext);
 
             // Create a block blob  
             CloudBlockBlob blockBlob = _blobContainer.GetBlockBlobReference(uniqueFileName);
@@ -66,13 +64,13 @@ namespace CleanArchitecture.Infrastructure.Files
             return blockBlob.Uri.AbsoluteUri;
         }
 
-        public async Task DeleteFileAsync(string AbsoluteUri)
+        public async Task DeleteFileAsync(string absoluteUri)
         {
-            Uri uriObj = new Uri(AbsoluteUri);
-            string BlobName = Path.GetFileName(uriObj.LocalPath);
+            Uri uriObj = new Uri(absoluteUri);
+            string blobName = Path.GetFileName(uriObj.LocalPath);
 
             // get block blob refarence  
-            CloudBlockBlob blockBlob = _blobContainer.GetBlockBlobReference(BlobName);
+            CloudBlockBlob blockBlob = _blobContainer.GetBlockBlobReference(blobName);
 
             // delete blob from container      
             await blockBlob.DeleteAsync();

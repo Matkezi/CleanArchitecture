@@ -12,10 +12,11 @@ using System.Data;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace CleanArchitecture.Infrastructure.Persistence
 {
-    public class SkipperAgencyDbContext : ApiAuthorizationDbContext<AppUser>, IApplicationDbContext
+    public class SkipperAgencyDbContext : IdentityDbContext<AppUser>, IApplicationDbContext
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTime _dateTime;
@@ -23,9 +24,8 @@ namespace CleanArchitecture.Infrastructure.Persistence
 
         public SkipperAgencyDbContext(
             DbContextOptions options,
-            IOptions<OperationalStoreOptions> operationalStoreOptions,
             ICurrentUserService currentUserService,
-            IDateTime dateTime) : base(options, operationalStoreOptions)
+            IDateTime dateTime) : base(options)
         {
             _currentUserService = currentUserService;
             _dateTime = dateTime;
@@ -49,6 +49,7 @@ namespace CleanArchitecture.Infrastructure.Persistence
         public DbSet<RegionAvailability> RegionAvailabilities { get; set; }
         public DbSet<TrustedCharterSkipper> TrustedSkippers { get; set; }
         public DbSet<UnTrustedCharterSkipper> UnTrustedSkippers { get; set; }
+        public DbSet<SkipperLanguage> SkipperLanguages { get; set; }
         public DbSet<SkipperSkill> SkipperSkills { get; set; }
         public DbSet<PreRegisterSkipper> SkipperPreRegistration { get; set; }
 

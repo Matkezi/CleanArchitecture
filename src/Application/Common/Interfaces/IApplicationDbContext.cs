@@ -26,9 +26,11 @@ namespace CleanArchitecture.Application.Common.Interfaces
         DbSet<RegionAvailability> RegionAvailabilities { get; set; }
         DbSet<TrustedCharterSkipper> TrustedSkippers { get; set; }
         DbSet<UnTrustedCharterSkipper> UnTrustedSkippers { get; set; }
-        DbSet<SkipperSkill> SkipperSkills { get; set; }
+        DbSet<SkipperLanguage> SkipperLanguages { get; set; }
+        DbSet<SkipperSkill> SkipperSkills { get; set; }       
         DbSet<PreRegisterSkipper> SkipperPreRegistration { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        public DbSet<TEntity> Set<TEntity>() where TEntity : class;
     }
 }

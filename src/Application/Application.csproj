@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Mappings\" />
+    <Folder Include="Skippers\Models\" />
   </ItemGroup>
 
 </Project>

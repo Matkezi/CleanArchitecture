@@ -15,6 +15,16 @@ namespace CleanArchitecture.Infrastructure.Files
             _cloudStorageService = cloudStorageService;
         }
 
+        public async Task DeleteCloudAsync(string absoluteUri)
+        {
+            await _cloudStorageService.DeleteFileAsync(absoluteUri);
+        }
+
+        public Task DeleteLocalAsync(string absolutePath)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<string> SaveCloudAsync(byte[] byteArray, string ext)
         {
             return await _cloudStorageService.UploadFileAsync(byteArray, ext);
