@@ -12,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Skippers.Queries.TrustedSkippers
 {
-    public class GetUnTrustedSkippersCommand : IRequest<IEnumerable<TrustedSkipperModel>>
+    public class GetUnTrustedSkippersQuery : IRequest<IEnumerable<TrustedSkipperModel>>
     {
 
-        public class Handler : IRequestHandler<GetUnTrustedSkippersCommand, IEnumerable<TrustedSkipperModel>>
+        public class Handler : IRequestHandler<GetUnTrustedSkippersQuery, IEnumerable<TrustedSkipperModel>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -28,7 +28,7 @@ namespace CleanArchitecture.Application.Skippers.Queries.TrustedSkippers
                 _currentUserService = currentUserService;
             }
 
-            public async Task<IEnumerable<TrustedSkipperModel>> Handle(GetUnTrustedSkippersCommand request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<TrustedSkipperModel>> Handle(GetUnTrustedSkippersQuery request, CancellationToken cancellationToken)
             {
                 var charter = await _context.Charter.Include(c => c.UnTrustedSkippers).FirstAsync(x => x.Id == _currentUserService.UserId);
 

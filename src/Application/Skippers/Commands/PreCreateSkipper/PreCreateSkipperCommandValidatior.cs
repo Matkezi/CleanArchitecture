@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 
-namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
+namespace CleanArchitecture.Application.Skippers.Commands.PreCreateSkipper
 {
 
-    public class RegisterSkipperCommandValidatior : AbstractValidator<CreateSkipperCommand>
+    public class PreCreateSkipperCommandValidatior : AbstractValidator<PreCreateSkipperCommand>
     {
-        public RegisterSkipperCommandValidatior()
+        public PreCreateSkipperCommandValidatior()
         {
             RuleFor(x => x.Email)
             .NotEmpty()
@@ -15,7 +15,6 @@ namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
             //.Must(userService.IsEmailUnique)
             //.WithMessage("Email already taken");
 
-            RuleFor(x => x.GDPRConsentAccepted).Must(x => x is true);
         }
     }
 }

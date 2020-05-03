@@ -1,13 +1,9 @@
-﻿using AutoMapper.Configuration;
-using CleanArchitecture.Application.Common.Interfaces;
+﻿using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Domain.Emails;
 using CleanArchitecture.Infrastructure.Persistence.Entities;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using SkipperBooking.Base.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
@@ -31,13 +27,13 @@ namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
         {
             private readonly IEmailService _emailer;
             private readonly IIdentityService _identityService;
-            private readonly Microsoft.Extensions.Configuration.IConfiguration _configuration;
+            private readonly IConfiguration _configuration;
 
-            public Handler(IEmailService emailer, IIdentityService identityService)
+            public Handler(IEmailService emailer, IIdentityService identityService, IConfiguration configuration)
             {
-
                 _emailer = emailer;
                 _identityService = identityService;
+                _configuration = configuration;
             }
 
             public async Task<Unit> Handle(CreateSkipperCommand request, CancellationToken cancellationToken)

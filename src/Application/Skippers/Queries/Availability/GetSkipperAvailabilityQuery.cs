@@ -10,13 +10,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Skippers.Queries.TrustedSkippers
+namespace CleanArchitecture.Application.Skippers.Queries.Availability
 {
-    public class GetSkipperAvailabilityCommand : IRequest<AvailabilityModel>
+    public class GetSkipperAvailabilityQuery : IRequest<AvailabilityModel>
     {
         public string Id { get; set; }
 
-        public class Handler : IRequestHandler<GetSkipperAvailabilityCommand, AvailabilityModel>
+        public class Handler : IRequestHandler<GetSkipperAvailabilityQuery, AvailabilityModel>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -27,7 +27,7 @@ namespace CleanArchitecture.Application.Skippers.Queries.TrustedSkippers
                 _mapper = mapper;
             }
 
-            public async Task<AvailabilityModel> Handle(GetSkipperAvailabilityCommand request, CancellationToken cancellationToken)
+            public async Task<AvailabilityModel> Handle(GetSkipperAvailabilityQuery request, CancellationToken cancellationToken)
             {
                 var skipper = await _context.Skipper.Include(s => s.Availability).Include(s => s.Bookings).Where(s => s.Id == request.Id).FirstAsync();
 
