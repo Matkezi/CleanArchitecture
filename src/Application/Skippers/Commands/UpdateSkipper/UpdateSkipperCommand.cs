@@ -18,10 +18,8 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
 {
     public class UpdateSkipperCommand : IRequest
     {
-
         public string Id { get; set; }
-        public string Oib { get; set; }
-        public string NewEmail { get; set; }
+        public string Oib { get; set; }        
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
@@ -31,10 +29,13 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
         public string PhoneNumber { get; set; }
         public int CountryId { get; set; }
         public string PersonalSummary { get; set; }
-        public FileModel UserPhoto { get; set; }
-        public LicenceModel UserLicence { get; set; }        
         public IEnumerable<SkillModel> ListOfSkills { get; set; }
         public IEnumerable<LanguageModel> ListOfLanguages { get; set; }
+
+        public string NewEmail { get; set; }
+        public FileModel UserPhoto { get; set; }
+        public LicenceModel UserLicence { get; set; }       
+
 
         public class Handler : IRequestHandler<UpdateSkipperCommand>
         {
@@ -81,7 +82,7 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
                 _context.TryUpdateManyToMany(entity.ListOfSkills,
                     request.ListOfSkills.Select(skill => new SkipperSkill
                     {
-                        SkillId = (SkillsEnum)skill.Id,
+                        SkillId = (SkillsEnum)skill.SkillId,
                         SkipperId = skill.SkipperId
                     }), x => x.SkillId);
 

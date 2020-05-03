@@ -9,6 +9,13 @@ namespace CleanArchitecture.Application.Common.Interfaces
     public interface IIdentityService
     {
         Task<string> GetUserNameAsync(string userId);
+        /// <summary>
+        /// Creates a new user where: Username = Email
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="role"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         Task<(Result Result, string UserId, string emailConfirmationToken)> CreateUserAsync(AppUser user, RoleEnum role, string password);
         Task<Result> DeleteUserAsync(string userId);
         Task<Result> ConfirmEmail(string email, string token);

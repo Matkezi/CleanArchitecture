@@ -20,4 +20,10 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Bookings\Commands\" />
+    <Folder Include="Bookings\Queries\" />
+    <Folder Include="Charters\Queries\" />
+  </ItemGroup>
+
 </Project>

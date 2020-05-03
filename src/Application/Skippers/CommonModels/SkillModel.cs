@@ -7,17 +7,9 @@ namespace SkipperBooking.Web.Models
 {
     public class SkillModel : IMapFrom<SkipperSkill>
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-
-        public string Icon { get; set; }
+        public int SkillId { get; set; }
         public string SkipperId { get; set; }
-
-        public void Mapping(Profile profile)
-        {
-            profile.CreateMap<SkipperSkill, SkillModel>()
-                .ForMember(d => d.Id, opt => opt.MapFrom(s => (int)s.SkillId));
-
-        }
+        public string Name { get; set; }
+        public string Icon { get; set; }       
     }
 }

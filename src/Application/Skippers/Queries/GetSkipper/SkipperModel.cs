@@ -12,9 +12,7 @@ namespace CleanArchitecture.Application.Skippers.Models
         public string Id { get; set; }
         public string Oib { get; set; }
         public string Email { get; set; }
-        public string NewEmail { get; set; }
         public string FirstName { get; set; }
-        public string NewPassword { get; set; }
         public string LastName { get; set; }
         public string DateOfBirth { get; set; }
         public string Address { get; set; }
@@ -22,13 +20,10 @@ namespace CleanArchitecture.Application.Skippers.Models
         public float Price { get; set; }
         public string City { get; set; }
         public string PhoneNumber { get; set; }
-        public CountryModel Country { get; set; }
-        public FileModel UserPhoto { get; set; }
-        public string UserPhotoUrl { get; set; }
-        public FileModel SkipperInsurancePolicy { get; set; }
-        public LicenceModel UserLicence { get; set; }
-
         public string PersonalSummary { get; set; }
+        public string UserPhotoUrl { get; set; }
+        public CountryModel Country { get; set; }        
+        public LicenceModel UserLicence { get; set; }        
         public IEnumerable<SkillModel> ListOfSkills { get; set; }
         public IEnumerable<LanguageModel> ListOfLanguages { get; set; }
     }

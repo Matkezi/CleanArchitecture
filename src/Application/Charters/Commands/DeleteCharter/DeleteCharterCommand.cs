@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList
 {
-    public class DeleteSkipperCommand : IRequest
+    public class DeleteCharterCommand : IRequest
     {
         public string Id { get; set; }
 
-        public class Handler : IRequestHandler<DeleteSkipperCommand>
+        public class Handler : IRequestHandler<DeleteCharterCommand>
         {
             private readonly IApplicationDbContext _context;
 
@@ -22,9 +22,9 @@ namespace CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList
                 _context = context;
             }
 
-            public async Task<Unit> Handle(DeleteSkipperCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(DeleteCharterCommand request, CancellationToken cancellationToken)
             {
-                var entity = await _context.Skipper
+                var entity = await _context.Charter
                     .FindAsync(request.Id);
 
                 if (entity is null)
@@ -32,7 +32,7 @@ namespace CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList
                     throw new NotFoundException(nameof(TodoList), request.Id);
                 }
 
-                _context.Skipper.Remove(entity);
+                _context.Charter.Remove(entity);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
