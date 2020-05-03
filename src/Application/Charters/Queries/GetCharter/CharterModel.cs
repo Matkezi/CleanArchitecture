@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Application.Common.Mappings;
+using CleanArchitecture.Application.Common.Models;
 using CleanArchitecture.Infrastructure.Persistence.Entities;
 
 namespace CleanArchitecture.Application.Charters.Queries.GetCharter
@@ -12,6 +13,6 @@ namespace CleanArchitecture.Application.Charters.Queries.GetCharter
         public string Address { get; set; }
         public string ZipCode { get; set; }
         public string City { get; set; }
-        public string Country { get; set; }
+        public CountryModel Country { get; set; }
     }
 }
