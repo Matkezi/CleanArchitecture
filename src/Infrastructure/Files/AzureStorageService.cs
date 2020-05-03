@@ -11,13 +11,21 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Infrastructure.Files
 {
+    /// <summary>
+    /// This class knows how to work with a container given the accessKey.
+    /// </summary>
     public abstract class AzureStorageService
     {
         private CloudBlobContainer _blobContainer;
 
-        protected AzureStorageService(IConfiguration configuration)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accessKey"></param>
+        /// <param name="containerName"></param>
+        protected AzureStorageService(string accessKey, string containerName)
         {
-            Init(configuration["AzureStorage:AccessKey"], configuration["AzureStorage:ContainerName"]);
+            Init(accessKey, containerName);
         }
         private async void Init(string accessKey, string containerName)
         {
