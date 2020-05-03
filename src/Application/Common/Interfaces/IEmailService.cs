@@ -8,5 +8,6 @@ namespace CleanArchitecture.Application.Common.Interfaces
         Task SendEmailWithTemplate(NewSkipperNotice mailTemplate);
         Task SendEmailWithTemplate(ConfirmEmail mailTemplate);
         Task SendEmailWithTemplate(PreRegisteredNotice mailTemplate);
+        Task SendEmailWithTemplate(BookingCreated mailTemplate);
     }
 }

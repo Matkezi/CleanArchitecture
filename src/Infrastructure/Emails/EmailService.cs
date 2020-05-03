@@ -1,9 +1,6 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Domain.Emails;
 using FluentEmail.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CleanArchitecture.Infrastructure.Emails
@@ -47,6 +44,17 @@ namespace CleanArchitecture.Infrastructure.Emails
                 .BCC(mailTemplate.Bcc)
                 .Subject($"Skipper Agency New Skipper")
                 .UsingTemplateFromFile("./wwwroot/Templates/Emails/PreRegisteredNotice.cshtml", mailTemplate)
+                .SendAsync();
+        }
+
+        public Task SendEmailWithTemplate(BookingCreated mailTemplate)
+        {
+            return _fluentEmail
+                .To(mailTemplate.ToEmail)
+                .CC(mailTemplate.Cc)
+                .BCC(mailTemplate.Bcc)
+                .Subject($"Skipper Booking Created")
+                .UsingTemplateFromFile("./wwwroot/Templates/Emails/BookingCreated.cshtml", mailTemplate)
                 .SendAsync();
         }
     }
