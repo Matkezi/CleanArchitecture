@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.Application.Common.Mappings;
+﻿using AutoMapper;
+using CleanArchitecture.Application.Common.Mappings;
 using CleanArchitecture.Infrastructure.Persistence.Entities;
 
 namespace CleanArchitecture.Application.Common.Models
@@ -6,9 +7,14 @@ namespace CleanArchitecture.Application.Common.Models
     public class CountryModel : IMapFrom<Country>
     {
         public int Id { get; set; }
-        public string EnglishName { get; set; }
-        public string TwoLetterCode { get; set; }
-        public string Label { get => EnglishName; }
-        public string SkipperId { get; set; }
+        public string Label { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<Country, CountryModel>()
+                .ForMember(dest => dest.Label,
+                            opt => opt.MapFrom(src => src.EnglishName));
+        }
+
     }
 }
