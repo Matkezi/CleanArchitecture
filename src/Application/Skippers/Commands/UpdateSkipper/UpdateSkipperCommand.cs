@@ -2,6 +2,7 @@
 using CleanArchitecture.Application.Common.Helpers;
 using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Application.Common.Models;
+using CleanArchitecture.Application.Skippers.Models;
 using CleanArchitecture.Infrastructure.Persistence.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

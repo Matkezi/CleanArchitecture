@@ -14,7 +14,7 @@ using System.Web;
 
 namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
 {
-    public class RegisterSkipperCommand : IRequest
+    public class CreateSkipperCommand : IRequest
     {
 
         public string Email { get; set; }
@@ -27,7 +27,7 @@ namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
 
         public bool GDPRConsentAccepted { get; set; }
 
-        public class Handler : IRequestHandler<RegisterSkipperCommand>
+        public class Handler : IRequestHandler<CreateSkipperCommand>
         {
             private readonly IEmailService _emailer;
             private readonly IIdentityService _identityService;
@@ -40,7 +40,7 @@ namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
                 _identityService = identityService;
             }
 
-            public async Task<Unit> Handle(RegisterSkipperCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(CreateSkipperCommand request, CancellationToken cancellationToken)
             {
                 var skipper = new Skipper
                 {

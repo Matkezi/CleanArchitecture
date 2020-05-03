@@ -3,9 +3,9 @@
 namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
 {
 
-    public class RegisterSkipperCommandValidatior : AbstractValidator<RegisterSkipperCommand>
+    public class CreateSkipperCommandValidatior : AbstractValidator<CreateSkipperCommand>
     {
-        public RegisterSkipperCommandValidatior()
+        public CreateSkipperCommandValidatior()
         {
             RuleFor(x => x.Email)
             .NotEmpty()
