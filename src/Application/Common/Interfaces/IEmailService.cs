@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using CleanArchitecture.Domain.Emails;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Common.Interfaces
 {
@@ -6,5 +7,6 @@ namespace CleanArchitecture.Application.Common.Interfaces
     {
         Task SendEmailWithTemplate(NewSkipperNotice mailTemplate);
         Task SendEmailWithTemplate(ConfirmEmail mailTemplate);
+        Task SendEmailWithTemplate(PreRegisteredNotice mailTemplate);
     }
 }

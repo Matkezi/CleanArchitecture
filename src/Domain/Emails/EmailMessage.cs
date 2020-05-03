@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Domain.Common
+﻿namespace CleanArchitecture.Domain.Emails
 {
     public abstract class EmailMessage
     {

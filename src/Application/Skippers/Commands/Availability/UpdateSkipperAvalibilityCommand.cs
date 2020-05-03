@@ -8,6 +8,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SkipperBooking.Base.Enums;
 using SkipperBooking.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
 {
     public partial class UpdateSkipperAvailabilityCommand : IRequest
     {
-        public AvailabilityModel AvailabilityModel { get; set; }
+        public IEnumerable<(DateTime From, DateTime To)> Available { get; set; }
         public class Handler : IRequestHandler<UpdateSkipperAvailabilityCommand>
         {
             private readonly IApplicationDbContext _context;
@@ -35,7 +36,7 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
                 Skipper skipper = await _context.Skipper.Include(x => x.Availability).FirstAsync(s => s.Id == _currentUserService.UserId);
                                 
                 skipper.Availability.ForEach(avalibility => _context.Availabilities.Remove(avalibility));
-                skipper.Availability = request.AvailabilityModel.Available
+                skipper.Availability = request.Available
                     .Select(av => new Availability { AvailableFrom = av.From.AddHours(12), AvailableTo = av.To.AddHours(12) }).ToList();
                     
                 await _context.SaveChangesAsync(cancellationToken);

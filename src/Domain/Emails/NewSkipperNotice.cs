@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Domain.Common;
 
-namespace CleanArchitecture.Application.Common.Interfaces
+namespace CleanArchitecture.Domain.Emails
 {
     public class NewSkipperNotice : EmailMessage
     {
