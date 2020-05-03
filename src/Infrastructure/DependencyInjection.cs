@@ -57,7 +57,6 @@ namespace CleanArchitecture.Infrastructure
             services.AddScoped<GoogleIdentityProvider>()
                 .AddScoped<IExternalIdentityProvider, GoogleIdentityProvider>(s => s.GetService<GoogleIdentityProvider>());
 
-            services.AddTransient<ICloudStorageService, AzureStorageService>();
             services.AddTransient<IFilesStorageService, FilesStorageService>();
 
 

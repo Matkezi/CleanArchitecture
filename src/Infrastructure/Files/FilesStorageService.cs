@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Application.Common.Interfaces;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,18 +7,15 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Infrastructure.Files
 {
-    public class FilesStorageService : IFilesStorageService
+    public class FilesStorageService : AzureStorageService, IFilesStorageService
     {
-        private readonly ICloudStorageService _cloudStorageService;
-
-        public FilesStorageService(ICloudStorageService cloudStorageService)
+        public FilesStorageService(IConfiguration configuration) : base(configuration)
         {
-            _cloudStorageService = cloudStorageService;
         }
 
         public async Task DeleteCloudAsync(string absoluteUri)
         {
-            await _cloudStorageService.DeleteFileAsync(absoluteUri);
+            await DeleteFileAsync(absoluteUri);
         }
 
         public Task DeleteLocalAsync(string absolutePath)
@@ -27,7 +25,7 @@ namespace CleanArchitecture.Infrastructure.Files
 
         public async Task<string> SaveCloudAsync(byte[] byteArray, string ext)
         {
-            return await _cloudStorageService.UploadFileAsync(byteArray, ext);
+            return await UploadFileAsync(byteArray, ext);
         }
 
         public async Task<string> SaveCloudAsync(string base64data, string ext)

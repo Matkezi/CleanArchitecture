@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Infrastructure.Files
 {
-    public class AzureStorageService : ICloudStorageService
+    public abstract class AzureStorageService
     {
         private CloudBlobContainer _blobContainer;
 
-        public AzureStorageService(IConfiguration configuration)
+        protected AzureStorageService(IConfiguration configuration)
         {
             Init(configuration["AzureStorage:AccessKey"], configuration["AzureStorage:ContainerName"]);
         }
@@ -42,7 +42,7 @@ namespace CleanArchitecture.Infrastructure.Files
             }
         }
 
-        public async Task<string> UploadFileAsync(byte[] byteArray, string ext)
+        protected async Task<string> UploadFileAsync(byte[] byteArray, string ext)
         {
             string uniqueFileName = Guid.NewGuid().ToString();
             if (ext.StartsWith("."))
@@ -64,7 +64,7 @@ namespace CleanArchitecture.Infrastructure.Files
             return blockBlob.Uri.AbsoluteUri;
         }
 
-        public async Task DeleteFileAsync(string absoluteUri)
+        protected async Task DeleteFileAsync(string absoluteUri)
         {
             Uri uriObj = new Uri(absoluteUri);
             string blobName = Path.GetFileName(uriObj.LocalPath);
