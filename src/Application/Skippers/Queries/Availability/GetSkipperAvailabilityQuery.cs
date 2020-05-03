@@ -31,6 +31,9 @@ namespace CleanArchitecture.Application.Skippers.Queries.Availability
             {
                 var skipper = await _context.Skipper.Include(s => s.Availability).Include(s => s.Bookings).Where(s => s.Id == request.Id).FirstAsync();
 
+                // TODO: test this, if it doesn't work go with the one below.
+                return _mapper.Map<AvailabilityModel>(skipper);
+
                 return new AvailabilityModel
                 {
                     Available = skipper.Availability.Select(avalibility => (From: avalibility.AvailableFrom, To: avalibility.AvailableTo)),
