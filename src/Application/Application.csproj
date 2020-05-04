@@ -21,9 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Bookings\Commands\" />
+    <Folder Include="Bookings\Commands\SkipperDeclineBooking\" />
+    <Folder Include="Bookings\Commands\SkipperAcceptBooking\" />
     <Folder Include="Bookings\Queries\" />
-    <Folder Include="Charters\Queries\" />
   </ItemGroup>
 
 </Project>

@@ -30,11 +30,12 @@ namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
             private readonly ICurrentUserService _currentUserService;
             private readonly IApplicationDbContext _context;
 
-            public Handler(IEmailService emailer, IConfiguration configuration, ICurrentUserService currentUserService)
+            public Handler(IEmailService emailer, IConfiguration configuration, ICurrentUserService currentUserService, IApplicationDbContext context)
             {
                 _emailer = emailer;
                 _configuration = configuration;
                 _currentUserService = currentUserService;
+                _context = context;
             }
 
             public async Task<Unit> Handle(CharterCreateBookingCommand request, CancellationToken cancellationToken)
@@ -49,15 +50,15 @@ namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
                 {
                     CharterId = charter.Id,
                     BoatId = request.BoatId,
-                    BookingURL = RandomUrl.GetRandomUrl(),
-                    Status = BookingStatusEnum.SkipperRequestPending,
                     BookedFrom = request.BookedFrom,
                     BookedTo = request.BookedTo,
                     GuestName = request.GuestName,
                     GuestEmail = request.GuestEmail,
-                    OnboardingLocation = request.OnboardingLocation
+                    OnboardingLocation = request.OnboardingLocation,
+                    Status = BookingStatusEnum.SkipperRequestPending,
+                    BookingURL = RandomUrl.GetRandomUrl(),
                 };
-
+                
                 _context.Bookings.Add(booking);
                 await _context.SaveChangesAsync(cancellationToken);
 
