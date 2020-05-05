@@ -16,9 +16,9 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
 {
-    public class UpdateSkipperCommand : IRequest
+    public class UpdateSkipperCommand : IRequest, ISkipperAuth
     {
-        public string Id { get; set; }
+        public string SkipperId { get; set; }
         public string Oib { get; set; }        
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -52,11 +52,11 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
 
             public async Task<Unit> Handle(UpdateSkipperCommand request, CancellationToken cancellationToken)
             {
-                var entity = await _context.Skipper.Include(x => x.ListOfLanguages).Include(x => x.ListOfSkills).FirstOrDefaultAsync(x => x.Id == request.Id);
+                var entity = await _context.Skipper.Include(x => x.ListOfLanguages).Include(x => x.ListOfSkills).FirstOrDefaultAsync(x => x.Id == request.SkipperId);
 
                 if (entity is null)
                 {
-                    throw new NotFoundException(nameof(Skipper), request.Id);
+                    throw new NotFoundException(nameof(Skipper), request.SkipperId);
                 }
 
                 entity.OIB = request.Oib;

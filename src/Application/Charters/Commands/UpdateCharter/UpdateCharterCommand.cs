@@ -16,9 +16,9 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
 {
-    public class UpdateCharterCommand : IRequest
+    public class UpdateCharterCommand : IRequest, ICharterAuth
     {
-        public string Id { get; set; }
+        public string CharterId { get; set; }
         public string CharterName { get; set; }
         public string Address { get; set; }
         public string ZipCode { get; set; }
@@ -42,11 +42,11 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
 
             public async Task<Unit> Handle(UpdateCharterCommand request, CancellationToken cancellationToken)
             {
-                var entity = await _context.Charter.FirstOrDefaultAsync(x => x.Id == request.Id);
+                var entity = await _context.Charter.FirstOrDefaultAsync(x => x.Id == request.CharterId);
 
                 if (entity is null)
                 {
-                    throw new NotFoundException(nameof(Charter), request.Id);
+                    throw new NotFoundException(nameof(Charter), request.CharterId);
                 }
 
                 entity.CharterName = request.CharterName;

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList
 {
-    public class DeleteSkipperCommand : IRequest
+    public class DeleteSkipperCommand : IRequest, ISkipperAuth
     {
-        public string Id { get; set; }
+        public string SkipperId { get; set; }
 
         public class Handler : IRequestHandler<DeleteSkipperCommand>
         {
@@ -25,11 +25,11 @@ namespace CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList
             public async Task<Unit> Handle(DeleteSkipperCommand request, CancellationToken cancellationToken)
             {
                 var entity = await _context.Skipper
-                    .FindAsync(request.Id);
+                    .FindAsync(request.SkipperId);
 
                 if (entity is null)
                 {
-                    throw new NotFoundException(nameof(TodoList), request.Id);
+                    throw new NotFoundException(nameof(TodoList), request.SkipperId);
                 }
 
                 _context.Skipper.Remove(entity);

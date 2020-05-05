@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList
 {
-    public class DeleteCharterCommand : IRequest
+    public class DeleteCharterCommand : IRequest, ICharterAuth
     {
-        public string Id { get; set; }
+        public string CharterId { get; set; }
 
         public class Handler : IRequestHandler<DeleteCharterCommand>
         {
@@ -25,11 +25,11 @@ namespace CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList
             public async Task<Unit> Handle(DeleteCharterCommand request, CancellationToken cancellationToken)
             {
                 var entity = await _context.Charter
-                    .FindAsync(request.Id);
+                    .FindAsync(request.CharterId);
 
                 if (entity is null)
                 {
-                    throw new NotFoundException(nameof(TodoList), request.Id);
+                    throw new NotFoundException(nameof(TodoList), request.CharterId);
                 }
 
                 _context.Charter.Remove(entity);
