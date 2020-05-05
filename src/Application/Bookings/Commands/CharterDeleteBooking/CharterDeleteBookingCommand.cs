@@ -13,7 +13,7 @@ namespace CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList
 {
     public class CharterDeleteBookingCommand : IRequest
     {
-        public string Id { get; set; }
+        public string BookingId { get; set; }
 
         public class Handler : IRequestHandler<CharterDeleteBookingCommand>
         {
@@ -29,16 +29,11 @@ namespace CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList
             public async Task<Unit> Handle(CharterDeleteBookingCommand request, CancellationToken cancellationToken)
             {
                 var entity = await _context.Bookings
-                    .FindAsync(request.Id);
-
-                if (entity.CharterId != _currentUserService.UserId)
-                {
-                    throw new UnauthorizedException($"Booking", _currentUserService.UserId);
-                }
+                    .FindAsync(request.BookingId);
 
                 if (entity is null)
                 {
-                    throw new NotFoundException(nameof(CharterDeleteBookingCommand), request.Id);
+                    throw new NotFoundException(nameof(CharterDeleteBookingCommand), request.BookingId);
                 }
 
                 _context.Bookings.Remove(entity);

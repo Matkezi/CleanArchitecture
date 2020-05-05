@@ -39,11 +39,11 @@ namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
             {
 
                 Booking booking = await _context.Bookings.Include(x => x.Charter).Include(x => x.Boat).FirstAsync(x => x.Id == request.BookingId);
+                
                 if (booking.GuestEmail != request.GuestEmail)
                 {
                     throw new UnauthorizedException("Booking", request.GuestEmail);
                 }
-
 
                 booking.Status = BookingStatusEnum.SkipperRequested;
                 booking.SkipperId = request.SkipperId;
