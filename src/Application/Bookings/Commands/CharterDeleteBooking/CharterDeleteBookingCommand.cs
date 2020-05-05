@@ -20,9 +20,10 @@ namespace CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList
             private readonly IApplicationDbContext _context;
             private readonly ICurrentUserService _currentUserService;
 
-            public Handler(IApplicationDbContext context)
+            public Handler(IApplicationDbContext context, ICurrentUserService currentUserService)
             {
                 _context = context;
+                _currentUserService = currentUserService;
             }
 
             public async Task<Unit> Handle(CharterDeleteBookingCommand request, CancellationToken cancellationToken)

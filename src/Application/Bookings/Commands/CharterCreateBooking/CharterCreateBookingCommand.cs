@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.Application.Common.Helpers;
+﻿using CleanArchitecture.Application.Common.Exceptions;
+using CleanArchitecture.Application.Common.Helpers;
 using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Application.Common.Models;
 using CleanArchitecture.Domain.Emails;
@@ -42,7 +43,7 @@ namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
                 var charter = await _context.Charter.FindAsync(_currentUserService.UserId);
                 if (charter is null)
                 {
-                    // TODO: Exception? Because there must be a charter in order to create a booking.
+                    throw new NotFoundException(nameof(charter), _currentUserService.UserId);
                 }
 
                 var booking = new Booking
