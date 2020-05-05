@@ -2,25 +2,25 @@
 
 namespace CleanArchitecture.Application.Common.Exceptions
 {
-    public class UnAuthorizedException : Exception
+    public class UnauthorizedException : Exception
     {
-        public UnAuthorizedException()
+        public UnauthorizedException()
             : base()
         {
         }
 
-        public UnAuthorizedException(string message)
+        public UnauthorizedException(string message)
             : base(message)
         {
         }
 
-        public UnAuthorizedException(string message, Exception innerException)
+        public UnauthorizedException(string message, Exception innerException)
             : base(message, innerException)
         {
         }
 
-        public UnAuthorizedException(string name, object key)
-            : base($"Entity \"{name}\" ({key}) unauthorized access.")
+        public UnauthorizedException(string resourse, string unauthorizedUser)
+            : base($"User {unauthorizedUser} is not authorized to access resource {resourse}.")
         {
         }
     }
