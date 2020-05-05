@@ -16,8 +16,6 @@ namespace CleanArchitecture.Application.Skippers.Queries.Availability
 {
     public class CharterGetBookingsQuery : IRequest<IEnumerable<BookingModel>>
     {
-        public BookingStatusEnum BookingStatus { get; set; }
-
         public class Handler : IRequestHandler<CharterGetBookingsQuery, IEnumerable<BookingModel>>
         {
             private readonly IApplicationDbContext _context;
