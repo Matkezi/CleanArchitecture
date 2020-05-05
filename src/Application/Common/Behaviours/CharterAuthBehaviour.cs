@@ -13,36 +13,23 @@ namespace CleanArchitecture.Application.Common.Behaviours
     {
         private readonly ILogger _logger;
         private readonly ICurrentUserService _currentUserService;
-        private readonly IIdentityService _identityService;
 
-        public CharterAuthBehaviour(ILogger<TRequest> logger, ICurrentUserService currentUserService, IIdentityService identityService)
+        public CharterAuthBehaviour(ILogger<TRequest> logger, ICurrentUserService currentUserService)
         {
-            _logger = logger;
             _currentUserService = currentUserService;
-            _identityService = identityService;
         }
 
         public async Task Process(TRequest request, CancellationToken cancellationToken)
         {
-            var requestName = typeof(TRequest).Name;
-            var userId = _currentUserService.UserId ?? string.Empty;
-            string userName = string.Empty;
-
-            if (!string.IsNullOrEmpty(userId))
-            {
-                userName = await _identityService.GetUserNameAsync(userId);
-            }
-
+            var userId = _currentUserService.UserId;
             var charterId = request.CharterId;
-            if (charterId != _currentUserService.UserId)
+            if (charterId != userId)
             {
                 // TODO: not sure if this logger is neccessary.
                 _logger.LogError("");
-                throw new UnauthorizedException($"Charter", _currentUserService.UserId);
+                throw new UnauthorizedException($"Skipper", _currentUserService.UserId);
             }
 
-            _logger.LogInformation("CleanArchitecture Request: {Name} {@UserId} {@UserName} {@Request}",
-                requestName, userId, userName, request);
         }
     }
 }
