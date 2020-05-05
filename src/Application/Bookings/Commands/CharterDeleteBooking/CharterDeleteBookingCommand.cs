@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList
 {
-    public class CharterDeleteBookingCommand : IRequest
+    public class CharterDeleteBookingCommand : IRequest, ICharterBookingAuth
     {
-        public string BookingId { get; set; }
+        public int BookingId { get; set; }
 
         public class Handler : IRequestHandler<CharterDeleteBookingCommand>
         {
