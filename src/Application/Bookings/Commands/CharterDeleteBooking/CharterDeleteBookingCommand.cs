@@ -33,7 +33,7 @@ namespace CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList
 
                 if (entity.CharterId != _currentUserService.UserId)
                 {
-                    throw new UnauthorizedException($"Booking {request.Id}", _currentUserService.UserId);
+                    throw new UnauthorizedException($"Booking", _currentUserService.UserId);
                 }
 
                 if (entity is null)

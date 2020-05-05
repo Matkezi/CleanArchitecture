@@ -10,9 +10,7 @@ namespace CleanArchitecture.Application.Bookings.Commands.SkipperAcceptBooking
 {
     public class SkipperAcceptBookingCommand : IRequest
     {
-
         public int BookingId { get; set; }
-        public string SkipperId { get; set; }
 
         public class Handler : IRequestHandler<SkipperAcceptBookingCommand>
         {

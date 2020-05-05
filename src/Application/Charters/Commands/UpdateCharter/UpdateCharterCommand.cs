@@ -46,7 +46,7 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
 
                 if (entity is null)
                 {
-                    throw new NotFoundException(nameof(Skipper), request.Id);
+                    throw new NotFoundException(nameof(Charter), request.Id);
                 }
 
                 entity.CharterName = request.CharterName;
