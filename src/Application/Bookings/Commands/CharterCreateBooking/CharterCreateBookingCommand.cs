@@ -15,7 +15,6 @@ namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
 {
     public class CharterCreateBookingCommand : IRequest
     {
-        public int Id { get; set; }
         public int BoatId { get; set; }
         public DateTime BookedFrom { get; set; }
         public DateTime BookedTo { get; set; }
