@@ -12,5 +12,7 @@ namespace CleanArchitecture.Application.Common.Interfaces
         Task SendEmailWithTemplate(BookingCreated mailTemplate);
         Task SendEmailWithTemplate(BookingRequested mailTemplate);
         Task SendEmailWithTemplate(SkipperBookingRequested mailTemplate);
+        Task SendEmailWithTemplate(SkipperAccepted mailTemplate);
+        Task SendEmailWithTemplate(SkipperDeclined mailTemplate);
     }
 }

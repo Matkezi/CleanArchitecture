@@ -70,7 +70,7 @@ namespace CleanArchitecture.Infrastructure.Emails
                 .SendAsync();
         }
 
-        public Task SendEmailWithTemplate(SkipperBookingRequested mailTemplate)
+        public Task SendEmailWithTemplate(SkipperAccepted mailTemplate)
         {
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
@@ -78,6 +78,28 @@ namespace CleanArchitecture.Infrastructure.Emails
                 .BCC(mailTemplate.Bcc)
                 .Subject($"Skipper Booking Created")
                 .UsingTemplateFromFile("./wwwroot/Templates/Emails/SkipperBookingRequested.cshtml", mailTemplate)
+                .SendAsync();
+        }
+
+        public Task SendEmailWithTemplate(SkipperBookingRequested mailTemplate)
+        {
+            return _fluentEmail
+                .To(mailTemplate.ToEmail)
+                .CC(mailTemplate.Cc)
+                .BCC(mailTemplate.Bcc)
+                .Subject($"Skipper Booking Accepted")
+                .UsingTemplateFromFile("./wwwroot/Templates/Emails/SkipperAccepted.cshtml", mailTemplate)
+                .SendAsync();
+        }
+
+        public Task SendEmailWithTemplate(SkipperDeclined mailTemplate)
+        {
+            return _fluentEmail
+                .To(mailTemplate.ToEmail)
+                .CC(mailTemplate.Cc)
+                .BCC(mailTemplate.Bcc)
+                .Subject($"Skipper Booking Declined")
+                .UsingTemplateFromFile("./wwwroot/Templates/Emails/SkipperDeclined.cshtml", mailTemplate)
                 .SendAsync();
         }
     }
