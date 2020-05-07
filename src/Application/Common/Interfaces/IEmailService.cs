@@ -15,5 +15,6 @@ namespace CleanArchitecture.Application.Common.Interfaces
         Task SendEmailWithTemplate(SkipperAccepted mailTemplate);
         Task SendEmailWithTemplate(SkipperDeclined mailTemplate);
         Task SendEmailWithTemplate(PasswordReset mailTemplate);
+        Task SendEmailWithTemplate(ChangeEmail mailTemplate);
     }
 }

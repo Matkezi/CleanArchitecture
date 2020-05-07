@@ -2,6 +2,7 @@
 using CleanArchitecture.Application.Common.Helpers;
 using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Application.Common.Models;
+using CleanArchitecture.Application.ExternalLogins.Facebook;
 using CleanArchitecture.Application.Skippers.Models;
 using CleanArchitecture.Infrastructure.Persistence.Entities;
 using MediatR;
@@ -42,12 +43,14 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
             private readonly IApplicationDbContext _context;
             private readonly IFilesStorageService _filesStorageService;
             private readonly IIdentityService _identityService;
+            private readonly IMediator _mediator;
 
-            public Handler(IApplicationDbContext context, IFilesStorageService filesStorageService, IIdentityService identityService)
+            public Handler(IApplicationDbContext context, IFilesStorageService filesStorageService, IIdentityService identityService, IMediator mediator)
             {
                 _context = context;
                 _filesStorageService = filesStorageService;
                 _identityService = identityService;
+                _mediator = mediator;
             }
 
             public async Task<Unit> Handle(UpdateSkipperCommand request, CancellationToken cancellationToken)
@@ -107,11 +110,6 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
                 //        SkipperId = language.SkipperId
                 //    });
 
-
-                if (!string.IsNullOrEmpty(request.NewEmail))
-                {
-                    var result = await _identityService.ChangeEmailRequest(entity.UserName, request.NewEmail);
-                }
                 if (request.UserPhoto != null)
                 {
                     // TODO: validate Data somehow before this, make a validator
@@ -141,6 +139,11 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
                 }
 
                 await _context.SaveChangesAsync(cancellationToken);
+
+                if (!string.IsNullOrEmpty(request.NewEmail))
+                {
+                    _ = _mediator.Send(new EmailChangeRequestCommand { UserEmail = entity.Email, UserNewEmail = request.NewEmail });
+                }
 
                 return Unit.Value;
             }

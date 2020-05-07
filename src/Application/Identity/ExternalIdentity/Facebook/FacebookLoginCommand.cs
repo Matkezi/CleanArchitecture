@@ -1,5 +1,6 @@
 ﻿using AutoMapper.Configuration;
 using CleanArchitecture.Application.Common.Interfaces;
+using CleanArchitecture.Application.Common.Models;
 using CleanArchitecture.Domain.Enums;
 using CleanArchitecture.Infrastructure.Persistence.Entities;
 using MediatR;
@@ -16,11 +17,11 @@ using System.Web;
 
 namespace CleanArchitecture.Application.ExternalLogins.Facebook
 {
-    public class FacebookLoginCommand : IRequest<string>
+    public class FacebookLoginCommand : IRequest<LoginResponse>
     {
         public string AuthToken { get; set; }
 
-        public class Handler : IRequestHandler<FacebookLoginCommand, string>
+        public class Handler : IRequestHandler<FacebookLoginCommand, LoginResponse>
         {
             private readonly IExternalIdentityProviderFactory _externalIdentityProviderFactory;
 
@@ -30,12 +31,12 @@ namespace CleanArchitecture.Application.ExternalLogins.Facebook
                 _externalIdentityProviderFactory = externalIdentityProviderFactory;
             }
 
-            public async Task<string> Handle(FacebookLoginCommand request, CancellationToken cancellationToken)
+            public async Task<LoginResponse> Handle(FacebookLoginCommand request, CancellationToken cancellationToken)
             {
                 var externalIdentityProvider = _externalIdentityProviderFactory.GetExternalIdentityProvider(ExternalIdentityProviderEnum.Facebook);
                 var result = await externalIdentityProvider.ExternalLogin(request.AuthToken);
                 //TODO what if reulst failed
-                return result.loginResponse.Token;
+                return result.loginResponse;
             }
         }
     }

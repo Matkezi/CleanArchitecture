@@ -82,9 +82,9 @@ namespace CleanArchitecture.Infrastructure.Identity
             return result.ToApplicationResult();
         }
 
-        public async Task<Result> ConfirmEmail(string email, string token)
+        public async Task<Result> ConfirmEmail(string userEmail, string token)
         {
-            AppUser user = await _userManager.FindByEmailAsync(email);
+            AppUser user = await _userManager.FindByEmailAsync(userEmail);
             var result = await _userManager.ConfirmEmailAsync(user, token);
             return result.ToApplicationResult();
         }
@@ -142,35 +142,51 @@ namespace CleanArchitecture.Infrastructure.Identity
 
         public async Task<(Result result, string passwordResetTokenBase64)> PasswordResetToken(string userEmail)
         {
-            var user = await _userManager.Users.FirstAsync(u => u.Email == userEmail);
+            var user = await _userManager.FindByEmailAsync(userEmail);
             if (user is null)
                 return (Result.Failure("User not found."), null);
-
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);           
             byte[] tokenBytes = Encoding.UTF8.GetBytes(token);
-
             var tokenEncoded = WebEncoders.Base64UrlEncode(tokenBytes);
             return (Result.Success(), tokenEncoded);
         }
 
-        public Task<Result> PasswordReset(string email, string token, string newPassword)
+        public async Task<Result> PasswordReset(string userEmail, string newPassword, string token)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            if (user is null)
+                return Result.Failure("User not found.");
+            var tokenDecodedBytes = WebEncoders.Base64UrlDecode(token);
+            var tokenDecoded = Encoding.UTF8.GetString(tokenDecodedBytes);
+            var result = await _userManager.ResetPasswordAsync(user, tokenDecoded, newPassword);
+            return result.ToApplicationResult();
         }
 
-        public Task<Result> ChangeEmailRequest(string userName, string newEmail)
+        public async Task<(Result result, string emailResetTokenBase64)> ChangeEmailToken(string userEmail, string userNewEmail)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            if (user is null)
+                return (Result.Failure("User not found."), null);
+            var token = await _userManager.GenerateChangeEmailTokenAsync(user, userNewEmail);
+            byte[] tokenBytes = Encoding.UTF8.GetBytes(token);
+            var tokenEncoded = WebEncoders.Base64UrlEncode(tokenBytes);
+            return (Result.Success(), tokenEncoded);
         }
 
-        public Task<Result> ChangeEmail(string email, string newEmail, string token)
+        public async Task<Result> ChangeEmail(string userEmail, string userNewEmail, string token)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            if (user is null)
+                return Result.Failure("User not found.");
+            var tokenDecodedBytes = WebEncoders.Base64UrlDecode(token);
+            var tokenDecoded = Encoding.UTF8.GetString(tokenDecodedBytes);
+            var result = await _userManager.ChangeEmailAsync(user, userNewEmail, tokenDecoded);
+            return result.ToApplicationResult();
         }
 
-        public Task<IList<AppUser>> GetUsersByRole(RoleEnum role)
+        public async Task<IList<AppUser>> GetUsersByRole(RoleEnum role)
         {
-            throw new NotImplementedException();
+            return await _userManager.GetUsersInRoleAsync(Enum.GetName(typeof(RoleEnum), role));
         }
 
         public async Task<IList<RoleEnum>> GetUserRoles(string userName)

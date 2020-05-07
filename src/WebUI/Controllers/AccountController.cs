@@ -12,82 +12,58 @@ namespace CleanArchitecture.WebUI.Controllers
 {
     public class AccountController : ApiController
     {
-        private readonly IIdentityService _identityService;
-
-        public AccountController(IIdentityService identityService)
-        {
-            _identityService = identityService;
-        }
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest loginModel)
+        public async Task<ActionResult<LoginResponse>> Login(LoginCommand command)
         {
-            try
-            {
-                var loginData = await _identityService.Login(loginModel.Email, loginModel.Password, loginModel.RememberMe);
-                if (loginData.loginResponse is null)
-                {
-                    return Unauthorized();
-                }
-                return Ok(loginData);
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return BadRequest("Email or password aren't correct!");
-            }
-
-
+            return await Mediator.Send(command);
         }
 
         [AllowAnonymous]
         [HttpPost("facebook-login")]
-        public async Task<ActionResult<string>> FacebookLogin(FacebookLoginCommand command)
+        public async Task<ActionResult<LoginResponse>> FacebookLogin(FacebookLoginCommand command)
         {
             return await Mediator.Send(command);
         }
 
         [AllowAnonymous]
         [HttpGet("confirm-email")]
-        public async Task<IActionResult> ConfirmEmail(string email, string token)
+        public async Task<ActionResult> ConfirmEmail(ConfirmEmailCommand command)
         {
-            var result = await _identityService.ConfirmEmail(email, token);
-            if (result.Succeeded) return Ok();
-            else return BadRequest(result.Errors.ToList());
+            await Mediator.Send(command);
+            return NoContent();
         }
 
         [AllowAnonymous]
         [HttpPost("change-email/{email}/{newEmail}/{token}")]
-        public async Task<IActionResult> ChangeEmail(string email, string newEmail, string token)
+        public async Task<IActionResult> ChangeEmail(EmailChangeCommand command)
         {
-            var result = await _identityService.ChangeEmail(email, newEmail, token);
-            if (result.Succeeded) return Ok();
-            else return BadRequest(result.Errors.ToList());
+            await Mediator.Send(command);
+            return NoContent();
         }
 
         [AllowAnonymous]
         [HttpPost("email-reset-email/{email}/{newEmail}")]
-        public async Task<IActionResult> EmailResetRequest(string email, string newEmail)
+        public async Task<IActionResult> EmailResetRequest(EmailChangeRequestCommand command)
         {
-            var result = await _identityService.ChangeEmailRequest(email, newEmail);
-            if (result.Succeeded) return Ok();
-            else return BadRequest(result.Errors.ToList());
+            await Mediator.Send(command);
+            return NoContent();
         }
 
         [AllowAnonymous]
         [HttpPost("password-reset/{email}/{token}/{newPassword}")]
-        public async Task<IActionResult> PasswordReset(string email, string token, string newPassword)
+        public async Task<IActionResult> PasswordReset(PasswordResetCommand command)
         {
-            var result = await _identityService.PasswordReset(email, token, newPassword);
-            if (result.Succeeded) return Ok();
-            else return BadRequest(result.Errors.ToList());
+            await Mediator.Send(command);
+            return NoContent();
         }
 
         [AllowAnonymous]
         [HttpPost("password-reset-email/{email}")]
-        public async Task<IActionResult> PasswordResetRequest(string email)
+        public async Task<IActionResult> PasswordResetRequest(PasswordResetRequestCommand command)
         {
-            await Mediator.Send(new PasswordResetRequestCommand { UserEmail = email });
+            await Mediator.Send(command);
             return NoContent();
         }
 

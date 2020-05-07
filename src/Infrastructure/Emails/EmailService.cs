@@ -109,8 +109,19 @@ namespace CleanArchitecture.Infrastructure.Emails
                 .To(mailTemplate.ToEmail)
                 .CC(mailTemplate.Cc)
                 .BCC(mailTemplate.Bcc)
-                .Subject($"Skipper Booking Declined")
+                .Subject("Skipper Agency Password Reset")
                 .UsingTemplateFromFile("./wwwroot/Templates/Emails/PasswordReset.cshtml", mailTemplate)
+                .SendAsync();
+        }
+
+        public Task SendEmailWithTemplate(ChangeEmail mailTemplate)
+        {
+            return _fluentEmail
+                .To(mailTemplate.ToEmail)
+                .CC(mailTemplate.Cc)
+                .BCC(mailTemplate.Bcc)
+                .Subject("Skipper Agency Change Email")
+                .UsingTemplateFromFile("./wwwroot/Templates/Emails/ChangeEmail.cshtml", mailTemplate)
                 .SendAsync();
         }
     }
