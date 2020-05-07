@@ -82,7 +82,7 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
                 _context.TryUpdateManyToMany(entity.ListOfSkills,
                     request.ListOfSkills.Select(skill => new SkipperSkill
                     {
-                        SkillId = (SkillsEnum)skill.SkillId,
+                        SkillId = skill.SkillId,
                         SkipperId = skill.SkipperId
                     }), x => x.SkillId);
 

@@ -7,7 +7,7 @@ namespace SkipperBooking.Web.Models
 {
     public class SkillModel : IMapFrom<SkipperSkill>
     {
-        public int SkillId { get; set; }
+        public SkillsEnum SkillId { get; set; }
         public string SkipperId { get; set; }
         public string Name { get; set; }
         public string Icon { get; set; }       
