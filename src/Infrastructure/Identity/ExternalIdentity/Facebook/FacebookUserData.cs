@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
-namespace CleanArchitecture.Application.ExternalLogins.Facebook
+namespace CleanArchitecture.Infrastructure.Identity.ExternalIdentity
 {
-    public class FacebookUserData
+    class FacebookUserData
     {
         public long Id { get; set; }
         public string Email { get; set; }
@@ -15,12 +15,12 @@ namespace CleanArchitecture.Application.ExternalLogins.Facebook
         public FacebookPictureData Picture { get; set; }
     }
 
-    public class FacebookPictureData
+    internal class FacebookPictureData
     {
         public FacebookPicture Data { get; set; }
     }
 
-    public class FacebookPicture
+    internal class FacebookPicture
     {
         public int Height { get; set; }
         public int Width { get; set; }

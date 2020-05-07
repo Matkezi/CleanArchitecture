@@ -34,6 +34,7 @@ namespace CleanArchitecture.Application.ExternalLogins.Facebook
             {
                 var externalIdentityProvider = _externalIdentityProviderFactory.GetExternalIdentityProvider(ExternalIdentityProviderEnum.Facebook);
                 var result = await externalIdentityProvider.ExternalLogin(request.AuthToken);
+                //TODO what if reulst failed
                 return result.loginResponse.Token;
             }
         }

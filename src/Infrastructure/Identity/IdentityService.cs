@@ -129,14 +129,28 @@ namespace CleanArchitecture.Infrastructure.Identity
         }
 
 
-        public Task<Result> ChangePassword(string userName, string newPassword, string token)
+        public async Task<Result> ChangePassword(string userName, string password, string newPassword)
         {
-            throw new NotImplementedException();
+            AppUser user = await _userManager.FindByNameAsync(userName);
+            if (user is null) return Result.Failure("user not found.");
+
+            var result = await _userManager.ChangePasswordAsync(user, password, newPassword);
+            if (!result.Succeeded) Result.Failure("Failed to change password.");
+
+            return Result.Success();
         }
 
-        public Task<Result> PasswordResetRequest(string userName)
+        public async Task<(Result result, string passwordResetTokenBase64)> PasswordResetToken(string userName)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByNameAsync(userName);
+            if (user is null)
+                return (Result.Failure("user not found."), null);
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);           
+            byte[] tokenBytes = Encoding.UTF8.GetBytes(token);
+
+            var tokenEncoded = WebEncoders.Base64UrlEncode(tokenBytes);
+            return (Result.Success(), tokenEncoded);
         }
 
         public Task<Result> PasswordReset(string email, string token, string newPassword)

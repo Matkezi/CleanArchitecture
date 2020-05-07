@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Skippers.Queries.GetSkipper
 {
-    public class GetLanguagesQuery : IRequest<IEnumerable<CountryModel>>
+    public class GetLanguagesQuery : IRequest<IEnumerable<LanguageModel>>
     {
-        public class Handler : IRequestHandler<GetLanguagesQuery, IEnumerable<CountryModel>>
+        public class Handler : IRequestHandler<GetLanguagesQuery, IEnumerable<LanguageModel>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
