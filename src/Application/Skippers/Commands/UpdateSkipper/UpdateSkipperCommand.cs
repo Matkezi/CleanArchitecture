@@ -30,11 +30,11 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
         public int CountryId { get; set; }
         public string PersonalSummary { get; set; }
         public IEnumerable<SkillModel> ListOfSkills { get; set; }
-        public IEnumerable<LanguageModel> ListOfLanguages { get; set; }
+        public IEnumerable<SkipperLanguageModel> ListOfLanguages { get; set; }
 
         public string NewEmail { get; set; }
         public FileModel UserPhoto { get; set; }
-        public LicenceModel UserLicence { get; set; }       
+        public SkipperLicenceModel UserLicence { get; set; }       
 
 
         public class Handler : IRequestHandler<UpdateSkipperCommand>

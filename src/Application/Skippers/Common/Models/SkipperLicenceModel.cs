@@ -3,7 +3,7 @@ using System;
 
 namespace CleanArchitecture.Application.Common.Models
 {
-    public class LicenceModel : FileModel
+    public class SkipperLicenceModel : FileModel
     {
         public DateTime DateOfIssue { get; set; }
         public DateTime ValidTo { get; set; }

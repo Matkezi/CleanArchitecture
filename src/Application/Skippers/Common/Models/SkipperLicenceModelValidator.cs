@@ -4,9 +4,9 @@ using SkipperBooking.Web.Models;
 
 namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
 {
-    public class LicenceModelValidator : AbstractValidator<LicenceModel>
+    public class SkipperLicenceModelValidator : AbstractValidator<SkipperLicenceModel>
     {
-        public LicenceModelValidator()
+        public SkipperLicenceModelValidator()
         {
             RuleFor(x => x.LicenceType).IsInEnum();
         }

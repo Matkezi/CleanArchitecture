@@ -11,7 +11,7 @@ namespace CleanArchitecture.Application.Skippers.Models
         public string ImageURL { get; set; }
         public string FirstName { get; set; }
         public string YearOfFirstLicence { get; set; }
-        public IEnumerable<LanguageModel> ListOfLanguages { get; set; }
+        public IEnumerable<SkipperLanguageModel> ListOfLanguages { get; set; }
 
         public void Mapping(Profile profile)
         {

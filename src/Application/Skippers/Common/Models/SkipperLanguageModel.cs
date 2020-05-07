@@ -4,7 +4,7 @@ using CleanArchitecture.Infrastructure.Persistence.Entities;
 
 namespace CleanArchitecture.Application.Skippers.Models
 {
-    public class LanguageModel : IMapFrom<SkipperLanguage>
+    public class SkipperLanguageModel : IMapFrom<SkipperLanguage>
     {
         public int LanguageId { get; set; }
         public string SkipperId { get; set; }
@@ -13,7 +13,7 @@ namespace CleanArchitecture.Application.Skippers.Models
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<SkipperLanguage, LanguageModel>()
+            profile.CreateMap<SkipperLanguage, SkipperLanguageModel>()
                 .ForMember(dest => dest.Label,
                             opt => opt.MapFrom(src => src.Language.EnglishName));
         }
