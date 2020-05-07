@@ -8,7 +8,6 @@ namespace CleanArchitecture.Application.Common.Interfaces
 {
     public interface IIdentityService
     {
-        Task<string> GetEmailAsync(string userName);
         Task<string> GetUserNameAsync(string userId);
         /// <summary>
         /// Creates a new user where: Username = Email
@@ -27,7 +26,7 @@ namespace CleanArchitecture.Application.Common.Interfaces
         /// </summary>
         /// <param name="userName"></param>
         /// <returns>Base64 encoded token.</returns>
-        Task<(Result result, string passwordResetTokenBase64)> PasswordResetToken(string userName);
+        Task<(Result result, string passwordResetTokenBase64)> PasswordResetToken(string userEmail);
         Task<Result> PasswordReset(string email, string token, string newPassword);
         Task<Result> ChangeEmailRequest(string userName, string newEmail);
         Task<Result> ChangeEmail(string email, string newEmail, string token);

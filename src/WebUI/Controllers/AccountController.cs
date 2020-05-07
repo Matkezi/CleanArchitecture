@@ -84,22 +84,11 @@ namespace CleanArchitecture.WebUI.Controllers
         }
 
         [AllowAnonymous]
-        [HttpPost("change-password/{email}/{password}/{newPassword}")]
-        public async Task<IActionResult> PasswordResetRequest(string email, string password, string newPassword)
-        {
-            var result = await _identityService.ChangePassword(email, password, newPassword);
-            if (result.Succeeded) return Ok();
-            else return BadRequest(result.Errors.ToList());
-        }
-
-        [AllowAnonymous]
         [HttpPost("password-reset-email/{email}")]
         public async Task<IActionResult> PasswordResetRequest(string email)
         {
-            return Ok();
-            //var result = await _identityService.PasswordResetRequest(email);
-            //if (result.Succeeded) return Ok();
-            //else return BadRequest(result.Errors.ToList());
+            await Mediator.Send(new PasswordResetRequestCommand { UserEmail = email });
+            return NoContent();
         }
 
     }

@@ -38,12 +38,6 @@ namespace CleanArchitecture.Infrastructure.Identity
             return user.UserName;
         }
 
-        public async Task<string> GetEmailAsync(string userName)
-        {
-            var user = await _userManager.FindByNameAsync(userName);
-            return user.Email;
-        }
-
         /// <summary>
         /// Creates a new user where: Username = Email
         /// </summary>
@@ -146,11 +140,11 @@ namespace CleanArchitecture.Infrastructure.Identity
             return Result.Success();
         }
 
-        public async Task<(Result result, string passwordResetTokenBase64)> PasswordResetToken(string userName)
+        public async Task<(Result result, string passwordResetTokenBase64)> PasswordResetToken(string userEmail)
         {
-            var user = await _userManager.FindByNameAsync(userName);
+            var user = await _userManager.Users.FirstAsync(u => u.Email == userEmail);
             if (user is null)
-                return (Result.Failure("user not found."), null);
+                return (Result.Failure("User not found."), null);
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);           
             byte[] tokenBytes = Encoding.UTF8.GetBytes(token);

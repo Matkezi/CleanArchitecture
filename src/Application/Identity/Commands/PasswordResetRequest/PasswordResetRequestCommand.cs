@@ -18,7 +18,7 @@ namespace CleanArchitecture.Application.ExternalLogins.Facebook
 {
     public class PasswordResetRequestCommand : IRequest
     {
-        public string UserName { get; set; }
+        public string UserEmail { get; set; }
 
         public class Handler : IRequestHandler<PasswordResetRequestCommand>
         {
@@ -26,22 +26,23 @@ namespace CleanArchitecture.Application.ExternalLogins.Facebook
             private readonly IEmailService _emailer;
             private readonly IConfiguration _configuration;
 
-            public Handler(IIdentityService identityService, IEmailService emailer)
+            public Handler(IIdentityService identityService, IEmailService emailer, IConfiguration configuration)
             {
                 _identityService = identityService;
                 _emailer = emailer;
+                _configuration = configuration;
             }
 
             public async Task<Unit> Handle(PasswordResetRequestCommand request, CancellationToken cancellationToken)
             {
-                var result = await _identityService.PasswordResetToken(request.UserName);
-                var email = await _identityService.GetEmailAsync(request.UserName);
-                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/password-reset/email={email}/token={result.passwordResetTokenBase64}";
+                var result = await _identityService.PasswordResetToken(request.UserEmail);
+                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/password-reset/email={request.UserEmail}/token={result.passwordResetTokenBase64}";
 
+                // TODO: fullname in an email
                 _ = _emailer.SendEmailWithTemplate(
                     new PasswordReset(
-                        toEmail: email,
-                        fullName: request.UserName,
+                        toEmail: request.UserEmail,
+                        fullName: request.UserEmail,
                         passwordResetUrl: callbackUrl
                     ));
 
