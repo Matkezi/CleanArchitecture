@@ -1,0 +1,269 @@
+.wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.title {
+    display: inline;
+    font-size: 27px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.37;
+    letter-spacing: normal;
+    text-align: left;
+    color: #26806b;
+}
+
+.plusIcon {
+    margin-bottom: -11px;
+    width: 30px;
+    height: 30px;
+}
+
+.rotate {
+    transform: rotate(45deg);
+}
+
+.createDiv {
+    display: inline;
+    font-size: 18px;
+    font-weight: 700;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #26806b;
+    cursor: pointer;
+}
+
+.createDiv span {
+    padding: 15px;
+}
+
+.bookingContainer {
+    position: relative;
+    display: block;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.filterLabel {
+    height: 24.5px;
+    width: 80%;
+    font-size: 16.5px;
+    font-weight: 700;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+    padding-bottom: 10px !important;
+    cursor: pointer;
+}
+
+.sortIcon {
+    position: relative;
+    margin-top: 7px;
+}
+
+.clicked {
+    border-bottom: solid 2px #26816A;
+}
+
+.bookingRow {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 10px 0 10px 0;
+}
+
+.statusIcon {
+    position: relative;
+    display: block;
+}
+
+.Header {
+    width: 123px;
+    height: 37px;
+    font-family: OpenSans-Bold;
+    font-size: 27px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.37;
+    letter-spacing: normal;
+    text-align: left;
+    color: #26806b;
+}
+
+.CreateButton {
+    width: 300px;
+    height: 42px;
+}
+
+.CreateText {
+    font-family: OpenSans-SemiBold;
+    font-size: 16px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #26806b;
+}
+
+.Icon {
+    width: 34px;
+    height: 34px;
+}
+
+.BookingEditContainer {
+    border: solid 0.5px #cfcece;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 20px;
+    width: 100%;
+}
+
+.newBookingDiv {
+    margin: 15px 0px !important;
+}
+
+.NewBookingHeeader {
+    width: 203px;
+    height: 37px;
+    font-family: OpenSans-Bold;
+    font-size: 27px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.37;
+    letter-spacing: normal;
+    text-align: left;
+    color: #26806b;
+}
+
+.CloseIcon {
+    width: 34px;
+    height: 34px;
+}
+
+.NoHover {
+    opacity: 1;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.SubTitles {
+    height: 24.5px;
+    font-family: OpenSans-SemiBold;
+    font-size: 18px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #161925;
+    margin: 20px 0 20px 0;
+}
+
+.SaveButton {
+    width: 251px;
+    height: 48.8px;
+    border-radius: 37px !important;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 2px #26806b;
+    background-color: #26806b !important;
+}
+
+.SaveButtonText {
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+
+.formSelect {
+    display: block;
+    position: relative;
+    width: 100% !important;
+}
+
+.select {
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.boatRow {
+    margin: 10px 0 !important;
+}
+
+.resetBtn {
+    border-radius: 37px !important;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 2px #26806b;
+    background-color: #26806b !important;
+    padding: 3px 10px 3px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    outline: none;
+
+    span {
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
+.sorterDiv {
+    min-width: 1000px;
+}
+
+.boatPicker {
+    max-height: 326px;
+    padding-right: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.noBoats {
+    text-align: center;
+    font-style: italic;
+    font-size: 16px;
+}
+
+.previousBtn {
+    width: 162px;
+    height: 49.8px;
+    border-radius: 37px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 2px #161925;
+    background-color: #ffffff;
+    outline: none;
+    cursor: pointer;
+    margin-right: 5px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 40px;
+
+    span {
+        width: 75px;
+        height: 24.5px;
+        font-size: 18px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.36;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000000;
+    }
+}

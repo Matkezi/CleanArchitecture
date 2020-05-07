@@ -1,0 +1,63 @@
+.submitButton {
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 0.5px #707070;
+    background-color: #161925;
+    border-radius: 37px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 12px 35px 12px 35px;
+    float: right;
+}
+
+.languageName {
+    display: block;
+    position: relative;
+    font-size: 15px;
+}
+
+.backButton {
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 0.5px #707070;
+    background-color: #ffffff;
+    border-radius: 37px;
+    cursor: pointer;
+    color: #000000;
+    font-size: 18px;
+    padding: 12px 35px 12px 35px;
+    float: right;
+}
+
+.checkbox {
+    height: 16px;
+    width: 16px;
+}
+
+.checkBoxLabel {
+    vertical-align: top;
+    font-size: 15px;
+    margin-left: 3px;
+}
+
+.checkboxAccept {
+    color: red;
+    font-style: italic;
+    margin-right: 10px;
+    margin-left: 28px;
+    vertical-align: top;
+}
+
+@media only screen and (max-width: 1100px) {
+    .submitButton {
+        margin-right: 15px;
+        width: 167px;
+        font-size: 16px !important;
+        padding: 12px 20px 12px 20px !important;
+    }
+
+    .backButton {
+        margin-left: 15px;
+        font-size: 16px !important;
+        padding: 12px 30px 12px 30px !important;
+    }
+}

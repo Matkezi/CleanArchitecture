@@ -1,0 +1,211 @@
+.background {
+  background-image: url('../../resources/img/landingPicture.jpg');
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.agency {
+  font-size: 34px;
+  color: white;
+  margin-right: 15px;
+  margin-top: -5px;
+  letter-spacing: 2px;
+}
+
+.NavTab {
+  font-size: 18px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.36;
+  letter-spacing: normal;
+  text-align: center;
+  color: #555555;
+  height: 100%;
+}
+
+.container {
+  padding-top: 10px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+.LoginNavTab {
+  padding-bottom: 20px !important;
+  margin-top: 8px !important;
+  margin-bottom: -2px !important;
+  font-size: 19px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.36;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  height: 100%;
+}
+
+.LoginDivider {
+  background-color: white !important;
+}
+
+.LoginActiveNavTab {
+  border-bottom: 1.5px solid white
+}
+
+.ActiveNavTab {
+  border-bottom: 1.5px solid black;
+  padding-bottom: 20px !important;
+  margin-bottom: -20px !important;
+}
+
+.ProfileActive {
+  border-bottom: 1.5px solid black;
+  margin-bottom: -1.5px !important;
+}
+
+.Logo {
+  width: 120px;
+  height: 34px;
+  margin-left: 9px;
+}
+
+.Avatar {
+  width: 50.3px !important;
+  height: 50.3px !important;
+  margin-bottom: 10px !important;
+  border-radius: 158px !important;
+  box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+}
+
+.Links {
+  text-decoration: none;
+  color: #555555;
+}
+
+.LoginLinks {
+  text-decoration: none;
+  color: white;
+}
+
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+
+.menuItem {
+  div {
+    margin-top: 58px;
+
+    ul li {
+      padding-right: 24px;
+      padding-left: 24px;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .Logo {
+    width: 65px;
+    height: 20px;
+  }
+
+  .mobileDocument {
+    width: 90%;
+  }
+
+  .agency {
+    font-size: 26px;
+  }
+
+  .menuItem div {
+    margin-top: 40px;
+  }
+
+  .NavTab {
+    font-size: 12px;
+  }
+
+  .ActiveNavTab {
+    padding-bottom: 11px !important;
+    margin-bottom: -13px !important;
+  }
+
+  .Avatar {
+    width: 40px !important;
+    height: 40px !important;
+    margin-bottom: 0px !important;
+  }
+
+  .LoginLinks span {
+    font-size: 16.5px;
+  }
+
+}
+
+.Footer {
+  background-color: transparent;
+  height: 40px;
+  bottom: 0px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: fixed;
+  margin-top: 35px;
+  padding-left: 140px;
+  padding-right: 100px;
+}
+
+.FooterText {
+  font-size: 10px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.35;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+  cursor: pointer;
+}
+
+.FooterTextSecondary {
+  font-size: 10px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.35;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 500px) {
+  .Footer {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .NavTab {
+    font-size: 14px;
+  }
+
+}
+
+@media only screen and (max-width: 800px) {
+  .wrapper {
+    margin: 25px;
+    margin-top: 0px;
+  }
+}

@@ -1,0 +1,140 @@
+.facebookLogin {
+    width: 289px;
+    height: 47.5px;
+    border-radius: 6px;
+    background-color: #eaeaea;
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+    cursor: pointer;
+}
+
+.welcome {
+    width: 82px;
+    height: 24.5px;
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+    margin-top: 29px;
+    margin-bottom: 29.5px;
+}
+
+.orText {
+    width: 18px;
+    height: 24.5px;
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+    margin-top: 17.5px;
+    margin-bottom: 21px;
+}
+
+.forgottenPassword {
+    text-decoration: none;
+    margin-top: -8px;
+    color: black;
+    font-size: 14px;
+}
+
+.inputField input {
+    margin-bottom: 28px;
+}
+
+.facebookLogin i {
+    width: 29.2px;
+    height: 29.2px;
+    color: rgb(58, 85, 159);
+    margin-left: 10px;
+    margin-top: 11px;
+    margin-right: 10px;
+}
+
+.checkboxLabel {
+    vertical-align: top;
+    font-size: 15px;
+    margin-left: 10px;
+    margin-top: 3.5px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.progressbar {
+    position: absolute !important;
+    bottom: 0px;
+    width: 100%;
+}
+
+.loginButton {
+    width: 289px;
+    height: 53px;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #161925;
+}
+
+.loginButton:disabled {
+    background-color: #4b5168;
+    cursor: initial;
+}
+
+.loginButton span {
+    width: 82px;
+    height: 24.5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 635px) {
+    .facebookLogin {
+        width: 245px;
+        height: 47.5px;
+        font-size: 16px;
+    }
+
+    .welcome {
+        width: 82px;
+        height: 10.5px;
+        font-size: 16px;
+        margin-top: 10px;
+        margin-bottom: 26px;
+    }
+
+    .orText {
+        width: 18px;
+        height: 10.5px;
+        font-size: 16px;
+        margin-top: 8.5px;
+        margin-bottom: 25px;
+    }
+
+    .facebookLogin i {
+        width: 29.2px;
+        height: 29.2px;
+    }
+
+    .loginButton {
+        width: 200px;
+        height: 44px;
+    }
+
+    .loginButton span {
+        width: 50px;
+        height: 20px;
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,241 @@
+.landingPicture {
+    background-image: url('../../resources/img/landingPicture.jpg');
+    height: 670px;
+    /* the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position-y: -740px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.sendEmailButton {
+    border-radius: 74px;
+    border: 1px solid;
+    padding: 13px 25px 13px 25px;
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    box-shadow: 0 2px 4px 0 rgba(100, 100, 100, 0.5);
+    cursor: pointer;
+    outline: 0 none;
+}
+
+.pic3 {
+    background-position-y: 0;
+}
+
+.wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    line-height: 100px;
+    font-size: 21px;
+    margin-bottom: 30px;
+}
+
+.callToAction {
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100px;
+    line-height: 100px;
+    font-size: 21px;
+
+    .button {
+        border-radius: 74px;
+        border: 1px solid;
+        padding: 15px 50px 15px 50px;
+        font-size: 19px;
+        text-decoration: none;
+        color: black;
+        font-weight: 700;
+        box-shadow: 0 2px 4px 0 rgba(100, 100, 100, 0.5);
+    }
+
+    .button.green {
+        background: #5BB29F;
+        border: 1px #5BB29F;
+
+    }
+}
+
+.pitchText {
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    line-height: 100px;
+    font-size: 28px;
+    color: white;
+    width: 500px;
+}
+
+.mailchimpForm {
+    background: #fff;
+    clear: left;
+    font: 14px Helvetica, Arial, sans-serif;
+    width: 100%;
+}
+
+.infoBox {
+    color: white;
+    background: #c1c1c138;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 25px;
+    width: inherit;
+}
+
+.divider {
+    margin-top: 25px !important;
+    margin-bottom: 25px !important;
+
+    hr {
+        height: 2px;
+        width: 100%;
+    }
+}
+
+
+//******* ABOUT PAGE *******//
+
+.aboutPicture {
+    background-image: url(/static/media/aboutPicture.16284faf.png);
+    height: 731px;
+    background-position-y: -83px;
+    background-repeat: no-repeat;
+    background-size: 101%;
+}
+
+.aboutContainer {
+    position: absolute;
+    top: 173px;
+    width: 100%;
+}
+
+
+@media only screen and (max-width: 2000px) {
+    .landingPicture {
+        background-position-y: -930px;
+        height: 770px;
+    }
+}
+
+@media only screen and (max-width: 1700px) {
+    .landingPicture {
+        background-position-y: -676px;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .landingPicture {
+        background-position-y: -550px;
+        background-position-x: 0px;
+        height: 670px;
+    }
+
+    .callToAction {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .landingPicture {
+        background-position-y: -510px;
+        background-position-x: 0px;
+        height: 470px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .landingPicture {
+        background-position-y: -440px;
+        background-position-x: 0px;
+        height: 470px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .landingPicture {
+        background-position-y: -280px;
+        background-position-x: 0px;
+        height: 470px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .landingPicture {
+        background-position-y: -185px;
+        height: 270px;
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+    .landingPicture {
+        background-position-y: -280px;
+        background-position-x: -130px;
+
+        height: 300px;
+    }
+
+    .inputForm {
+        margin-right: 0px !important;
+        width: 70%;
+    }
+
+    .pitchText {
+        left: 0px;
+        font-size: 24px;
+        width: 100% !important;
+
+        span {
+            margin-left: 20px;
+        }
+    }
+
+
+}
+
+@media only screen and (min-width: 420px) {
+    .divider {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .landingPicture {
+        background-position-y: -230px;
+        background-position-x: -60px;
+
+        height: 300px;
+    }
+
+    .title {
+        margin-left: 20px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    .landingPicture {
+        background-position-y: -230px;
+        background-position-x: -100px;
+        height: 345px;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .landingPicture {
+        background-position-y: -210px;
+        background-position-x: -50px;
+        height: 345px;
+    }
+}
+
+@media only screen and (max-width: 340px) {
+    .landingPicture {
+        background-position-y: -280px;
+        background-position-x: -120px;
+        height: 300px;
+    }
+}

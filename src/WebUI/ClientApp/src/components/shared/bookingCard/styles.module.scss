@@ -1,0 +1,159 @@
+.imageDiv {
+    position: relative;
+    overflow: hidden;
+}
+
+.imageDiv img {
+    object-fit: cover;
+    display: block;
+    width: 257.6px;
+    height: 367.5px;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    box-shadow: 0px 0px 0px 200px white;
+    -webkit-clip-path: polygon(0% 0%, 60% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(0% 0%, 60% 0%, 100% 100%, 0% 100%);
+}
+
+.guestName,
+.guestNameSkipper {
+    height: 45.7px;
+    font-size: 27px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.37;
+    letter-spacing: normal;
+    text-align: left;
+    color: #23395b;
+    margin-top: 40px;
+}
+
+.icon {
+    position: relative;
+    margin-bottom: -5px;
+}
+
+.info {
+    display: inline;
+    font-size: 20px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+    padding: 10px;
+}
+
+.declineBtn {
+    width: 162px;
+    height: 49.8px;
+    border-radius: 37px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 2px #23395b;
+    background-color: #ffffff;
+    cursor: pointer;
+    margin: 10px 10px 10px 10px;
+    outline: none;
+
+    span {
+        width: 64px;
+        height: 24.5px;
+        font-size: 18px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.36;
+        letter-spacing: normal;
+        text-align: center;
+        color: #23395b;
+    }
+}
+
+
+.acceptBtn {
+    width: 163px;
+    height: 49.8px;
+    border-radius: 37px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 2px #23395b;
+    background-color: #23395b;
+    cursor: pointer;
+    margin: 10px 10px 10px 10px;
+    outline: none;
+
+    span {
+        width: 58px;
+        height: 24.5px;
+        font-size: 18px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.36;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+
+    .guestNameSkipper {
+        margin-bottom: -30px;
+        margin-top: 23px;
+        font-size: 18px;
+    }
+
+    .info {
+        font-size: 15px;
+    }
+
+    .infoDivSkipper,
+    .infoDivSkipperPending {
+        background-color: rgba(255, 255, 255, 0.88);
+        position: absolute;
+        height: 92%;
+        max-width: 102% !important;
+    }
+
+    .guestName {
+        font-size: 18px;
+        margin-bottom: -50px;
+    }
+
+    .declineBtn,
+    .acceptBtn {
+        width: 150px;
+        height: 30px;
+
+        span {
+            font-size: 14px;
+        }
+    }
+
+    .imageDiv {
+        max-width: 100% !important;
+        min-width: 100% !important;
+    }
+
+    .infoDiv {
+        background-color: rgba(255, 255, 255, 0.88);
+        position: absolute;
+        height: 47%;
+        max-width: 88% !important;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .infoDivSkipper {
+        height: 31%;
+    }
+
+    .infoDivSkipperPending {
+        height: 92% !important;
+    }
+}

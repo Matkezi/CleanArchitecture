@@ -1,0 +1,23 @@
+.loginWrapper {
+    width: 400px;
+    height: fit-content !important;
+    padding-bottom: 22px;
+    border-radius: 9px;
+    box-shadow: 0 1px 2px 0 rgba(62, 62, 62, 0.5);
+    background-color: #f7f7f7;
+    position: relative !important;
+    margin-top: 110px;
+}
+
+.backgrounDiv {
+    background-image: url('../../resources/img/landingPicture.jpg');
+}
+
+@media only screen and (max-width: 600px) {
+    .loginWrapper {
+        margin-right: 15px;
+        margin-left: 15px;
+        height: fit-content !important;
+        padding-bottom: 22px;
+    }
+}

@@ -1,0 +1,160 @@
+.card {
+    position: relative;
+    width: 300px !important;
+    height: fit-content !important;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 0.5px #707070;
+    background-color: #ffffff;
+    margin-right: 25px !important;
+    margin-bottom: 25px !important;
+}
+
+.cardContainer {
+    position: relative;
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+}
+
+.cardProperty {
+    display: block;
+}
+
+.skipperName {
+    font-size: 24px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.35;
+    letter-spacing: normal;
+    text-align: center;
+    color: #161925;
+
+}
+
+.skipperYearOfExperience {
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+    margin-left: 10px;
+}
+
+.skipperLanguage {
+    display: inline;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #26806b;
+    margin-left: 4px;
+}
+
+.avatar {
+    width: 133px;
+    height: 133px;
+    border-radius: 158px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+}
+
+.checkbox {
+    padding: 0px !important;
+}
+
+.checkbox,
+.checkbox span svg {
+    position: relative;
+    height: 30px !important;
+    width: 30px !important;
+}
+
+.footerWrapper {
+    margin-top: 40px;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 99.9995%;
+    height: 80.5px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 0.5px #a6a6a6;
+    background-color: #ffffff;
+}
+
+.numOfSelected {
+    width: 273.5px;
+    height: 24.5px;
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+}
+
+.decline {
+    width: 160.5px;
+    height: 49.3px;
+    border-radius: 37px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 2px #26806b;
+    background-color: #ffffff;
+    cursor: pointer;
+    outline: none;
+}
+
+.decline span {
+    width: 64px;
+    height: 24.5px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000 !important;
+}
+
+.viewProfileBtn {
+    margin-top: 3px;
+    cursor: pointer;
+    width: 123.5px;
+    height: 31.8px;
+    border-radius: 37px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 2px #26806b;
+    background-color: #26806b;
+    outline: none;
+
+    span {
+        color: white;
+        font-family: 'Open Sans';
+    }
+}
+
+.accept {
+    cursor: pointer;
+    width: 158.5px;
+    height: 48.8px;
+    border-radius: 37px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 2px #26806b;
+    background-color: #26806b;
+    outline: none;
+}
+
+.accept span {
+    width: 58px;
+    height: 24.5px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.footerDiv {
+    position: relative;
+    height: 100%;
+}

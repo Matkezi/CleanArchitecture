@@ -1,0 +1,70 @@
+html {
+    //background: url('../../../resources/img/landingPicture.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.loginWrapper {
+    width: 400px;
+    height: 470.5px;
+    border-radius: 9px;
+    box-shadow: 0 1px 2px 0 rgba(62, 62, 62, 0.5);
+    background-color: #f7f7f7;
+    margin-top: 15px;
+    position: relative !important;
+    margin-top: 110px;
+}
+
+.progressbar {
+    position: absolute !important;
+    bottom: 0px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 1400px) {
+    html {
+        background-size: 120%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    html {
+        background-size: 135%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    html {
+        background-size: 150%;
+    }
+}
+
+@media only screen and (max-width: 880px) {
+    html {
+        background-size: 180%;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    html {
+        background-size: 200%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    html {
+        background-size: 320%;
+    }
+}
+
+@media only screen and (max-width: 635px) {
+    .loginWrapper {
+        width: 330px;
+        height: 350.5px;
+        background-color: #f7f7f7;
+        margin-top: 15px;
+        margin-top: 110px;
+    }
+}
