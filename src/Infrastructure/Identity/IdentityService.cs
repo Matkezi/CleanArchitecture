@@ -38,6 +38,12 @@ namespace CleanArchitecture.Infrastructure.Identity
             return user.UserName;
         }
 
+        public async Task<string> GetEmailAsync(string userName)
+        {
+            var user = await _userManager.FindByNameAsync(userName);
+            return user.Email;
+        }
+
         /// <summary>
         /// Creates a new user where: Username = Email
         /// </summary>

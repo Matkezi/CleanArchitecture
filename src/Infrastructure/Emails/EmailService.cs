@@ -102,5 +102,16 @@ namespace CleanArchitecture.Infrastructure.Emails
                 .UsingTemplateFromFile("./wwwroot/Templates/Emails/SkipperDeclined.cshtml", mailTemplate)
                 .SendAsync();
         }
+
+        public Task SendEmailWithTemplate(PasswordReset mailTemplate)
+        {
+            return _fluentEmail
+                .To(mailTemplate.ToEmail)
+                .CC(mailTemplate.Cc)
+                .BCC(mailTemplate.Bcc)
+                .Subject($"Skipper Booking Declined")
+                .UsingTemplateFromFile("./wwwroot/Templates/Emails/PasswordReset.cshtml", mailTemplate)
+                .SendAsync();
+        }
     }
 }

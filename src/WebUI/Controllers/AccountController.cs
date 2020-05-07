@@ -95,11 +95,11 @@ namespace CleanArchitecture.WebUI.Controllers
         [AllowAnonymous]
         [HttpPost("password-reset-email/{email}")]
         public async Task<IActionResult> PasswordResetRequest(string email)
-        public async Task<IActionResult> PasswordResetRequest(string email)
         {
-            var result = await _identityService.PasswordResetRequest(email);
-            if (result.Succeeded) return Ok();
-            else return BadRequest(result.Errors.ToList());
+            return Ok();
+            //var result = await _identityService.PasswordResetRequest(email);
+            //if (result.Succeeded) return Ok();
+            //else return BadRequest(result.Errors.ToList());
         }
 
     }

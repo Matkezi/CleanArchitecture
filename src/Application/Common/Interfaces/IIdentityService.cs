@@ -8,6 +8,7 @@ namespace CleanArchitecture.Application.Common.Interfaces
 {
     public interface IIdentityService
     {
+        Task<string> GetEmailAsync(string userName);
         Task<string> GetUserNameAsync(string userId);
         /// <summary>
         /// Creates a new user where: Username = Email
