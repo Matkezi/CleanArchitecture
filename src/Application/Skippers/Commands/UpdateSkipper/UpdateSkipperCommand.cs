@@ -115,23 +115,22 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
                 if (request.UserPhoto != null)
                 {
                     // TODO: validate Data somehow before this, make a validator
-                    var photoUri = await _filesStorageService.SaveCloudAsync(request.UserPhoto.Data, Path.GetExtension(request.UserPhoto.Name));
+                    var photoUri = await _filesStorageService.ReplaceCloudAsync(
+                        request.UserPhoto.Data, 
+                        Path.GetExtension(request.UserPhoto.Name),
+                        entity.UserPhotoUrl);
 
-                    if (entity.UserPhotoUrl != null)
-                    {
-                        await _filesStorageService.DeleteCloudAsync(entity.UserPhotoUrl);
-                    }
                     entity.UserPhotoUrl = photoUri;
                 }
                 if (request.UserLicence != null)
                 {
                     // TODO: validate Data somehow before this, make a validator
-                    var licenceUri = await _filesStorageService.SaveCloudAsync(request.UserPhoto.Data, Path.GetExtension(request.UserPhoto.Name));
+                    var licenceUri = await _filesStorageService.ReplaceCloudAsync(
+                        request.UserPhoto.Data, 
+                        Path.GetExtension(request.UserPhoto.Name),
+                        entity.Licence.LicenceUrl
+                        );
 
-                    if (entity.Licence.LicenceUrl != null)
-                    {
-                        await _filesStorageService.DeleteCloudAsync(entity.UserPhotoUrl);
-                    }
                     entity.Licence = new Licence
                     {
                         DateOfIssue = request.UserLicence.DateOfIssue,

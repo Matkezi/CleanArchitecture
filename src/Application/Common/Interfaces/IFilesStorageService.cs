@@ -19,5 +19,13 @@ namespace CleanArchitecture.Application.Common.Interfaces
         Task<string> SaveLocalAsync(string base64data, string name, string ext);
         Task DeleteCloudAsync(string absoluteUri);
         Task DeleteLocalAsync(string absolutePath);
+        /// <summary>
+        /// Uploads a new file to the cloud and deletes a file connected to an oldAbsoluteUri if it exists.
+        /// </summary>
+        /// <param name="base64data"></param>
+        /// <param name="ext"></param>
+        /// <param name="oldAbsoluteUri"></param>
+        /// <returns>Absolute Uri of the new file.</returns>
+        Task<string> ReplaceCloudAsync(string base64data, string ext, string oldAbsoluteUri);
     }
 }

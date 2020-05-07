@@ -11,7 +11,7 @@ namespace CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList
 {
     public class DeleteBoatCommand : IRequest, ICharterBoatAuth
     {
-        public string BoatId { get; set; }
+        public int BoatId { get; set; }
 
         public class Handler : IRequestHandler<DeleteBoatCommand>
         {

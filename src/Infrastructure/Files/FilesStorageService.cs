@@ -24,6 +24,16 @@ namespace CleanArchitecture.Infrastructure.Files
             throw new NotImplementedException();
         }
 
+        public async Task<string> ReplaceCloudAsync(string base64data, string ext, string oldAbsoluteUri)
+        {
+            var newAbsoluteUri = await SaveCloudAsync(base64data, ext);
+            if (!string.IsNullOrEmpty(oldAbsoluteUri))
+            {
+                await DeleteCloudAsync(oldAbsoluteUri);
+            }
+            return newAbsoluteUri;
+        }
+
         public async Task<string> SaveCloudAsync(byte[] byteArray, string ext)
         {
             return await UploadFileAsync(byteArray, ext);
