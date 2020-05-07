@@ -23,6 +23,7 @@ namespace CleanArchitecture.Application
             services.AddTransient(typeof(IRequestPreProcessor<>), typeof(CharterOrSkipperBookingsAuthBehaviour<>));
             services.AddTransient(typeof(IRequestPreProcessor<>), typeof(CharterBookingsAuthBehaviour<>));
             services.AddTransient(typeof(IRequestPreProcessor<>), typeof(SkipperBookingAuthBehaviour<>));
+            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(CharterBoatAuthBehaviour<>));
             return services;
         }
     }

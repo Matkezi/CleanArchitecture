@@ -15,7 +15,7 @@ namespace CleanArchitecture.Application.Common.Behaviours
         private readonly ICurrentUserService _currentUserService;
         private readonly IApplicationDbContext _context;
 
-        public SkipperBookingAuthBehaviour(ILogger<TRequest> logger, ICurrentUserService currentUserService, IIdentityService identityService, IApplicationDbContext context)
+        public SkipperBookingAuthBehaviour(ILogger<TRequest> logger, ICurrentUserService currentUserService, IApplicationDbContext context)
         {
             _logger = logger;
             _currentUserService = currentUserService;

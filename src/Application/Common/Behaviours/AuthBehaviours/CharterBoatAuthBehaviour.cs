@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Common.Behaviours
 {
-    public class BoatAuthBehaviour<TRequest> : IRequestPreProcessor<TRequest> where TRequest : ICharterBoatAuth
+    public class CharterBoatAuthBehaviour<TRequest> : IRequestPreProcessor<TRequest> where TRequest : ICharterBoatAuth
     {
         private readonly ILogger _logger;
         private readonly ICurrentUserService _currentUserService;
         private readonly IApplicationDbContext _context;
 
-        public BoatAuthBehaviour(ICurrentUserService currentUserService, ILogger logger, IApplicationDbContext context)
+        public CharterBoatAuthBehaviour(ICurrentUserService currentUserService, ILogger logger, IApplicationDbContext context)
         {
             _currentUserService = currentUserService;
             _logger = logger;

@@ -37,7 +37,10 @@ namespace CleanArchitecture.Infrastructure
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<SkipperAgencyDbContext>());
 
             // Identity configuration
-            services.AddIdentity<AppUser, IdentityRole>()
+            services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            })
                 .AddEntityFrameworkStores<SkipperAgencyDbContext>()
                 .AddSignInManager<SignInManager<AppUser>>()
                 .AddUserManager<UserManager<AppUser>>()

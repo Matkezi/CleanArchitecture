@@ -89,9 +89,9 @@ namespace CleanArchitecture.Infrastructure.Identity
             return result.ToApplicationResult();
         }
 
-        public async Task<(Result result, LoginResponse loginResponse)> Login(string userName, string password, bool rememberMe)
+        public async Task<(Result result, LoginResponse loginResponse)> Login(string userEmail, string password, bool rememberMe)
         {
-            AppUser user = await _userManager.FindByNameAsync(userName);
+            AppUser user = await _userManager.FindByEmailAsync(userEmail);
             if (user is null) return (Result.Failure("User not foud."), null);
 
             // get the user to verifty

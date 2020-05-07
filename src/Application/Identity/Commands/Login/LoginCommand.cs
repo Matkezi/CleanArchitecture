@@ -19,7 +19,7 @@ namespace CleanArchitecture.Application.ExternalLogins.Facebook
 {
     public class LoginCommand : IRequest<LoginResponse>
     {
-        public string UserEmail { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
         public bool RememberMe { get; set; }
 
@@ -34,7 +34,7 @@ namespace CleanArchitecture.Application.ExternalLogins.Facebook
 
             public async Task<LoginResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
             {
-                var result = await _identityService.Login(request.UserEmail, request.Password, request.RememberMe);
+                var result = await _identityService.Login(request.Email, request.Password, request.RememberMe);
                 return result.loginResponse;
             }
         }

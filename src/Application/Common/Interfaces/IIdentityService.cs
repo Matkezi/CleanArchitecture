@@ -19,7 +19,7 @@ namespace CleanArchitecture.Application.Common.Interfaces
         Task<(Result Result, string UserId, string emailConfirmationToken)> CreateUserAsync(AppUser user, RoleEnum role, string password);
         Task<Result> DeleteUserAsync(string userId);
         Task<Result> ConfirmEmail(string userEmail, string token);
-        Task<(Result result, LoginResponse loginResponse)> Login(string userName, string password, bool rememberMe);
+        Task<(Result result, LoginResponse loginResponse)> Login(string userEmail, string password, bool rememberMe);
         Task<Result> ChangePassword(string userName, string password, string newPassword);
         /// <summary>
         /// 
