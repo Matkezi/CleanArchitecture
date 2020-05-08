@@ -15,9 +15,9 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Skippers.Queries.Availability
 {
-    public class CharterGetBooatsQuery : IRequest<IEnumerable<BoatModel>>
+    public class CharterGetBoatsQuery : IRequest<IEnumerable<BoatModel>>
     {
-        public class Handler : IRequestHandler<CharterGetBooatsQuery, IEnumerable<BoatModel>>
+        public class Handler : IRequestHandler<CharterGetBoatsQuery, IEnumerable<BoatModel>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -30,7 +30,7 @@ namespace CleanArchitecture.Application.Skippers.Queries.Availability
                 _currentUserService = currentUserService;
             }
 
-            public async Task<IEnumerable<BoatModel>> Handle(CharterGetBooatsQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<BoatModel>> Handle(CharterGetBoatsQuery request, CancellationToken cancellationToken)
             {
                 return await _context.Boats
                     .Where(x => x.CharterId == _currentUserService.UserId)

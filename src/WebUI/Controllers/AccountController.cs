@@ -1,11 +1,7 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Models;
+﻿using CleanArchitecture.Application.Common.Models;
 using CleanArchitecture.Application.ExternalLogins.Facebook;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CleanArchitecture.WebUI.Controllers
@@ -15,21 +11,21 @@ namespace CleanArchitecture.WebUI.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<ActionResult<LoginResponse>> Login(LoginCommand command)
+        public async Task<LoginResponse> Login(LoginCommand command)
         {
             return await Mediator.Send(command);
         }
 
         [AllowAnonymous]
         [HttpPost("facebook-login")]
-        public async Task<ActionResult<LoginResponse>> FacebookLogin(FacebookLoginCommand command)
+        public async Task<LoginResponse> FacebookLogin(FacebookLoginCommand command)
         {
             return await Mediator.Send(command);
         }
 
         [AllowAnonymous]
         [HttpGet("confirm-email")]
-        public async Task<ActionResult> ConfirmEmail(ConfirmEmailCommand command)
+        public async Task<IActionResult> ConfirmEmail(ConfirmEmailCommand command)
         {
             await Mediator.Send(command);
             return NoContent();
