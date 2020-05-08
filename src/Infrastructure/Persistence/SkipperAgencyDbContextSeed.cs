@@ -11,7 +11,7 @@ namespace CleanArchitecture.Infrastructure.Persistence
     {
         public static async Task SeedDefaultUserAsync(UserManager<AppUser> userManager)
         {
-            var defaultUser = new Developer { UserName = "administrator@localhost", Email = "administrator@localhost" };
+            var defaultUser = new Developer { UserName = "administrator@localhost.com", Email = "administrator@localhost.com" };
 
             if (userManager.Users.All(u => u.UserName != defaultUser.UserName))
             {

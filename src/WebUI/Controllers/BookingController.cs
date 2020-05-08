@@ -2,41 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SkipperBooking.Business.Services.BookingServices;
-using SkipperBooking.DAL;
-using SkipperBooking.DAL.Entities;
-using SkipperBooking.Web.Models;
-using SkipperBooking.Business.Services.SkipperServices;
 using SkipperBooking.Base.Enums;
 using Microsoft.EntityFrameworkCore;
-using SkipperBooking.Base.Models;
 
-namespace SkipperBooking.Web.Controllers
+namespace CleanArchitecture.WebUI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class BookingController : ControllerBase
+
+    public class BookingController : ApiController
+
     {
-
-        private readonly IMapper _mapper;
-        private readonly ILogger _logger;
-        private readonly IBookingService _bookingService;
-        private readonly ISkipperService _skipperService;
-        private readonly SkipperBookingDBContext _context;
-
-        public BookingController(IMapper mapper, ILogger<BookingController> logger, SkipperBookingDBContext context, IBookingService bookingService, ISkipperService skipperService)
-        {
-            _mapper = mapper;
-            _logger = logger;
-            _context = context;
-            _bookingService = bookingService;
-            _skipperService = skipperService;
-        }
 
         [HttpGet]
         [Route("skipper/pending")]

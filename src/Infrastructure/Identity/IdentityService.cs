@@ -92,7 +92,7 @@ namespace CleanArchitecture.Infrastructure.Identity
         public async Task<(Result result, LoginResponse loginResponse)> Login(string userEmail, string password, bool rememberMe)
         {
             AppUser user = await _userManager.FindByEmailAsync(userEmail);
-            if (user is null) return (Result.Failure("User not foud."), null);
+            if (user is null) return (Result.Failure("User not found."), null);
 
             // get the user to verifty
             //var userToVerify = await _userManager.FindByNameAsync(userName);

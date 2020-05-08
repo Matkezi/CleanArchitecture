@@ -8,6 +8,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
 using CleanArchitecture.Application.Boats.Queries.CharterGetBoats;
 using CleanArchitecture.Application.Skippers.Queries.Availability;
+using CleanArchitecture.Application.Boats.Commands;
+using CleanArchitecture.Application.Boats.Commands.UpdateBoat;
+using CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList;
 
 namespace CleanArchitecture.WebUI.Controllers
 {
@@ -25,47 +28,30 @@ namespace CleanArchitecture.WebUI.Controllers
 
         // POST: api/Boat
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] BoatModel boatModel)
+        public async Task<IActionResult> Post(CreateBoatCommand command)
         {
-            Boat boat = new Boat();
-            _mapper.Map(boatModel, boat);
-            _context.Boats.Add(boat);
-            await _context.SaveChangesAsync();
-            _context.Entry<Boat>(boat).Reload();
-            return CreatedAtAction("Create charter", new { id = boat.Id }, boat);
+            await Mediator.Send(command);
+            return NoContent();
         }
 
         // PUT: api/Boat/5
-        [HttpPut]
-        public async Task<IActionResult> Put([FromBody] BoatModel boatModel)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, UpdateBoatCommand command)
         {
-            Boat boat = await _context.Boats.FindAsync(boatModel.Id);
-            if (boat == null)
+            if (id != command.BoatId)
             {
-                _logger.LogWarning("Update boat ({Id}) NOT FOUND", boatModel.Id);
-                return NotFound("Can't update boat");
+                return BadRequest();
             }
-            _mapper.Map(boatModel, boat);
-            await _context.SaveChangesAsync();
-            _context.Entry<Boat>(boat).Reload();
-            return CreatedAtAction("Update skipper", new { id = boat.Id }, boat);
+            await Mediator.Send(command);
+            return NoContent();
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAsync(int id)
         {
-            Boat boat = await _context.Boats.FindAsync(id);
-            if (boat == null)
-            {
-                _logger.LogWarning("Delete boat ({Id}) NOT FOUND", id);
-                return NotFound("Can't delete boat");
-            }
-
-            _context.Boats.Remove(boat);
-            await _context.SaveChangesAsync();
-
-            return Ok();
+            await Mediator.Send(new DeleteBoatCommand { BoatId = id });
+            return NoContent();
         }
     }
 }
