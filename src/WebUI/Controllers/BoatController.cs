@@ -21,14 +21,16 @@ namespace CleanArchitecture.WebUI.Controllers
         // GET: api/Boat/Charter
         [HttpGet("Charter")]
         [Authorize(Roles = "Admin, Charter")]
-        public async Task<IEnumerable<BoatModel>> GetCharterBoats(CharterGetBoatsQuery command)
+        public async Task<ActionResult<IEnumerable<BoatModel>>> GetCharterBoats()
         {
-            return await Mediator.Send(command);
+            return Ok(await Mediator.Send(new CharterGetBoatsQuery()));
         }
 
         // POST: api/Boat
         [HttpPost]
-        public async Task<IActionResult> Post(CreateBoatCommand command)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> Create(CreateBoatCommand command)
         {
             await Mediator.Send(command);
             return NoContent();
@@ -36,7 +38,9 @@ namespace CleanArchitecture.WebUI.Controllers
 
         // PUT: api/Boat/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, UpdateBoatCommand command)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Update(int id, UpdateBoatCommand command)
         {
             if (id != command.BoatId)
             {
@@ -48,7 +52,9 @@ namespace CleanArchitecture.WebUI.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteAsync(int id)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Delete(int id)
         {
             await Mediator.Send(new DeleteBoatCommand { BoatId = id });
             return NoContent();
