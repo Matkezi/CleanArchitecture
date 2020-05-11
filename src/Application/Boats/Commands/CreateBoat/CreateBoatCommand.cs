@@ -32,24 +32,24 @@ namespace SkipperAgency.Application.Boats.Commands.CreateBoat
 
             public async Task<Unit> Handle(CreateBoatCommand request, CancellationToken cancellationToken)
             {
-                Boat boat = new Boat
+                var boat = new Boat
                 {
                     Name = request.Name,
                     Manufacturer = request.Manufacturer,
                     Model = request.Model,
                     Type = request.Type,
                     Length = request.Length,
-                    MinimalRequiredLicence = request.MinimalRequiredLicense
+                    MinimalRequiredLicense = request.MinimalRequiredLicense
                 };
 
                 if (request.BoatPhoto != null)
                 {
                     // TODO: validate Data somehow before this, make a validator
                     var photoUri = await _filesStorageService.SaveCloudAsync(request.BoatPhoto.Data, Path.GetExtension(request.BoatPhoto.Name));
-                    boat.BoathPhotoUrl = photoUri;
+                    boat.BoatPhotoUrl = photoUri;
                 }
 
-                _context.Boats.Add(boat);
+                await _context.Boats.AddAsync(boat, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

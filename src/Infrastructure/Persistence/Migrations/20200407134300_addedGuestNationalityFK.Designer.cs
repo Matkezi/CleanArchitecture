@@ -10,7 +10,7 @@ namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(SkipperAgencyDbContext))]
     [Migration("20200407134300_addedGuestNationalityFK")]
-    partial class addedGuestNationalityFK
+    partial class AddedGuestNationalityFk
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

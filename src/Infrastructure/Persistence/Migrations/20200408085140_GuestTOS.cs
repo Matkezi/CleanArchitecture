@@ -2,7 +2,7 @@
 
 namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
-    public partial class GuestTOS : Migration
+    public partial class GuestTos : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

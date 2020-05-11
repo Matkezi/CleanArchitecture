@@ -16,8 +16,8 @@ namespace SkipperAgency.Application.Boats.Commands.UpdateBoat
         public string Model { get; set; }
         public BoatTypeEnum Type { get; set; }
         public double Length { get; set; }
-        public LicenseTypeEnum MinimalRequiredLicence { get; set; }
-        public FileModel BoathPhoto { get; set; }
+        public LicenseTypeEnum MinimalRequiredLicense { get; set; }
+        public FileModel BoatPhoto { get; set; }
 
         public class Handler : IRequestHandler<UpdateBoatCommand>
         {
@@ -39,18 +39,18 @@ namespace SkipperAgency.Application.Boats.Commands.UpdateBoat
                 boat.Model = request.Model;
                 boat.Type = request.Type;
                 boat.Length = request.Length;
-                boat.MinimalRequiredLicence = request.MinimalRequiredLicence;
+                boat.MinimalRequiredLicense = request.MinimalRequiredLicense;
 
-                if (request.BoathPhoto != null)
+                if (request.BoatPhoto != null)
                 {
                     var photoUri = await _filesStorageService.ReplaceCloudAsync
-                        (request.BoathPhoto.Data,
-                        Path.GetExtension(request.BoathPhoto.Name),
-                        boat.BoathPhotoUrl);
-                    boat.BoathPhotoUrl = photoUri;
+                        (request.BoatPhoto.Data,
+                        Path.GetExtension(request.BoatPhoto.Name),
+                        boat.BoatPhotoUrl);
+                    boat.BoatPhotoUrl = photoUri;
                 }
 
-                _context.Boats.Add(boat);
+                await _context.Boats.AddAsync(boat, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

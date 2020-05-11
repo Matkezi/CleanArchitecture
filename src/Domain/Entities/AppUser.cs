@@ -10,7 +10,7 @@ namespace SkipperAgency.Domain.Entities
     {
 
         //[ValidOIB(ErrorMessage = "OIB not valid.")]
-        public string OIB { get; set; }
+        public string Oib { get; set; }
         public string Address { get; set; }
         public string ZipCode { get; set; }
         public string City { get; set; }
@@ -22,7 +22,7 @@ namespace SkipperAgency.Domain.Entities
         public override bool Equals(object obj)
         {
             return obj is AppUser user &&
-                   OIB == user.OIB;
+                   Oib == user.Oib;
         }
 
         public override int GetHashCode()

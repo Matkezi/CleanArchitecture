@@ -13,13 +13,13 @@ namespace SkipperAgency.Application.Identity.Commands.PasswordResetRequest
         public class Handler : IRequestHandler<PasswordResetRequestCommand>
         {
             private readonly IIdentityService _identityService;
-            private readonly IEmailService _emailer;
+            private readonly IEmailService _emailService;
             private readonly IConfiguration _configuration;
 
             public Handler(IIdentityService identityService, IEmailService emailer, IConfiguration configuration)
             {
                 _identityService = identityService;
-                _emailer = emailer;
+                _emailService = emailer;
                 _configuration = configuration;
             }
 
@@ -29,7 +29,7 @@ namespace SkipperAgency.Application.Identity.Commands.PasswordResetRequest
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/password-reset/email={request.UserEmail}/token={result.passwordResetTokenBase64}";
 
                 // TODO: fullname in an email
-                _ = _emailer.SendEmailWithTemplate(
+                _ = _emailService.SendEmailWithTemplate(
                     new Domain.EmailTemplateModels.PasswordReset(
                         toEmail: request.UserEmail,
                         fullName: request.UserEmail,

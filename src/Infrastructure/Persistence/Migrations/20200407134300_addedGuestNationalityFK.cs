@@ -2,7 +2,7 @@
 
 namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
-    public partial class addedGuestNationalityFK : Migration
+    public partial class AddedGuestNationalityFk : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

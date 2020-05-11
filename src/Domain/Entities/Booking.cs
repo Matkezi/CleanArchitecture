@@ -20,16 +20,16 @@ namespace SkipperAgency.Domain.Entities
         public DateTime BookedFrom { get; set; }
         public DateTime BookedTo { get; set; }
         public BookingStatusEnum Status { get; set; }
-        public string BookingURL { get; set; }
+        public string BookingUrl { get; set; }
         public List<BookingHistory> BookingHistories { get; set; }
-        public string OnboardingLocation { get; set; }
+        public string OnBoardingLocation { get; set; }
         public string GuestName { get; set; }
         public string GuestEmail { get; set; }
         public int? GuestNationalityId { get; set; }
         [ForeignKey(nameof(GuestNationalityId))]
         public Country GuestNationality { get; set; }
-        public string GuestMessege { get; set; }
-        public bool GuestTOS { get; set; }
+        public string GuestMessage { get; set; }
+        public bool GuestTos { get; set; }
         public int CrewSize { get; set; }
         public DateTime SkipperRequestTime { get; set; }
     }

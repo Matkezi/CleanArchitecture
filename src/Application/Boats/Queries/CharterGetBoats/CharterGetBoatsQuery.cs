@@ -30,7 +30,7 @@ namespace SkipperAgency.Application.Boats.Queries.CharterGetBoats
                 return await _context.Boats
                     .Where(x => x.CharterId == _currentUserService.UserId)
                     .ProjectTo<BoatModel>(_mapper.ConfigurationProvider)
-                    .ToListAsync();
+                    .ToListAsync(cancellationToken);
             }
 
         }

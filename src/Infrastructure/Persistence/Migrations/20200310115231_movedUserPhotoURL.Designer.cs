@@ -10,7 +10,7 @@ namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(SkipperAgencyDbContext))]
     [Migration("20200310115231_movedUserPhotoURL")]
-    partial class movedUserPhotoURL
+    partial class MovedUserPhotoUrl
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

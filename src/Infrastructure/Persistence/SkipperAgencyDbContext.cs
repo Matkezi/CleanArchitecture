@@ -39,7 +39,7 @@ namespace SkipperAgency.Infrastructure.Persistence
         public DbSet<BookingHistory> BookingHistories { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Country> Countries { get; set; }
-        public DbSet<Licence> Licences { get; set; }
+        public DbSet<License> Licenses { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<RegionAvailability> RegionAvailabilities { get; set; }
         public DbSet<TrustedCharterSkipper> TrustedSkippers { get; set; }

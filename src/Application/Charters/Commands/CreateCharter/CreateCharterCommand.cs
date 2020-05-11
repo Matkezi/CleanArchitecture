@@ -16,7 +16,7 @@ namespace SkipperAgency.Application.Charters.Commands.CreateCharter
         public string Password { get; set; }
         public string Oib { get; set; }
         public string CharterName { get; set; }
-        public bool GDPRConsentAccepted { get; set; }
+        public bool GdprConsentAccepted { get; set; }
         public string Address { get; set; }
         public string ZipCode { get; set; }
         public string City { get; set; }
@@ -24,13 +24,13 @@ namespace SkipperAgency.Application.Charters.Commands.CreateCharter
 
         public class Handler : IRequestHandler<CreateCharterCommand>
         {
-            private readonly IEmailService _emailer;
+            private readonly IEmailService _emailService;
             private readonly IIdentityService _identityService;
             private readonly IConfiguration _configuration;
 
-            public Handler(IEmailService emailer, IIdentityService identityService, IConfiguration configuration)
+            public Handler(IEmailService emailService, IIdentityService identityService, IConfiguration configuration)
             {
-                _emailer = emailer;
+                _emailService = emailService;
                 _identityService = identityService;
                 _configuration = configuration;
             }
@@ -40,7 +40,7 @@ namespace SkipperAgency.Application.Charters.Commands.CreateCharter
                 var charter = new Charter
                 {
                     Email = request.Email,
-                    OIB = request.Oib,
+                    Oib = request.Oib,
                     CharterName = request.CharterName,
                     Address = request.Address,
                     City = request.City,
@@ -57,7 +57,7 @@ namespace SkipperAgency.Application.Charters.Commands.CreateCharter
 
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/confirm-email?email={charter.Email}&token={HttpUtility.UrlEncode(result.emailConfirmationToken)}";
 
-                await _emailer.SendEmailWithTemplate(
+                await _emailService.SendEmailWithTemplate(
                     new ConfirmEmail(
                         toEmail: charter.Email,
                         fullName: charter.CharterName,

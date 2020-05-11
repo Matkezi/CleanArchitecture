@@ -14,13 +14,13 @@ namespace SkipperAgency.Application.Bookings.Commands.SkipperAcceptBooking
 
         public class Handler : IRequestHandler<SkipperAcceptBookingCommand>
         {
-            private readonly IEmailService _emailer;
+            private readonly IEmailService _emailService;
             private readonly IConfiguration _configuration;
             private readonly IApplicationDbContext _context;
 
-            public Handler(IEmailService emailer, IConfiguration configuration, IApplicationDbContext context)
+            public Handler(IEmailService emailService, IConfiguration configuration, IApplicationDbContext context)
             {
-                _emailer = emailer;
+                _emailService = emailService;
                 _configuration = configuration;
                 _context = context;
             }
@@ -31,15 +31,15 @@ namespace SkipperAgency.Application.Bookings.Commands.SkipperAcceptBooking
                 booking.Status = BookingStatusEnum.SkipperAccepted;
                 await _context.SaveChangesAsync(cancellationToken);
 
-                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingURL}/step=1";
+                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingUrl}/step=1";
 
                 var skipper = await _context.Skipper.FindAsync(booking.SkipperId);
-                await _emailer.SendEmailWithTemplate(
+                await _emailService.SendEmailWithTemplate(
                     new SkipperAccepted(
                         guestName: booking.GuestName,
                         toEmail: booking.GuestEmail,
                         skipperName: skipper.FullName,
-                        bookingURL: callbackUrl
+                        bookingUrl: callbackUrl
                     ));
 
                 return Unit.Value;

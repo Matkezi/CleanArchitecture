@@ -6,8 +6,8 @@ namespace SkipperAgency.Application.Common.Helpers
     public static class RandomUrl
     {
         // List of characters and numbers to be used...  
-        private static readonly List<int> numbers = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
-        private static readonly List<char> characters = new List<char>()
+        private static readonly List<int> Numbers = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
+        private static readonly List<char> Characters = new List<char>()
     {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
     'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B',
     'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
@@ -25,13 +25,13 @@ namespace SkipperAgency.Application.Common.Helpers
                 if (random == 1)
                 {
                     // use a number  
-                    random = rand.Next(0, numbers.Count);
-                    url += numbers[random].ToString();
+                    random = rand.Next(0, Numbers.Count);
+                    url += Numbers[random].ToString();
                 }
                 else
                 {
-                    random = rand.Next(0, characters.Count);
-                    url += characters[random].ToString();
+                    random = rand.Next(0, Characters.Count);
+                    url += Characters[random].ToString();
                 }
             }
             return url;

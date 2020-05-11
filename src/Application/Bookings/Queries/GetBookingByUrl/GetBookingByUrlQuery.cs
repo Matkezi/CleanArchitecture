@@ -28,7 +28,7 @@ namespace SkipperAgency.Application.Bookings.Queries.GetBookingByUrl
                 var booking = await _context.Bookings
                     .Include(b => b.Boat).Include(b => b.Charter)
                     .Include(b => b.Skipper)
-                    .FirstAsync(b => b.BookingURL == request.Url);
+                    .FirstAsync(b => b.BookingUrl == request.Url);
                 return _mapper.Map<BookingModel>(booking);
 
             }

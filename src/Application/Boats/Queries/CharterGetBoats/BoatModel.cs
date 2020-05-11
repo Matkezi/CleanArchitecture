@@ -10,7 +10,7 @@ namespace SkipperAgency.Application.Boats.Queries.CharterGetBoats
         public string Model { get; set; }
         public BoatTypeEnum Type { get; set; }
         public double Length { get; set; }
-        public LicenseTypeEnum MinimalRequiredLicence { get; set; }
-        public string BoathPhotoUrl { get; set; }
+        public LicenseTypeEnum MinimalRequiredLicense { get; set; }
+        public string BoatPhotoUrl { get; set; }
     }
 }

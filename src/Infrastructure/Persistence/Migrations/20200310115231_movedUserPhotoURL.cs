@@ -2,7 +2,7 @@
 
 namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
-    public partial class movedUserPhotoURL : Migration
+    public partial class MovedUserPhotoUrl : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

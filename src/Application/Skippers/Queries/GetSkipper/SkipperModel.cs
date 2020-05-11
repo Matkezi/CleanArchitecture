@@ -23,7 +23,7 @@ namespace SkipperAgency.Application.Skippers.Queries.GetSkipper
         public string PersonalSummary { get; set; }
         public string UserPhotoUrl { get; set; }
         public CountryModel Country { get; set; }
-        public SkipperLicenceModel UserLicence { get; set; }
+        public SkipperLicenseModel UserLicense { get; set; }
         public IEnumerable<SkillModel> ListOfSkills { get; set; }
         public IEnumerable<SkipperLanguageModel> ListOfLanguages { get; set; }
     }

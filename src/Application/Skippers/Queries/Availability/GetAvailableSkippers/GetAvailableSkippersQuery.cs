@@ -34,7 +34,7 @@ namespace SkipperAgency.Application.Skippers.Queries.Availability.GetAvailableSk
             {
                 return await _context.Skipper.Include(s => s.ListOfSkills).ThenInclude(sk => sk.Skill).Include(s => s.Bookings).Include(s => s.Availability)
                   .Include(sk => sk.ListOfLanguages).ThenInclude(lang => lang.Language)
-                .Where(skipper => request.ListOfLanguages.Count == 0 ? true : skipper.ListOfLanguages.ConvertAll(lang => lang.Language.EnglishName).Intersect(request.ListOfLanguages).Any())
+                .Where(skipper => request.ListOfLanguages.Count == 0 || skipper.ListOfLanguages.ConvertAll(lang => lang.Language.EnglishName).Intersect(request.ListOfLanguages).Any())
                 .Where(skipper => skipper.Availability.Any(av => av.AvailableFrom <= request.DateFrom && av.AvailableTo >= request.DateTo))
                 .Where(skipper => !skipper.Bookings.Any(book => (book.BookedFrom >= request.DateFrom && book.BookedFrom <= request.DateTo) ||
                                                         (book.BookedTo >= request.DateFrom && book.BookedTo <= request.DateTo)))

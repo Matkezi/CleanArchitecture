@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Skippers.Commands.Availability
 {
-    public partial class UpdateSkipperAvailabilityCommand : IRequest
+    public class UpdateSkipperAvailabilityCommand : IRequest
     {
         public IEnumerable<(DateTime From, DateTime To)> Available { get; set; }
         public class Handler : IRequestHandler<UpdateSkipperAvailabilityCommand>

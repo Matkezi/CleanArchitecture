@@ -20,7 +20,7 @@ namespace SkipperAgency.Application.Common.Interfaces
         DbSet<BookingHistory> BookingHistories { get; set; }
         DbSet<Language> Languages { get; set; }
         DbSet<Country> Countries { get; set; }
-        DbSet<Licence> Licences { get; set; }
+        DbSet<License> Licenses { get; set; }
         DbSet<Region> Regions { get; set; }
         DbSet<RegionAvailability> RegionAvailabilities { get; set; }
         DbSet<TrustedCharterSkipper> TrustedSkippers { get; set; }

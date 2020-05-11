@@ -13,7 +13,7 @@ namespace SkipperAgency.Domain.Entities
         public int BookingId { get; set; }
         [ForeignKey(nameof(BookingId))]
         public virtual Booking Booking { get; set; }
-        public DateTime dateTime { get; set; }
-        public BookingRejectedEnum bookingRejected { get; set; }
+        public DateTime DateTime { get; set; }
+        public BookingRejectedEnum BookingRejected { get; set; }
     }
 }

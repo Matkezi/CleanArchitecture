@@ -37,7 +37,7 @@ namespace SkipperAgency.Application.Charters.Commands.UpdateCharter
 
             public async Task<Unit> Handle(UpdateCharterCommand request, CancellationToken cancellationToken)
             {
-                var entity = await _context.Charter.FirstOrDefaultAsync(x => x.Id == request.CharterId);
+                var entity = await _context.Charter.FirstOrDefaultAsync(x => x.Id == request.CharterId, cancellationToken);
 
                 if (entity is null)
                 {
@@ -54,7 +54,7 @@ namespace SkipperAgency.Application.Charters.Commands.UpdateCharter
 
                 if (!string.IsNullOrEmpty(request.NewEmail))
                 {
-                    _ = _mediator.Send(new EmailChangeRequestCommand { UserEmail = entity.Email, UserNewEmail = request.NewEmail });
+                    _ = _mediator.Send(new EmailChangeRequestCommand { UserEmail = entity.Email, UserNewEmail = request.NewEmail }, cancellationToken);
                 }
 
                 return Unit.Value;

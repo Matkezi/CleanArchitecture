@@ -2,7 +2,7 @@
 
 namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
-    public partial class avalibilitylinkedtoskipper : Migration
+    public partial class Avalibilitylinkedtoskipper : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

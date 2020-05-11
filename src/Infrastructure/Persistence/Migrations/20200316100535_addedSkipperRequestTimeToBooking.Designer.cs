@@ -10,7 +10,7 @@ namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(SkipperAgencyDbContext))]
     [Migration("20200316100535_addedSkipperRequestTimeToBooking")]
-    partial class addedSkipperRequestTimeToBooking
+    partial class AddedSkipperRequestTimeToBooking
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

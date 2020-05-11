@@ -10,7 +10,7 @@ namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(SkipperAgencyDbContext))]
     [Migration("20200326102353_preregistration")]
-    partial class preregistration
+    partial class Preregistration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

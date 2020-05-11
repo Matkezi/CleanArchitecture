@@ -17,12 +17,12 @@ namespace SkipperAgency.Application.Skippers.Commands.PreCreateSkipper
 
         public class Handler : IRequestHandler<PreCreateSkipperCommand>
         {
-            private readonly IEmailService _emailer;
+            private readonly IEmailService _emailService;
             private readonly IConfiguration _configuration;
             private readonly IApplicationDbContext _context;
             public Handler(IEmailService emailer, IConfiguration configuration, IApplicationDbContext context)
             {
-                _emailer = emailer;
+                _emailService = emailer;
                 _configuration = configuration;
                 _context = context;
             }
@@ -34,15 +34,15 @@ namespace SkipperAgency.Application.Skippers.Commands.PreCreateSkipper
                     Email = request.Email,
                     FirstName = request.FirstName,
                     LastName = request.LastName,
-                    URL = RandomUrl.GetRandomUrl()
+                    Url = RandomUrl.GetRandomUrl()
                 };
                 _context.SkipperPreRegistration.Add(skipper);
                 await _context.SaveChangesAsync(cancellationToken);
 
-                await _emailer.SendEmailWithTemplate(
+                await _emailService.SendEmailWithTemplate(
                     new PreRegisteredNotice(
                         toEmail: _configuration["AppSettings:MainCharterEmail"],
-                        callbackUrl: skipper.URL
+                        callbackUrl: skipper.Url
                     ));
 
                 return Unit.Value;

@@ -39,7 +39,7 @@ namespace SkipperAgency.WebUI.Controllers
 
         [HttpPost]
         [Route("fetch-skippers")]
-        public async Task<ActionResult<IEnumerable<SkipperModel>>> GetAvaliableSkippersForBooking(GetAvailableSkippersQuery command)
+        public async Task<ActionResult<IEnumerable<SkipperModel>>> GetAvailableSkippersForBooking(GetAvailableSkippersQuery command)
         {
             return Ok(await Mediator.Send(command));
 
@@ -54,27 +54,20 @@ namespace SkipperAgency.WebUI.Controllers
         }
 
         // GET: api/Booking/5 
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<BookingModel>> GetAsync(GetBookingQuery command)
         {
             return Ok(await Mediator.Send(command));
         }
 
         // GET: api/Booking/url/hiw3ufqu32r4njfsd
-        [HttpGet("url/{url}", Name = "GetByUrl")]
+        [HttpGet("url/{url}")]
         public async Task<ActionResult<BookingModel>> GetAsyncByUrl(GetBookingByUrlQuery command)
         {
             return Ok(await Mediator.Send(command));
         }
 
-        // POST: api/Booking
-        [HttpPost]
-        [Authorize(Roles = "Admin, Charter")]
-        public async Task<IActionResult> Create(CharterCreateBookingCommand command)
-        {
-            await Mediator.Send(command);
-            return NoContent();
-        }
+
 
         [HttpPut("skipper-action/accept")]
         [Authorize(Roles = "Admin, Skipper")]
@@ -94,6 +87,15 @@ namespace SkipperAgency.WebUI.Controllers
 
         [HttpPut("guest-action/request")]
         public async Task<IActionResult> GuestRequestBooking(GuestRequestBookingCommand command)
+        {
+            await Mediator.Send(command);
+            return NoContent();
+        }
+
+        // POST: api/Booking
+        [HttpPost]
+        [Authorize(Roles = "Admin, Charter")]
+        public async Task<IActionResult> Create(CharterCreateBookingCommand command)
         {
             await Mediator.Send(command);
             return NoContent();

@@ -33,7 +33,7 @@ namespace SkipperAgency.Application.Bookings.Queries.CharterGetBookings
                     .Include(b => b.Skipper).Include(b => b.BookingHistories)
                     .Where(b => b.Charter.Id == _currentUserService.UserId)
                     .ProjectTo<BookingModel>(_mapper.ConfigurationProvider)
-                    .ToListAsync();
+                    .ToListAsync(cancellationToken);
             }
 
         }

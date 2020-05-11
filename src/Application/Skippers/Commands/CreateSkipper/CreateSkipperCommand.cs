@@ -21,17 +21,17 @@ namespace SkipperAgency.Application.Skippers.Commands.CreateSkipper
 
         public string LastName { get; set; }
 
-        public bool GDPRConsentAccepted { get; set; }
+        public bool GdprConsentAccepted { get; set; }
 
         public class Handler : IRequestHandler<CreateSkipperCommand>
         {
-            private readonly IEmailService _emailer;
+            private readonly IEmailService _emailService;
             private readonly IIdentityService _identityService;
             private readonly IConfiguration _configuration;
 
-            public Handler(IEmailService emailer, IIdentityService identityService, IConfiguration configuration)
+            public Handler(IEmailService emailService, IIdentityService identityService, IConfiguration configuration)
             {
-                _emailer = emailer;
+                _emailService = emailService;
                 _identityService = identityService;
                 _configuration = configuration;
             }
@@ -54,7 +54,7 @@ namespace SkipperAgency.Application.Skippers.Commands.CreateSkipper
 
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/confirm-email?email={skipper.Email}&token={HttpUtility.UrlEncode(result.emailConfirmationToken)}";
 
-                await _emailer.SendEmailWithTemplate(
+                await _emailService.SendEmailWithTemplate(
                     new ConfirmEmail(
                         toEmail: skipper.Email,
                         fullName: skipper.FullName,
@@ -62,7 +62,7 @@ namespace SkipperAgency.Application.Skippers.Commands.CreateSkipper
                     ));
 
 
-                await _emailer.SendEmailWithTemplate(
+                await _emailService.SendEmailWithTemplate(
                     new NewSkipperNotice(
                         toEmail: _configuration["AppSettings:MainCharterEmail"],
                         skipperFullName: skipper.FullName,

@@ -2,7 +2,7 @@
 
 namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
-    public partial class yearoffirstlicence : Migration
+    public partial class Yearoffirstlicence : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

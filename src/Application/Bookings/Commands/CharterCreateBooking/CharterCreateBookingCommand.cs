@@ -23,14 +23,14 @@ namespace SkipperAgency.Application.Bookings.Commands.CharterCreateBooking
 
         public class Handler : IRequestHandler<CharterCreateBookingCommand>
         {
-            private readonly IEmailService _emailer;
+            private readonly IEmailService _emailService;
             private readonly IConfiguration _configuration;
             private readonly ICurrentUserService _currentUserService;
             private readonly IApplicationDbContext _context;
 
             public Handler(IEmailService emailer, IConfiguration configuration, ICurrentUserService currentUserService, IApplicationDbContext context)
             {
-                _emailer = emailer;
+                _emailService = emailer;
                 _configuration = configuration;
                 _currentUserService = currentUserService;
                 _context = context;
@@ -52,16 +52,16 @@ namespace SkipperAgency.Application.Bookings.Commands.CharterCreateBooking
                     BookedTo = request.BookedTo,
                     GuestName = request.GuestName,
                     GuestEmail = request.GuestEmail,
-                    OnboardingLocation = request.OnboardingLocation,
+                    OnBoardingLocation = request.OnboardingLocation,
                     Status = BookingStatusEnum.SkipperRequestPending,
-                    BookingURL = RandomUrl.GetRandomUrl(),
+                    BookingUrl = RandomUrl.GetRandomUrl(),
                 };
 
-                _context.Bookings.Add(booking);
+                await _context.Bookings.AddAsync(booking, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
-
-                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingURL}/step=1";
-                await _emailer.SendEmailWithTemplate(
+                
+                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingUrl}/step=1";
+                _ = _emailService.SendEmailWithTemplate(
                     new BookingCreated(
                         guestName: request.GuestName,
                         toEmail: booking.GuestEmail,
@@ -69,7 +69,7 @@ namespace SkipperAgency.Application.Bookings.Commands.CharterCreateBooking
                         boatName: "",
                         bookedFrom: booking.BookedFrom.ToShortDateString(),
                         bookedTo: booking.BookedTo.ToShortDateString(),
-                        bookingURL: callbackUrl
+                        bookingUrl: callbackUrl
                     ));
 
                 return Unit.Value;

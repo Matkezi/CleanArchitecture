@@ -29,10 +29,10 @@ namespace SkipperAgency.Application.Skippers.Commands.TrustedSkippers
                 var charter = await _context.Charter.Include(c => c.UnTrustedSkippers).Include(c => c.TrustedSkippers).FirstAsync(x => x.Id == _currentUserService.UserId);
                 request.Ids.ToList().ForEach(skipperId =>
                 {
-                    if (!charter.UnTrustedSkippers.Select(x => x.SkipperID).Contains(skipperId))
-                        charter.UnTrustedSkippers.Add(new UnTrustedCharterSkipper { CharterID = charter.Id, SkipperID = skipperId });
+                    if (!charter.UnTrustedSkippers.Select(x => x.SkipperId).Contains(skipperId))
+                        charter.UnTrustedSkippers.Add(new UnTrustedCharterSkipper { CharterId = charter.Id, SkipperId = skipperId });
 
-                    charter.TrustedSkippers.RemoveAll(x => x.SkipperID == skipperId);
+                    charter.TrustedSkippers.RemoveAll(x => x.SkipperId == skipperId);
 
                 });
                 await _context.SaveChangesAsync(cancellationToken);

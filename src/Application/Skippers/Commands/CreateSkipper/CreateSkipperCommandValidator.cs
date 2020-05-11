@@ -14,7 +14,7 @@ namespace SkipperAgency.Application.Skippers.Commands.CreateSkipper
             //.Must(userService.IsEmailUnique)
             //.WithMessage("Email already taken");
 
-            RuleFor(x => x.GDPRConsentAccepted).Must(x => x is true);
+            RuleFor(x => x.GdprConsentAccepted).Must(x => x is true);
         }
     }
 }

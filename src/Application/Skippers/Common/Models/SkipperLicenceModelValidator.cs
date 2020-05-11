@@ -2,11 +2,11 @@
 
 namespace SkipperAgency.Application.Skippers.Common.Models
 {
-    public class SkipperLicenceModelValidator : AbstractValidator<SkipperLicenceModel>
+    public class SkipperLicenseModelValidator : AbstractValidator<SkipperLicenseModel>
     {
-        public SkipperLicenceModelValidator()
+        public SkipperLicenseModelValidator()
         {
-            RuleFor(x => x.LicenceType).IsInEnum();
+            RuleFor(x => x.LicenseType).IsInEnum();
         }
     }
 }

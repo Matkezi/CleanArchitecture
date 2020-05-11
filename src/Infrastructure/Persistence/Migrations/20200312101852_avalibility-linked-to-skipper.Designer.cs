@@ -10,7 +10,7 @@ namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(SkipperAgencyDbContext))]
     [Migration("20200312101852_avalibility-linked-to-skipper")]
-    partial class avalibilitylinkedtoskipper
+    partial class Avalibilitylinkedtoskipper
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

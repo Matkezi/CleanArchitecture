@@ -14,7 +14,7 @@ namespace SkipperAgency.WebUI
 {
     public class Program
     {
-        public async static Task Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
 
@@ -28,7 +28,7 @@ namespace SkipperAgency.WebUI
 
                     if (context.Database.IsSqlServer())
                     {
-                        context.Database.Migrate();
+                        await context.Database.MigrateAsync();
                     }
 
                     var userManager = services.GetRequiredService<UserManager<AppUser>>();

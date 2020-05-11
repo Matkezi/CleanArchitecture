@@ -10,7 +10,7 @@ namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(SkipperAgencyDbContext))]
     [Migration("20200424130203_year-of-first-licence")]
-    partial class yearoffirstlicence
+    partial class Yearoffirstlicence
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

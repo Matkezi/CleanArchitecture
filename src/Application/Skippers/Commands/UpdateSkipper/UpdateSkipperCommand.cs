@@ -34,7 +34,7 @@ namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
 
         public string NewEmail { get; set; }
         public FileModel UserPhoto { get; set; }
-        public SkipperLicenceModel UserLicence { get; set; }
+        public SkipperLicenseModel UserLicense { get; set; }
 
 
         public class Handler : IRequestHandler<UpdateSkipperCommand>
@@ -54,25 +54,25 @@ namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
 
             public async Task<Unit> Handle(UpdateSkipperCommand request, CancellationToken cancellationToken)
             {
-                var entity = await _context.Skipper.Include(x => x.ListOfLanguages).Include(x => x.ListOfSkills).FirstOrDefaultAsync(x => x.Id == request.SkipperId);
+                var skipper = await _context.Skipper.Include(x => x.ListOfLanguages).Include(x => x.ListOfSkills).FirstOrDefaultAsync(x => x.Id == request.SkipperId);
 
-                if (entity is null)
+                if (skipper is null)
                 {
                     throw new NotFoundException(nameof(Skipper), request.SkipperId);
                 }
 
-                entity.OIB = request.Oib;
-                entity.FirstName = request.FirstName;
-                entity.LastName = request.LastName;
-                entity.Address = request.Address;
-                entity.ZipCode = request.ZipCode;
-                entity.City = request.City;
-                entity.PhoneNumber = request.PhoneNumber;
-                entity.Price = request.Price;
-                entity.PersonalSummary = request.PersonalSummary;
-                entity.CountryId = request.CountryId;
+                skipper.Oib = request.Oib;
+                skipper.FirstName = request.FirstName;
+                skipper.LastName = request.LastName;
+                skipper.Address = request.Address;
+                skipper.ZipCode = request.ZipCode;
+                skipper.City = request.City;
+                skipper.PhoneNumber = request.PhoneNumber;
+                skipper.Price = request.Price;
+                skipper.PersonalSummary = request.PersonalSummary;
+                skipper.CountryId = request.CountryId;
 
-                _context.TryUpdateManyToMany(entity.ListOfLanguages,
+                _context.TryUpdateManyToMany(skipper.ListOfLanguages,
                     request.ListOfLanguages.Select(language => new SkipperLanguage
                     {
                         LanguageId = language.LanguageId,
@@ -81,7 +81,7 @@ namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
                     }), x => x.LanguageId);
 
 
-                _context.TryUpdateManyToMany(entity.ListOfSkills,
+                _context.TryUpdateManyToMany(skipper.ListOfSkills,
                     request.ListOfSkills.Select(skill => new SkipperSkill
                     {
                         SkillId = skill.SkillId,
@@ -115,25 +115,25 @@ namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
                     var photoUri = await _filesStorageService.ReplaceCloudAsync(
                         request.UserPhoto.Data,
                         Path.GetExtension(request.UserPhoto.Name),
-                        entity.UserPhotoUrl);
+                        skipper.UserPhotoUrl);
 
-                    entity.UserPhotoUrl = photoUri;
+                    skipper.UserPhotoUrl = photoUri;
                 }
-                if (request.UserLicence != null)
+                if (request.UserLicense != null)
                 {
                     // TODO: validate Data somehow before this, make a validator
-                    var licenceUri = await _filesStorageService.ReplaceCloudAsync(
+                    var licenseUri = await _filesStorageService.ReplaceCloudAsync(
                         request.UserPhoto.Data,
                         Path.GetExtension(request.UserPhoto.Name),
-                        entity.Licence.LicenceUrl
+                        skipper.License.LicenseUrl
                         );
 
-                    entity.Licence = new Licence
+                    skipper.License = new License
                     {
-                        DateOfIssue = request.UserLicence.DateOfIssue,
-                        ValidTo = request.UserLicence.ValidTo,
-                        LicenceType = request.UserLicence.LicenceType,
-                        LicenceUrl = licenceUri
+                        DateOfIssue = request.UserLicense.DateOfIssue,
+                        ValidTo = request.UserLicense.ValidTo,
+                        LicenseType = request.UserLicense.LicenseType,
+                        LicenseUrl = licenseUri
                     };
                 }
 
@@ -141,7 +141,7 @@ namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
 
                 if (!string.IsNullOrEmpty(request.NewEmail))
                 {
-                    _ = _mediator.Send(new EmailChangeRequestCommand { UserEmail = entity.Email, UserNewEmail = request.NewEmail });
+                    _ = _mediator.Send(new EmailChangeRequestCommand { UserEmail = skipper.Email, UserNewEmail = request.NewEmail });
                 }
 
                 return Unit.Value;

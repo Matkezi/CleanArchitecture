@@ -15,13 +15,13 @@ namespace SkipperAgency.Application.Identity.Commands.EmailChangeRequest
         public class Handler : IRequestHandler<EmailChangeRequestCommand>
         {
             private readonly IIdentityService _identityService;
-            private readonly IEmailService _emailer;
+            private readonly IEmailService _emailService;
             private readonly IConfiguration _configuration;
 
             public Handler(IIdentityService identityService, IEmailService emailer, IConfiguration configuration)
             {
                 _identityService = identityService;
-                _emailer = emailer;
+                _emailService = emailer;
                 _configuration = configuration;
             }
 
@@ -31,7 +31,7 @@ namespace SkipperAgency.Application.Identity.Commands.EmailChangeRequest
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/change-email/email={request.UserEmail}/newEmail={request.UserNewEmail}/token={result.emailResetTokenBase64}";
 
                 // TODO: fullname in an email
-                _ = _emailer.SendEmailWithTemplate(
+                _ = _emailService.SendEmailWithTemplate(
                     new ChangeEmail(
                         toEmail: request.UserEmail,
                         fullName: request.UserEmail,

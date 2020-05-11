@@ -4,11 +4,11 @@ using System;
 
 namespace SkipperAgency.Application.Skippers.Common.Models
 {
-    public class SkipperLicenceModel : FileModel
+    public class SkipperLicenseModel : FileModel
     {
         public DateTime DateOfIssue { get; set; }
         public DateTime ValidTo { get; set; }
-        public LicenseTypeEnum LicenceType { get; set; }
-        public string LicenceUrl { get; set; }
+        public LicenseTypeEnum LicenseType { get; set; }
+        public string LicenseUrl { get; set; }
     }
 }

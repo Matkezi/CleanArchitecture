@@ -33,7 +33,7 @@ namespace SkipperAgency.Application.Skippers.Queries.TrustedSkippers
                 return await _context.Skipper
                     .Include(s => s.ListOfLanguages)
                     .ThenInclude(l => l.Language)
-                    .Where(skipper => charter.UnTrustedSkippers.Select(x => x.SkipperID)
+                    .Where(skipper => charter.UnTrustedSkippers.Select(x => x.SkipperId)
                     .Contains(skipper.Id))
                     .ProjectTo<TrustedSkipperModel>(_mapper.ConfigurationProvider)
                     .ToListAsync();

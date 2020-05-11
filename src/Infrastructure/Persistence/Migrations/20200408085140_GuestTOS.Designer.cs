@@ -10,7 +10,7 @@ namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(SkipperAgencyDbContext))]
     [Migration("20200408085140_GuestTOS")]
-    partial class GuestTOS
+    partial class GuestTos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

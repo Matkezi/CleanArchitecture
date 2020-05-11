@@ -3,7 +3,7 @@ using System;
 
 namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
-    public partial class addedSkipperRequestTimeToBooking : Migration
+    public partial class AddedSkipperRequestTimeToBooking : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -2,7 +2,7 @@
 
 namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
-    public partial class preregistration : Migration
+    public partial class Preregistration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

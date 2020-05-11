@@ -25,7 +25,7 @@ namespace SkipperAgency.Application.Skippers.Queries.PreGetSkipper
 
             public async Task<PreGetSkipperModel> Handle(PreGetSkipperQuery request, CancellationToken cancellationToken)
             {
-                var skipper = await _context.SkipperPreRegistration.Where(s => s.URL == request.Url).FirstAsync();
+                var skipper = await _context.SkipperPreRegistration.Where(s => s.Url == request.Url).FirstAsync();
                 return _mapper.Map<PreGetSkipperModel>(skipper);
             }
 

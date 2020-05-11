@@ -3,7 +3,7 @@ using System;
 
 namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
-    public partial class initial2 : Migration
+    public partial class Initial2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

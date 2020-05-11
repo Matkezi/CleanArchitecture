@@ -15,7 +15,7 @@ namespace SkipperAgency.Application.Charters.Commands.CreateCharter
             //.Must(userService.IsEmailUnique)
             //.WithMessage("Email already taken");
 
-            RuleFor(x => x.GDPRConsentAccepted).Must(x => x is true);
+            RuleFor(x => x.GdprConsentAccepted).Must(x => x is true);
         }
     }
 }

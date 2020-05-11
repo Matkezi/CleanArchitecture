@@ -19,13 +19,13 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
 
         public class Handler : IRequestHandler<GuestRequestBookingCommand>
         {
-            private readonly IEmailService _emailer;
+            private readonly IEmailService _emailService;
             private readonly IConfiguration _configuration;
             private readonly IApplicationDbContext _context;
 
-            public Handler(IEmailService emailer, IConfiguration configuration, IApplicationDbContext context)
+            public Handler(IEmailService emailService, IConfiguration configuration, IApplicationDbContext context)
             {
-                _emailer = emailer;
+                _emailService = emailService;
                 _configuration = configuration;
                 _context = context;
             }
@@ -33,7 +33,7 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
             public async Task<Unit> Handle(GuestRequestBookingCommand request, CancellationToken cancellationToken)
             {
 
-                Booking booking = await _context.Bookings.Include(x => x.Charter).Include(x => x.Boat).FirstAsync(x => x.Id == request.BookingId);
+                var booking = await _context.Bookings.Include(x => x.Charter).Include(x => x.Boat).FirstAsync(x => x.Id == request.BookingId);
 
                 if (booking.GuestEmail != request.GuestEmail)
                 {
@@ -46,19 +46,19 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
 
                 var skipper = await _context.Skipper.FindAsync(booking.SkipperId);
 
-                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingURL}/step=1";
+                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingUrl}/step=1";
 
-                await _emailer.SendEmailWithTemplate(
+                await _emailService.SendEmailWithTemplate(
                     new BookingRequested(
                         guestName: booking.GuestName,
                         toEmail: booking.GuestEmail,
                         skipperName: skipper.FullName,
-                        bookingURL: callbackUrl
+                        bookingUrl: callbackUrl
                     ));
 
 
                 string callbackUrl2 = $"{_configuration["AppSettings:AppServerUrl"]}/skipper/dashboard";
-                await _emailer.SendEmailWithTemplate(
+                await _emailService.SendEmailWithTemplate(
                     new SkipperBookingRequested(
                         guestName: booking.GuestName,
                         toEmail: skipper.Email,

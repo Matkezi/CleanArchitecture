@@ -9,15 +9,15 @@ namespace SkipperAgency.Application.Skippers.Queries.TrustedSkippers
     public class TrustedSkipperModel : IMapFrom<Skipper>
     {
         public string Id { get; set; }
-        public string ImageURL { get; set; }
+        public string ImageUrl { get; set; }
         public string FirstName { get; set; }
-        public string YearOfFirstLicence { get; set; }
+        public string YearOfFirstLicense { get; set; }
         public IEnumerable<SkipperLanguageModel> ListOfLanguages { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Skipper, TrustedSkipperModel>()
-                .ForMember(dest => dest.ImageURL,
+                .ForMember(dest => dest.ImageUrl,
                             opt => opt.MapFrom(src => src.UserPhotoUrl));
         }
     }
