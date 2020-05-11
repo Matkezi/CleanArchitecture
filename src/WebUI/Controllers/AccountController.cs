@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SkipperAgency.Application.Common.Models;
 using SkipperAgency.Application.Identity.Commands.ConfirmEmail;
@@ -9,6 +8,7 @@ using SkipperAgency.Application.Identity.Commands.Login;
 using SkipperAgency.Application.Identity.Commands.PasswordReset;
 using SkipperAgency.Application.Identity.Commands.PasswordResetRequest;
 using SkipperAgency.Application.Identity.ExternalIdentity.Facebook;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.WebUI.Controllers
 {

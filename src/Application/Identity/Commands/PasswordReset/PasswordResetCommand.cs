@@ -1,7 +1,7 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using SkipperAgency.Application.Common.Interfaces;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Identity.Commands.PasswordReset
 {
@@ -9,7 +9,7 @@ namespace SkipperAgency.Application.Identity.Commands.PasswordReset
     {
         public string UserEmail { get; set; }
         public string NewPassword { get; set; }
-        public string Token { get; set; }        
+        public string Token { get; set; }
 
         public class Handler : IRequestHandler<PasswordResetCommand>
         {

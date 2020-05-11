@@ -1,6 +1,3 @@
-using System;
-using System.IO;
-using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +12,9 @@ using SkipperAgency.Infrastructure;
 using SkipperAgency.Infrastructure.Persistence;
 using SkipperAgency.WebUI.Filters;
 using SkipperAgency.WebUI.Services;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace SkipperAgency.WebUI
 {
@@ -40,7 +40,7 @@ namespace SkipperAgency.WebUI
             services.AddHealthChecks()
                 .AddDbContextCheck<SkipperAgencyDbContext>();
 
-            services.AddControllersWithViews(options => 
+            services.AddControllersWithViews(options =>
                 options.Filters.Add(new ApiExceptionFilter()));
 
             services.AddRazorPages();

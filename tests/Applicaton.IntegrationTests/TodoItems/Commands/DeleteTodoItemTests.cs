@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using SkipperAgency.Application.Common.Exceptions;
 using SkipperAgency.Application.TodoItems.Commands.CreateTodoItem;
 using SkipperAgency.Application.TodoItems.Commands.DeleteTodoItem;
 using SkipperAgency.Application.TodoLists.Commands.CreateTodoList;
 using SkipperAgency.Domain.Entities;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.IntegrationTests.TodoItems.Commands
 {

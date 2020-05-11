@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using FluentEmail.Core;
+﻿using FluentEmail.Core;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.EmailTemplateModels;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Infrastructure.Emails
 {

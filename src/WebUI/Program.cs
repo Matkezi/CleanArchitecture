@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +7,8 @@ using Microsoft.Extensions.Logging;
 using SkipperAgency.Domain.Entities;
 using SkipperAgency.Domain.Enums;
 using SkipperAgency.Infrastructure.Persistence;
+using System;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.WebUI
 {
@@ -29,7 +29,7 @@ namespace SkipperAgency.WebUI
                     if (context.Database.IsSqlServer())
                     {
                         context.Database.Migrate();
-                    }                   
+                    }
 
                     var userManager = services.GetRequiredService<UserManager<AppUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();

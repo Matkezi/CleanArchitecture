@@ -1,13 +1,13 @@
-﻿using System.Data;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.Common;
 using SkipperAgency.Domain.Entities;
+using System.Data;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Infrastructure.Persistence
 {

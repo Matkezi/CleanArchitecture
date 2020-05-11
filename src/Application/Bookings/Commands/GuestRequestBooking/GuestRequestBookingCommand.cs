@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using SkipperAgency.Application.Common.Exceptions;
@@ -8,6 +6,8 @@ using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.EmailTemplateModels;
 using SkipperAgency.Domain.Entities;
 using SkipperAgency.Domain.Enums;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
 {
@@ -34,7 +34,7 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
             {
 
                 Booking booking = await _context.Bookings.Include(x => x.Charter).Include(x => x.Boat).FirstAsync(x => x.Id == request.BookingId);
-                
+
                 if (booking.GuestEmail != request.GuestEmail)
                 {
                     throw new UnauthorizedException("Booking", request.GuestEmail);
@@ -47,7 +47,7 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
                 var skipper = await _context.Skipper.FindAsync(booking.SkipperId);
 
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingURL}/step=1";
-                
+
                 await _emailer.SendEmailWithTemplate(
                     new BookingRequested(
                         guestName: booking.GuestName,

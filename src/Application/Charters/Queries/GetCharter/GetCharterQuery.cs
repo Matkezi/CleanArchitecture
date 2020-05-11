@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using SkipperAgency.Application.Common.Interfaces;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Charters.Queries.GetCharter
 {
@@ -20,7 +20,7 @@ namespace SkipperAgency.Application.Charters.Queries.GetCharter
                 _context = context;
                 _mapper = mapper;
             }
-            
+
             public async Task<CharterModel> Handle(GetCharterQuery request, CancellationToken cancellationToken)
             {
                 var charter = await _context.Charter.FindAsync(request.Id);

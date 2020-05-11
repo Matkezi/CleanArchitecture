@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SkipperAgency.Application.Bookings.Commands.CharterCreateBooking;
 using SkipperAgency.Application.Bookings.Commands.CharterDeleteBooking;
@@ -15,6 +13,8 @@ using SkipperAgency.Application.Bookings.Queries.SkipperGetBookings;
 using SkipperAgency.Application.Skippers.Queries.Availability.GetAvailableSkippers;
 using SkipperAgency.Application.Skippers.Queries.GetSkipper;
 using SkipperAgency.Domain.Enums;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.WebUI.Controllers
 {

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Identity;
 
 //using SkipperBooking.Base.Helpers;
 
@@ -8,7 +8,7 @@ namespace SkipperAgency.Domain.Entities
 {
     public abstract class AppUser : IdentityUser
     {
-        
+
         //[ValidOIB(ErrorMessage = "OIB not valid.")]
         public string OIB { get; set; }
         public string Address { get; set; }

@@ -1,6 +1,6 @@
-﻿using System;
-using SkipperAgency.Domain.Common;
+﻿using SkipperAgency.Domain.Common;
 using SkipperAgency.Domain.Enums;
+using System;
 
 namespace SkipperAgency.Domain.Entities
 {

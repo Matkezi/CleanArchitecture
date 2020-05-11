@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using SkipperAgency.Domain.Entities;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Infrastructure.Persistence
 {

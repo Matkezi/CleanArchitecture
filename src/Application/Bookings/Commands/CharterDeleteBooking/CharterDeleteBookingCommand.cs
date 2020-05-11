@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using SkipperAgency.Application.Common.Exceptions;
 using SkipperAgency.Application.Common.Interfaces;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Bookings.Commands.CharterDeleteBooking
 {

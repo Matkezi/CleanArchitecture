@@ -7,7 +7,7 @@ namespace SkipperAgency.Application.Boats.Commands.CreateBoat
         public CreateBoatCommandValidator()
         {
             RuleFor(x => x.Type).IsInEnum();
-            RuleFor(x => x.MinimalRequiredLicence).IsInEnum();
+            RuleFor(x => x.MinimalRequiredLicense).IsInEnum();
         }
     }
 }

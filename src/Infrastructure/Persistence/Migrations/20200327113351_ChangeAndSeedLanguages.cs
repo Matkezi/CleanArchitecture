@@ -35,7 +35,7 @@ namespace SkipperAgency.Infrastructure.Persistence.Migrations
             migrationBuilder.AddColumn<string>(
                 name: "TwoLetterCode",
                 table: "Languages",
-                nullable: true);            
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using SkipperAgency.Domain.EmailTemplateModels;
+﻿using SkipperAgency.Domain.EmailTemplateModels;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Common.Interfaces
 {

@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using SkipperAgency.Application.Common.Models;
+using System.Linq;
 
 namespace SkipperAgency.Infrastructure.Identity
 {

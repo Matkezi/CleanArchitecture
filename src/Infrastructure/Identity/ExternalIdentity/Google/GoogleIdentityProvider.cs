@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using SkipperAgency.Application.Common.Interfaces;
+﻿using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Application.Common.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Infrastructure.Identity.ExternalIdentity.Google
 {

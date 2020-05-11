@@ -1,13 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using SkipperAgency.Application.Common.Interfaces;
+using System;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Infrastructure.Files
 {
     public class FilesStorageService : AzureStorageService, IFilesStorageService
     {
-        public FilesStorageService(IConfiguration configuration) : 
+        public FilesStorageService(IConfiguration configuration) :
             base(configuration["AzureStorage:AccessKey"], configuration["AzureStorage:ContainerName"])
         {
         }

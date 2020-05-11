@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Application.Skippers.Queries.GetSkipper;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Skippers.Queries.GetAllSkippers
 {

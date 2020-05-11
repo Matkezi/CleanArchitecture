@@ -1,9 +1,9 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Configuration;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.EmailTemplateModels;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Identity.Commands.EmailChangeRequest
 {

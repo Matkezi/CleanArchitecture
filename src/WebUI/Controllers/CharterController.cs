@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SkipperAgency.Application.Charters.Commands.CreateCharter;
 using SkipperAgency.Application.Charters.Commands.DeleteCharter;
 using SkipperAgency.Application.Charters.Commands.UpdateCharter;
 using SkipperAgency.Application.Charters.Queries.GetAllCharters;
 using SkipperAgency.Application.Charters.Queries.GetCharter;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.WebUI.Controllers
 {

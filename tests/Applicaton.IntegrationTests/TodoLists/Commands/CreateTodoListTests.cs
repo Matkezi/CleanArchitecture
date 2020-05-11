@@ -1,10 +1,10 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
-using System;
-using System.Threading.Tasks;
 using SkipperAgency.Application.Common.Exceptions;
 using SkipperAgency.Application.TodoLists.Commands.CreateTodoList;
 using SkipperAgency.Domain.Entities;
+using System;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.IntegrationTests.TodoLists.Commands
 {

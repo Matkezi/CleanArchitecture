@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using SkipperAgency.Application.Common.Exceptions;
+using System;
+using System.Collections.Generic;
 
 namespace SkipperAgency.WebUI.Filters
 {

@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using SkipperAgency.Application.Common.Interfaces;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.TodoLists.Commands.CreateTodoList
 {

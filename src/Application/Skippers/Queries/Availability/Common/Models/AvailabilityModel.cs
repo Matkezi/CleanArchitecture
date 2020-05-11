@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using SkipperAgency.Domain.Entities;
+using System;
+using System.Collections.Generic;
 
 namespace SkipperAgency.Application.Skippers.Queries.Availability.Common.Models
 {

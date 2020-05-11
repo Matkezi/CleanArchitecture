@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Application.Common.Models;
 using SkipperAgency.Domain.Entities;
 using SkipperAgency.Domain.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Infrastructure.Identity
 {
@@ -138,7 +138,7 @@ namespace SkipperAgency.Infrastructure.Identity
             var user = await _userManager.FindByEmailAsync(userEmail);
             if (user is null)
                 return (Result.Failure("User not found."), null);
-            var token = await _userManager.GeneratePasswordResetTokenAsync(user);           
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
             byte[] tokenBytes = Encoding.UTF8.GetBytes(token);
             var tokenEncoded = WebEncoders.Base64UrlEncode(tokenBytes);
             return (Result.Success(), tokenEncoded);

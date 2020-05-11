@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SkipperAgency.Application.Common.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using SkipperAgency.Application.Common.Interfaces;
 
 namespace SkipperAgency.Application.Common.Helpers
 {

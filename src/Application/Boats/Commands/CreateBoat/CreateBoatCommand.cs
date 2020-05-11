@@ -1,11 +1,11 @@
-﻿using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.Common;
 using SkipperAgency.Domain.Entities;
 using SkipperAgency.Domain.Enums;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Boats.Commands.CreateBoat
 {
@@ -16,8 +16,8 @@ namespace SkipperAgency.Application.Boats.Commands.CreateBoat
         public string Model { get; set; }
         public BoatTypeEnum Type { get; set; }
         public double Length { get; set; }
-        public LicenceTypeEnum MinimalRequiredLicence { get; set; }
-        public FileModel BoathPhoto { get; set; }
+        public LicenseTypeEnum MinimalRequiredLicense { get; set; }
+        public FileModel BoatPhoto { get; set; }
 
         public class Handler : IRequestHandler<CreateBoatCommand>
         {
@@ -39,13 +39,13 @@ namespace SkipperAgency.Application.Boats.Commands.CreateBoat
                     Model = request.Model,
                     Type = request.Type,
                     Length = request.Length,
-                    MinimalRequiredLicence = request.MinimalRequiredLicence                
-                };                
+                    MinimalRequiredLicence = request.MinimalRequiredLicense
+                };
 
-                if (request.BoathPhoto != null)
+                if (request.BoatPhoto != null)
                 {
                     // TODO: validate Data somehow before this, make a validator
-                    var photoUri = await _filesStorageService.SaveCloudAsync(request.BoathPhoto.Data, Path.GetExtension(request.BoathPhoto.Name));
+                    var photoUri = await _filesStorageService.SaveCloudAsync(request.BoatPhoto.Data, Path.GetExtension(request.BoatPhoto.Name));
                     boat.BoathPhotoUrl = photoUri;
                 }
 

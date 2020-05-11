@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,12 +11,15 @@ using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.Entities;
 using SkipperAgency.Infrastructure.Persistence;
 using SkipperAgency.WebUI;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.IntegrationTests
 {
     [SetUpFixture]
     public class Testing
-    {   
+    {
         private static IConfigurationRoot _configuration;
         private static IServiceScopeFactory _scopeFactory;
         private static Checkpoint _checkpoint;
@@ -59,10 +59,10 @@ namespace CleanArchitecture.Application.IntegrationTests
                 Mock.Of<ICurrentUserService>(s => s.UserId == _currentUserId));
 
             _scopeFactory = services.BuildServiceProvider().GetService<IServiceScopeFactory>();
-        
+
             _checkpoint = new Checkpoint
             {
-                TablesToIgnore = new [] { "__EFMigrationsHistory" }
+                TablesToIgnore = new[] { "__EFMigrationsHistory" }
             };
 
             EnsureDatabase();

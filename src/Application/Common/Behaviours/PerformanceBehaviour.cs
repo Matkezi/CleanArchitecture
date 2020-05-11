@@ -1,9 +1,9 @@
-﻿using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using SkipperAgency.Application.Common.Interfaces;
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Common.Behaviours
 {
@@ -15,7 +15,7 @@ namespace SkipperAgency.Application.Common.Behaviours
         private readonly IIdentityService _identityService;
 
         public PerformanceBehaviour(
-            ILogger<TRequest> logger, 
+            ILogger<TRequest> logger,
             ICurrentUserService currentUserService,
             IIdentityService identityService)
         {

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +13,7 @@ using SkipperAgency.Infrastructure.Identity.ExternalIdentity.Facebook;
 using SkipperAgency.Infrastructure.Identity.ExternalIdentity.Google;
 using SkipperAgency.Infrastructure.Persistence;
 using SkipperAgency.Infrastructure.Services;
+using System;
 
 namespace SkipperAgency.Infrastructure
 {

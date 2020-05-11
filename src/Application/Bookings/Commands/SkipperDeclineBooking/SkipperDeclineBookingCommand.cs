@@ -1,11 +1,11 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Configuration;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.EmailTemplateModels;
 using SkipperAgency.Domain.Entities;
 using SkipperAgency.Domain.Enums;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Bookings.Commands.SkipperDeclineBooking
 {

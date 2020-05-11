@@ -1,10 +1,10 @@
-﻿using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.Common;
 using SkipperAgency.Domain.Enums;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Boats.Commands.UpdateBoat
 {
@@ -16,7 +16,7 @@ namespace SkipperAgency.Application.Boats.Commands.UpdateBoat
         public string Model { get; set; }
         public BoatTypeEnum Type { get; set; }
         public double Length { get; set; }
-        public LicenceTypeEnum MinimalRequiredLicence { get; set; }
+        public LicenseTypeEnum MinimalRequiredLicence { get; set; }
         public FileModel BoathPhoto { get; set; }
 
         public class Handler : IRequestHandler<UpdateBoatCommand>
@@ -44,8 +44,8 @@ namespace SkipperAgency.Application.Boats.Commands.UpdateBoat
                 if (request.BoathPhoto != null)
                 {
                     var photoUri = await _filesStorageService.ReplaceCloudAsync
-                        (request.BoathPhoto.Data, 
-                        Path.GetExtension(request.BoathPhoto.Name), 
+                        (request.BoathPhoto.Data,
+                        Path.GetExtension(request.BoathPhoto.Name),
                         boat.BoathPhotoUrl);
                     boat.BoathPhotoUrl = photoUri;
                 }

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using SkipperAgency.Domain.Common;
+﻿using SkipperAgency.Domain.Common;
+using System.Collections.Generic;
 
 namespace SkipperAgency.Domain.Entities
 {

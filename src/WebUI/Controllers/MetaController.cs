@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SkipperAgency.Application.Metadata.Queries.GetCountries;
 using SkipperAgency.Application.Metadata.Queries.GetLanguages;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.WebUI.Controllers
 {

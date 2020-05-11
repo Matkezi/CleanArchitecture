@@ -1,6 +1,6 @@
-﻿using System.Net.Http;
+﻿using SkipperAgency.Application.Common.Interfaces;
+using System.Net.Http;
 using System.Threading.Tasks;
-using SkipperAgency.Application.Common.Interfaces;
 
 namespace SkipperAgency.Infrastructure.HttpClients
 {

@@ -10,6 +10,6 @@ namespace SkipperAgency.Domain.Entities
         public DateTime AvailableFrom { get; set; }
         public DateTime AvailableTo { get; set; }
         [ForeignKey(nameof(SkipperId))]
-        public virtual AppUser Skipper { get; set; } 
-    } 
+        public virtual AppUser Skipper { get; set; }
+    }
 }

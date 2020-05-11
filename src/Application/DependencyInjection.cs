@@ -1,9 +1,9 @@
-﻿using System.Reflection;
-using AutoMapper;
+﻿using AutoMapper;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using SkipperAgency.Application.Common.Behaviours;
+using System.Reflection;
 
 namespace SkipperAgency.Application
 {
@@ -25,7 +25,7 @@ namespace SkipperAgency.Application
             //services.AddTransient(typeof(IRequestPreProcessor<>), typeof(CharterBookingsAuthBehaviour<>));
             //services.AddTransient(typeof(IRequestPreProcessor<>), typeof(SkipperBookingAuthBehaviour<>));
             //services.AddTransient(typeof(IRequestPreProcessor<>), typeof(CharterBoatAuthBehaviour<>));
-            
+
             return services;
         }
     }

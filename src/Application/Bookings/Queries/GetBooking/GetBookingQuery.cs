@@ -1,9 +1,9 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using SkipperAgency.Application.Bookings.CommonModels;
 using SkipperAgency.Application.Common.Interfaces;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Bookings.Queries.GetBooking
 {

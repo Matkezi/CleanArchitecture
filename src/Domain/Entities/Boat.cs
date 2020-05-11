@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using SkipperAgency.Domain.Enums;
+﻿using SkipperAgency.Domain.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SkipperAgency.Domain.Entities
 {
@@ -11,7 +11,7 @@ namespace SkipperAgency.Domain.Entities
         public string Model { get; set; }
         public BoatTypeEnum Type { get; set; }
         public double Length { get; set; }
-        public LicenceTypeEnum MinimalRequiredLicence { get; set; }
+        public LicenseTypeEnum MinimalRequiredLicence { get; set; }
         public string BoathPhotoUrl { get; set; }
         public string CharterId { get; set; }
         [ForeignKey(nameof(CharterId))]

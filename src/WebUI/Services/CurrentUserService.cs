@@ -1,6 +1,6 @@
-﻿using System.Security.Claims;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using SkipperAgency.Application.Common.Interfaces;
+using System.Security.Claims;
 
 namespace SkipperAgency.WebUI.Services
 {

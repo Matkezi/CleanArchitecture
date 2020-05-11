@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SkipperAgency.Application.Common.Exceptions;
 using SkipperAgency.Application.Common.Helpers;
@@ -13,13 +8,18 @@ using SkipperAgency.Application.Skills.Queries.GetSkill;
 using SkipperAgency.Application.Skippers.Common.Models;
 using SkipperAgency.Domain.Common;
 using SkipperAgency.Domain.Entities;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
 {
     public class UpdateSkipperCommand : IRequest, ISkipperAuth
     {
         public string SkipperId { get; set; }
-        public string Oib { get; set; }        
+        public string Oib { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
@@ -34,7 +34,7 @@ namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
 
         public string NewEmail { get; set; }
         public FileModel UserPhoto { get; set; }
-        public SkipperLicenceModel UserLicence { get; set; }       
+        public SkipperLicenceModel UserLicence { get; set; }
 
 
         public class Handler : IRequestHandler<UpdateSkipperCommand>
@@ -113,7 +113,7 @@ namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
                 {
                     // TODO: validate Data somehow before this, make a validator
                     var photoUri = await _filesStorageService.ReplaceCloudAsync(
-                        request.UserPhoto.Data, 
+                        request.UserPhoto.Data,
                         Path.GetExtension(request.UserPhoto.Name),
                         entity.UserPhotoUrl);
 
@@ -123,7 +123,7 @@ namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
                 {
                     // TODO: validate Data somehow before this, make a validator
                     var licenceUri = await _filesStorageService.ReplaceCloudAsync(
-                        request.UserPhoto.Data, 
+                        request.UserPhoto.Data,
                         Path.GetExtension(request.UserPhoto.Name),
                         entity.Licence.LicenceUrl
                         );

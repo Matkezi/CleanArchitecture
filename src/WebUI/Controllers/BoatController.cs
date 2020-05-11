@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SkipperAgency.Application.Boats.Commands.CreateBoat;
 using SkipperAgency.Application.Boats.Commands.DeleteBoat;
 using SkipperAgency.Application.Boats.Commands.UpdateBoat;
 using SkipperAgency.Application.Boats.Queries.CharterGetBoats;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.WebUI.Controllers
 {
@@ -15,7 +15,7 @@ namespace SkipperAgency.WebUI.Controllers
     {
 
         // GET: api/Boat/Charter
-        [HttpGet("Charter")]        
+        [HttpGet("Charter")]
         public async Task<ActionResult<IEnumerable<BoatModel>>> GetCharterBoats()
         {
             return Ok(await Mediator.Send(new CharterGetBoatsQuery()));

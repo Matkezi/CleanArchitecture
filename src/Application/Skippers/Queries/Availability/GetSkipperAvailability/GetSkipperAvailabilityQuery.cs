@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Application.Skippers.Queries.Availability.Common.Models;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Skippers.Queries.Availability.GetSkipperAvailability
 {
@@ -34,7 +34,7 @@ namespace SkipperAgency.Application.Skippers.Queries.Availability.GetSkipperAvai
                 return new AvailabilityModel
                 {
                     Available = skipper.Availability.Select(avalibility => (From: avalibility.AvailableFrom, To: avalibility.AvailableTo)),
-                    Booked = skipper.Bookings.Select(booking => ( From: booking.BookedFrom, To: booking.BookedTo))
+                    Booked = skipper.Bookings.Select(booking => (From: booking.BookedFrom, To: booking.BookedTo))
                 };
             }
 

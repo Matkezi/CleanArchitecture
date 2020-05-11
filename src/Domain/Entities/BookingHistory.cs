@@ -1,6 +1,6 @@
-﻿using System;
+﻿using SkipperAgency.Domain.Enums;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using SkipperAgency.Domain.Enums;
 
 namespace SkipperAgency.Domain.Entities
 {

@@ -1,9 +1,9 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.Enums;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Skills.Queries.GetSkill
 {

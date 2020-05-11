@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Application.Common.Models;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Identity.Commands.Login
 {

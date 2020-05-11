@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using SkipperAgency.Application.Common.Models;
+﻿using SkipperAgency.Application.Common.Models;
 using SkipperAgency.Domain.Entities;
 using SkipperAgency.Domain.Enums;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Common.Interfaces
 {

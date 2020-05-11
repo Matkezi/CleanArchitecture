@@ -1,7 +1,5 @@
 ﻿using FluentAssertions;
-using System.Threading.Tasks;
 using NUnit.Framework;
-using System;
 using SkipperAgency.Application.Common.Exceptions;
 using SkipperAgency.Application.TodoItems.Commands.CreateTodoItem;
 using SkipperAgency.Application.TodoItems.Commands.UpdateTodoItem;
@@ -9,6 +7,8 @@ using SkipperAgency.Application.TodoItems.Commands.UpdateTodoItemDetail;
 using SkipperAgency.Application.TodoLists.Commands.CreateTodoList;
 using SkipperAgency.Domain.Entities;
 using SkipperAgency.Domain.Enums;
+using System;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.IntegrationTests.TodoItems.Commands
 {

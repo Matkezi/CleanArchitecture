@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Application.Common.Models;
 using SkipperAgency.Domain.Entities;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Infrastructure.Identity.ExternalIdentity.Facebook
 {

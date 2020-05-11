@@ -1,5 +1,5 @@
-﻿using System;
-using SkipperAgency.Application.Common.Interfaces;
+﻿using SkipperAgency.Application.Common.Interfaces;
+using System;
 
 namespace SkipperAgency.Infrastructure.Services
 {

@@ -1,12 +1,12 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Configuration;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.EmailTemplateModels;
 using SkipperAgency.Domain.Entities;
 using SkipperAgency.Domain.Enums;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Web;
 
 namespace SkipperAgency.Application.Skippers.Commands.CreateSkipper
 {
@@ -50,10 +50,10 @@ namespace SkipperAgency.Application.Skippers.Commands.CreateSkipper
                 {
                     // TODO: Log, do something...
                     // return something
-                }          
+                }
 
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/confirm-email?email={skipper.Email}&token={HttpUtility.UrlEncode(result.emailConfirmationToken)}";
- 
+
                 await _emailer.SendEmailWithTemplate(
                     new ConfirmEmail(
                         toEmail: skipper.Email,

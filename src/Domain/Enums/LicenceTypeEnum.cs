@@ -2,7 +2,7 @@
 
 namespace SkipperAgency.Domain.Enums
 {
-    public enum LicenceTypeEnum
+    public enum LicenseTypeEnum
     {
         [Description("C category")]
         CCategory = 0,

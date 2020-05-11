@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using SkipperAgency.Domain.Entities;
+﻿using SkipperAgency.Domain.Entities;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Common.Interfaces
 {

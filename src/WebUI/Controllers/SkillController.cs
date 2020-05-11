@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SkipperAgency.Application.Skills.Queries.GetSkill;
 using SkipperAgency.Domain.Enums;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.WebUI.Controllers
 {

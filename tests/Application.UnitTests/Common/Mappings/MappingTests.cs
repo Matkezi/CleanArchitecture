@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using NUnit.Framework;
-using System;
 using SkipperAgency.Application.Common.Mappings;
 using SkipperAgency.Application.TodoLists.Queries.GetTodos;
 using SkipperAgency.Domain.Entities;
+using System;
 
 namespace CleanArchitecture.Application.UnitTests.Common.Mappings
 {
@@ -27,7 +27,7 @@ namespace CleanArchitecture.Application.UnitTests.Common.Mappings
         {
             _configuration.AssertConfigurationIsValid();
         }
-        
+
         [Test]
         [TestCase(typeof(TodoList), typeof(TodoListDto))]
         [TestCase(typeof(TodoItem), typeof(TodoItemDto))]

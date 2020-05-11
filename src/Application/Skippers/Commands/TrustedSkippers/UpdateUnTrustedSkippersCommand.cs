@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.Entities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Skippers.Commands.TrustedSkippers
 {
@@ -32,7 +32,7 @@ namespace SkipperAgency.Application.Skippers.Commands.TrustedSkippers
                     if (!charter.UnTrustedSkippers.Select(x => x.SkipperID).Contains(skipperId))
                         charter.UnTrustedSkippers.Add(new UnTrustedCharterSkipper { CharterID = charter.Id, SkipperID = skipperId });
 
-                     charter.TrustedSkippers.RemoveAll(x => x.SkipperID == skipperId);
+                    charter.TrustedSkippers.RemoveAll(x => x.SkipperID == skipperId);
 
                 });
                 await _context.SaveChangesAsync(cancellationToken);

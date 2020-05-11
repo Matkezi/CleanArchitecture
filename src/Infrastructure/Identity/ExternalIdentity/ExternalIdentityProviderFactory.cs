@@ -1,8 +1,8 @@
-﻿using System;
-using SkipperAgency.Application.Common.Interfaces;
+﻿using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.Enums;
 using SkipperAgency.Infrastructure.Identity.ExternalIdentity.Facebook;
 using SkipperAgency.Infrastructure.Identity.ExternalIdentity.Google;
+using System;
 
 namespace SkipperAgency.Infrastructure.Identity.ExternalIdentity
 {

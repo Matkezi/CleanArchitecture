@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
-using System.Linq;
-using System.Threading.Tasks;
 using SkipperAgency.Application.TodoLists.Queries.GetTodos;
 using SkipperAgency.Domain.Entities;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.IntegrationTests.TodoLists.Queries
 {

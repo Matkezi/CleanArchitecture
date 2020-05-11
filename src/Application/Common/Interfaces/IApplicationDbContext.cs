@@ -1,7 +1,7 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SkipperAgency.Domain.Entities;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Common.Interfaces
 {
@@ -26,7 +26,7 @@ namespace SkipperAgency.Application.Common.Interfaces
         DbSet<TrustedCharterSkipper> TrustedSkippers { get; set; }
         DbSet<UnTrustedCharterSkipper> UnTrustedSkippers { get; set; }
         DbSet<SkipperLanguage> SkipperLanguages { get; set; }
-        DbSet<SkipperSkill> SkipperSkills { get; set; }       
+        DbSet<SkipperSkill> SkipperSkills { get; set; }
         DbSet<PreRegisterSkipper> SkipperPreRegistration { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);

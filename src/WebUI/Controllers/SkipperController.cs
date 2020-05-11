@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SkipperAgency.Application.Skippers.Commands.Availability;
 using SkipperAgency.Application.Skippers.Commands.CreateSkipper;
@@ -15,6 +13,8 @@ using SkipperAgency.Application.Skippers.Queries.GetSkipper;
 using SkipperAgency.Application.Skippers.Queries.PreGetSkipper;
 using SkipperAgency.Application.Skippers.Queries.TrustedSkippers;
 using SkipperAgency.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.WebUI.Controllers
 {
@@ -31,13 +31,13 @@ namespace SkipperAgency.WebUI.Controllers
         public async Task<ActionResult<SkipperModel>> Get(string skipperId)
         {
             return Ok(await Mediator.Send(new GetSkipperQuery { Id = skipperId }));
-        }        
+        }
 
         [HttpGet("avalibility/{skipperId}")]
         public async Task<ActionResult<AvailabilityModel>> GetSkipperAvalibility(string skipperId)
         {
             return Ok(await Mediator.Send(new GetSkipperAvailabilityQuery { Id = skipperId }));
-            
+
         }
 
         // PUT: api/Skipper/avalibility/update

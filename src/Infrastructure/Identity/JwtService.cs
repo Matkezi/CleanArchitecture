@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.Entities;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using SkipperAgency.Application.Common.Interfaces;
-using SkipperAgency.Domain.Entities;
 
 namespace SkipperAgency.Infrastructure.Identity
 {

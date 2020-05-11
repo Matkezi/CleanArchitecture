@@ -11,6 +11,6 @@
 
         public string GuestName { get; }
         public string SkipperName { get; }
-        public string BookingURL{ get; }
+        public string BookingURL { get; }
     }
 }

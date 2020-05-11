@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SkipperAgency.Application.Common.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Skippers.Queries.TrustedSkippers
 {
@@ -34,7 +34,7 @@ namespace SkipperAgency.Application.Skippers.Queries.TrustedSkippers
                     .ThenInclude(l => l.Language)
                     .Where(skipper =>
                     !charter.TrustedSkippers.Any(ts => ts.SkipperID == skipper.Id) &&
-                    !charter.UnTrustedSkippers.Any(uts => uts.SkipperID == skipper.Id))                    
+                    !charter.UnTrustedSkippers.Any(uts => uts.SkipperID == skipper.Id))
                     .ProjectTo<TrustedSkipperModel>(_mapper.ConfigurationProvider)
                     .ToListAsync();
             }

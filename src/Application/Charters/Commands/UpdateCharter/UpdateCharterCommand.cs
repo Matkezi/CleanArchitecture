@@ -1,11 +1,11 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SkipperAgency.Application.Common.Exceptions;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Application.Identity.Commands.EmailChangeRequest;
 using SkipperAgency.Domain.Entities;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Charters.Commands.UpdateCharter
 {
@@ -48,7 +48,7 @@ namespace SkipperAgency.Application.Charters.Commands.UpdateCharter
                 entity.Address = request.Address;
                 entity.ZipCode = request.ZipCode;
                 entity.City = request.City;
-                entity.CountryId = request.CountryId;            
+                entity.CountryId = request.CountryId;
 
                 await _context.SaveChangesAsync(cancellationToken);
 

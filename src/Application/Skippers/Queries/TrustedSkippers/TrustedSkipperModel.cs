@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using SkipperAgency.Application.Common.Mappings;
 using SkipperAgency.Application.Skippers.Common.Models;
 using SkipperAgency.Domain.Entities;
+using System.Collections.Generic;
 
 namespace SkipperAgency.Application.Skippers.Queries.TrustedSkippers
 {

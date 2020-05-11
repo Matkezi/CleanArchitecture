@@ -1,12 +1,12 @@
-﻿using System;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using SkipperAgency.Application.Common.Interfaces;
-using SkipperAgency.Domain.Entities;
 
 namespace SkipperAgency.Application.Skippers.Commands.Availability
 {
@@ -27,11 +27,11 @@ namespace SkipperAgency.Application.Skippers.Commands.Availability
             public async Task<Unit> Handle(UpdateSkipperAvailabilityCommand request, CancellationToken cancellationToken)
             {
                 Skipper skipper = await _context.Skipper.Include(x => x.Availability).FirstAsync(s => s.Id == _currentUserService.UserId);
-                                
+
                 skipper.Availability.ForEach(avalibility => _context.Availabilities.Remove(avalibility));
                 skipper.Availability = request.Available
                     .Select(av => new Domain.Entities.Availability { AvailableFrom = av.From.AddHours(12), AvailableTo = av.To.AddHours(12) }).ToList();
-                    
+
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
