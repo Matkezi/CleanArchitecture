@@ -1,6 +1,4 @@
-﻿using CleanArchitecture.Infrastructure.Persistence.Entities;
-
-namespace CleanArchitecture.Domain.Entities
+﻿namespace SkipperAgency.Domain.Entities
 {
     public class Developer : AppUser
     {

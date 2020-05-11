@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CleanArchitecture.Application.Common.Interfaces
+﻿namespace SkipperAgency.Application.Common.Interfaces
 {
     public interface ICharterBookingAuth
     {

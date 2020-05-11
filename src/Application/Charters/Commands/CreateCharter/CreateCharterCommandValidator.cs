@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
+namespace SkipperAgency.Application.Charters.Commands.CreateCharter
 {
 
     public class CreateCharterCommandValidator : AbstractValidator<CreateCharterCommand>

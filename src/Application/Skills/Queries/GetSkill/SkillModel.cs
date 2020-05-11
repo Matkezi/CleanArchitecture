@@ -1,9 +1,8 @@
-﻿using AutoMapper;
-using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using SkipperBooking.Base.Enums;
+﻿using SkipperAgency.Application.Common.Mappings;
+using SkipperAgency.Domain.Entities;
+using SkipperAgency.Domain.Enums;
 
-namespace SkipperBooking.Web.Models
+namespace SkipperAgency.Application.Skills.Queries.GetSkill
 {
     public class SkillModel : IMapFrom<SkipperSkill>
     {

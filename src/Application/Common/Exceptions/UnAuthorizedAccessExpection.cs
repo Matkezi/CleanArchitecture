@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CleanArchitecture.Application.Common.Exceptions
+namespace SkipperAgency.Application.Common.Exceptions
 {
     public class UnauthorizedException : Exception
     {

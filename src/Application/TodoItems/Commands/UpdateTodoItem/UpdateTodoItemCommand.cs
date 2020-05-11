@@ -1,11 +1,11 @@
-﻿using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Entities;
-using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
+using SkipperAgency.Application.Common.Exceptions;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Application.TodoItems.Commands.UpdateTodoItem
+namespace SkipperAgency.Application.TodoItems.Commands.UpdateTodoItem
 {
     public partial class UpdateTodoItemCommand : IRequest
     {

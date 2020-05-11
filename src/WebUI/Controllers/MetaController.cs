@@ -1,12 +1,10 @@
-﻿using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Application.Skippers.Models1;
-using CleanArchitecture.Application.Skippers.Queries.GetSkipper;
-using CleanArchitecture.WebUI.Controllers;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using SkipperAgency.Application.Metadata.Queries.GetCountries;
+using SkipperAgency.Application.Metadata.Queries.GetLanguages;
 
-namespace SkipperBooking.Web.Controllers
+namespace SkipperAgency.WebUI.Controllers
 {
     public class MetaController : ApiController
     {

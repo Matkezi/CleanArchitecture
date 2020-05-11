@@ -1,8 +1,6 @@
-﻿using CleanArchitecture.Application.Common.Models;
-using FluentValidation;
-using SkipperBooking.Web.Models;
+﻿using FluentValidation;
 
-namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
+namespace SkipperAgency.Application.Skippers.Common.Models
 {
     public class SkipperLicenceModelValidator : AbstractValidator<SkipperLicenceModel>
     {

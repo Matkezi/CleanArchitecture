@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
+using SkipperAgency.Application.Common.Mappings;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Application.Skippers.Models1
+namespace SkipperAgency.Application.Metadata.Queries.GetLanguages
 {
     public class LanguageModel : IMapFrom<Language>
     {

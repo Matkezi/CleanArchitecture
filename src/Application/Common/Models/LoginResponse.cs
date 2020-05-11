@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CleanArchitecture.Application.Common.Models
+﻿namespace SkipperAgency.Application.Common.Models
 {
     public class LoginResponse
     {

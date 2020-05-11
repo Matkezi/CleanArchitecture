@@ -1,11 +1,11 @@
-﻿using CleanArchitecture.Application.Common.Exceptions;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Collections.Generic;
+using SkipperAgency.Application.Common.Exceptions;
 
-namespace CleanArchitecture.WebUI.Filters
+namespace SkipperAgency.WebUI.Filters
 {
     public class ApiExceptionFilter : ExceptionFilterAttribute
     {

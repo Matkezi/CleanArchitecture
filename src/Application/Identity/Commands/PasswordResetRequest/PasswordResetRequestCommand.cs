@@ -1,20 +1,10 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.EmailTemplateModels;
-using CleanArchitecture.Domain.Enums;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using SkipperBooking.Base.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
+using SkipperAgency.Application.Common.Interfaces;
 
-namespace CleanArchitecture.Application.ExternalLogins.Facebook
+namespace SkipperAgency.Application.Identity.Commands.PasswordResetRequest
 {
     public class PasswordResetRequestCommand : IRequest
     {
@@ -40,7 +30,7 @@ namespace CleanArchitecture.Application.ExternalLogins.Facebook
 
                 // TODO: fullname in an email
                 _ = _emailer.SendEmailWithTemplate(
-                    new PasswordReset(
+                    new Domain.EmailTemplateModels.PasswordReset(
                         toEmail: request.UserEmail,
                         fullName: request.UserEmail,
                         passwordResetUrl: callbackUrl

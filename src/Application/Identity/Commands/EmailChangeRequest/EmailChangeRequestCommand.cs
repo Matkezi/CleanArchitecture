@@ -1,20 +1,11 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.EmailTemplateModels;
-using CleanArchitecture.Domain.Enums;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using SkipperBooking.Base.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.EmailTemplateModels;
 
-namespace CleanArchitecture.Application.ExternalLogins.Facebook
+namespace SkipperAgency.Application.Identity.Commands.EmailChangeRequest
 {
     public class EmailChangeRequestCommand : IRequest
     {

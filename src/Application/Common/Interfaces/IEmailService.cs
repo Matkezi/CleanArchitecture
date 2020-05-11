@@ -1,8 +1,7 @@
-﻿using CleanArchitecture.Domain.Emails;
-using CleanArchitecture.Domain.EmailTemplateModels;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using SkipperAgency.Domain.EmailTemplateModels;
 
-namespace CleanArchitecture.Application.Common.Interfaces
+namespace SkipperAgency.Application.Common.Interfaces
 {
     public interface IEmailService
     {

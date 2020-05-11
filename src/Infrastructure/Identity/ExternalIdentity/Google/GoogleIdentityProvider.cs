@@ -1,11 +1,9 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Application.Common.Models;
 
-namespace CleanArchitecture.Infrastructure.Identity.ExternalIdentity
+namespace SkipperAgency.Infrastructure.Identity.ExternalIdentity.Google
 {
     public class GoogleIdentityProvider : IExternalIdentityProvider
     {

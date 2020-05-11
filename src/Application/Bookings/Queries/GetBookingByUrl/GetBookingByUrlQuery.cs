@@ -1,18 +1,12 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using CleanArchitecture.Application.Bookings.CommonModels;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Skippers.Models;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SkipperBooking.Base.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+using SkipperAgency.Application.Bookings.CommonModels;
+using SkipperAgency.Application.Common.Interfaces;
 
-namespace CleanArchitecture.Application.Skippers.Queries.Availability
+namespace SkipperAgency.Application.Bookings.Queries.GetBookingByUrl
 {
     public class GetBookingByUrlQuery : IRequest<BookingModel>
     {

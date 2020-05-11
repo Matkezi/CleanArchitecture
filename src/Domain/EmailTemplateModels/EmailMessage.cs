@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Domain.Emails
+﻿namespace SkipperAgency.Domain.EmailTemplateModels
 {
     public abstract class EmailMessage
     {

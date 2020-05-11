@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
+using SkipperAgency.Application.Common.Mappings;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Application.Common.Models
+namespace SkipperAgency.Application.Metadata.Queries.GetCountries
 {
     public class CountryModel : IMapFrom<Country>
     {

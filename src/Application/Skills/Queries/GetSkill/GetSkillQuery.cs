@@ -1,18 +1,11 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Skippers.Models;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using SkipperBooking.Base.Enums;
-using SkipperBooking.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using MediatR;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.Application.Skippers.Queries.GetSkipper
+namespace SkipperAgency.Application.Skills.Queries.GetSkill
 {
     public class GetSkillQuery : IRequest<SkillModel>
     {

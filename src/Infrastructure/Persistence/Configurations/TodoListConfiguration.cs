@@ -1,9 +1,8 @@
-﻿
-using CleanArchitecture.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Infrastructure.Persistence.Configurations
+namespace SkipperAgency.Infrastructure.Persistence.Configurations
 {
     public class TodoListConfiguration : IEntityTypeConfiguration<TodoList>
     {

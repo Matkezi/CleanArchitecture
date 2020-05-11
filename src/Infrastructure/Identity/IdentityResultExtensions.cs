@@ -1,8 +1,8 @@
-﻿using CleanArchitecture.Application.Common.Models;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Identity;
-using System.Linq;
+using SkipperAgency.Application.Common.Models;
 
-namespace CleanArchitecture.Infrastructure.Identity
+namespace SkipperAgency.Infrastructure.Identity
 {
     public static class IdentityResultExtensions
     {

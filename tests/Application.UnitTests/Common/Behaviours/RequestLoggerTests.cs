@@ -1,11 +1,11 @@
-﻿using CleanArchitecture.Application.Common.Behaviours;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.TodoItems.Commands.CreateTodoItem;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 using System.Threading;
 using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Behaviours;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Application.TodoItems.Commands.CreateTodoItem;
 
 namespace CleanArchitecture.Application.UnitTests.Common.Behaviours
 {

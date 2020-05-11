@@ -1,7 +1,7 @@
-﻿using CleanArchitecture.Domain.Common;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using SkipperAgency.Domain.Common;
 
-namespace CleanArchitecture.Domain.Entities
+namespace SkipperAgency.Domain.Entities
 {
     public class TodoList : AuditableEntity
     {

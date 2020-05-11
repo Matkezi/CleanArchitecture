@@ -1,6 +1,6 @@
-﻿using CleanArchitecture.Domain.Enums;
+﻿using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.Application.Common.Interfaces
+namespace SkipperAgency.Application.Common.Interfaces
 {
     public interface IExternalIdentityProviderFactory
     {

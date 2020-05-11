@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CleanArchitecture.Domain.Emails
+﻿namespace SkipperAgency.Domain.EmailTemplateModels
 {
     public class BookingCreated : EmailMessage
     {

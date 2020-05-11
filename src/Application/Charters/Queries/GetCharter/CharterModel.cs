@@ -1,8 +1,8 @@
-﻿using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
+﻿using SkipperAgency.Application.Common.Mappings;
+using SkipperAgency.Application.Metadata.Queries.GetCountries;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Application.Charters.Queries.GetCharter
+namespace SkipperAgency.Application.Charters.Queries.GetCharter
 {
     public class CharterModel : IMapFrom<Charter>
     {

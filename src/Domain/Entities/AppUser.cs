@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
+
 //using SkipperBooking.Base.Helpers;
 
-namespace CleanArchitecture.Infrastructure.Persistence.Entities
+namespace SkipperAgency.Domain.Entities
 {
     public abstract class AppUser : IdentityUser
     {

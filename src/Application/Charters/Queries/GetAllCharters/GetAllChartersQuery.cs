@@ -1,17 +1,14 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using CleanArchitecture.Application.Charters.Queries.GetCharter;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Skippers.Models;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using SkipperAgency.Application.Charters.Queries.GetCharter;
+using SkipperAgency.Application.Common.Interfaces;
 
-namespace CleanArchitecture.Application.Skippers.Queries.GetSkipper
+namespace SkipperAgency.Application.Charters.Queries.GetAllCharters
 {
     public class GetAllChartersQuery : IRequest<IEnumerable<CharterModel>>
     {

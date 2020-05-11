@@ -1,12 +1,11 @@
-﻿using AutoMapper;
-using CleanArchitecture.Application.Common.Behaviours;
+﻿using System.Reflection;
+using AutoMapper;
 using FluentValidation;
 using MediatR;
-using MediatR.Pipeline;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
+using SkipperAgency.Application.Common.Behaviours;
 
-namespace CleanArchitecture.Application
+namespace SkipperAgency.Application
 {
     public static class DependencyInjection
     {

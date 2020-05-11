@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace CleanArchitecture.Application.Skippers.Commands.PreCreateSkipper
+namespace SkipperAgency.Application.Skippers.Commands.PreCreateSkipper
 {
 
     public class PreCreateSkipperCommandValidatior : AbstractValidator<PreCreateSkipperCommand>

@@ -1,21 +1,14 @@
-﻿using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Helpers;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Application.Skippers.Models;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using SkipperBooking.Base.Enums;
-using SkipperBooking.Web.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
+namespace SkipperAgency.Application.Skippers.Commands.Availability
 {
     public partial class UpdateSkipperAvailabilityCommand : IRequest
     {
@@ -37,7 +30,7 @@ namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
                                 
                 skipper.Availability.ForEach(avalibility => _context.Availabilities.Remove(avalibility));
                 skipper.Availability = request.Available
-                    .Select(av => new Availability { AvailableFrom = av.From.AddHours(12), AvailableTo = av.To.AddHours(12) }).ToList();
+                    .Select(av => new Domain.Entities.Availability { AvailableFrom = av.From.AddHours(12), AvailableTo = av.To.AddHours(12) }).ToList();
                     
                 await _context.SaveChangesAsync(cancellationToken);
 

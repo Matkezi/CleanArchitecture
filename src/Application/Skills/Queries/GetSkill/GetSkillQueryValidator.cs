@@ -1,8 +1,6 @@
-﻿using CleanArchitecture.Application.Skippers.Queries.GetSkipper;
-using FluentValidation;
-using SkipperBooking.Web.Models;
+﻿using FluentValidation;
 
-namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
+namespace SkipperAgency.Application.Skills.Queries.GetSkill
 {
     public class GetSkillQueryVaidator : AbstractValidator<GetSkillQuery>
     {

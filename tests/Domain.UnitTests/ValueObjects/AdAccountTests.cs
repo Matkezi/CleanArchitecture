@@ -1,7 +1,7 @@
-﻿using CleanArchitecture.Domain.Exceptions;
-using CleanArchitecture.Domain.ValueObjects;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
+using SkipperAgency.Domain.Exceptions;
+using SkipperAgency.Domain.ValueObjects;
 
 namespace CleanArchitecture.Domain.UnitTests.ValueObjects
 {

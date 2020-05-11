@@ -1,10 +1,10 @@
-﻿using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.TodoLists.Commands.CreateTodoList;
-using CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList;
-using CleanArchitecture.Domain.Entities;
-using FluentAssertions;
+﻿using FluentAssertions;
 using NUnit.Framework;
 using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Exceptions;
+using SkipperAgency.Application.TodoLists.Commands.CreateTodoList;
+using SkipperAgency.Application.TodoLists.Commands.DeleteTodoList;
+using SkipperAgency.Domain.Entities;
 
 namespace CleanArchitecture.Application.IntegrationTests.TodoLists.Commands
 {

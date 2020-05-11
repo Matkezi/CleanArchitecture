@@ -1,18 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Authorization;
-using CleanArchitecture.Application.Boats.Queries.CharterGetBoats;
-using CleanArchitecture.Application.Skippers.Queries.Availability;
-using CleanArchitecture.Application.Boats.Commands;
-using CleanArchitecture.Application.Boats.Commands.UpdateBoat;
-using CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList;
+using SkipperAgency.Application.Boats.Commands.CreateBoat;
+using SkipperAgency.Application.Boats.Commands.DeleteBoat;
+using SkipperAgency.Application.Boats.Commands.UpdateBoat;
+using SkipperAgency.Application.Boats.Queries.CharterGetBoats;
 
-namespace CleanArchitecture.WebUI.Controllers
+namespace SkipperAgency.WebUI.Controllers
 {
     [Authorize(Roles = "Admin, Charter")]
     public class BoatController : ApiController

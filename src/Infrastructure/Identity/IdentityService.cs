@@ -1,24 +1,17 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using System.Linq;
-using System.Threading.Tasks;
-using SkipperBooking.Base.Enums;
-using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-using Newtonsoft.Json;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Application.Common.Models;
+using SkipperAgency.Domain.Entities;
+using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.Infrastructure.Identity
+namespace SkipperAgency.Infrastructure.Identity
 {
     public class IdentityService : IIdentityService
     {

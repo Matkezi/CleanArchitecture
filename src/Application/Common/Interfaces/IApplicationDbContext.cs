@@ -1,10 +1,9 @@
-﻿using CleanArchitecture.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Application.Common.Interfaces
+namespace SkipperAgency.Application.Common.Interfaces
 {
     public interface IApplicationDbContext
     {

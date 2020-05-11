@@ -1,10 +1,10 @@
-﻿using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using SkipperBooking.Base.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Models;
+using SkipperAgency.Domain.Entities;
+using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.Application.Common.Interfaces
+namespace SkipperAgency.Application.Common.Interfaces
 {
     public interface IIdentityService
     {

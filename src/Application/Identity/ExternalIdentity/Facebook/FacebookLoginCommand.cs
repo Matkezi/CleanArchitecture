@@ -1,21 +1,11 @@
-﻿using AutoMapper.Configuration;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Domain.Enums;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using MediatR;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using SkipperBooking.Base.Enums;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
+using MediatR;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Application.Common.Models;
+using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.Application.ExternalLogins.Facebook
+namespace SkipperAgency.Application.Identity.ExternalIdentity.Facebook
 {
     public class FacebookLoginCommand : IRequest<LoginResponse>
     {

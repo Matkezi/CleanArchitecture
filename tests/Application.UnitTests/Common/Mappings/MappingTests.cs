@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Application.TodoLists.Queries.GetTodos;
-using CleanArchitecture.Domain.Entities;
 using NUnit.Framework;
 using System;
+using SkipperAgency.Application.Common.Mappings;
+using SkipperAgency.Application.TodoLists.Queries.GetTodos;
+using SkipperAgency.Domain.Entities;
 
 namespace CleanArchitecture.Application.UnitTests.Common.Mappings
 {

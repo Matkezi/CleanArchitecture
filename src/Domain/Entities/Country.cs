@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace CleanArchitecture.Infrastructure.Persistence.Entities
+namespace SkipperAgency.Domain.Entities
 {
     public class Country
     {

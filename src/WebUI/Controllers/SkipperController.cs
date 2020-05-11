@@ -1,26 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
-using System.Collections.Generic;
-using Microsoft.Extensions.Logging;
-using System.Linq;
-using System;
-using Microsoft.EntityFrameworkCore;
-using CleanArchitecture.WebUI.Controllers;
-using CleanArchitecture.Application.Skippers.Models;
-using CleanArchitecture.Application.Skippers.Queries.GetSkipper;
-using CleanArchitecture.Application.Skippers.Queries.Availability;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using CleanArchitecture.Application.Skippers.Commands.UpdateSkipper;
-using CleanArchitecture.Application.Skippers.Commands.SkippersIdentity;
-using CleanArchitecture.Application.Skippers.Commands.PreCreateSkipper;
-using CleanArchitecture.Application.Skippers.Queries.PreGetSkipper;
-using CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList;
-using CleanArchitecture.Application.Skippers.Queries.TrustedSkippers;
-using CleanArchitecture.Application.Skippers.Commands.TrustedSkippers;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using SkipperAgency.Application.Skippers.Commands.Availability;
+using SkipperAgency.Application.Skippers.Commands.CreateSkipper;
+using SkipperAgency.Application.Skippers.Commands.DeleteSkipper;
+using SkipperAgency.Application.Skippers.Commands.PreCreateSkipper;
+using SkipperAgency.Application.Skippers.Commands.TrustedSkippers;
+using SkipperAgency.Application.Skippers.Commands.UpdateSkipper;
+using SkipperAgency.Application.Skippers.Queries.Availability.Common.Models;
+using SkipperAgency.Application.Skippers.Queries.Availability.GetSkipperAvailability;
+using SkipperAgency.Application.Skippers.Queries.GetAllSkippers;
+using SkipperAgency.Application.Skippers.Queries.GetSkipper;
+using SkipperAgency.Application.Skippers.Queries.PreGetSkipper;
+using SkipperAgency.Application.Skippers.Queries.TrustedSkippers;
+using SkipperAgency.Domain.Entities;
 
-namespace SkipperBooking.Web.Controllers
+namespace SkipperAgency.WebUI.Controllers
 {
     public class SkipperController : ApiController
     {

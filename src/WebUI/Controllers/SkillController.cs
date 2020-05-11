@@ -1,14 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.Skippers.Queries.GetSkipper;
-using CleanArchitecture.WebUI.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using SkipperBooking.Base.Enums;
-using SkipperBooking.Web.Models;
+using SkipperAgency.Application.Skills.Queries.GetSkill;
+using SkipperAgency.Domain.Enums;
 
-namespace SkipperBooking.Web.Controllers
+namespace SkipperAgency.WebUI.Controllers
 {
     public class SkillController : ApiController
     {

@@ -1,7 +1,8 @@
-﻿using SkipperBooking.Base.Enums;
-using System;
+﻿using System;
+using SkipperAgency.Domain.Common;
+using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.Application.Common.Models
+namespace SkipperAgency.Application.Skippers.Common.Models
 {
     public class SkipperLicenceModel : FileModel
     {

@@ -1,16 +1,14 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Skippers.Models;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Application.Skippers.Queries.GetSkipper;
 
-namespace CleanArchitecture.Application.Skippers.Queries.GetSkipper
+namespace SkipperAgency.Application.Skippers.Queries.GetAllSkippers
 {
     public class GetAllSkippersQuery : IRequest<IEnumerable<SkipperModel>>
     {

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
-namespace CleanArchitecture.Infrastructure.Identity.ExternalIdentity
+
+namespace SkipperAgency.Infrastructure.Identity.ExternalIdentity.Facebook
 {
     class FacebookUserData
     {

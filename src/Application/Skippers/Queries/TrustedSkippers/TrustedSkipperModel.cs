@@ -1,9 +1,10 @@
-﻿using AutoMapper;
-using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using AutoMapper;
+using SkipperAgency.Application.Common.Mappings;
+using SkipperAgency.Application.Skippers.Common.Models;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Application.Skippers.Models
+namespace SkipperAgency.Application.Skippers.Queries.TrustedSkippers
 {
     public class TrustedSkipperModel : IMapFrom<Skipper>
     {

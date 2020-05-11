@@ -1,5 +1,4 @@
-﻿using CleanArchitecture.Domain.Emails;
-namespace CleanArchitecture.Domain.EmailTemplateModels
+﻿namespace SkipperAgency.Domain.EmailTemplateModels
 {
     public class ChangeEmail : EmailMessage
     {

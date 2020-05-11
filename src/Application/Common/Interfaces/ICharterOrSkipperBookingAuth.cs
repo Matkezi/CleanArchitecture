@@ -1,5 +1,5 @@
 ﻿
-namespace CleanArchitecture.Application.Common.Interfaces
+namespace SkipperAgency.Application.Common.Interfaces
 {
     public interface ICharterOrSkipperBookingAuth
     {

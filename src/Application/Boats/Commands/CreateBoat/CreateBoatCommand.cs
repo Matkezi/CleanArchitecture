@@ -1,13 +1,13 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using MediatR;
-using SkipperBooking.Base.Enums;
-using System.IO;
+﻿using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.Common;
+using SkipperAgency.Domain.Entities;
+using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.Application.Boats.Commands
+namespace SkipperAgency.Application.Boats.Commands.CreateBoat
 {
     public class CreateBoatCommand : IRequest
     {

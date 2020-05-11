@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-using SkipperBooking.Base.Enums;
+using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.Infrastructure.Persistence.Entities
+namespace SkipperAgency.Domain.Entities
 {
     public class Skill
     {

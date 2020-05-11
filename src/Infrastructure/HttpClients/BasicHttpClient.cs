@@ -1,11 +1,8 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Interfaces;
 
-namespace CleanArchitecture.Infrastructure.HttpClients
+namespace SkipperAgency.Infrastructure.HttpClients
 {
     public class BasicHttpClient : IHttpClient
     {

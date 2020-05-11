@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Domain.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using SkipperAgency.Domain.Common;
+using SkipperAgency.Domain.Exceptions;
 
-namespace CleanArchitecture.Domain.ValueObjects
+namespace SkipperAgency.Domain.ValueObjects
 {
     public class AdAccount : ValueObject
     {

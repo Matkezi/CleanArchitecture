@@ -1,20 +1,15 @@
-﻿using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Helpers;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Domain.Emails;
-using CleanArchitecture.Domain.EmailTemplateModels;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using SkipperBooking.Base.Enums;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
+using SkipperAgency.Application.Common.Exceptions;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.EmailTemplateModels;
+using SkipperAgency.Domain.Entities;
+using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
+namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
 {
     public class GuestRequestBookingCommand : IRequest
     {

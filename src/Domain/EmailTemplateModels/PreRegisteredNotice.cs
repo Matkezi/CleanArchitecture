@@ -1,5 +1,4 @@
-﻿using CleanArchitecture.Domain.Common;
-namespace CleanArchitecture.Domain.Emails
+﻿namespace SkipperAgency.Domain.EmailTemplateModels
 {
     public class PreRegisteredNotice : EmailMessage
     {

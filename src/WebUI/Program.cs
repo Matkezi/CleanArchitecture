@@ -1,16 +1,16 @@
-using CleanArchitecture.Infrastructure.Persistence;
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SkipperBooking.Base.Enums;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using System;
-using System.Threading.Tasks;
+using SkipperAgency.Domain.Entities;
+using SkipperAgency.Domain.Enums;
+using SkipperAgency.Infrastructure.Persistence;
 
-namespace CleanArchitecture.WebUI
+namespace SkipperAgency.WebUI
 {
     public class Program
     {

@@ -1,10 +1,7 @@
-﻿using CleanArchitecture.Application.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Models;
 
-namespace CleanArchitecture.Application.Common.Interfaces
+namespace SkipperAgency.Application.Common.Interfaces
 {
     public interface IExternalIdentityProvider
     {

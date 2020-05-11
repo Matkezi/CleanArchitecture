@@ -1,15 +1,10 @@
-﻿using CleanArchitecture.Application.Common.Helpers;
-using CleanArchitecture.Application.Common.Interfaces;
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
 using Microsoft.Azure.Storage;
 using Microsoft.Azure.Storage.Blob;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CleanArchitecture.Infrastructure.Files
+namespace SkipperAgency.Infrastructure.Files
 {
     /// <summary>
     /// This class knows how to work with a container given the accessKey.

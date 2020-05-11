@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SkipperBooking.Base.Enums;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
+using SkipperAgency.Domain.Entities;
+using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.Infrastructure.Persistence.Configurations
+namespace SkipperAgency.Infrastructure.Persistence.Configurations
 {
     public class SkillConfiguration : IEntityTypeConfiguration<Skill>
     {

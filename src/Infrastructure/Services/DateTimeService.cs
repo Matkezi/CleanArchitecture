@@ -1,7 +1,7 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using System;
+﻿using System;
+using SkipperAgency.Application.Common.Interfaces;
 
-namespace CleanArchitecture.Infrastructure.Services
+namespace SkipperAgency.Infrastructure.Services
 {
     public class DateTimeService : IDateTime
     {

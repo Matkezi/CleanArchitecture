@@ -1,11 +1,10 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.Enums;
+using SkipperAgency.Infrastructure.Identity.ExternalIdentity.Facebook;
+using SkipperAgency.Infrastructure.Identity.ExternalIdentity.Google;
 
-namespace CleanArchitecture.Infrastructure.Identity.ExternalIdentity
+namespace SkipperAgency.Infrastructure.Identity.ExternalIdentity
 {
     public class ExternalIdentityProviderFactory : IExternalIdentityProviderFactory
     {

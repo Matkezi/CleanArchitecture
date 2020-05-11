@@ -1,8 +1,8 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
+﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
+using SkipperAgency.Application.Common.Interfaces;
 
-namespace CleanArchitecture.WebUI.Services
+namespace SkipperAgency.WebUI.Services
 {
     public class CurrentUserService : ICurrentUserService
     {

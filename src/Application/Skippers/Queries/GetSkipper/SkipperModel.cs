@@ -1,11 +1,11 @@
-﻿using AutoMapper;
-using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using SkipperBooking.Web.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using SkipperAgency.Application.Common.Mappings;
+using SkipperAgency.Application.Metadata.Queries.GetCountries;
+using SkipperAgency.Application.Skills.Queries.GetSkill;
+using SkipperAgency.Application.Skippers.Common.Models;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Application.Skippers.Models
+namespace SkipperAgency.Application.Skippers.Queries.GetSkipper
 {
     public class SkipperModel : IMapFrom<Skipper>
     {

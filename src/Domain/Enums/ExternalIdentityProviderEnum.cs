@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CleanArchitecture.Domain.Enums
+﻿namespace SkipperAgency.Domain.Enums
 {
     public enum ExternalIdentityProviderEnum
     {

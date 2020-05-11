@@ -1,10 +1,9 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using SkipperAgency.Application.Common.Interfaces;
 
-namespace CleanArchitecture.Application.Common.Helpers
+namespace SkipperAgency.Application.Common.Helpers
 {
     public static class ManyToMany
     {

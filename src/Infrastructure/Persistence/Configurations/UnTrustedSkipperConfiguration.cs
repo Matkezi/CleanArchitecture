@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Infrastructure.Persistence.Configurations
+namespace SkipperAgency.Infrastructure.Persistence.Configurations
 {
     public class UnTrustedCharterSkipperConfiguration : IEntityTypeConfiguration<UnTrustedCharterSkipper>
     {

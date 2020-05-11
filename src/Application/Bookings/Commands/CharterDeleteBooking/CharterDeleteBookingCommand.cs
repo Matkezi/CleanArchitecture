@@ -1,15 +1,10 @@
-﻿using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Entities;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
+using SkipperAgency.Application.Common.Exceptions;
+using SkipperAgency.Application.Common.Interfaces;
 
-namespace CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList
+namespace SkipperAgency.Application.Bookings.Commands.CharterDeleteBooking
 {
     public class CharterDeleteBookingCommand : IRequest, ICharterBookingAuth
     {

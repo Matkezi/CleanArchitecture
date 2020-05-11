@@ -1,11 +1,7 @@
-﻿using SkipperBooking.Base.Enums;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
 
-namespace CleanArchitecture.Infrastructure.Persistence.Entities
+namespace SkipperAgency.Domain.Entities
 {
     public class Skipper : AppUser
     {

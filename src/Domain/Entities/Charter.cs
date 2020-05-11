@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CleanArchitecture.Infrastructure.Persistence.Entities
+namespace SkipperAgency.Domain.Entities
 {
     public class Charter : AppUser
     {

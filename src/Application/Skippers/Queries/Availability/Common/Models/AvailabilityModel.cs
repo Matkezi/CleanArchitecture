@@ -1,11 +1,9 @@
-﻿using AutoMapper;
-using CleanArchitecture.Application.Common.Mappings;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using AutoMapper;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Application.Skippers.Models
+namespace SkipperAgency.Application.Skippers.Queries.Availability.Common.Models
 {
     public class AvailabilityModel
     {

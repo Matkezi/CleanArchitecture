@@ -1,12 +1,12 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Models;
-using MediatR;
-using SkipperBooking.Base.Enums;
-using System.IO;
+﻿using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.Common;
+using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.Application.Boats.Commands.UpdateBoat
+namespace SkipperAgency.Application.Boats.Commands.UpdateBoat
 {
     public class UpdateBoatCommand : IRequest, ICharterBoatAuth
     {

@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Domain.Enums
+﻿namespace SkipperAgency.Domain.Enums
 {
     public enum PriorityLevel
     {

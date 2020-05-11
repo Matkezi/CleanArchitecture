@@ -1,17 +1,13 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Application.ExternalLogins.Facebook;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Application.Common.Models;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Infrastructure.Identity.ExternalIdentity
+namespace SkipperAgency.Infrastructure.Identity.ExternalIdentity.Facebook
 {
     public class FacebookIdentityProvider : IExternalIdentityProvider
     {

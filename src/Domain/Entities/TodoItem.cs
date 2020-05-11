@@ -1,8 +1,8 @@
-﻿using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Domain.Enums;
-using System;
+﻿using System;
+using SkipperAgency.Domain.Common;
+using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.Domain.Entities
+namespace SkipperAgency.Domain.Entities
 {
     public class TodoItem : AuditableEntity
     {

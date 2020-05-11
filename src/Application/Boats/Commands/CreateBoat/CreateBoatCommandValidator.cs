@@ -1,7 +1,6 @@
-﻿using CleanArchitecture.Application.Boats.Commands;
-using FluentValidation;
+﻿using FluentValidation;
 
-namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
+namespace SkipperAgency.Application.Boats.Commands.CreateBoat
 {
     public class CreateBoatCommandValidator : AbstractValidator<CreateBoatCommand>
     {

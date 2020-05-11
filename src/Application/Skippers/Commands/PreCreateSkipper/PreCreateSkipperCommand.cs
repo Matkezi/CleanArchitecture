@@ -1,17 +1,13 @@
-﻿using CleanArchitecture.Application.Common.Helpers;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Emails;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Configuration;
-using SkipperBooking.Base.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Helpers;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.EmailTemplateModels;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Application.Skippers.Commands.PreCreateSkipper
+namespace SkipperAgency.Application.Skippers.Commands.PreCreateSkipper
 {
     public class PreCreateSkipperCommand : IRequest
     {

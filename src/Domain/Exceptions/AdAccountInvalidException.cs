@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CleanArchitecture.Domain.Exceptions
+namespace SkipperAgency.Domain.Exceptions
 {
     public class AdAccountInvalidException : Exception
     {

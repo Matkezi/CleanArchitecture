@@ -1,21 +1,13 @@
-﻿using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Helpers;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Application.ExternalLogins.Facebook;
-using CleanArchitecture.Application.Skippers.Models;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SkipperBooking.Base.Enums;
-using SkipperBooking.Web.Models;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Exceptions;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Application.Identity.Commands.EmailChangeRequest;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Application.Skippers.Commands.UpdateSkipper
+namespace SkipperAgency.Application.Charters.Commands.UpdateCharter
 {
     public class UpdateCharterCommand : IRequest, ICharterAuth
     {

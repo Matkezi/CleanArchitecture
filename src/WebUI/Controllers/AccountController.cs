@@ -1,10 +1,16 @@
-﻿using CleanArchitecture.Application.Common.Models;
-using CleanArchitecture.Application.ExternalLogins.Facebook;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Models;
+using SkipperAgency.Application.Identity.Commands.ConfirmEmail;
+using SkipperAgency.Application.Identity.Commands.EmailChange;
+using SkipperAgency.Application.Identity.Commands.EmailChangeRequest;
+using SkipperAgency.Application.Identity.Commands.Login;
+using SkipperAgency.Application.Identity.Commands.PasswordReset;
+using SkipperAgency.Application.Identity.Commands.PasswordResetRequest;
+using SkipperAgency.Application.Identity.ExternalIdentity.Facebook;
 
-namespace CleanArchitecture.WebUI.Controllers
+namespace SkipperAgency.WebUI.Controllers
 {
     public class AccountController : ApiController
     {

@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Application.Common.Models
+﻿namespace SkipperAgency.Domain.Common
 {
     public class FileModel
     {

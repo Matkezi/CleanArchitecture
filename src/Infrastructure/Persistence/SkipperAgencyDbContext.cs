@@ -1,20 +1,15 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Common;
-using CleanArchitecture.Domain.Entities;
-using CleanArchitecture.Infrastructure.Identity;
-using IdentityServer4.EntityFramework.Options;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Options;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using System.Data;
+﻿using System.Data;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.Common;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Infrastructure.Persistence
+namespace SkipperAgency.Infrastructure.Persistence
 {
     public class SkipperAgencyDbContext : IdentityDbContext<AppUser>, IApplicationDbContext
     {

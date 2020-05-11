@@ -1,10 +1,10 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Entities;
-using MediatR;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Application.TodoLists.Commands.CreateTodoList
+namespace SkipperAgency.Application.TodoLists.Commands.CreateTodoList
 {
     public partial class CreateTodoListCommand : IRequest<int>
     {

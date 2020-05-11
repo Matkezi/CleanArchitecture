@@ -1,12 +1,12 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.EmailTemplateModels;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Configuration;
-using SkipperBooking.Base.Enums;
-using System.Threading;
-using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.EmailTemplateModels;
+using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.Application.Bookings.Commands.SkipperAcceptBooking
+namespace SkipperAgency.Application.Bookings.Commands.SkipperAcceptBooking
 {
     public class SkipperAcceptBookingCommand : IRequest, ISkipperBookingAuth
     {

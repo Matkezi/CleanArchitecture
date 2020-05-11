@@ -1,19 +1,14 @@
-﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using CleanArchitecture.Application.Boats.Queries.CharterGetBoats;
-using CleanArchitecture.Application.Bookings.CommonModels;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.Skippers.Models;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using SkipperBooking.Base.Enums;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using SkipperAgency.Application.Common.Interfaces;
 
-namespace CleanArchitecture.Application.Skippers.Queries.Availability
+namespace SkipperAgency.Application.Boats.Queries.CharterGetBoats
 {
     public class CharterGetBoatsQuery : IRequest<IEnumerable<BoatModel>>
     {

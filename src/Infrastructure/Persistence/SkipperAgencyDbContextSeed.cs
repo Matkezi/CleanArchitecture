@@ -1,11 +1,9 @@
-﻿using CleanArchitecture.Domain.Entities;
-using CleanArchitecture.Infrastructure.Identity;
-using Microsoft.AspNetCore.Identity;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Infrastructure.Persistence
+namespace SkipperAgency.Infrastructure.Persistence
 {
     public static class SkipperAgencyDbContextSeed
     {

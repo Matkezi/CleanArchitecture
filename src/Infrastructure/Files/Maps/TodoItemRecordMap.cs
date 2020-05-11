@@ -1,8 +1,8 @@
-﻿using CleanArchitecture.Application.TodoLists.Queries.ExportTodos;
+﻿using System.Globalization;
 using CsvHelper.Configuration;
-using System.Globalization;
+using SkipperAgency.Application.TodoLists.Queries.ExportTodos;
 
-namespace CleanArchitecture.Infrastructure.Files.Maps
+namespace SkipperAgency.Infrastructure.Files.Maps
 {
     public class TodoItemRecordMap : ClassMap<TodoItemRecord>
     {

@@ -1,14 +1,14 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Emails;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using MediatR;
-using Microsoft.Extensions.Configuration;
-using SkipperBooking.Base.Enums;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using MediatR;
+using Microsoft.Extensions.Configuration;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.EmailTemplateModels;
+using SkipperAgency.Domain.Entities;
+using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
+namespace SkipperAgency.Application.Charters.Commands.CreateCharter
 {
     public class CreateCharterCommand : IRequest
     {

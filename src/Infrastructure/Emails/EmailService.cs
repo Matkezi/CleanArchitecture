@@ -1,10 +1,9 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Emails;
-using CleanArchitecture.Domain.EmailTemplateModels;
+﻿using System.Threading.Tasks;
 using FluentEmail.Core;
-using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.EmailTemplateModels;
 
-namespace CleanArchitecture.Infrastructure.Emails
+namespace SkipperAgency.Infrastructure.Emails
 {
     public class EmailService : IEmailService
     {

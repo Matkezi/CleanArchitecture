@@ -1,20 +1,22 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using SkipperBooking.Base.Enums;
-using Microsoft.EntityFrameworkCore;
-using CleanArchitecture.Application.Skippers.Queries.Availability;
-using CleanArchitecture.Application.Bookings.CommonModels;
-using CleanArchitecture.Application.Skippers.Models;
-using CleanArchitecture.Application.Skippers.Commands.SkippersIdentity;
-using CleanArchitecture.Application.Bookings.Commands.SkipperAcceptBooking;
-using CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList;
+using SkipperAgency.Application.Bookings.Commands.CharterCreateBooking;
+using SkipperAgency.Application.Bookings.Commands.CharterDeleteBooking;
+using SkipperAgency.Application.Bookings.Commands.GuestRequestBooking;
+using SkipperAgency.Application.Bookings.Commands.SkipperAcceptBooking;
+using SkipperAgency.Application.Bookings.Commands.SkipperDeclineBooking;
+using SkipperAgency.Application.Bookings.CommonModels;
+using SkipperAgency.Application.Bookings.Queries.CharterGetBookings;
+using SkipperAgency.Application.Bookings.Queries.GetBooking;
+using SkipperAgency.Application.Bookings.Queries.GetBookingByUrl;
+using SkipperAgency.Application.Bookings.Queries.SkipperGetBookings;
+using SkipperAgency.Application.Skippers.Queries.Availability.GetAvailableSkippers;
+using SkipperAgency.Application.Skippers.Queries.GetSkipper;
+using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.WebUI.Controllers
+namespace SkipperAgency.WebUI.Controllers
 {
     public class BookingController : ApiController
     {

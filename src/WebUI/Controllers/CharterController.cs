@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using CleanArchitecture.Application.Charters.Queries.GetCharter;
-using CleanArchitecture.Application.Skippers.Commands.SkippersIdentity;
-using CleanArchitecture.Application.Skippers.Commands.UpdateSkipper;
-using CleanArchitecture.Application.Skippers.Queries.GetSkipper;
-using CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList;
-using CleanArchitecture.WebUI.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SkipperAgency.Application.Charters.Commands.CreateCharter;
+using SkipperAgency.Application.Charters.Commands.DeleteCharter;
+using SkipperAgency.Application.Charters.Commands.UpdateCharter;
+using SkipperAgency.Application.Charters.Queries.GetAllCharters;
+using SkipperAgency.Application.Charters.Queries.GetCharter;
 
-namespace SkipperBooking.Web.Controllers
+namespace SkipperAgency.WebUI.Controllers
 {
     public class CharterController : ApiController
     {

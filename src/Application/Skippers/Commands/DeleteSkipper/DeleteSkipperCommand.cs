@@ -1,13 +1,11 @@
-﻿using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Domain.Entities;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
+using SkipperAgency.Application.Common.Exceptions;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.Entities;
 
-namespace CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList
+namespace SkipperAgency.Application.Skippers.Commands.DeleteSkipper
 {
     public class DeleteSkipperCommand : IRequest, ISkipperAuth
     {

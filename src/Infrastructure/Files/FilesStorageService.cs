@@ -1,11 +1,9 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using SkipperAgency.Application.Common.Interfaces;
 
-namespace CleanArchitecture.Infrastructure.Files
+namespace SkipperAgency.Infrastructure.Files
 {
     public class FilesStorageService : AzureStorageService, IFilesStorageService
     {

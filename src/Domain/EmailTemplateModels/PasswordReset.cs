@@ -1,9 +1,4 @@
-﻿using CleanArchitecture.Domain.Emails;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CleanArchitecture.Domain.EmailTemplateModels
+﻿namespace SkipperAgency.Domain.EmailTemplateModels
 {
     public class PasswordReset : EmailMessage
     {

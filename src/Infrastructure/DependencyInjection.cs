@@ -1,20 +1,21 @@
-﻿using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Infrastructure.Files;
-using CleanArchitecture.Infrastructure.Identity;
-using CleanArchitecture.Infrastructure.Persistence;
-using CleanArchitecture.Infrastructure.Services;
-using Microsoft.AspNetCore.Authentication;
+﻿using System;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using CleanArchitecture.Infrastructure.Persistence.Entities;
-using Microsoft.AspNetCore.Identity;
-using System;
-using CleanArchitecture.Infrastructure.HttpClients;
-using CleanArchitecture.Infrastructure.Emails;
-using CleanArchitecture.Infrastructure.Identity.ExternalIdentity;
+using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Domain.Entities;
+using SkipperAgency.Infrastructure.Emails;
+using SkipperAgency.Infrastructure.Files;
+using SkipperAgency.Infrastructure.HttpClients;
+using SkipperAgency.Infrastructure.Identity;
+using SkipperAgency.Infrastructure.Identity.ExternalIdentity;
+using SkipperAgency.Infrastructure.Identity.ExternalIdentity.Facebook;
+using SkipperAgency.Infrastructure.Identity.ExternalIdentity.Google;
+using SkipperAgency.Infrastructure.Persistence;
+using SkipperAgency.Infrastructure.Services;
 
-namespace CleanArchitecture.Infrastructure
+namespace SkipperAgency.Infrastructure
 {
     public static class DependencyInjection
     {

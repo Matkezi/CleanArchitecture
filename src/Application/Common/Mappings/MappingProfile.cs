@@ -1,9 +1,9 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Linq;
 using System.Reflection;
+using AutoMapper;
 
-namespace CleanArchitecture.Application.Common.Mappings
+namespace SkipperAgency.Application.Common.Mappings
 {
     public class MappingProfile : Profile
     {

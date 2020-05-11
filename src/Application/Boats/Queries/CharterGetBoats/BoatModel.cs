@@ -1,9 +1,6 @@
-﻿using SkipperBooking.Base.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using SkipperAgency.Domain.Enums;
 
-namespace CleanArchitecture.Application.Boats.Queries.CharterGetBoats
+namespace SkipperAgency.Application.Boats.Queries.CharterGetBoats
 {
     public class BoatModel
     {
