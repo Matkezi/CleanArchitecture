@@ -2,12 +2,12 @@
 
 namespace SkipperAgency.Infrastructure.Persistence.Migrations
 {
-    public partial class Languages2 : Migration
+    public partial class languages2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_SkipperLanguage_Languages_LanguageId",
+                name: "FK_SkipperLanguage_Language_LanguageId",
                 table: "SkipperLanguage");
 
             migrationBuilder.DropPrimaryKey(
@@ -52,7 +52,7 @@ namespace SkipperAgency.Infrastructure.Persistence.Migrations
                 column: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_SkipperLanguage_Languages_LanguageId",
+                name: "FK_SkipperLanguage_Language_LanguageId",
                 table: "SkipperLanguage",
                 column: "LanguageId",
                 principalTable: "Language",
@@ -60,4 +60,5 @@ namespace SkipperAgency.Infrastructure.Persistence.Migrations
                 onDelete: ReferentialAction.Cascade);
         }
     }
+
 }

@@ -27,7 +27,7 @@ namespace SkipperAgency.Application.Boats.Commands.DeleteBoat
 
                 if (entity is null)
                 {
-                    throw new NotFoundException(nameof(TodoList), request.BoatId);
+                    throw new NotFoundException(nameof(Boat), request.BoatId);
                 }
 
                 _context.Boats.Remove(entity);

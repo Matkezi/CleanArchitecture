@@ -25,10 +25,6 @@ namespace SkipperAgency.Infrastructure.Persistence
             _currentUserService = currentUserService;
             _dateTime = dateTime;
         }
-
-        public DbSet<TodoList> TodoLists { get; set; }
-
-        public DbSet<TodoItem> TodoItems { get; set; }
         public DbSet<AppUser> AppUser { get; set; }
         public DbSet<Skipper> Skipper { get; set; }
         public DbSet<Skill> Skills { get; set; }

@@ -27,7 +27,7 @@ namespace SkipperAgency.Application.Charters.Commands.DeleteCharter
 
                 if (entity is null)
                 {
-                    throw new NotFoundException(nameof(TodoList), request.CharterId);
+                    throw new NotFoundException(nameof(DeleteCharterCommand), request.CharterId);
                 }
 
                 _context.Charter.Remove(entity);

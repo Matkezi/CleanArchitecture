@@ -27,7 +27,7 @@ namespace SkipperAgency.Application.Skippers.Commands.DeleteSkipper
 
                 if (entity is null)
                 {
-                    throw new NotFoundException(nameof(TodoList), request.SkipperId);
+                    throw new NotFoundException(nameof(Charter), request.SkipperId);
                 }
 
                 _context.Skipper.Remove(entity);

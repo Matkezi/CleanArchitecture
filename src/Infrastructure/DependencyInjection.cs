@@ -24,13 +24,13 @@ namespace SkipperAgency.Infrastructure
             if (configuration.GetValue<bool>("UseInMemoryDatabase"))
             {
                 services.AddDbContext<SkipperAgencyDbContext>(options =>
-                    options.UseInMemoryDatabase("CleanArchitectureDb"));
+                    options.UseInMemoryDatabase("SkipperAgencyDb"));
             }
             else
             {
                 services.AddDbContext<SkipperAgencyDbContext>(options =>
                     options.UseSqlServer(
-                        configuration.GetConnectionString("DefaultConnection"),
+                        configuration.GetConnectionString("DbConnection"),
                         b => b.MigrationsAssembly(typeof(SkipperAgencyDbContext).Assembly.FullName)));
 
             }
@@ -51,7 +51,6 @@ namespace SkipperAgency.Infrastructure
 
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IIdentityService, IdentityService>();
-            services.AddTransient<ICsvFileBuilder, CsvFileBuilder>();
             services.AddTransient<IHttpClient, BasicHttpClient>();
             services.AddTransient<IEmailService, EmailService>();
 

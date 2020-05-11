@@ -7,9 +7,6 @@ namespace SkipperAgency.Application.Common.Interfaces
 {
     public interface IApplicationDbContext
     {
-        DbSet<TodoList> TodoLists { get; set; }
-
-        DbSet<TodoItem> TodoItems { get; set; }
         DbSet<AppUser> AppUser { get; set; }
         DbSet<Skipper> Skipper { get; set; }
         DbSet<Skill> Skills { get; set; }
