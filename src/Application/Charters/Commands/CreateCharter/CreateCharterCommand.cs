@@ -10,7 +10,7 @@ using System.Web;
 
 namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
 {
-    public class UpdateCharterCommand : IRequest
+    public class CreateCharterCommand : IRequest
     {
         public string Email { get; set; }
         public string Password { get; set; }
@@ -22,7 +22,7 @@ namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
         public string City { get; set; }
         public int CountryId { get; set; }
 
-        public class Handler : IRequestHandler<UpdateCharterCommand>
+        public class Handler : IRequestHandler<CreateCharterCommand>
         {
             private readonly IEmailService _emailer;
             private readonly IIdentityService _identityService;
@@ -35,7 +35,7 @@ namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
                 _configuration = configuration;
             }
 
-            public async Task<Unit> Handle(UpdateCharterCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(CreateCharterCommand request, CancellationToken cancellationToken)
             {
                 var charter = new Charter
                 {

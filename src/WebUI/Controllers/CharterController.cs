@@ -1,111 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using AutoMapper;
+using CleanArchitecture.Application.Charters.Queries.GetCharter;
+using CleanArchitecture.Application.Skippers.Commands.SkippersIdentity;
+using CleanArchitecture.Application.Skippers.Commands.UpdateSkipper;
+using CleanArchitecture.Application.Skippers.Queries.GetSkipper;
+using CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList;
+using CleanArchitecture.WebUI.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using SkipperBooking.Business.Services.CharterServices;
-using SkipperBooking.DAL;
-using SkipperBooking.DAL.Entities;
-using SkipperBooking.Web.Models;
 
 namespace SkipperBooking.Web.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CharterController : ControllerBase
+    public class CharterController : ApiController
     {
-
-        private readonly IMapper _mapper;
-        private readonly ILogger _logger;
-        private readonly ICharterService _charterService;
-        private readonly SkipperBookingDBContext _context;
-
-        public CharterController(IMapper mapper, ILogger<CharterController> logger, SkipperBookingDBContext context, ICharterService charterService)
-        { 
-             _charterService = charterService;
-            _mapper = mapper;
-            _logger = logger;
-            _context = context;
-           
-        }
 
         // GET: api/Charter
         [HttpGet]
-        public IEnumerable<Charter> Get()
+        public async Task<ActionResult<IEnumerable<CharterModel>>> GetAll()
         {
-            return _context.Charter.ToList();
+            return Ok(await Mediator.Send(new GetAllChartersQuery()));
         }
 
-        // GET: api/Charter/5
-        [HttpGet("{id}", Name = "GetCharter")]
-        public async Task<IActionResult> GetAsync(string id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CharterModel>> Get(string id)
         {
-            var charter = await _context.Charter.FindAsync(id);
-            if (charter == null)
-            {
-                _logger.LogWarning("GetById({Id}) NOT FOUND", id);
-                return NotFound("Can't find charter");
-            }
-            CharterModel charterModel = _mapper.Map<CharterModel>(charter);
-            return Ok(charterModel);
+            return Ok(await Mediator.Send(new GetCharterQuery { Id = id }));
         }
 
         // POST: api/Charter
         [HttpPost]
-        public async Task<IActionResult> CreateCharter([FromBody] CharterRegistrationModel charterModel)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> Create(CreateCharterCommand command)
         {
-            Charter charter = new Charter();
-            _mapper.Map(charterModel, charter);
-            var result = await _charterService.RegisterCharter(charter, charterModel.Password);
-            if (!result.Succeeded)
-            {
-                return BadRequest(result);
-            }
-            return CreatedAtAction("Create charter", new { id = charter.Id }, charter);
+            await Mediator.Send(command);
+            return NoContent();
         }
 
         // PUT: api/Charter/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCharter([FromBody] CharterModel charterModel)
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Update(UpdateCharterCommand command)
         {
-            Charter charter = await _context.Charter.FindAsync(charterModel.Id);
-            if (charter == null)
-            {
-                _logger.LogWarning("Update charter ({Id}) NOT FOUND", charterModel.Id);
-                return NotFound("Can't update skipper");
-            }
-            var result = await _charterService.UpdateCharter(charter, charterModel.NewEmail);
-            if (!result.Succeeded)
-            {
-                return BadRequest(result);
-            }
-            return CreatedAtAction("Update skipper", new { id = charter.Id }, charter);
+            await Mediator.Send(command);
+            return NoContent();
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> DeleteCharter(string id)
         {
-            Charter charter = await _context.Charter.FindAsync(id);
-            if (charter == null)
-            {
-                _logger.LogWarning("Delete charter ({Id}) NOT FOUND", id);
-                return NotFound("Can't delete charter");
-            }
-            try {
-                _context.Charter.Remove(charter);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e.StackTrace);
-                return BadRequest("Can't delete charter");
-            }
-            await _context.SaveChangesAsync();
-
-            return Ok();
+            await Mediator.Send(new DeleteCharterCommand { CharterId = id });
+            return NoContent();
         }
     }
 }

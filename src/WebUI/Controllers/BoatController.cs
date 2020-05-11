@@ -14,13 +14,12 @@ using CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList;
 
 namespace CleanArchitecture.WebUI.Controllers
 {
-
+    [Authorize(Roles = "Admin, Charter")]
     public class BoatController : ApiController
     {
 
         // GET: api/Boat/Charter
-        [HttpGet("Charter")]
-        [Authorize(Roles = "Admin, Charter")]
+        [HttpGet("Charter")]        
         public async Task<ActionResult<IEnumerable<BoatModel>>> GetCharterBoats()
         {
             return Ok(await Mediator.Send(new CharterGetBoatsQuery()));

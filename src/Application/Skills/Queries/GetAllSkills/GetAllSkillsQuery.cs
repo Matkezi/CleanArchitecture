@@ -1,24 +1,22 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using CleanArchitecture.Application.Bookings.CommonModels;
 using CleanArchitecture.Application.Common.Interfaces;
 using CleanArchitecture.Application.Skippers.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SkipperBooking.Base.Enums;
+using SkipperBooking.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CleanArchitecture.Application.Skippers.Queries.Availability
+namespace CleanArchitecture.Application.Skippers.Queries.GetSkipper
 {
-    public class GetBookingQuery : IRequest<BookingModel>, ICharterOrSkipperBookingAuth
+    public class GetAllSkillsQuery : IRequest<IEnumerable<SkillModel>>
     {
-        public int BookingId { get; set; }
-
-        public class Handler : IRequestHandler<GetBookingQuery, BookingModel>
+        public class Handler : IRequestHandler<GetAllSkillsQuery, IEnumerable<SkillModel>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -29,13 +27,12 @@ namespace CleanArchitecture.Application.Skippers.Queries.Availability
                 _mapper = mapper;
             }
 
-            public async Task<BookingModel> Handle(GetBookingQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<SkillModel>> Handle(GetAllSkillsQuery request, CancellationToken cancellationToken)
             {
-                var booking = await _context.Bookings.FindAsync(request.BookingId);
-                return _mapper.Map<BookingModel>(booking);
-
+                return await _context.Skills
+                    .ProjectTo<SkillModel>(_mapper.ConfigurationProvider)
+                    .ToListAsync();
             }
-
         }
     }
 }

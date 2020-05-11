@@ -3,7 +3,7 @@
 namespace CleanArchitecture.Application.Skippers.Commands.SkippersIdentity
 {
 
-    public class CreateCharterCommandValidator : AbstractValidator<UpdateCharterCommand>
+    public class CreateCharterCommandValidator : AbstractValidator<CreateCharterCommand>
     {
         public CreateCharterCommandValidator()
         {

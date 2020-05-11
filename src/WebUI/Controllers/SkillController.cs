@@ -1,53 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
+using CleanArchitecture.Application.Skippers.Queries.GetSkipper;
+using CleanArchitecture.WebUI.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SkipperBooking.Base.Enums;
-using SkipperBooking.Business.Services.SkillServices;
-using SkipperBooking.DAL;
-using SkipperBooking.DAL.Entities;
 using SkipperBooking.Web.Models;
 
 namespace SkipperBooking.Web.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class SkillController : ControllerBase
+    public class SkillController : ApiController
     {
-        private readonly ISkillService _skillService;
-        private readonly IMapper _mapper;
-        private readonly ILogger _logger;
-        private readonly SkipperBookingDBContext _context;
-        public SkillController(ISkillService skillService, IMapper mapper, ILogger<SkipperController> logger, SkipperBookingDBContext context)
-        {
-            _skillService = skillService;
-            _mapper = mapper;
-            _logger = logger;
-            _context = context;
-        }
-
-        // GET: api/Skill
         [HttpGet]
-        public IEnumerable<Skill> Get()
+        public async Task<ActionResult<IEnumerable<SkillModel>>> GetAll()
         {
-            return _context.Skills.ToList();
+            return Ok(await Mediator.Send(new GetSkillQuery()));
         }
 
-        // GET: api/Skill/3
-        [HttpGet("{id}", Name = "GetSkill")]
-        public async Task<IActionResult> GetSkill(SkillsEnum skillId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<SkillModel>> Get(SkillsEnum skillId)
         {
-            var skill = await _context.Skills.FindAsync(skillId);
-            if (skill == null)
-            {
-                _logger.LogWarning("GetById({Id}) NOT FOUND", skillId);
-                return NotFound("Can't find skill");
-            }
-            Skill skillModel = _mapper.Map<Skill>(skill);
-            return Ok(skillModel);
+            return Ok(await Mediator.Send(new GetSkillQuery { SkillId = skillId }));
         }
     }
 }

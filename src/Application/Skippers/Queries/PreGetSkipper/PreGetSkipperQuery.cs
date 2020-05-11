@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.Skippers.Queries.PreGetSkipper
 {
-    public class GetSkipperQuery : IRequest<PreGetSkipperModel>
+    public class PreGetSkipperQuery : IRequest<PreGetSkipperModel>
     {
         public string Url { get; set; }
 
-        public class Handler : IRequestHandler<GetSkipperQuery, PreGetSkipperModel>
+        public class Handler : IRequestHandler<PreGetSkipperQuery, PreGetSkipperModel>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -24,7 +24,7 @@ namespace CleanArchitecture.Application.Skippers.Queries.PreGetSkipper
                 _mapper = mapper;
             }
 
-            public async Task<PreGetSkipperModel> Handle(GetSkipperQuery request, CancellationToken cancellationToken)
+            public async Task<PreGetSkipperModel> Handle(PreGetSkipperQuery request, CancellationToken cancellationToken)
             {
                 var skipper = await _context.SkipperPreRegistration.Where(s => s.URL == request.Url).FirstAsync();
                 return _mapper.Map<PreGetSkipperModel>(skipper);
