@@ -8,7 +8,6 @@ namespace SkipperAgency.Application.Charters.Queries.GetCharter
     {
         public string Id { get; set; }
         public string Email { get; set; }
-        public string NewEmail { get; set; }
         public string CharterName { get; set; }
         public string Address { get; set; }
         public string ZipCode { get; set; }

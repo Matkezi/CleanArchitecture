@@ -111,20 +111,18 @@ namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
 
                 if (request.UserPhoto != null)
                 {
-                    // TODO: validate Data somehow before this, make a validator
                     var photoUri = await _filesStorageService.ReplaceCloudAsync(
-                        request.UserPhoto.Data,
-                        Path.GetExtension(request.UserPhoto.Name),
+                        request.UserPhoto.Base64Data,
+                        Path.GetExtension(request.UserPhoto.NameWithExt),
                         skipper.UserPhotoUrl);
 
                     skipper.UserPhotoUrl = photoUri;
                 }
                 if (request.UserLicense != null)
                 {
-                    // TODO: validate Data somehow before this, make a validator
                     var licenseUri = await _filesStorageService.ReplaceCloudAsync(
-                        request.UserPhoto.Data,
-                        Path.GetExtension(request.UserPhoto.Name),
+                        request.UserLicense.Base64Data,
+                        Path.GetExtension(request.UserLicense.NameWithExt),
                         skipper.License.LicenseUrl
                         );
 

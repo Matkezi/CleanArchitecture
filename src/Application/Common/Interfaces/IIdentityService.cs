@@ -12,12 +12,12 @@ namespace SkipperAgency.Application.Common.Interfaces
         /// <summary>
         /// Creates a new user where: Username = Email
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="newUser"></param>
         /// <param name="role"></param>
         /// <param name="password"></param>
         /// <returns></returns>
         Task<string> CreateUserAsync(AppUser newUser, RoleEnum role, string password);
-        Task DeleteUserAsync(string userId);
+
         Task ConfirmEmail(string userEmail, string token);
         Task<LoginResponse> Login(string userEmail, string password, bool rememberMe);
         Task ChangePassword(string userEmail, string password, string newPassword);
@@ -36,7 +36,6 @@ namespace SkipperAgency.Application.Common.Interfaces
         /// <returns>Base64 encoded token.</returns>
         Task<string> ChangeEmailToken(string userEmail, string userNewEmail);
         Task ChangeEmail(string userEmail, string userNewEmail, string token);
-        Task<IList<AppUser>> GetUsersByRole(RoleEnum role);
         Task<IList<RoleEnum>> GetUserRoles(string userEmail);
     }
 }

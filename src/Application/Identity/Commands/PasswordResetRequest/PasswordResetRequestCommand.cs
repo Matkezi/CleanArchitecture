@@ -12,14 +12,14 @@ namespace SkipperAgency.Application.Identity.Commands.PasswordResetRequest
 
         public class Handler : IRequestHandler<PasswordResetRequestCommand>
         {
-            private readonly IIdentityService _identityService;
             private readonly IEmailService _emailService;
+            private readonly IIdentityService _identityService;
             private readonly IConfiguration _configuration;
 
-            public Handler(IIdentityService identityService, IEmailService emailer, IConfiguration configuration)
+            public Handler(IEmailService emailService, IIdentityService identityService, IConfiguration configuration)
             {
+                _emailService = emailService;
                 _identityService = identityService;
-                _emailService = emailer;
                 _configuration = configuration;
             }
 

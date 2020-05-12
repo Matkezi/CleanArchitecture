@@ -63,25 +63,6 @@ namespace SkipperAgency.Infrastructure.Identity
             return await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
         }
 
-        public async Task DeleteUserAsync(string userId)
-        {
-            var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
-
-            if (user != null)
-            {
-                await DeleteUserAsync(user);
-            }
-        }
-
-        public async Task DeleteUserAsync(AppUser user)
-        {
-            var result = await _userManager.DeleteAsync(user);
-            if (!result.Succeeded)
-            {
-                throw new Exception($"Couldn't delete user {user.UserName} ({string.Join(";", result.Errors)})");
-            }
-        }
-
         public async Task ConfirmEmail(string userEmail, string token)
         {
             var user = await _userManager.FindByEmailAsync(userEmail);
@@ -195,11 +176,6 @@ namespace SkipperAgency.Infrastructure.Identity
             {
                 throw new Exception($"Failed to change email ({string.Join(",", result.Errors)})");
             }
-        }
-
-        public async Task<IList<AppUser>> GetUsersByRole(RoleEnum role)
-        {
-            return await _userManager.GetUsersInRoleAsync(Enum.GetName(typeof(RoleEnum), role));
         }
 
         public async Task<IList<RoleEnum>> GetUserRoles(string userEmail)

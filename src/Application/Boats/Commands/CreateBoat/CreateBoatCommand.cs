@@ -44,8 +44,7 @@ namespace SkipperAgency.Application.Boats.Commands.CreateBoat
 
                 if (request.BoatPhoto != null)
                 {
-                    // TODO: validate Data somehow before this, make a validator
-                    var photoUri = await _filesStorageService.SaveCloudAsync(request.BoatPhoto.Data, Path.GetExtension(request.BoatPhoto.Name));
+                    var photoUri = await _filesStorageService.SaveCloudAsync(request.BoatPhoto.Base64Data, Path.GetExtension(request.BoatPhoto.NameWithExt));
                     boat.BoatPhotoUrl = photoUri;
                 }
 

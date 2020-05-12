@@ -1,4 +1,6 @@
-﻿using FluentValidation;
+﻿using System.IO;
+using FluentValidation;
+using SkipperAgency.Application.Common.ExtensionMethods;
 
 namespace SkipperAgency.Application.Boats.Commands.CreateBoat
 {
@@ -8,6 +10,10 @@ namespace SkipperAgency.Application.Boats.Commands.CreateBoat
         {
             RuleFor(x => x.Type).IsInEnum();
             RuleFor(x => x.MinimalRequiredLicense).IsInEnum();
+            RuleFor(x => x.BoatPhoto)
+                .Must(file => Path.HasExtension(file.NameWithExt))
+                .ContainsValidBase64Data()
+                .When(file => file != null);
         }
     }
 }

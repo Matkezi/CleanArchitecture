@@ -27,7 +27,7 @@ namespace SkipperAgency.Application.Charters.Queries.GetAllCharters
             {
                 return await _context.Charter
                     .ProjectTo<CharterModel>(_mapper.ConfigurationProvider)
-                    .ToListAsync();
+                    .ToListAsync(cancellationToken);
             }
 
         }

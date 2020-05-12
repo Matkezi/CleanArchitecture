@@ -51,8 +51,8 @@ namespace SkipperAgency.Application.Boats.Commands.UpdateBoat
                 if (request.BoatPhoto != null)
                 {
                     var photoUri = await _filesStorageService.ReplaceCloudAsync
-                        (request.BoatPhoto.Data,
-                        Path.GetExtension(request.BoatPhoto.Name),
+                        (request.BoatPhoto.Base64Data,
+                        Path.GetExtension(request.BoatPhoto.NameWithExt),
                         boat.BoatPhotoUrl);
                     boat.BoatPhotoUrl = photoUri;
                 }
