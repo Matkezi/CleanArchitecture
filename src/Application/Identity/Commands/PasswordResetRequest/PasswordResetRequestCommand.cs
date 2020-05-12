@@ -25,8 +25,8 @@ namespace SkipperAgency.Application.Identity.Commands.PasswordResetRequest
 
             public async Task<Unit> Handle(PasswordResetRequestCommand request, CancellationToken cancellationToken)
             {
-                var result = await _identityService.PasswordResetToken(request.UserEmail);
-                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/password-reset/email={request.UserEmail}/token={result.passwordResetTokenBase64}";
+                var passwordResetTokenBase64 = await _identityService.PasswordResetToken(request.UserEmail);
+                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/password-reset/email={request.UserEmail}/token={passwordResetTokenBase64}";
 
                 // TODO: fullname in an email
                 _ = _emailService.SendEmailWithTemplate(

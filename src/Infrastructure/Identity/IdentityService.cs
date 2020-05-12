@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Exceptions;
 
 namespace SkipperAgency.Infrastructure.Identity
 {
@@ -32,151 +33,167 @@ namespace SkipperAgency.Infrastructure.Identity
         }
 
         /// <summary>
-        /// Creates a new user where: Username = Email
+        /// Creates a new user where: Username == Email.
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="newUser"></param>
         /// <param name="role"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public async Task<(Result Result, string UserId, string emailConfirmationToken)> CreateUserAsync(AppUser user, RoleEnum role, string password)
+        public async Task<string> CreateUserAsync(AppUser newUser, RoleEnum role, string password)
         {
-            var user1 = await _userManager.FindByEmailAsync(user.Email);
-
-            user.UserName = user.Email;
-            var result = await _userManager.CreateAsync(user, password);
-            if (!result.Succeeded)
+            var user = await _userManager.FindByEmailAsync(newUser.Email);
+            if (user != null)
             {
-                return (result.ToApplicationResult(), user.Id, null);
-            }
-            result = await _userManager.AddToRoleAsync(user, Enum.GetName(typeof(RoleEnum), role));
-            if (!result.Succeeded)
-            {
-                return (result.ToApplicationResult(), user.Id, null);
+                throw new UniqueConstraintException("User email", newUser.Email);
             }
 
-            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            return (result.ToApplicationResult(), user.Id, token);
+            newUser.UserName = newUser.Email;
+            var result = await _userManager.CreateAsync(newUser, password);
+            if (!result.Succeeded)
+            {
+                throw new Exception($"Couldn't create user ({string.Join(";", result.Errors)})");
+            }
+            result = await _userManager.AddToRoleAsync(newUser, Enum.GetName(typeof(RoleEnum), role));
+            if (!result.Succeeded)
+            {
+                throw new Exception($"Couldn't add roles to user ({string.Join(";", result.Errors)})");
+            }
+
+            return await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
         }
 
-        public async Task<Result> DeleteUserAsync(string userId)
+        public async Task DeleteUserAsync(string userId)
         {
             var user = _userManager.Users.SingleOrDefault(u => u.Id == userId);
 
             if (user != null)
             {
-                return await DeleteUserAsync(user);
+                await DeleteUserAsync(user);
             }
-
-            return Result.Success();
         }
 
-        public async Task<Result> DeleteUserAsync(AppUser user)
+        public async Task DeleteUserAsync(AppUser user)
         {
             var result = await _userManager.DeleteAsync(user);
-
-            return result.ToApplicationResult();
-        }
-
-        public async Task<Result> ConfirmEmail(string userEmail, string token)
-        {
-            AppUser user = await _userManager.FindByEmailAsync(userEmail);
-            var result = await _userManager.ConfirmEmailAsync(user, token);
-            return result.ToApplicationResult();
-        }
-
-        public async Task<(Result result, LoginResponse loginResponse)> Login(string userEmail, string password, bool rememberMe)
-        {
-            AppUser user = await _userManager.FindByEmailAsync(userEmail);
-            if (user is null) return (Result.Failure("User not found."), null);
-
-            // get the user to verifty
-            //var userToVerify = await _userManager.FindByNameAsync(userName);
-
-            //if (userToVerify == null) return await Task.FromResult<ClaimsIdentity>(null);
-
-            // check the credentials
-            if (await _userManager.CheckPasswordAsync(user, password))
+            if (!result.Succeeded)
             {
-                // TODO: Uncomment this!
-                //var isUserEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
-                //if (!isUserEmailConfirmed)
-                //{
-                //    string errorMessage = $"Login failed. Email Not Confirmed. User: {email}";
-                //    _logger.LogError(errorMessage);
-                //    throw new Exception(errorMessage);
-                //}
-
-                var token = await _jwtFactory.GenerateEncodedToken(user);
-                var roles = await GetUserRoles(user.UserName);
-                return (Result.Success(),
-                    new LoginResponse
-                    {
-                        Token = token,
-                        Username = user.UserName,
-                        Role = roles.First().ToString(),
-                        Id = user.Id,
-                        UserPhotoUrl = user.UserPhotoUrl
-                    });
-                //return await Task.FromResult(_jwtFactory.GenerateClaimsIdentity(userName, userToVerify.Id));
+                throw new Exception($"Couldn't delete user {user.UserName} ({string.Join(";", result.Errors)})");
             }
-
-            return (Result.Failure("Wrong credentials"), null);
         }
 
-
-        public async Task<Result> ChangePassword(string userName, string password, string newPassword)
+        public async Task ConfirmEmail(string userEmail, string token)
         {
-            AppUser user = await _userManager.FindByNameAsync(userName);
-            if (user is null) return Result.Failure("user not found.");
-
-            var result = await _userManager.ChangePasswordAsync(user, password, newPassword);
-            if (!result.Succeeded) Result.Failure("Failed to change password.");
-
-            return Result.Success();
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            if (!result.Succeeded)
+            {
+                // TODO: try parsing result a bit better, like if token is invalid
+                throw new ConfirmEmailException(userEmail,string.Join(";", result.Errors) );
+            }
         }
 
-        public async Task<(Result result, string passwordResetTokenBase64)> PasswordResetToken(string userEmail)
+        public async Task<LoginResponse> Login(string userEmail, string password, bool rememberMe)
         {
             var user = await _userManager.FindByEmailAsync(userEmail);
             if (user is null)
-                return (Result.Failure("User not found."), null);
+            {
+                throw new NotFoundException("User", userEmail);
+            }
+
+            if (!await _userManager.CheckPasswordAsync(user, password))
+                throw new UnauthorizedAccessException("Invalid password.");
+
+            var isUserEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+            if (!isUserEmailConfirmed)
+            {
+                throw new ConfirmEmailException(user.Email, "Verification email sent. Please check your email.");
+            }
+            var token = await _jwtFactory.GenerateEncodedToken(user);
+            var roles = await GetUserRoles(user.UserName);
+            return (
+                new LoginResponse
+                {
+                    Token = token,
+                    Username = user.UserName,
+                    Role = roles.First().ToString(),
+                    Id = user.Id,
+                    UserPhotoUrl = user.UserPhotoUrl
+                });
+
+        }
+
+
+        public async Task ChangePassword(string userEmail, string password, string newPassword)
+        {
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            if (user is null)
+            {
+                throw new NotFoundException("User", userEmail);
+            }
+
+            var result = await _userManager.ChangePasswordAsync(user, password, newPassword);
+            if (!result.Succeeded)
+            {
+                throw new Exception($"Failed to change password ({string.Join(",", result.Errors)})");
+            }
+        }
+
+        public async Task<string> PasswordResetToken(string userEmail)
+        {
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            if (user is null)
+            {
+                throw new NotFoundException("User", userEmail);
+            }
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
             byte[] tokenBytes = Encoding.UTF8.GetBytes(token);
             var tokenEncoded = WebEncoders.Base64UrlEncode(tokenBytes);
-            return (Result.Success(), tokenEncoded);
+            return tokenEncoded;
         }
 
-        public async Task<Result> PasswordReset(string userEmail, string newPassword, string token)
+        public async Task PasswordReset(string userEmail, string newPassword, string token)
         {
             var user = await _userManager.FindByEmailAsync(userEmail);
             if (user is null)
-                return Result.Failure("User not found.");
+            {
+                throw new NotFoundException("User", userEmail);
+            }
             var tokenDecodedBytes = WebEncoders.Base64UrlDecode(token);
             var tokenDecoded = Encoding.UTF8.GetString(tokenDecodedBytes);
             var result = await _userManager.ResetPasswordAsync(user, tokenDecoded, newPassword);
-            return result.ToApplicationResult();
+            if (!result.Succeeded)
+            {
+                throw new Exception($"Failed to reset password ({string.Join(",", result.Errors)})");
+            }
         }
 
-        public async Task<(Result result, string emailResetTokenBase64)> ChangeEmailToken(string userEmail, string userNewEmail)
+        public async Task<string> ChangeEmailToken(string userEmail, string userNewEmail)
         {
             var user = await _userManager.FindByEmailAsync(userEmail);
             if (user is null)
-                return (Result.Failure("User not found."), null);
+            {
+                throw new NotFoundException("User", userEmail);
+            }
             var token = await _userManager.GenerateChangeEmailTokenAsync(user, userNewEmail);
             byte[] tokenBytes = Encoding.UTF8.GetBytes(token);
             var tokenEncoded = WebEncoders.Base64UrlEncode(tokenBytes);
-            return (Result.Success(), tokenEncoded);
+            return tokenEncoded;
         }
 
-        public async Task<Result> ChangeEmail(string userEmail, string userNewEmail, string token)
+        public async Task ChangeEmail(string userEmail, string userNewEmail, string token)
         {
             var user = await _userManager.FindByEmailAsync(userEmail);
             if (user is null)
-                return Result.Failure("User not found.");
+            {
+                throw new NotFoundException(nameof(AppUser), userEmail);
+            }
             var tokenDecodedBytes = WebEncoders.Base64UrlDecode(token);
             var tokenDecoded = Encoding.UTF8.GetString(tokenDecodedBytes);
             var result = await _userManager.ChangeEmailAsync(user, userNewEmail, tokenDecoded);
-            return result.ToApplicationResult();
+            if (!result.Succeeded)
+            {
+                throw new Exception($"Failed to change email ({string.Join(",", result.Errors)})");
+            }
         }
 
         public async Task<IList<AppUser>> GetUsersByRole(RoleEnum role)
@@ -184,10 +201,13 @@ namespace SkipperAgency.Infrastructure.Identity
             return await _userManager.GetUsersInRoleAsync(Enum.GetName(typeof(RoleEnum), role));
         }
 
-        public async Task<IList<RoleEnum>> GetUserRoles(string userName)
+        public async Task<IList<RoleEnum>> GetUserRoles(string userEmail)
         {
-            var user = await _userManager.FindByNameAsync(userName);
-            // Get the roles for the user
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            if (user is null)
+            {
+                throw new NotFoundException(nameof(AppUser), userEmail);
+            }
             var roles = await _userManager.GetRolesAsync(user);
 
             return roles.Select(role =>

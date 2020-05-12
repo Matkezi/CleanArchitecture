@@ -40,20 +40,29 @@ namespace SkipperAgency.WebUI.Common
 
             switch (exception)
             {
-                case UnauthorizedAccessException unauthorizedAccessException:
+                case ConfirmEmailException confirmEmailException:
                     code = HttpStatusCode.Unauthorized;
+                    result = confirmEmailException.Message;
+                    break;
+                case UniqueConstraintException uniqueConstraintException:
+                    code = HttpStatusCode.Conflict;
+                    result = uniqueConstraintException.Message;
+                    break;
+                case UnauthorizedAccessException unauthorizedAccessException:
+                    code = HttpStatusCode.Forbidden;
                     result = unauthorizedAccessException.Message;
                     break;
                 case ValidationException validationException:
                     code = HttpStatusCode.BadRequest;
                     result = JsonConvert.SerializeObject(validationException.Errors);
                     break;
+                case NotFoundException notFoundException:
+                    code = HttpStatusCode.NotFound;
+                    result = notFoundException.Message;
+                    break;
                 case BadRequestException badRequestException:
                     code = HttpStatusCode.BadRequest;
                     result = badRequestException.Message;
-                    break;
-                case NotFoundException _:
-                    code = HttpStatusCode.NotFound;
                     break;
             }
 

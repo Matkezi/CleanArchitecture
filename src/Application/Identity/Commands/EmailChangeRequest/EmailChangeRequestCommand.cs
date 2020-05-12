@@ -27,8 +27,8 @@ namespace SkipperAgency.Application.Identity.Commands.EmailChangeRequest
 
             public async Task<Unit> Handle(EmailChangeRequestCommand request, CancellationToken cancellationToken)
             {
-                var result = await _identityService.ChangeEmailToken(request.UserEmail, request.UserNewEmail);
-                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/change-email/email={request.UserEmail}/newEmail={request.UserNewEmail}/token={result.emailResetTokenBase64}";
+                var emailResetTokenBase64 = await _identityService.ChangeEmailToken(request.UserEmail, request.UserNewEmail);
+                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/change-email/email={request.UserEmail}/newEmail={request.UserNewEmail}/token={emailResetTokenBase64}";
 
                 // TODO: fullname in an email
                 _ = _emailService.SendEmailWithTemplate(

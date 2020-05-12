@@ -22,7 +22,7 @@ namespace SkipperAgency.Application.Identity.Commands.ChangePassword
 
             public async Task<Unit> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
             {
-                var result = await _identityService.ChangePassword(request.UserEmail, request.Password, request.NewPassword);
+                await _identityService.ChangePassword(request.UserEmail, request.Password, request.NewPassword);
                 return Unit.Value;
             }
         }

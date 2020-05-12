@@ -64,7 +64,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .To(mailTemplate.ToEmail)
                 .CC(mailTemplate.Cc)
                 .BCC(mailTemplate.Bcc)
-                .Subject($"Skipper Booking Created")
+                .Subject($"Skipper Booking Requested")
                 .UsingTemplateFromFile("./wwwroot/Templates/Emails/BookingRequested.cshtml", mailTemplate)
                 .SendAsync();
         }
@@ -75,7 +75,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .To(mailTemplate.ToEmail)
                 .CC(mailTemplate.Cc)
                 .BCC(mailTemplate.Bcc)
-                .Subject($"Skipper Booking Created")
+                .Subject($"Skipper Booking Accepted")
                 .UsingTemplateFromFile("./wwwroot/Templates/Emails/SkipperBookingRequested.cshtml", mailTemplate)
                 .SendAsync();
         }

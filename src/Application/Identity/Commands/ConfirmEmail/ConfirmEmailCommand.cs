@@ -21,7 +21,7 @@ namespace SkipperAgency.Application.Identity.Commands.ConfirmEmail
 
             public async Task<Unit> Handle(ConfirmEmailCommand request, CancellationToken cancellationToken)
             {
-                var result = await _identityService.ConfirmEmail(request.UserEmail, request.Token);
+                await _identityService.ConfirmEmail(request.UserEmail, request.Token);
                 return Unit.Value;
             }
         }

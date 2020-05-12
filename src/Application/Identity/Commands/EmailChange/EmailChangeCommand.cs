@@ -22,7 +22,7 @@ namespace SkipperAgency.Application.Identity.Commands.EmailChange
 
             public async Task<Unit> Handle(EmailChangeCommand request, CancellationToken cancellationToken)
             {
-                var result = await _identityService.ChangeEmail(request.UserEmail, request.NewEmail, request.Token);
+                await _identityService.ChangeEmail(request.UserEmail, request.NewEmail, request.Token);
                 return Unit.Value;
             }
         }

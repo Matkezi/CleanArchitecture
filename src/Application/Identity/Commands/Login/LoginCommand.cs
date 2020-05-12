@@ -23,8 +23,8 @@ namespace SkipperAgency.Application.Identity.Commands.Login
 
             public async Task<LoginResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
             {
-                var result = await _identityService.Login(request.Email, request.Password, request.RememberMe);
-                return result.loginResponse;
+                return await _identityService.Login(request.Email, request.Password, request.RememberMe);
+
             }
         }
     }

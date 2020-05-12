@@ -16,26 +16,27 @@ namespace SkipperAgency.Application.Common.Interfaces
         /// <param name="role"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        Task<(Result Result, string UserId, string emailConfirmationToken)> CreateUserAsync(AppUser user, RoleEnum role, string password);
-        Task<Result> DeleteUserAsync(string userId);
-        Task<Result> ConfirmEmail(string userEmail, string token);
-        Task<(Result result, LoginResponse loginResponse)> Login(string userEmail, string password, bool rememberMe);
-        Task<Result> ChangePassword(string userName, string password, string newPassword);
+        Task<string> CreateUserAsync(AppUser newUser, RoleEnum role, string password);
+        Task DeleteUserAsync(string userId);
+        Task ConfirmEmail(string userEmail, string token);
+        Task<LoginResponse> Login(string userEmail, string password, bool rememberMe);
+        Task ChangePassword(string userEmail, string password, string newPassword);
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="userName"></param>
-        /// <returns>Base64 encoded token.</returns>
-        Task<(Result result, string passwordResetTokenBase64)> PasswordResetToken(string userEmail);
-        Task<Result> PasswordReset(string userEmail, string newPassword, string token);
+        /// <param name="userEmail"></param>
+        /// <returns>Base64 encoded token.></returns>
+        Task<string> PasswordResetToken(string userEmail);
+        Task PasswordReset(string userEmail, string newPassword, string token);
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="userName"></param>
+        /// <param name="userEmail"></param>
+        /// <param name="userNewEmail"></param>
         /// <returns>Base64 encoded token.</returns>
-        Task<(Result result, string emailResetTokenBase64)> ChangeEmailToken(string userEmail, string userNewEmail);
-        Task<Result> ChangeEmail(string userEmail, string userNewEmail, string token);
+        Task<string> ChangeEmailToken(string userEmail, string userNewEmail);
+        Task ChangeEmail(string userEmail, string userNewEmail, string token);
         Task<IList<AppUser>> GetUsersByRole(RoleEnum role);
-        Task<IList<RoleEnum>> GetUserRoles(string userName);
+        Task<IList<RoleEnum>> GetUserRoles(string userEmail);
     }
 }

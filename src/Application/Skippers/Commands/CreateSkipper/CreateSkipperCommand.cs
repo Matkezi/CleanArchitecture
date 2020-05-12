@@ -45,14 +45,10 @@ namespace SkipperAgency.Application.Skippers.Commands.CreateSkipper
                     LastName = request.LastName
                 };
 
-                var result = await _identityService.CreateUserAsync(skipper, RoleEnum.Skipper, request.Password);
-                if (!result.Result.Succeeded)
-                {
-                    // TODO: Log, do something...
-                    // return something
-                }
+                var emailConfirmationToken = await _identityService.CreateUserAsync(skipper, RoleEnum.Skipper, request.Password);
 
-                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/confirm-email?email={skipper.Email}&token={HttpUtility.UrlEncode(result.emailConfirmationToken)}";
+
+                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/confirm-email?email={skipper.Email}&token={HttpUtility.UrlEncode(emailConfirmationToken)}";
 
                 await _emailService.SendEmailWithTemplate(
                     new ConfirmEmail(

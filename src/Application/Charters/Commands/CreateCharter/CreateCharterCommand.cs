@@ -48,14 +48,11 @@ namespace SkipperAgency.Application.Charters.Commands.CreateCharter
                     CountryId = request.CountryId
                 };
 
-                var result = await _identityService.CreateUserAsync(charter, RoleEnum.Charter, request.Password);
-                if (!result.Result.Succeeded)
-                {
-                    // TODO: Log, do something...
-                    // return something
-                }
+                var emailConfirmationToken = await _identityService.CreateUserAsync(charter, RoleEnum.Charter, request.Password);
 
-                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/confirm-email?email={charter.Email}&token={HttpUtility.UrlEncode(result.emailConfirmationToken)}";
+
+
+                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/confirm-email?email={charter.Email}&token={HttpUtility.UrlEncode(emailConfirmationToken)}";
 
                 await _emailService.SendEmailWithTemplate(
                     new ConfirmEmail(
