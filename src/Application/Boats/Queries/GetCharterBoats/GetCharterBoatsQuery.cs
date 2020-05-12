@@ -1,18 +1,18 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SkipperAgency.Application.Common.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace SkipperAgency.Application.Boats.Queries.CharterGetBoats
+namespace SkipperAgency.Application.Boats.Queries.GetCharterBoats
 {
-    public class CharterGetBoatsQuery : IRequest<IEnumerable<BoatModel>>
+    public class GetCharterBoatsQuery : IRequest<IEnumerable<BoatModel>>
     {
-        public class Handler : IRequestHandler<CharterGetBoatsQuery, IEnumerable<BoatModel>>
+        public class Handler : IRequestHandler<GetCharterBoatsQuery, IEnumerable<BoatModel>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -25,7 +25,7 @@ namespace SkipperAgency.Application.Boats.Queries.CharterGetBoats
                 _currentUserService = currentUserService;
             }
 
-            public async Task<IEnumerable<BoatModel>> Handle(CharterGetBoatsQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<BoatModel>> Handle(GetCharterBoatsQuery request, CancellationToken cancellationToken)
             {
                 return await _context.Boats
                     .Where(x => x.CharterId == _currentUserService.UserId)

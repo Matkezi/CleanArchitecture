@@ -2,6 +2,6 @@
 {
     public interface ICharterBoatAuth
     {
-        public int BoatId { get; set; }
+        public int Id { get; set; }
     }
 }

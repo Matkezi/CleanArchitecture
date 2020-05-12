@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using SkipperAgency.Application.Boats.Commands.CreateBoat;
 using SkipperAgency.Application.Boats.Commands.DeleteBoat;
 using SkipperAgency.Application.Boats.Commands.UpdateBoat;
-using SkipperAgency.Application.Boats.Queries.CharterGetBoats;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using SkipperAgency.Application.Boats.Queries.GetCharterBoats;
 
 namespace SkipperAgency.WebUI.Controllers
 {
@@ -18,7 +18,7 @@ namespace SkipperAgency.WebUI.Controllers
         [HttpGet("Charter")]
         public async Task<ActionResult<IEnumerable<BoatModel>>> GetCharterBoats()
         {
-            return Ok(await Mediator.Send(new CharterGetBoatsQuery()));
+            return Ok(await Mediator.Send(new GetCharterBoatsQuery()));
         }
 
         // POST: api/Boat
@@ -37,7 +37,7 @@ namespace SkipperAgency.WebUI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Update(int id, UpdateBoatCommand command)
         {
-            if (id != command.BoatId)
+            if (id != command.Id)
             {
                 return BadRequest();
             }
@@ -51,7 +51,7 @@ namespace SkipperAgency.WebUI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete(int id)
         {
-            await Mediator.Send(new DeleteBoatCommand { BoatId = id });
+            await Mediator.Send(new DeleteBoatCommand { Id = id });
             return NoContent();
         }
     }

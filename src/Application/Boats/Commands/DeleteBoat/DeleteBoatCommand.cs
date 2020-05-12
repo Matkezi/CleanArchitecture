@@ -9,28 +9,31 @@ namespace SkipperAgency.Application.Boats.Commands.DeleteBoat
 {
     public class DeleteBoatCommand : IRequest, ICharterBoatAuth
     {
-        public int BoatId { get; set; }
+        public int Id { get; set; }
 
         public class Handler : IRequestHandler<DeleteBoatCommand>
         {
             private readonly IApplicationDbContext _context;
-
-            public Handler(IApplicationDbContext context)
+            private readonly IFilesStorageService _filesStorageService;
+            public Handler(IApplicationDbContext context, IFilesStorageService filesStorageService)
             {
                 _context = context;
+                _filesStorageService = filesStorageService;
             }
 
             public async Task<Unit> Handle(DeleteBoatCommand request, CancellationToken cancellationToken)
             {
-                var entity = await _context.Boats
-                    .FindAsync(request.BoatId);
+                var boat = await _context.Boats
+                    .FindAsync(request.Id);
 
-                if (entity is null)
+                if (boat is null)
                 {
-                    throw new NotFoundException(nameof(Boat), request.BoatId);
+                    throw new NotFoundException(nameof(Boat), request.Id);
                 }
 
-                _context.Boats.Remove(entity);
+                await _filesStorageService.DeleteCloudAsync(boat.BoatPhotoUrl);
+
+                _context.Boats.Remove(boat);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

@@ -12,7 +12,7 @@ namespace SkipperAgency.Application.Boats.Commands.UpdateBoat
 {
     public class UpdateBoatCommand : IRequest, ICharterBoatAuth
     {
-        public int BoatId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Manufacturer { get; set; }
         public string Model { get; set; }
@@ -34,11 +34,11 @@ namespace SkipperAgency.Application.Boats.Commands.UpdateBoat
 
             public async Task<Unit> Handle(UpdateBoatCommand request, CancellationToken cancellationToken)
             {
-                var boat = await _context.Boats.FindAsync(request.BoatId);
+                var boat = await _context.Boats.FindAsync(request.Id);
 
-                if (boat == null)
+                if (boat is null)
                 {
-                    throw new NotFoundException(nameof(Boat), request.BoatId);
+                    throw new NotFoundException(nameof(Boat), request.Id);
                 }
 
                 boat.Name = request.Name;

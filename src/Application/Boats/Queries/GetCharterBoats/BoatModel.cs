@@ -1,6 +1,6 @@
 ﻿using SkipperAgency.Domain.Enums;
 
-namespace SkipperAgency.Application.Boats.Queries.CharterGetBoats
+namespace SkipperAgency.Application.Boats.Queries.GetCharterBoats
 {
     public class BoatModel
     {
