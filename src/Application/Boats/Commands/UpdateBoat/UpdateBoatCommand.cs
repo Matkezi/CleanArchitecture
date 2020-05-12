@@ -5,6 +5,8 @@ using SkipperAgency.Domain.Enums;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Exceptions;
+using SkipperAgency.Domain.Entities;
 
 namespace SkipperAgency.Application.Boats.Commands.UpdateBoat
 {
@@ -33,6 +35,11 @@ namespace SkipperAgency.Application.Boats.Commands.UpdateBoat
             public async Task<Unit> Handle(UpdateBoatCommand request, CancellationToken cancellationToken)
             {
                 var boat = await _context.Boats.FindAsync(request.BoatId);
+
+                if (boat == null)
+                {
+                    throw new NotFoundException(nameof(Boat), request.BoatId);
+                }
 
                 boat.Name = request.Name;
                 boat.Manufacturer = request.Manufacturer;

@@ -48,7 +48,7 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
 
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingUrl}/step=1";
 
-                await _emailService.SendEmailWithTemplate(
+                _ = _emailService.SendEmailWithTemplate(
                     new BookingRequested(
                         guestName: booking.GuestName,
                         toEmail: booking.GuestEmail,
@@ -57,16 +57,16 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
                     ));
 
 
-                string callbackUrl2 = $"{_configuration["AppSettings:AppServerUrl"]}/skipper/dashboard";
-                await _emailService.SendEmailWithTemplate(
-                    new SkipperBookingRequested(
-                        guestName: booking.GuestName,
-                        toEmail: skipper.Email,
-                        skipperName: skipper.FullName,
-                        charterName: booking.Charter.CharterName,
-                        boatName: booking.Boat.Name,
-                        bookings: callbackUrl2
-                    ));
+                string callbackUrl2 = $"{_configuration["AppSettings:AppServerUrl"]}/skipper/dashboard"; 
+                _ = _emailService.SendEmailWithTemplate(
+                     new SkipperBookingRequested(
+                         guestName: booking.GuestName,
+                         toEmail: skipper.Email,
+                         skipperName: skipper.FullName,
+                         charterName: booking.Charter.CharterName,
+                         boatName: booking.Boat.Name,
+                         bookings: callbackUrl2
+                     ));
 
                 return Unit.Value;
             }

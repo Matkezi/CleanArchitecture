@@ -40,6 +40,8 @@ namespace SkipperAgency.Infrastructure.Identity
         /// <returns></returns>
         public async Task<(Result Result, string UserId, string emailConfirmationToken)> CreateUserAsync(AppUser user, RoleEnum role, string password)
         {
+            var user1 = await _userManager.FindByEmailAsync(user.Email);
+
             user.UserName = user.Email;
             var result = await _userManager.CreateAsync(user, password);
             if (!result.Succeeded)

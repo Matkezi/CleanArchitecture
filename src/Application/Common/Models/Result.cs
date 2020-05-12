@@ -22,7 +22,7 @@ namespace SkipperAgency.Application.Common.Models
 
         public static Result Failure(string error)
         {
-            return Failure(new string[1] { error });
+            return Failure(new[] { error });
         }
 
         public static Result Failure(IEnumerable<string> errors)
