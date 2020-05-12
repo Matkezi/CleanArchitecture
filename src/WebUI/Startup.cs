@@ -10,7 +10,6 @@ using SkipperAgency.Application;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Infrastructure;
 using SkipperAgency.Infrastructure.Persistence;
-using SkipperAgency.WebUI.Filters;
 using SkipperAgency.WebUI.Services;
 using System;
 using System.IO;
@@ -41,8 +40,7 @@ namespace SkipperAgency.WebUI
             services.AddHealthChecks()
                 .AddDbContextCheck<SkipperAgencyDbContext>();
 
-            services.AddControllersWithViews(options =>
-                options.Filters.Add(new ApiExceptionFilter()));
+            services.AddControllersWithViews();
 
             services.AddRazorPages();
 
