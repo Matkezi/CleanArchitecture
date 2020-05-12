@@ -1,22 +1,19 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SkipperAgency.Application.Bookings.CommonModels;
 using SkipperAgency.Application.Common.Interfaces;
-using SkipperAgency.Domain.Enums;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace SkipperAgency.Application.Bookings.Queries.SkipperGetBookings
+namespace SkipperAgency.Application.Bookings.Queries.GetCharterBookings
 {
-    public class SkipperGetBookingsQuery : IRequest<IEnumerable<BookingModel>>
+    public class GetCharterBookingsQuery : IRequest<IEnumerable<BookingModel>>
     {
-        public BookingStatusEnum BookingStatus { get; set; }
-
-        public class Handler : IRequestHandler<SkipperGetBookingsQuery, IEnumerable<BookingModel>>
+        public class Handler : IRequestHandler<GetCharterBookingsQuery, IEnumerable<BookingModel>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -29,12 +26,12 @@ namespace SkipperAgency.Application.Bookings.Queries.SkipperGetBookings
                 _currentUserService = currentUserService;
             }
 
-            public async Task<IEnumerable<BookingModel>> Handle(SkipperGetBookingsQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<BookingModel>> Handle(GetCharterBookingsQuery request, CancellationToken cancellationToken)
             {
                 return await _context.Bookings
-                    .Include(b => b.Skipper).Include(b => b.Boat)
-                    .Include(b => b.Charter).Include(b => b.GuestNationality)
-                    .Where(b => b.Skipper.Id == _currentUserService.UserId && b.Status == request.BookingStatus)
+                    .Include(b => b.Charter).Include(b => b.Boat)
+                    .Include(b => b.Skipper).Include(b => b.BookingHistories)
+                    .Where(b => b.Charter.Id == _currentUserService.UserId)
                     .ProjectTo<BookingModel>(_mapper.ConfigurationProvider)
                     .ToListAsync(cancellationToken);
             }
