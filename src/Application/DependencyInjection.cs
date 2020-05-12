@@ -4,8 +4,6 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using SkipperAgency.Application.Common.Behaviours;
 using System.Reflection;
-using MediatR.Pipeline;
-using SkipperAgency.Application.Common.Behaviours.Auth;
 
 namespace SkipperAgency.Application
 {
@@ -18,13 +16,6 @@ namespace SkipperAgency.Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-
-            // TODO: waiting for https://github.com/dotnet/runtime/pull/34393
-            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(UserAuthBehaviour<>));
-            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(CharterOrSkipperBookingsAuthBehaviour<>));
-            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(CharterBookingsAuthBehaviour<>));
-            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(SkipperBookingAuthBehaviour<>));
-            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(CharterBoatAuthBehaviour<>));
 
             return services;
         }

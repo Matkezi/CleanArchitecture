@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SkipperAgency.Application.Common.Helpers
+namespace SkipperAgency.Application.Common.ExtensionMethods
 {
     public static class RandomUrl
     {

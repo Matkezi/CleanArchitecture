@@ -10,13 +10,13 @@ using SkipperAgency.Application.Bookings.CommonModels;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.Enums;
 
-namespace SkipperAgency.Application.Bookings.Queries.GetSkipperBookings
+namespace SkipperAgency.Application.Bookings.Queries.GetSkipperBookingsByStatus
 {
-    public class GetSkipperBookingsQuery : IRequest<IEnumerable<BookingModel>>
+    public class GetSkipperBookingsByStatusQuery : IRequest<IEnumerable<BookingModel>>
     {
         public BookingStatusEnum BookingStatus { get; set; }
 
-        public class Handler : IRequestHandler<GetSkipperBookingsQuery, IEnumerable<BookingModel>>
+        public class Handler : IRequestHandler<GetSkipperBookingsByStatusQuery, IEnumerable<BookingModel>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -29,7 +29,7 @@ namespace SkipperAgency.Application.Bookings.Queries.GetSkipperBookings
                 _currentUserService = currentUserService;
             }
 
-            public async Task<IEnumerable<BookingModel>> Handle(GetSkipperBookingsQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<BookingModel>> Handle(GetSkipperBookingsByStatusQuery request, CancellationToken cancellationToken)
             {
                 return await _context.Bookings
                     .Include(b => b.Skipper).Include(b => b.Boat)

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Bookings.Commands.SkipperDeclineBooking
 {
-    public class SkipperDeclineBookingCommand : IRequest, ISkipperBookingAuth
+    public class SkipperDeclineBookingCommand : IRequest
     {
         public int Id { get; set; }
 

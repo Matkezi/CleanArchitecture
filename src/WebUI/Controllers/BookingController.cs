@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using SkipperAgency.Application.Bookings.Commands.CreateBooking;
 using SkipperAgency.Application.Bookings.Commands.DeleteBooking;
 using SkipperAgency.Application.Bookings.Queries.GetCharterBookings;
-using SkipperAgency.Application.Bookings.Queries.GetSkipperBookings;
+using SkipperAgency.Application.Bookings.Queries.GetSkipperBookingsByStatus;
 
 namespace SkipperAgency.WebUI.Controllers
 {
@@ -26,7 +26,7 @@ namespace SkipperAgency.WebUI.Controllers
         [Authorize(Roles = "Admin, Skipper")]
         public async Task<ActionResult<IEnumerable<BookingModel>>> GetSkipperBookingPending()
         {
-            return Ok(await Mediator.Send(new GetSkipperBookingsQuery { BookingStatus = BookingStatusEnum.SkipperRequestPending }));
+            return Ok(await Mediator.Send(new GetSkipperBookingsByStatusQuery { BookingStatus = BookingStatusEnum.SkipperRequestPending }));
         }
 
         [HttpGet]
@@ -34,7 +34,7 @@ namespace SkipperAgency.WebUI.Controllers
         [Authorize(Roles = "Admin, Skipper")]
         public async Task<ActionResult<IEnumerable<BookingModel>>> GetSkipperBookingAccepted()
         {
-            return Ok(await Mediator.Send(new GetSkipperBookingsQuery { BookingStatus = BookingStatusEnum.SkipperAccepted }));
+            return Ok(await Mediator.Send(new GetSkipperBookingsByStatusQuery { BookingStatus = BookingStatusEnum.SkipperAccepted }));
         }
 
         [HttpPost]

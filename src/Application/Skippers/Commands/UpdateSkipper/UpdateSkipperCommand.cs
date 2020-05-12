@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SkipperAgency.Application.Common.Exceptions;
-using SkipperAgency.Application.Common.Helpers;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Application.Identity.Commands.EmailChangeRequest;
 using SkipperAgency.Application.Skills.Queries.GetSkill;
@@ -13,10 +12,11 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using SkipperAgency.Application.Common.ExtensionMethods;
 
 namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
 {
-    public class UpdateSkipperCommand : IRequest, IUserAuth
+    public class UpdateSkipperCommand : IRequest
     {
         public string Id { get; set; }
         public string Oib { get; set; }

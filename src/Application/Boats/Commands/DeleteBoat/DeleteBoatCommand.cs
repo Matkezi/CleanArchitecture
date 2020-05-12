@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Boats.Commands.DeleteBoat
 {
-    public class DeleteBoatCommand : IRequest, ICharterBoatAuth
+    public class DeleteBoatCommand : IRequest
     {
         public int Id { get; set; }
 

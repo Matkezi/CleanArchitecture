@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Configuration;
-using SkipperAgency.Application.Common.Helpers;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.EmailTemplateModels;
 using SkipperAgency.Domain.Entities;
 using System.Threading;
 using System.Threading.Tasks;
+using SkipperAgency.Application.Common.ExtensionMethods;
 
 namespace SkipperAgency.Application.Skippers.Commands.PreCreateSkipper
 {

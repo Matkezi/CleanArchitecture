@@ -36,11 +36,6 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
                     .Include(x => x.Boat)
                     .FirstAsync(x => x.Id == request.BookingId, cancellationToken);
 
-                if (booking.GuestEmail != request.GuestEmail)
-                {
-                    throw new UnauthorizedAccessException($"Booking not connected with {request.GuestEmail}");
-                }
-
                 booking.Status = BookingStatusEnum.SkipperRequested;
                 booking.SkipperId = request.SkipperId;
                 await _context.SaveChangesAsync(cancellationToken);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Charters.Commands.DeleteCharter
 {
-    public class DeleteCharterCommand : IRequest, IUserAuth
+    public class DeleteCharterCommand : IRequest
     {
         public string Id { get; set; }
 

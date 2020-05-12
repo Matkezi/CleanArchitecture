@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Bookings.Queries.GetBooking
 {
-    public class GetBookingQuery : IRequest<BookingModel>, ICharterOrSkipperBookingAuth
+    public class GetBookingQuery : IRequest<BookingModel>
     {
-        public int BookingId { get; set; }
+        public int Id { get; set; }
 
         public class Handler : IRequestHandler<GetBookingQuery, BookingModel>
         {
@@ -24,9 +24,8 @@ namespace SkipperAgency.Application.Bookings.Queries.GetBooking
 
             public async Task<BookingModel> Handle(GetBookingQuery request, CancellationToken cancellationToken)
             {
-                var booking = await _context.Bookings.FindAsync(request.BookingId);
+                var booking = await _context.Bookings.FindAsync(request.Id);
                 return _mapper.Map<BookingModel>(booking);
-
             }
 
         }

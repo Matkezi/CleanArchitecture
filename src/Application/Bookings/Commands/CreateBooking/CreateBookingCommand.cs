@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using SkipperAgency.Application.Common.Exceptions;
-using SkipperAgency.Application.Common.Helpers;
+using SkipperAgency.Application.Common.ExtensionMethods;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.EmailTemplateModels;
 using SkipperAgency.Domain.Entities;

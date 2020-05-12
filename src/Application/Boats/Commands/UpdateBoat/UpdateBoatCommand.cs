@@ -10,7 +10,7 @@ using SkipperAgency.Domain.Entities;
 
 namespace SkipperAgency.Application.Boats.Commands.UpdateBoat
 {
-    public class UpdateBoatCommand : IRequest, ICharterBoatAuth
+    public class UpdateBoatCommand : IRequest
     {
         public int Id { get; set; }
         public string Name { get; set; }

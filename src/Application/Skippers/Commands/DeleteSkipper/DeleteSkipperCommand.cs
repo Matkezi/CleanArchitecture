@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Skippers.Commands.DeleteSkipper
 {
-    public class DeleteSkipperCommand : IRequest, IUserAuth
+    public class DeleteSkipperCommand : IRequest
     {
         public string Id { get; set; }
 

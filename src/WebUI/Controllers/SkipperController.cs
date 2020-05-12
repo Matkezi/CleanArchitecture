@@ -33,8 +33,8 @@ namespace SkipperAgency.WebUI.Controllers
             return Ok(await Mediator.Send(new GetSkipperQuery { Id = skipperId }));
         }
 
-        [HttpGet("avalibility/{skipperId}")]
-        public async Task<ActionResult<AvailabilityModel>> GetSkipperAvalibility(string skipperId)
+        [HttpGet("availability/{skipperId}")]
+        public async Task<ActionResult<AvailabilityModel>> GetSkipperAvailability(string skipperId)
         {
             return Ok(await Mediator.Send(new GetSkipperAvailabilityQuery { Id = skipperId }));
 
@@ -42,8 +42,8 @@ namespace SkipperAgency.WebUI.Controllers
 
         // PUT: api/Skipper/avalibility/update
         //[Authorize(Roles = "Admin, Skipper")]
-        [HttpPut("avalibility/update")]
-        public async Task<IActionResult> UpdateSkipperAvalibility(UpdateSkipperAvailabilityCommand command)
+        [HttpPut("availability/update")]
+        public async Task<IActionResult> UpdateSkipperAvailability(UpdateSkipperAvailabilityCommand command)
         {
             await Mediator.Send(command);
             return NoContent();
