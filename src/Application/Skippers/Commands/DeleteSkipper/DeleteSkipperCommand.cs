@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Skippers.Commands.DeleteSkipper
 {
-    public class DeleteSkipperCommand : IRequest, ISkipperAuth
+    public class DeleteSkipperCommand : IRequest, IUserAuth
     {
-        public string SkipperId { get; set; }
+        public string Id { get; set; }
 
         public class Handler : IRequestHandler<DeleteSkipperCommand>
         {
@@ -23,11 +23,11 @@ namespace SkipperAgency.Application.Skippers.Commands.DeleteSkipper
             public async Task<Unit> Handle(DeleteSkipperCommand request, CancellationToken cancellationToken)
             {
                 var entity = await _context.Skipper
-                    .FindAsync(request.SkipperId);
+                    .FindAsync(request.Id);
 
                 if (entity is null)
                 {
-                    throw new NotFoundException(nameof(Charter), request.SkipperId);
+                    throw new NotFoundException(nameof(Charter), request.Id);
                 }
 
                 _context.Skipper.Remove(entity);

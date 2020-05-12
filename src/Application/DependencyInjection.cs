@@ -20,8 +20,7 @@ namespace SkipperAgency.Application
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
             // TODO: waiting for https://github.com/dotnet/runtime/pull/34393
-            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(CharterAuthBehaviour<>));
-            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(SkipperAuthBehaviour<>));
+            services.AddTransient(typeof(IRequestPreProcessor<>), typeof(UserAuthBehaviour<>));
             services.AddTransient(typeof(IRequestPreProcessor<>), typeof(CharterOrSkipperBookingsAuthBehaviour<>));
             services.AddTransient(typeof(IRequestPreProcessor<>), typeof(CharterBookingsAuthBehaviour<>));
             services.AddTransient(typeof(IRequestPreProcessor<>), typeof(SkipperBookingAuthBehaviour<>));

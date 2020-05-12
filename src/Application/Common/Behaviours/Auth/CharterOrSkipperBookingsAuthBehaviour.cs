@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
@@ -8,13 +9,11 @@ namespace SkipperAgency.Application.Common.Behaviours.Auth
 {
     public class CharterOrSkipperBookingsAuthBehaviour<TRequest> : IRequestPreProcessor<TRequest> where TRequest : ICharterOrSkipperBookingAuth
     {
-        private readonly ILogger _logger;
         private readonly ICurrentUserService _currentUserService;
         private readonly IApplicationDbContext _context;
 
-        public CharterOrSkipperBookingsAuthBehaviour(ILogger<TRequest> logger, ICurrentUserService currentUserService, IApplicationDbContext context)
+        public CharterOrSkipperBookingsAuthBehaviour(ICurrentUserService currentUserService, IApplicationDbContext context)
         {
-            _logger = logger;
             _currentUserService = currentUserService;
             _context = context;
         }
@@ -23,10 +22,10 @@ namespace SkipperAgency.Application.Common.Behaviours.Auth
         {
             var userId = _currentUserService.UserId;
             var bookingId = request.BookingId;
-            var entity = await _context.Bookings.FindAsync(bookingId);
-            if (entity?.CharterId != userId || entity?.SkipperId != userId)
+            var booking = await _context.Bookings.FindAsync(bookingId);
+            if (booking?.CharterId != userId || booking?.SkipperId != userId)
             {
-                throw new UnauthorizedException($"Booking Charter", _currentUserService.UserId);
+                throw new UnauthorizedAccessException($"User {_currentUserService.UserId} is not authorized for booking {booking?.Id}.");
             }
         }
     }

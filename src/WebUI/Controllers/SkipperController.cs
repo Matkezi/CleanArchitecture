@@ -84,7 +84,7 @@ namespace SkipperAgency.WebUI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Skipper>> Delete(string id)
         {
-            await Mediator.Send(new DeleteSkipperCommand { SkipperId = id });
+            await Mediator.Send(new DeleteSkipperCommand { Id = id });
             return NoContent();
         }
 

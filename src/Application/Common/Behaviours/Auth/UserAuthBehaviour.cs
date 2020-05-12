@@ -6,22 +6,20 @@ using SkipperAgency.Application.Common.Interfaces;
 
 namespace SkipperAgency.Application.Common.Behaviours.Auth
 {
-    public class CharterAuthBehaviour<TRequest> : IRequestPreProcessor<TRequest> where TRequest : ICharterAuth
+    public class UserAuthBehaviour<TRequest> : IRequestPreProcessor<TRequest> where TRequest : IUserAuth
     {
         private readonly ICurrentUserService _currentUserService;
 
-        public CharterAuthBehaviour(ICurrentUserService currentUserService)
+        public UserAuthBehaviour(ICurrentUserService currentUserService)
         {
             _currentUserService = currentUserService;
         }
 
         public async Task Process(TRequest request, CancellationToken cancellationToken)
         {
-            var userId = _currentUserService.UserId;
-            var charterId = request.Id;
-            if (charterId != userId)
+            if (_currentUserService.UserId != request.Id)
             {
-                throw new UnauthorizedAccessException($"Boat Charter {_currentUserService.UserId}");
+                throw new UnauthorizedAccessException($"Currently logged in user is not authorized for this action.");
             }
 
         }

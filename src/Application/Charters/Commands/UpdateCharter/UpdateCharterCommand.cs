@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Charters.Commands.UpdateCharter
 {
-    public class UpdateCharterCommand : IRequest, ICharterAuth
+    public class UpdateCharterCommand : IRequest, IUserAuth
     {
         public string Id { get; set; }
         public string CharterName { get; set; }

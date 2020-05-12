@@ -10,7 +10,7 @@ namespace SkipperAgency.Application.Bookings.Commands.SkipperAcceptBooking
 {
     public class SkipperAcceptBookingCommand : IRequest, ISkipperBookingAuth
     {
-        public int BookingId { get; set; }
+        public int Id { get; set; }
 
         public class Handler : IRequestHandler<SkipperAcceptBookingCommand>
         {
@@ -27,7 +27,7 @@ namespace SkipperAgency.Application.Bookings.Commands.SkipperAcceptBooking
 
             public async Task<Unit> Handle(SkipperAcceptBookingCommand request, CancellationToken cancellationToken)
             {
-                var booking = await _context.Bookings.FindAsync(request.BookingId);
+                var booking = await _context.Bookings.FindAsync(request.Id);
                 booking.Status = BookingStatusEnum.SkipperAccepted;
                 await _context.SaveChangesAsync(cancellationToken);
 

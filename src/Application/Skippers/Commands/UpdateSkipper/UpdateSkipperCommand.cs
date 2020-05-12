@@ -16,9 +16,9 @@ using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
 {
-    public class UpdateSkipperCommand : IRequest, ISkipperAuth
+    public class UpdateSkipperCommand : IRequest, IUserAuth
     {
-        public string SkipperId { get; set; }
+        public string Id { get; set; }
         public string Oib { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -54,11 +54,11 @@ namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
 
             public async Task<Unit> Handle(UpdateSkipperCommand request, CancellationToken cancellationToken)
             {
-                var skipper = await _context.Skipper.Include(x => x.ListOfLanguages).Include(x => x.ListOfSkills).FirstOrDefaultAsync(x => x.Id == request.SkipperId);
+                var skipper = await _context.Skipper.Include(x => x.ListOfLanguages).Include(x => x.ListOfSkills).FirstOrDefaultAsync(x => x.Id == request.Id);
 
                 if (skipper is null)
                 {
-                    throw new NotFoundException(nameof(Skipper), request.SkipperId);
+                    throw new NotFoundException(nameof(Skipper), request.Id);
                 }
 
                 skipper.Oib = request.Oib;

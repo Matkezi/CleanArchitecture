@@ -11,7 +11,7 @@ namespace SkipperAgency.Application.Bookings.Commands.SkipperDeclineBooking
 {
     public class SkipperDeclineBookingCommand : IRequest, ISkipperBookingAuth
     {
-        public int BookingId { get; set; }
+        public int Id { get; set; }
 
         public class Handler : IRequestHandler<SkipperDeclineBookingCommand>
         {
@@ -31,9 +31,9 @@ namespace SkipperAgency.Application.Bookings.Commands.SkipperDeclineBooking
             public async Task<Unit> Handle(SkipperDeclineBookingCommand request, CancellationToken cancellationToken)
             {
 
-                var booking = await _context.Bookings.FindAsync(request.BookingId);
+                var booking = await _context.Bookings.FindAsync(request.Id);
 
-                BookingHistory bookingHistory = new BookingHistory
+                var bookingHistory = new BookingHistory
                 {
                     Booking = booking,
                     BookingId = booking.Id,
@@ -41,7 +41,7 @@ namespace SkipperAgency.Application.Bookings.Commands.SkipperDeclineBooking
                     SkipperId = booking.Skipper.Id,
                     DateTime = _dateTime.Now
                 };
-                _context.BookingHistories.Add(bookingHistory);
+                await _context.BookingHistories.AddAsync(bookingHistory, cancellationToken);
 
                 booking.Status = BookingStatusEnum.SkipperRequestPending;
                 booking.Skipper = null;

@@ -2,6 +2,6 @@
 {
     public interface ISkipperBookingAuth
     {
-        public int BookingId { get; set; }
+        public int Id { get; set; }
     }
 }

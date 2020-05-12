@@ -23,10 +23,10 @@ namespace SkipperAgency.Application.Common.Behaviours.Auth
         public async Task Process(TRequest request, CancellationToken cancellationToken)
         {
             var userId = _currentUserService.UserId;
-            var entity = await _context.Bookings.FindAsync(request.Id);
-            if (entity?.CharterId != userId)
+            var boat = await _context.Boats.FindAsync(request.Id);
+            if (boat?.CharterId != userId)
             {
-                throw new UnauthorizedAccessException($"Boat Charter {_currentUserService.UserId}");
+                throw new UnauthorizedAccessException($"Charter {_currentUserService.UserId} not authorized for boat {boat?.Id}.");
             }
 
         }
