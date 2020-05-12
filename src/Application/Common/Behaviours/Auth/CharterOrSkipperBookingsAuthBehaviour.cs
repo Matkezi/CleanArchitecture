@@ -1,13 +1,10 @@
-﻿using CleanArchitecture.Application.Bookings.Commands.SkipperAcceptBooking;
-using CleanArchitecture.Application.Common.Exceptions;
-using CleanArchitecture.Application.Common.Interfaces;
-using CleanArchitecture.Application.TodoLists.Commands.DeleteTodoList;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
-using System.Threading;
-using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Interfaces;
 
-namespace CleanArchitecture.Application.Common.Behaviours
+namespace SkipperAgency.Application.Common.Behaviours.Auth
 {
     public class CharterOrSkipperBookingsAuthBehaviour<TRequest> : IRequestPreProcessor<TRequest> where TRequest : ICharterOrSkipperBookingAuth
     {
@@ -29,8 +26,6 @@ namespace CleanArchitecture.Application.Common.Behaviours
             var entity = await _context.Bookings.FindAsync(bookingId);
             if (entity?.CharterId != userId || entity?.SkipperId != userId)
             {
-                // TODO: not sure if this logger is neccessary.
-                _logger.LogError("");
                 throw new UnauthorizedException($"Booking Charter", _currentUserService.UserId);
             }
         }

@@ -2,6 +2,6 @@
 {
     public interface ICharterAuth
     {
-        public string CharterId { get; set; }
+        public string Id { get; set; }
     }
 }

@@ -7,9 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Common\Behaviours\AuthBehaviours\**" />
-    <EmbeddedResource Remove="Common\Behaviours\AuthBehaviours\**" />
-    <None Remove="Common\Behaviours\AuthBehaviours\**" />
+    <Compile Remove="Common\Behaviours\Auth\**" />
+    <EmbeddedResource Remove="Common\Behaviours\Auth\**" />
+    <None Remove="Common\Behaviours\Auth\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Common\Behaviours\Auth\CharterAuthBehaviour.cs" />
+    <Compile Include="Common\Behaviours\Auth\CharterBoatAuthBehaviour.cs" />
+    <Compile Include="Common\Behaviours\Auth\CharterBookingsAuthBehaviour.cs" />
+    <Compile Include="Common\Behaviours\Auth\CharterOrSkipperBookingsAuthBehaviour.cs" />
+    <Compile Include="Common\Behaviours\Auth\SkipperAuthBehaviour.cs" />
+    <Compile Include="Common\Behaviours\Auth\SkipperBookingAuthBehaviour.cs" />
   </ItemGroup>
 
   <ItemGroup>

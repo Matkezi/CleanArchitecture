@@ -2,6 +2,6 @@
 {
     public interface ICharterBookingAuth
     {
-        public int BookingId { get; set; }
+        public int Id { get; set; }
     }
 }

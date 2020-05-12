@@ -52,7 +52,7 @@ namespace SkipperAgency.WebUI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult> DeleteCharter(string id)
         {
-            await Mediator.Send(new DeleteCharterCommand { CharterId = id });
+            await Mediator.Send(new DeleteCharterCommand { Id = id });
             return NoContent();
         }
     }

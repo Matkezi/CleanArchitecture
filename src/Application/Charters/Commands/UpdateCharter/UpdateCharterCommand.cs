@@ -11,7 +11,7 @@ namespace SkipperAgency.Application.Charters.Commands.UpdateCharter
 {
     public class UpdateCharterCommand : IRequest, ICharterAuth
     {
-        public string CharterId { get; set; }
+        public string Id { get; set; }
         public string CharterName { get; set; }
         public string Address { get; set; }
         public string ZipCode { get; set; }
@@ -37,11 +37,11 @@ namespace SkipperAgency.Application.Charters.Commands.UpdateCharter
 
             public async Task<Unit> Handle(UpdateCharterCommand request, CancellationToken cancellationToken)
             {
-                var entity = await _context.Charter.FirstOrDefaultAsync(x => x.Id == request.CharterId, cancellationToken);
+                var entity = await _context.Charter.FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
                 if (entity is null)
                 {
-                    throw new NotFoundException(nameof(Charter), request.CharterId);
+                    throw new NotFoundException(nameof(Charter), request.Id);
                 }
 
                 entity.CharterName = request.CharterName;

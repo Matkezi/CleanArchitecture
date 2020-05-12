@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SkipperAgency.Application.Bookings.Commands.CharterCreateBooking;
-using SkipperAgency.Application.Bookings.Commands.CharterDeleteBooking;
 using SkipperAgency.Application.Bookings.Commands.GuestRequestBooking;
 using SkipperAgency.Application.Bookings.Commands.SkipperAcceptBooking;
 using SkipperAgency.Application.Bookings.Commands.SkipperDeclineBooking;
@@ -15,6 +13,8 @@ using SkipperAgency.Application.Skippers.Queries.GetSkipper;
 using SkipperAgency.Domain.Enums;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using SkipperAgency.Application.Bookings.Commands.CreateBooking;
+using SkipperAgency.Application.Bookings.Commands.DeleteBooking;
 
 namespace SkipperAgency.WebUI.Controllers
 {
@@ -95,7 +95,7 @@ namespace SkipperAgency.WebUI.Controllers
         // POST: api/Booking
         [HttpPost]
         [Authorize(Roles = "Admin, Charter")]
-        public async Task<IActionResult> Create(CharterCreateBookingCommand command)
+        public async Task<IActionResult> Create(CreateBookingCommand command)
         {
             await Mediator.Send(command);
             return NoContent();
@@ -105,7 +105,7 @@ namespace SkipperAgency.WebUI.Controllers
         [Authorize(Roles = "Admin, Charter")]
         public async Task<IActionResult> Delete(int id)
         {
-            await Mediator.Send(new CharterDeleteBookingCommand { BookingId = id });
+            await Mediator.Send(new DeleteBookingCommand { Id = id });
             return NoContent();
         }
     }

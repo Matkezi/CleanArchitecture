@@ -1,4 +1,7 @@
-﻿using MediatR;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using SkipperAgency.Application.Common.Exceptions;
 using SkipperAgency.Application.Common.Helpers;
@@ -6,37 +9,34 @@ using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.EmailTemplateModels;
 using SkipperAgency.Domain.Entities;
 using SkipperAgency.Domain.Enums;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace SkipperAgency.Application.Bookings.Commands.CharterCreateBooking
+namespace SkipperAgency.Application.Bookings.Commands.CreateBooking
 {
-    public class CharterCreateBookingCommand : IRequest
+    public class CreateBookingCommand : IRequest
     {
-        public int BoatId { get; set; }
+        public int Id { get; set; }
         public DateTime BookedFrom { get; set; }
         public DateTime BookedTo { get; set; }
         public string OnboardingLocation { get; set; }
         public string GuestName { get; set; }
         public string GuestEmail { get; set; }
 
-        public class Handler : IRequestHandler<CharterCreateBookingCommand>
+        public class Handler : IRequestHandler<CreateBookingCommand>
         {
             private readonly IEmailService _emailService;
             private readonly IConfiguration _configuration;
             private readonly ICurrentUserService _currentUserService;
             private readonly IApplicationDbContext _context;
 
-            public Handler(IEmailService emailer, IConfiguration configuration, ICurrentUserService currentUserService, IApplicationDbContext context)
+            public Handler(IEmailService emailService, IConfiguration configuration, ICurrentUserService currentUserService, IApplicationDbContext context)
             {
-                _emailService = emailer;
+                _emailService = emailService;
                 _configuration = configuration;
                 _currentUserService = currentUserService;
                 _context = context;
             }
 
-            public async Task<Unit> Handle(CharterCreateBookingCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(CreateBookingCommand request, CancellationToken cancellationToken)
             {
                 var charter = await _context.Charter.FindAsync(_currentUserService.UserId);
                 if (charter is null)
@@ -47,7 +47,7 @@ namespace SkipperAgency.Application.Bookings.Commands.CharterCreateBooking
                 var booking = new Booking
                 {
                     CharterId = charter.Id,
-                    BoatId = request.BoatId,
+                    BoatId = request.Id,
                     BookedFrom = request.BookedFrom,
                     BookedTo = request.BookedTo,
                     GuestName = request.GuestName,

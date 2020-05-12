@@ -9,7 +9,7 @@ namespace SkipperAgency.Application.Charters.Commands.DeleteCharter
 {
     public class DeleteCharterCommand : IRequest, ICharterAuth
     {
-        public string CharterId { get; set; }
+        public string Id { get; set; }
 
         public class Handler : IRequestHandler<DeleteCharterCommand>
         {
@@ -23,11 +23,11 @@ namespace SkipperAgency.Application.Charters.Commands.DeleteCharter
             public async Task<Unit> Handle(DeleteCharterCommand request, CancellationToken cancellationToken)
             {
                 var entity = await _context.Charter
-                    .FindAsync(request.CharterId);
+                    .FindAsync(request.Id);
 
                 if (entity is null)
                 {
-                    throw new NotFoundException(nameof(DeleteCharterCommand), request.CharterId);
+                    throw new NotFoundException(nameof(DeleteCharterCommand), request.Id);
                 }
 
                 _context.Charter.Remove(entity);
