@@ -49,9 +49,7 @@ namespace SkipperAgency.Application.Charters.Commands.CreateCharter
                 };
 
                 var emailConfirmationToken = await _identityService.CreateUserAsync(charter, RoleEnum.Charter, request.Password);
-
-
-
+                
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/confirm-email?email={charter.Email}&token={HttpUtility.UrlEncode(emailConfirmationToken)}";
 
                 await _emailService.SendEmailWithTemplate(

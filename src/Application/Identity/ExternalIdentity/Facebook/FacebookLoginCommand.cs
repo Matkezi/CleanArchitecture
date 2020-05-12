@@ -24,9 +24,7 @@ namespace SkipperAgency.Application.Identity.ExternalIdentity.Facebook
             public async Task<LoginResponse> Handle(FacebookLoginCommand request, CancellationToken cancellationToken)
             {
                 var externalIdentityProvider = _externalIdentityProviderFactory.GetExternalIdentityProvider(ExternalIdentityProviderEnum.Facebook);
-                var result = await externalIdentityProvider.ExternalLogin(request.AuthToken);
-                //TODO what if reulst failed
-                return result.loginResponse;
+                return await externalIdentityProvider.ExternalLogin(request.AuthToken);
             }
         }
     }

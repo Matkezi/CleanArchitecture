@@ -7,7 +7,7 @@ namespace SkipperAgency.Infrastructure.Identity.ExternalIdentity.Google
 {
     public class GoogleIdentityProvider : IExternalIdentityProvider
     {
-        public Task<(Result result, LoginResponse loginResponse)> ExternalLogin(string authToken)
+        public Task<LoginResponse> ExternalLogin(string authToken)
         {
             throw new NotImplementedException();
         }

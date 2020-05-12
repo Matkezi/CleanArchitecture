@@ -5,6 +5,6 @@ namespace SkipperAgency.Application.Common.Interfaces
 {
     public interface IExternalIdentityProvider
     {
-        Task<(Result result, LoginResponse loginResponse)> ExternalLogin(string authToken);
+        Task<LoginResponse> ExternalLogin(string authToken);
     }
 }

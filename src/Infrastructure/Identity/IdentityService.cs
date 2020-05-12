@@ -48,6 +48,7 @@ namespace SkipperAgency.Infrastructure.Identity
             }
 
             newUser.UserName = newUser.Email;
+
             var result = await _userManager.CreateAsync(newUser, password);
             if (!result.Succeeded)
             {

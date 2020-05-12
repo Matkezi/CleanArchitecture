@@ -6,6 +6,7 @@ using SkipperAgency.Application.Common.Models;
 using SkipperAgency.Domain.Entities;
 using System.Linq;
 using System.Threading.Tasks;
+using SkipperAgency.Application.Common.Exceptions;
 
 namespace SkipperAgency.Infrastructure.Identity.ExternalIdentity.Facebook
 {
@@ -26,20 +27,19 @@ namespace SkipperAgency.Infrastructure.Identity.ExternalIdentity.Facebook
             _httpClient = httpClient;
         }
 
-        public async Task<(Result result, LoginResponse loginResponse)> ExternalLogin(string authToken)
+        public async Task<LoginResponse> ExternalLogin(string authToken)
         {
             var userInfoResponse = await _httpClient.GetStringAsync($"https://graph.facebook.com/v2.8/me?fields=id,email,first_name,last_name,name,picture&access_token={authToken}");
             var userInfo = JsonConvert.DeserializeObject<FacebookUserData>(userInfoResponse);
 
-            AppUser user = await _userManager.FindByNameAsync(userInfo.Email);
+            var user = await _userManager.FindByEmailAsync(userInfo.Email);
             if (user is null)
             {
-                string errorMessage = $"Login failed. User: {userInfo.Email}";
-                return (Result.Failure(errorMessage), null);
+                throw new NotFoundException("User", userInfo.Email);
             }
             var token = await _jwtFactory.GenerateEncodedToken(user);
             var roles = await _identityService.GetUserRoles(user.Email);
-            return (Result.Success(),
+            return 
                 new LoginResponse
                 {
                     Token = token,
@@ -47,7 +47,7 @@ namespace SkipperAgency.Infrastructure.Identity.ExternalIdentity.Facebook
                     Role = roles.First().ToString(),
                     Id = user.Id,
                     UserPhotoUrl = user.UserPhotoUrl
-                });
+                };
         }
     }
 }
