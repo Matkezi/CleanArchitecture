@@ -6,6 +6,7 @@ using SkipperAgency.Domain.Enums;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using SkipperAgency.Domain.ValueObjects;
 
 namespace SkipperAgency.Application.Boats.Commands.CreateBoat
 {

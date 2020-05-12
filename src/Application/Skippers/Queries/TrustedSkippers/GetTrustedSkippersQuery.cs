@@ -36,7 +36,7 @@ namespace SkipperAgency.Application.Skippers.Queries.TrustedSkippers
                     .Where(skipper => charter.TrustedSkippers.Select(x => x.SkipperId)
                     .Contains(skipper.Id))
                     .ProjectTo<TrustedSkipperModel>(_mapper.ConfigurationProvider)
-                    .ToListAsync();
+                    .ToListAsync(cancellationToken);
             }
 
         }

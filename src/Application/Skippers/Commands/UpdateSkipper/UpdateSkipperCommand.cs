@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using SkipperAgency.Application.Common.ExtensionMethods;
+using SkipperAgency.Domain.ValueObjects;
 
 namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
 {

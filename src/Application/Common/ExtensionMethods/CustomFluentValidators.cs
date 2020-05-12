@@ -1,8 +1,8 @@
 ﻿using System;
-using System.IO;
 using System.Text.RegularExpressions;
 using FluentValidation;
 using SkipperAgency.Domain.Common;
+using SkipperAgency.Domain.ValueObjects;
 
 namespace SkipperAgency.Application.Common.ExtensionMethods
 {
@@ -26,7 +26,7 @@ namespace SkipperAgency.Application.Common.ExtensionMethods
             {
                 var b64Data = file.Base64Data;
                 b64Data = b64Data.Trim();
-                return (b64Data.Length % 4 == 0) && Regex.IsMatch(b64Data, @"^[a-zA-Z0-9\+/]*={0,3}$", RegexOptions.None);
+                return b64Data.Length % 4 == 0 && Regex.IsMatch(b64Data, @"^[a-zA-Z0-9\+/]*={0,3}$", RegexOptions.None);
             });
         }
     }

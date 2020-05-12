@@ -29,7 +29,7 @@ namespace SkipperAgency.Application.Skippers.Queries.GetAllSkippers
                     .Include(s => s.ListOfSkills).ThenInclude(s => s.Skill)
                     .Include(s => s.ListOfLanguages).ThenInclude(l => l.Language)
                     .ProjectTo<SkipperModel>(_mapper.ConfigurationProvider)
-                    .ToListAsync();
+                    .ToListAsync(cancellationToken);
             }
         }
     }

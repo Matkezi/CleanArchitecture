@@ -2,9 +2,9 @@
 
 namespace SkipperAgency.Application.Skills.Queries.GetSkill
 {
-    public class GetSkillQueryVaidator : AbstractValidator<GetSkillQuery>
+    public class GetSkillQueryValidator : AbstractValidator<GetSkillQuery>
     {
-        public GetSkillQueryVaidator()
+        public GetSkillQueryValidator()
         {
             RuleFor(x => x.SkillId).IsInEnum();
         }

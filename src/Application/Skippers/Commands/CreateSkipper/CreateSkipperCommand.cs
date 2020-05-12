@@ -58,7 +58,7 @@ namespace SkipperAgency.Application.Skippers.Commands.CreateSkipper
                     ));
 
 
-                await _emailService.SendEmailWithTemplate(
+                _ =_emailService.SendEmailWithTemplate(
                     new NewSkipperNotice(
                         toEmail: _configuration["AppSettings:MainCharterEmail"],
                         skipperFullName: skipper.FullName,

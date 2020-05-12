@@ -32,11 +32,10 @@ namespace SkipperAgency.Application.Skippers.Queries.TrustedSkippers
                 return await _context.Skipper
                     .Include(s => s.ListOfLanguages)
                     .ThenInclude(l => l.Language)
-                    .Where(skipper =>
-                    !charter.TrustedSkippers.Any(ts => ts.SkipperId == skipper.Id) &&
-                    !charter.UnTrustedSkippers.Any(uts => uts.SkipperId == skipper.Id))
+                    .Where(skipper => charter.TrustedSkippers.All(ts => ts.SkipperId != skipper.Id) && 
+                                      charter.UnTrustedSkippers.All(uts => uts.SkipperId != skipper.Id))
                     .ProjectTo<TrustedSkipperModel>(_mapper.ConfigurationProvider)
-                    .ToListAsync();
+                    .ToListAsync(cancellationToken);
             }
 
         }

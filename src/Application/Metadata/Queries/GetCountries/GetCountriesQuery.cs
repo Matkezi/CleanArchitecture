@@ -26,7 +26,7 @@ namespace SkipperAgency.Application.Metadata.Queries.GetCountries
             {
                 return await _context.Countries
                     .ProjectTo<CountryModel>(_mapper.ConfigurationProvider)
-                    .ToListAsync();
+                    .ToListAsync(cancellationToken);
             }
         }
     }

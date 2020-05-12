@@ -27,7 +27,7 @@ namespace SkipperAgency.Application.Skills.Queries.GetAllSkills
             {
                 return await _context.Skills
                     .ProjectTo<SkillModel>(_mapper.ConfigurationProvider)
-                    .ToListAsync();
+                    .ToListAsync(cancellationToken);
             }
         }
     }

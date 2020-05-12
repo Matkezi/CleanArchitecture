@@ -33,7 +33,7 @@ namespace SkipperAgency.Application.Skippers.Queries.Availability.GetSkipperAvai
 
                 return new AvailabilityModel
                 {
-                    Available = skipper.Availability.Select(avalibility => (From: avalibility.AvailableFrom, To: avalibility.AvailableTo)),
+                    Available = skipper.Availability.Select(availability => (From: availability.AvailableFrom, To: availability.AvailableTo)),
                     Booked = skipper.Bookings.Select(booking => (From: booking.BookedFrom, To: booking.BookedTo))
                 };
             }

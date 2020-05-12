@@ -1,6 +1,6 @@
 ﻿namespace SkipperAgency.Domain.EmailTemplateModels
 {
-    public class ConfirmEmail : EmailMessage
+    public class ConfirmEmail : EmailMessageAbstract
     {
         public ConfirmEmail(string toEmail, string fullName, string callbackUrl) : base(toEmail)
         {

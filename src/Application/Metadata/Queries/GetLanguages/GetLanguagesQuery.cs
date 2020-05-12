@@ -26,7 +26,7 @@ namespace SkipperAgency.Application.Metadata.Queries.GetLanguages
             {
                 return await _context.Languages
                     .ProjectTo<LanguageModel>(_mapper.ConfigurationProvider)
-                    .ToListAsync();
+                    .ToListAsync(cancellationToken);
             }
         }
     }

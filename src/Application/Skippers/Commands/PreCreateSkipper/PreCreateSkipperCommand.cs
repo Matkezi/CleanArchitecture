@@ -20,9 +20,9 @@ namespace SkipperAgency.Application.Skippers.Commands.PreCreateSkipper
             private readonly IEmailService _emailService;
             private readonly IConfiguration _configuration;
             private readonly IApplicationDbContext _context;
-            public Handler(IEmailService emailer, IConfiguration configuration, IApplicationDbContext context)
+            public Handler(IEmailService emailService, IConfiguration configuration, IApplicationDbContext context)
             {
-                _emailService = emailer;
+                _emailService = emailService;
                 _configuration = configuration;
                 _context = context;
             }
@@ -36,7 +36,7 @@ namespace SkipperAgency.Application.Skippers.Commands.PreCreateSkipper
                     LastName = request.LastName,
                     Url = RandomUrl.GetRandomUrl()
                 };
-                _context.SkipperPreRegistration.Add(skipper);
+                await _context.SkipperPreRegistration.AddAsync(skipper, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
 
                 await _emailService.SendEmailWithTemplate(

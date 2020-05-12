@@ -40,7 +40,7 @@ namespace SkipperAgency.Application.Skippers.Queries.Availability.GetAvailableSk
                                                         (book.BookedTo >= request.DateFrom && book.BookedTo <= request.DateTo)))
                 .OrderByDescending(skipper => skipper.ListOfSkills.ConvertAll(s => s.Skill.Name).FindAll(s => request.RequiredSkills.Contains(s)).Count)
                 .ProjectTo<SkipperModel>(_mapper.ConfigurationProvider)
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
             }
 
         }

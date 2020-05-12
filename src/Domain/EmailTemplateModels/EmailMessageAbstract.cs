@@ -1,8 +1,8 @@
 ﻿namespace SkipperAgency.Domain.EmailTemplateModels
 {
-    public abstract class EmailMessage
+    public abstract class EmailMessageAbstract
     {
-        protected EmailMessage(string toEmail)
+        protected EmailMessageAbstract(string toEmail)
         {
             ToEmail = toEmail;
         }
