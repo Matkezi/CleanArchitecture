@@ -15,6 +15,7 @@ using SkipperAgency.WebUI.Services;
 using System;
 using System.IO;
 using System.Reflection;
+using SkipperAgency.WebUI.Common;
 
 namespace SkipperAgency.WebUI
 {
@@ -124,6 +125,7 @@ namespace SkipperAgency.WebUI
                 app.UseHsts();
             }
 
+            app.UseCustomExceptionHandler();
             app.UseHealthChecks("/health");
             app.UseHttpsRedirection();
             app.UseStaticFiles();

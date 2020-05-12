@@ -1,10 +1,9 @@
-﻿using MediatR;
+﻿using System;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using SkipperAgency.Application.Common.Exceptions;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.EmailTemplateModels;
-using SkipperAgency.Domain.Entities;
 using SkipperAgency.Domain.Enums;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,12 +31,14 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
 
             public async Task<Unit> Handle(GuestRequestBookingCommand request, CancellationToken cancellationToken)
             {
-
-                var booking = await _context.Bookings.Include(x => x.Charter).Include(x => x.Boat).FirstAsync(x => x.Id == request.BookingId);
+                var booking = await _context.Bookings
+                    .Include(x => x.Charter)
+                    .Include(x => x.Boat)
+                    .FirstAsync(x => x.Id == request.BookingId, cancellationToken);
 
                 if (booking.GuestEmail != request.GuestEmail)
                 {
-                    throw new UnauthorizedException("Booking", request.GuestEmail);
+                    throw new UnauthorizedAccessException($"Booking not connected with {request.GuestEmail}");
                 }
 
                 booking.Status = BookingStatusEnum.SkipperRequested;
@@ -55,7 +56,6 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
                         skipperName: skipper.FullName,
                         bookingUrl: callbackUrl
                     ));
-
 
                 string callbackUrl2 = $"{_configuration["AppSettings:AppServerUrl"]}/skipper/dashboard"; 
                 _ = _emailService.SendEmailWithTemplate(

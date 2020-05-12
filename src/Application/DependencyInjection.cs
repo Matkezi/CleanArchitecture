@@ -16,7 +16,6 @@ namespace SkipperAgency.Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
 
             // TODO: waiting for https://github.com/dotnet/runtime/pull/34393
             //services.AddTransient(typeof(IRequestPreProcessor<>), typeof(CharterAuthBehaviour<>));
