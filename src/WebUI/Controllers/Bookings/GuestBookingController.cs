@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using SkipperAgency.Application.Bookings.CommonModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SkipperAgency.Application.Bookings.Commands.GuestRequestBooking;
+using SkipperAgency.Application.Bookings.CommonModels;
 using SkipperAgency.Application.Bookings.Queries.GetBookingByUrl;
 using SkipperAgency.Application.Skippers.Queries.Availability.GetAvailableSkippers;
 using SkipperAgency.Application.Skippers.Queries.GetSkipper;
 
-namespace SkipperAgency.WebUI.Controllers
+namespace SkipperAgency.WebUI.Controllers.Bookings
 {
     [AllowAnonymous]
     public class GuestBookingController : ApiController

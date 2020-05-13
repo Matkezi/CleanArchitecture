@@ -1,18 +1,18 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using SkipperAgency.Application.Bookings.CommonModels;
-using SkipperAgency.Application.Bookings.Queries.GetBooking;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using SkipperAgency.Application.Bookings.Commands.CreateBooking;
 using SkipperAgency.Application.Bookings.Commands.DeleteBooking;
+using SkipperAgency.Application.Bookings.CommonModels;
 using SkipperAgency.Application.Bookings.Queries.GetAllCharterBookings;
+using SkipperAgency.Application.Bookings.Queries.GetBooking;
 
-namespace SkipperAgency.WebUI.Controllers
+namespace SkipperAgency.WebUI.Controllers.Bookings
 {
     [Authorize(Roles = "Admin, Charter")]
-    public class BookingController : ApiController
+    public class CharterBookingController : ApiController
     {
 
         [HttpGet]

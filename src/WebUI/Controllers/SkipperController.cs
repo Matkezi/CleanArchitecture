@@ -36,6 +36,7 @@ namespace SkipperAgency.WebUI.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [AllowAnonymous]
         public async Task<IActionResult> Create(CreateSkipperCommand command)
         {
             await Mediator.Send(command);

@@ -11,6 +11,7 @@ namespace SkipperAgency.WebUI.Controllers
     public class AvailabilityController : ApiController
     {
         [HttpGet("{skipperId}")]
+        [AllowAnonymous]
         public async Task<ActionResult<AvailabilityModel>> GetSkipperAvailability(string skipperId)
         {
             return Ok(await Mediator.Send(new GetSkipperAvailabilityQuery { SkipperId = skipperId }));
