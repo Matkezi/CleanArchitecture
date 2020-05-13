@@ -11,7 +11,7 @@ namespace SkipperAgency.Application.Skippers.Queries.Availability.GetSkipperAvai
 {
     public class GetSkipperAvailabilityQuery : IRequest<AvailabilityModel>
     {
-        public string Id { get; set; }
+        public string SkipperId { get; set; }
 
         public class Handler : IRequestHandler<GetSkipperAvailabilityQuery, AvailabilityModel>
         {
@@ -26,7 +26,10 @@ namespace SkipperAgency.Application.Skippers.Queries.Availability.GetSkipperAvai
 
             public async Task<AvailabilityModel> Handle(GetSkipperAvailabilityQuery request, CancellationToken cancellationToken)
             {
-                var skipper = await _context.Skipper.Include(s => s.Availability).Include(s => s.Bookings).Where(s => s.Id == request.Id).FirstAsync();
+                var skipper = await _context.Skipper
+                    .Include(s => s.Availability)
+                    .Include(s => s.Bookings)
+                    .FirstAsync(s => s.Id == request.SkipperId, cancellationToken);
 
                 // TODO: test this, if it doesn't work go with the one below.
                 return _mapper.Map<AvailabilityModel>(skipper);

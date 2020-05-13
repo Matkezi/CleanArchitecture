@@ -13,14 +13,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using SkipperAgency.Application.Bookings.Commands.CreateBooking;
 using SkipperAgency.Application.Bookings.Commands.DeleteBooking;
-using SkipperAgency.Application.Bookings.Queries.GetCharterBookings;
+using SkipperAgency.Application.Bookings.Queries.GetAllCharterBookings;
 using SkipperAgency.Application.Bookings.Queries.GetSkipperBookingsByStatus;
 
 namespace SkipperAgency.WebUI.Controllers
 {
+    [Authorize]
     public class BookingController : ApiController
     {
-
         [HttpGet]
         [Route("skipper/pending")]
         [Authorize(Roles = "Admin, Skipper")]
@@ -37,39 +37,7 @@ namespace SkipperAgency.WebUI.Controllers
             return Ok(await Mediator.Send(new GetSkipperBookingsByStatusQuery { BookingStatus = BookingStatusEnum.SkipperAccepted }));
         }
 
-        [HttpPost]
-        [Route("fetch-skippers")]
-        public async Task<ActionResult<IEnumerable<SkipperModel>>> GetAvailableSkippersForBooking(GetAvailableSkippersQuery command)
-        {
-            return Ok(await Mediator.Send(command));
-
-        }
-
-        [HttpGet]
-        [Route("charter/all")]
-        [Authorize(Roles = "Admin, Charter")]
-        public async Task<ActionResult<IEnumerable<BookingModel>>> GetCharterBookings(GetCharterBookingsQuery command)
-        {
-            return Ok(await Mediator.Send(command));
-        }
-
-        // GET: api/Booking/5 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<BookingModel>> GetAsync(GetBookingQuery command)
-        {
-            return Ok(await Mediator.Send(command));
-        }
-
-        // GET: api/Booking/url/hiw3ufqu32r4njfsd
-        [HttpGet("url/{url}")]
-        public async Task<ActionResult<BookingModel>> GetAsyncByUrl(GetBookingByUrlQuery command)
-        {
-            return Ok(await Mediator.Send(command));
-        }
-
-
-
-        [HttpPut("skipper-action/accept")]
+        [HttpPut("skipper/accept")]
         [Authorize(Roles = "Admin, Skipper")]
         public async Task<IActionResult> SkipperAcceptBooking(SkipperAcceptBookingCommand command)
         {
@@ -77,7 +45,7 @@ namespace SkipperAgency.WebUI.Controllers
             return NoContent();
         }
 
-        [HttpPut("skipper-action/decline")]
+        [HttpPut("skipper/decline")]
         [Authorize(Roles = "Admin, Skipper")]
         public async Task<IActionResult> SkipperDeclineBooking(SkipperDeclineBookingCommand command)
         {
@@ -85,14 +53,45 @@ namespace SkipperAgency.WebUI.Controllers
             return NoContent();
         }
 
-        [HttpPut("guest-action/request")]
+
+
+        // GET: api/Booking/url/hiw3ufqu32r4njfsd
+        [HttpGet("guest/url/{url}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<BookingModel>> GetByUrl(string url)
+        {
+            return Ok(await Mediator.Send(new GetBookingByUrlQuery{Url = url}));
+        }
+
+        [HttpGet]
+        [Route("guest/skippers")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<SkipperModel>>> GetAvailableSkippersForBooking(GetAvailableSkippersQuery command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+
+        [HttpPut("guest/request")]
+        [AllowAnonymous]
         public async Task<IActionResult> GuestRequestBooking(GuestRequestBookingCommand command)
         {
             await Mediator.Send(command);
             return NoContent();
         }
 
-        // POST: api/Booking
+        [HttpGet]
+        [Authorize(Roles = "Admin, Charter")]
+        public async Task<ActionResult<IEnumerable<BookingModel>>> GetAll(GetAllCharterBookingsQuery command)
+        {
+            return Ok(await Mediator.Send(command));
+        }
+        
+        [HttpGet("{id}")]
+        public async Task<ActionResult<BookingModel>> Get(int id)
+        {
+            return Ok(await Mediator.Send(new GetBookingQuery{Id = id}));
+        }
+
         [HttpPost]
         [Authorize(Roles = "Admin, Charter")]
         public async Task<IActionResult> Create(CreateBookingCommand command)
@@ -100,7 +99,7 @@ namespace SkipperAgency.WebUI.Controllers
             await Mediator.Send(command);
             return NoContent();
         }
-
+       
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin, Charter")]
         public async Task<IActionResult> Delete(int id)

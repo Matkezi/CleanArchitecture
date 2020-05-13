@@ -7,9 +7,11 @@ using SkipperAgency.Application.Charters.Queries.GetAllCharters;
 using SkipperAgency.Application.Charters.Queries.GetCharter;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SkipperAgency.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin, Charter")]
     public class CharterController : ApiController
     {
 
@@ -36,12 +38,16 @@ namespace SkipperAgency.WebUI.Controllers
             return NoContent();
         }
 
-        // PUT: api/Charter/5
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Update(UpdateCharterCommand command)
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Update(string id, UpdateCharterCommand command)
         {
+            if (id != command.Id)
+            {
+                return BadRequest();
+            }
             await Mediator.Send(command);
             return NoContent();
         }
@@ -50,7 +56,7 @@ namespace SkipperAgency.WebUI.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult> DeleteCharter(string id)
+        public async Task<ActionResult> Delete(string id)
         {
             await Mediator.Send(new DeleteCharterCommand { Id = id });
             return NoContent();

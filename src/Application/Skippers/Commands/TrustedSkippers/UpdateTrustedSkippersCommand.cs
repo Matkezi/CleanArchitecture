@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SkipperAgency.Application.Skippers.Commands.TrustedSkippers
 {
-    public partial class UpdateTrustedSkippersCommand : IRequest
+    public class UpdateTrustedSkippersCommand : IRequest
     {
         public IEnumerable<string> Ids { get; set; }
 

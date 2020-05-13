@@ -54,7 +54,7 @@ namespace SkipperAgency.Application.Charters.Commands.UpdateCharter
 
                 if (!string.IsNullOrEmpty(request.NewEmail))
                 {
-                    _ = _mediator.Send(new EmailChangeRequestCommand { UserEmail = entity.Email, UserNewEmail = request.NewEmail }, cancellationToken);
+                    _ = _mediator.Send(new EmailChangeRequestCommand { Email = entity.Email, UserNewEmail = request.NewEmail }, cancellationToken);
                 }
 
                 return Unit.Value;

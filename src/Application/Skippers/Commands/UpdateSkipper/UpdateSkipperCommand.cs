@@ -140,7 +140,7 @@ namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
 
                 if (!string.IsNullOrEmpty(request.NewEmail))
                 {
-                    _ = _mediator.Send(new EmailChangeRequestCommand { UserEmail = skipper.Email, UserNewEmail = request.NewEmail });
+                    _ = _mediator.Send(new EmailChangeRequestCommand { Email = skipper.Email, UserNewEmail = request.NewEmail });
                 }
 
                 return Unit.Value;

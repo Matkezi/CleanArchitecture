@@ -15,8 +15,6 @@ namespace SkipperAgency.WebUI.Controllers
     [AllowAnonymous]
     public class AccountController : ApiController
     {
-
-        
         [HttpPost("login")]
         public async Task<LoginResponse> Login(LoginCommand command)
         {

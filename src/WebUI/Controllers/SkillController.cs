@@ -3,9 +3,11 @@ using SkipperAgency.Application.Skills.Queries.GetSkill;
 using SkipperAgency.Domain.Enums;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SkipperAgency.WebUI.Controllers
 {
+    [Authorize]
     public class SkillController : ApiController
     {
         [HttpGet]

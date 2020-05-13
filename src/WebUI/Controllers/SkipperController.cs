@@ -15,49 +15,56 @@ using SkipperAgency.Application.Skippers.Queries.TrustedSkippers;
 using SkipperAgency.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace SkipperAgency.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin, Skipper")]
     public class SkipperController : ApiController
     {
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SkipperModel>>> GetAll()
         {
             return Ok(await Mediator.Send(new GetAllSkippersQuery()));
         }
 
-        [HttpGet("{skipperId}", Name = "GetSkipper")]
-        public async Task<ActionResult<SkipperModel>> Get(string skipperId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<SkipperModel>> Get(string id)
         {
-            return Ok(await Mediator.Send(new GetSkipperQuery { Id = skipperId }));
+            return Ok(await Mediator.Send(new GetSkipperQuery { Id = id }));
         }
 
-        [HttpGet("availability/{skipperId}")]
-        public async Task<ActionResult<AvailabilityModel>> GetSkipperAvailability(string skipperId)
-        {
-            return Ok(await Mediator.Send(new GetSkipperAvailabilityQuery { Id = skipperId }));
-
-        }
-
-        // PUT: api/Skipper/avalibility/update
-        //[Authorize(Roles = "Admin, Skipper")]
-        [HttpPut("availability/update")]
-        public async Task<IActionResult> UpdateSkipperAvailability(UpdateSkipperAvailabilityCommand command)
-        {
-            await Mediator.Send(command);
-            return NoContent();
-        }
-
-        // POST: api/Skipper
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> Create(CreateSkipperCommand command)
         {
             await Mediator.Send(command);
             return NoContent();
         }
 
-        // POST: api/Skipper
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Update(string id, UpdateSkipperCommand command)
+        {
+            if (id != command.Id)
+            {
+                return BadRequest();
+            }
+            await Mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<Skipper>> Delete(string id)
+        {
+            await Mediator.Send(new DeleteSkipperCommand { Id = id });
+            return NoContent();
+        }
+
         [HttpPost("preregister")]
         public async Task<IActionResult> PreRegisterSkipper(PreCreateSkipperCommand command)
         {
@@ -69,76 +76,6 @@ namespace SkipperAgency.WebUI.Controllers
         public async Task<ActionResult<PreGetSkipperModel>> GetSkipperPreRegistration(string url)
         {
             return Ok(await Mediator.Send(new PreGetSkipperQuery { Url = url }));
-
         }
-
-        // PUT: api/Skipper/5
-        //[Authorize(Roles = "Admin, Skipper")]
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(UpdateSkipperCommand command)
-        {
-            await Mediator.Send(command);
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Skipper>> Delete(string id)
-        {
-            await Mediator.Send(new DeleteSkipperCommand { Id = id });
-            return NoContent();
-        }
-
-        #region Trusted Skipper Charter Actions
-
-
-        // GET: api/Skipper/pending
-        [Authorize(Roles = "Admin, Charter")]
-        [HttpGet]
-        [Route("pending")]
-        public async Task<ActionResult<TrustedSkipperModel>> GetPendingSkippersAsync()
-        {
-            return Ok(await Mediator.Send(new GetPendingSkippersQuery()));
-        }
-
-        // GET: api/Skipper/trusted
-        [Authorize(Roles = "Admin, Charter")]
-        [HttpGet]
-        [Route("trusted")]
-        public async Task<ActionResult<TrustedSkipperModel>> GetTrustedSkippersAsync()
-        {
-            return Ok(await Mediator.Send(new GetTrustedSkippersQuery()));
-        }
-
-        // GET: api/Skipper/untrusted
-        [Authorize(Roles = "Admin, Charter")]
-        [HttpGet]
-        [Route("untrusted")]
-        public async Task<ActionResult<TrustedSkipperModel>> GetUnTrustedSkippersAsync()
-        {
-            return Ok(await Mediator.Send(new GetUnTrustedSkippersQuery()));
-        }
-
-        // PUT: api/Skipper/trustSkippers
-        [Authorize(Roles = "Admin, Charter")]
-        [HttpPut]
-        [Route("trusted")]
-
-        public async Task<IActionResult> UpdateTrustedSkippers(UpdateTrustedSkippersCommand command)
-        {
-            await Mediator.Send(command);
-            return NoContent();
-        }
-
-        // PUT: api/Skipper/unTrustSkippers
-        [Authorize(Roles = "Admin, Charter")]
-        [HttpPut]
-        [Route("untrusted")]
-        public async Task<IActionResult> UpdateUnTrustedSkippers(UpdateUnTrustedSkippersCommand command)
-        {
-            await Mediator.Send(command);
-            return NoContent();
-        }
-
-        #endregion
     }
 }

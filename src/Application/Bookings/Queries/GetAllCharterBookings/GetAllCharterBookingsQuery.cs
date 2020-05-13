@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore;
 using SkipperAgency.Application.Bookings.CommonModels;
 using SkipperAgency.Application.Common.Interfaces;
 
-namespace SkipperAgency.Application.Bookings.Queries.GetCharterBookings
+namespace SkipperAgency.Application.Bookings.Queries.GetAllCharterBookings
 {
-    public class GetCharterBookingsQuery : IRequest<IEnumerable<BookingModel>>
+    public class GetAllCharterBookingsQuery : IRequest<IEnumerable<BookingModel>>
     {
-        public class Handler : IRequestHandler<GetCharterBookingsQuery, IEnumerable<BookingModel>>
+        public class Handler : IRequestHandler<GetAllCharterBookingsQuery, IEnumerable<BookingModel>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -26,7 +26,7 @@ namespace SkipperAgency.Application.Bookings.Queries.GetCharterBookings
                 _currentUserService = currentUserService;
             }
 
-            public async Task<IEnumerable<BookingModel>> Handle(GetCharterBookingsQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<BookingModel>> Handle(GetAllCharterBookingsQuery request, CancellationToken cancellationToken)
             {
                 return await _context.Bookings
                     .Include(b => b.Charter).Include(b => b.Boat)

@@ -8,7 +8,7 @@ namespace SkipperAgency.Application.Identity.Commands.PasswordResetRequest
 {
     public class PasswordResetRequestCommand : IRequest
     {
-        public string UserEmail { get; set; }
+        public string Email { get; set; }
 
         public class Handler : IRequestHandler<PasswordResetRequestCommand>
         {
@@ -25,14 +25,14 @@ namespace SkipperAgency.Application.Identity.Commands.PasswordResetRequest
 
             public async Task<Unit> Handle(PasswordResetRequestCommand request, CancellationToken cancellationToken)
             {
-                var passwordResetTokenBase64 = await _identityService.PasswordResetToken(request.UserEmail);
-                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/password-reset/email={request.UserEmail}/token={passwordResetTokenBase64}";
+                var passwordResetTokenBase64 = await _identityService.PasswordResetToken(request.Email);
+                string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/password-reset/email={request.Email}/token={passwordResetTokenBase64}";
 
                 // TODO: fullname in an email
                 _ = _emailService.SendEmailWithTemplate(
                     new Domain.EmailTemplateModels.PasswordReset(
-                        toEmail: request.UserEmail,
-                        fullName: request.UserEmail,
+                        toEmail: request.Email,
+                        fullName: request.Email,
                         passwordResetUrl: callbackUrl
                     ));
 

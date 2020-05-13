@@ -13,15 +13,12 @@ namespace SkipperAgency.WebUI.Controllers
     [Authorize(Roles = "Admin, Charter")]
     public class BoatController : ApiController
     {
-
-        // GET: api/Boat/Charter
         [HttpGet("Charter")]
         public async Task<ActionResult<IEnumerable<BoatModel>>> GetCharterBoats()
         {
             return Ok(await Mediator.Send(new GetCharterBoatsQuery()));
         }
 
-        // POST: api/Boat
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesDefaultResponseType]
@@ -31,7 +28,6 @@ namespace SkipperAgency.WebUI.Controllers
             return NoContent();
         }
 
-        // PUT: api/Boat/5
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -45,7 +41,6 @@ namespace SkipperAgency.WebUI.Controllers
             return NoContent();
         }
 
-        // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

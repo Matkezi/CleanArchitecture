@@ -7,7 +7,7 @@ namespace SkipperAgency.Application.Identity.Commands.PasswordReset
 {
     public class PasswordResetCommand : IRequest
     {
-        public string UserEmail { get; set; }
+        public string Email { get; set; }
         public string NewPassword { get; set; }
         public string Token { get; set; }
 
@@ -22,7 +22,7 @@ namespace SkipperAgency.Application.Identity.Commands.PasswordReset
 
             public async Task<Unit> Handle(PasswordResetCommand request, CancellationToken cancellationToken)
             {
-                await _identityService.PasswordReset(request.UserEmail, request.NewPassword, request.Token);
+                await _identityService.PasswordReset(request.Email, request.NewPassword, request.Token);
                 return Unit.Value;
             }
         }

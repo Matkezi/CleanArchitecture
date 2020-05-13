@@ -8,7 +8,7 @@ namespace SkipperAgency.Application.Identity.Commands.EmailChange
     {
         public EmailChangeCommandValidator(ICurrentUserService currentUserService, IIdentityService identityService)
         {
-            RuleFor(x => x.UserEmail)
+            RuleFor(x => x.Email)
                 .IsCurrentUserEmail(identityService.GetEmail(currentUserService.UserId));
         }
     }

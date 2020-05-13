@@ -7,7 +7,7 @@ namespace SkipperAgency.Application.Identity.Commands.EmailChange
 {
     public class EmailChangeCommand : IRequest
     {
-        public string UserEmail { get; set; }
+        public string Email { get; set; }
         public string NewEmail { get; set; }
         public string Token { get; set; }
 
@@ -22,7 +22,7 @@ namespace SkipperAgency.Application.Identity.Commands.EmailChange
 
             public async Task<Unit> Handle(EmailChangeCommand request, CancellationToken cancellationToken)
             {
-                await _identityService.ChangeEmail(request.UserEmail, request.NewEmail, request.Token);
+                await _identityService.ChangeEmail(request.Email, request.NewEmail, request.Token);
                 return Unit.Value;
             }
         }
