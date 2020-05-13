@@ -39,6 +39,8 @@ namespace SkipperAgency.Application.Common.Interfaces
         Task ChangeEmail(string userEmail, string userNewEmail, string token);
         Task<AppUser> GetUserByEmailAsync(string userEmail);
         Task<string> GetUserNameAsync(string userId);
+        Task<string> GetEmailAsync(string userId);
+        string GetEmail(string userId);
         Task<IList<RoleEnum>> GetUserRoles(string userEmail);
     }
 }

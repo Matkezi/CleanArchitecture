@@ -18,10 +18,10 @@ namespace SkipperAgency.Application.Identity.Commands.EmailChangeRequest
             private readonly IEmailService _emailService;
             private readonly IConfiguration _configuration;
 
-            public Handler(IIdentityService identityService, IEmailService emailer, IConfiguration configuration)
+            public Handler(IIdentityService identityService, IEmailService emailService, IConfiguration configuration)
             {
                 _identityService = identityService;
-                _emailService = emailer;
+                _emailService = emailService;
                 _configuration = configuration;
             }
 

@@ -12,24 +12,23 @@ using System.Threading.Tasks;
 
 namespace SkipperAgency.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : ApiController
     {
 
-        [AllowAnonymous]
+        
         [HttpPost("login")]
         public async Task<LoginResponse> Login(LoginCommand command)
         {
             return await Mediator.Send(command);
         }
 
-        [AllowAnonymous]
         [HttpPost("facebook-login")]
         public async Task<LoginResponse> FacebookLogin(FacebookLoginCommand command)
         {
             return await Mediator.Send(command);
         }
 
-        [AllowAnonymous]
         [HttpGet("confirm-email")]
         public async Task<IActionResult> ConfirmEmail(ConfirmEmailCommand command)
         {
@@ -37,7 +36,7 @@ namespace SkipperAgency.WebUI.Controllers
             return NoContent();
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpPost("change-email/{email}/{newEmail}/{token}")]
         public async Task<IActionResult> ChangeEmail(EmailChangeCommand command)
         {
@@ -45,7 +44,7 @@ namespace SkipperAgency.WebUI.Controllers
             return NoContent();
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpPost("email-reset-email/{email}/{newEmail}")]
         public async Task<IActionResult> EmailResetRequest(EmailChangeRequestCommand command)
         {
@@ -53,7 +52,6 @@ namespace SkipperAgency.WebUI.Controllers
             return NoContent();
         }
 
-        [AllowAnonymous]
         [HttpPost("password-reset/{email}/{token}/{newPassword}")]
         public async Task<IActionResult> PasswordReset(PasswordResetCommand command)
         {
@@ -61,7 +59,6 @@ namespace SkipperAgency.WebUI.Controllers
             return NoContent();
         }
 
-        [AllowAnonymous]
         [HttpPost("password-reset-email/{email}")]
         public async Task<IActionResult> PasswordResetRequest(PasswordResetRequestCommand command)
         {

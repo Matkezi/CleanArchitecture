@@ -165,5 +165,17 @@ namespace SkipperAgency.Infrastructure.Identity
             var user = await _userManager.Users.FirstAsync(u => u.Id == userId);
             return user.UserName;
         }
+
+        public async Task<string> GetEmailAsync(string userId)
+        {
+            var user = await _userManager.Users.FirstAsync(u => u.Id == userId);
+            return user.Email;
+        }
+
+        public string GetEmail(string userId)
+        {
+            var user = _userManager.Users.First(u => u.Id == userId);
+            return user.Email;
+        }
     }
 }

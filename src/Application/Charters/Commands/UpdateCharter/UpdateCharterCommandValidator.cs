@@ -8,7 +8,7 @@ namespace SkipperAgency.Application.Charters.Commands.UpdateCharter
     {
         public UpdateCharterCommandValidator(ICurrentUserService currentUserService)
         {
-            RuleFor(x => x.Id).IsCurrentUser(currentUserService.UserId);
+            RuleFor(x => x.Id).IsCurrentUserId(currentUserService.UserId);
         }
     }
 }

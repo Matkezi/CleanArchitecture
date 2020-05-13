@@ -9,7 +9,7 @@ namespace SkipperAgency.Application.Skippers.Commands.DeleteSkipper
     {
         public DeleteSkipperCommandValidator(ICurrentUserService currentUserService)
         {
-            RuleFor(x => x.Id).IsCurrentUser(currentUserService.UserId);
+            RuleFor(x => x.Id).IsCurrentUserId(currentUserService.UserId);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
     {
         public UpdateSkipperCommandValidator(ICurrentUserService currentUserService)
         {
-            RuleFor(x => x.Id).IsCurrentUser(currentUserService.UserId);
+            RuleFor(x => x.Id).IsCurrentUserId(currentUserService.UserId);
             RuleFor(x => x.UserPhoto)
                 .Must(file => Path.HasExtension(file.NameWithExt))
                 .ContainsValidBase64Data()
