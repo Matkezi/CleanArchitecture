@@ -8,7 +8,8 @@ namespace SkipperAgency.Application.Common.Interfaces
 {
     public interface IIdentityService
     {
-        Task<string> GetUserNameAsync(string userId);
+        Task<LoginResponse> Login(string userEmail, string password, bool rememberMe);
+        
         /// <summary>
         /// Creates a new user where: Username = Email
         /// </summary>
@@ -19,7 +20,7 @@ namespace SkipperAgency.Application.Common.Interfaces
         Task<string> CreateUserAsync(AppUser newUser, RoleEnum role, string password);
 
         Task ConfirmEmail(string userEmail, string token);
-        Task<LoginResponse> Login(string userEmail, string password, bool rememberMe);
+        
         Task ChangePassword(string userEmail, string password, string newPassword);
         /// <summary>
         /// 
@@ -36,6 +37,8 @@ namespace SkipperAgency.Application.Common.Interfaces
         /// <returns>Base64 encoded token.</returns>
         Task<string> ChangeEmailToken(string userEmail, string userNewEmail);
         Task ChangeEmail(string userEmail, string userNewEmail, string token);
+        Task<AppUser> GetUserByEmailAsync(string userEmail);
+        Task<string> GetUserNameAsync(string userId);
         Task<IList<RoleEnum>> GetUserRoles(string userEmail);
     }
 }

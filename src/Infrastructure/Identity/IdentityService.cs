@@ -24,12 +24,29 @@ namespace SkipperAgency.Infrastructure.Identity
             _userManager = userManager;
             _jwtFactory = jwtFactory;
         }
-
-        public async Task<string> GetUserNameAsync(string userId)
+        
+        public async Task<LoginResponse> Login(string userEmail, string password, bool rememberMe)
         {
-            var user = await _userManager.Users.FirstAsync(u => u.Id == userId);
+            var user = await GetUserByEmailAsync(userEmail);
 
-            return user.UserName;
+            if (!await _userManager.CheckPasswordAsync(user, password))
+                throw new UnauthorizedAccessException("Invalid password.");
+
+            var isUserEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+            if (!isUserEmailConfirmed)
+                throw new ConfirmEmailException(user.Email, "Verification email sent. Please check your email.");
+
+            var token = await _jwtFactory.GenerateEncodedToken(user);
+            var roles = await GetUserRoles(user.UserName);
+            return (
+                new LoginResponse
+                {
+                    Token = token,
+                    Username = user.UserName,
+                    Role = roles.First().ToString(),
+                    Id = user.Id,
+                    UserPhotoUrl = user.UserPhotoUrl
+                });
         }
 
         /// <summary>
@@ -62,10 +79,9 @@ namespace SkipperAgency.Infrastructure.Identity
 
             return await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
         }
-
         public async Task ConfirmEmail(string userEmail, string token)
         {
-            var user = await _userManager.FindByEmailAsync(userEmail);
+            var user = await GetUserByEmailAsync(userEmail); 
             var result = await _userManager.ConfirmEmailAsync(user, token);
             if (!result.Succeeded)
             {
@@ -73,73 +89,26 @@ namespace SkipperAgency.Infrastructure.Identity
                 throw new ConfirmEmailException(userEmail,string.Join(";", result.Errors) );
             }
         }
-
-        public async Task<LoginResponse> Login(string userEmail, string password, bool rememberMe)
-        {
-            var user = await _userManager.FindByEmailAsync(userEmail);
-            if (user is null)
-            {
-                throw new NotFoundException("User", userEmail);
-            }
-
-            if (!await _userManager.CheckPasswordAsync(user, password))
-                throw new UnauthorizedAccessException("Invalid password.");
-
-            var isUserEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
-            if (!isUserEmailConfirmed)
-            {
-                throw new ConfirmEmailException(user.Email, "Verification email sent. Please check your email.");
-            }
-            var token = await _jwtFactory.GenerateEncodedToken(user);
-            var roles = await GetUserRoles(user.UserName);
-            return (
-                new LoginResponse
-                {
-                    Token = token,
-                    Username = user.UserName,
-                    Role = roles.First().ToString(),
-                    Id = user.Id,
-                    UserPhotoUrl = user.UserPhotoUrl
-                });
-
-        }
-
-
         public async Task ChangePassword(string userEmail, string password, string newPassword)
         {
-            var user = await _userManager.FindByEmailAsync(userEmail);
-            if (user is null)
-            {
-                throw new NotFoundException("User", userEmail);
-            }
-
+            var user = await GetUserByEmailAsync(userEmail);
             var result = await _userManager.ChangePasswordAsync(user, password, newPassword);
             if (!result.Succeeded)
             {
                 throw new Exception($"Failed to change password ({string.Join(",", result.Errors)})");
             }
         }
-
         public async Task<string> PasswordResetToken(string userEmail)
         {
-            var user = await _userManager.FindByEmailAsync(userEmail);
-            if (user is null)
-            {
-                throw new NotFoundException("User", userEmail);
-            }
+            var user = await GetUserByEmailAsync(userEmail);
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
             byte[] tokenBytes = Encoding.UTF8.GetBytes(token);
             var tokenEncoded = WebEncoders.Base64UrlEncode(tokenBytes);
             return tokenEncoded;
         }
-
         public async Task PasswordReset(string userEmail, string newPassword, string token)
         {
-            var user = await _userManager.FindByEmailAsync(userEmail);
-            if (user is null)
-            {
-                throw new NotFoundException("User", userEmail);
-            }
+            var user = await GetUserByEmailAsync(userEmail);
             var tokenDecodedBytes = WebEncoders.Base64UrlDecode(token);
             var tokenDecoded = Encoding.UTF8.GetString(tokenDecodedBytes);
             var result = await _userManager.ResetPasswordAsync(user, tokenDecoded, newPassword);
@@ -148,27 +117,17 @@ namespace SkipperAgency.Infrastructure.Identity
                 throw new Exception($"Failed to reset password ({string.Join(",", result.Errors)})");
             }
         }
-
         public async Task<string> ChangeEmailToken(string userEmail, string userNewEmail)
         {
-            var user = await _userManager.FindByEmailAsync(userEmail);
-            if (user is null)
-            {
-                throw new NotFoundException("User", userEmail);
-            }
+            var user = await GetUserByEmailAsync(userEmail);
             var token = await _userManager.GenerateChangeEmailTokenAsync(user, userNewEmail);
             byte[] tokenBytes = Encoding.UTF8.GetBytes(token);
             var tokenEncoded = WebEncoders.Base64UrlEncode(tokenBytes);
             return tokenEncoded;
         }
-
         public async Task ChangeEmail(string userEmail, string userNewEmail, string token)
         {
-            var user = await _userManager.FindByEmailAsync(userEmail);
-            if (user is null)
-            {
-                throw new NotFoundException(nameof(AppUser), userEmail);
-            }
+            var user = await GetUserByEmailAsync(userEmail);
             var tokenDecodedBytes = WebEncoders.Base64UrlDecode(token);
             var tokenDecoded = Encoding.UTF8.GetString(tokenDecodedBytes);
             var result = await _userManager.ChangeEmailAsync(user, userNewEmail, tokenDecoded);
@@ -177,14 +136,9 @@ namespace SkipperAgency.Infrastructure.Identity
                 throw new Exception($"Failed to change email ({string.Join(",", result.Errors)})");
             }
         }
-
         public async Task<IList<RoleEnum>> GetUserRoles(string userEmail)
         {
-            var user = await _userManager.FindByEmailAsync(userEmail);
-            if (user is null)
-            {
-                throw new NotFoundException(nameof(AppUser), userEmail);
-            }
+            var user = await GetUserByEmailAsync(userEmail);
             var roles = await _userManager.GetRolesAsync(user);
 
             return roles.Select(role =>
@@ -192,6 +146,24 @@ namespace SkipperAgency.Infrastructure.Identity
                 Enum.TryParse(role, out RoleEnum roleEnum);
                 return roleEnum;
             }).ToList();
+        }
+
+        /// <summary>
+        /// Gets user from user manager based on an email. 
+        /// </summary>
+        /// <param name="userEmail"></param>
+        /// <returns cref="AppUser"></returns>
+        /// <exception cref="NotFoundException">Thrown when user is not found.</exception>
+        public async Task<AppUser> GetUserByEmailAsync(string userEmail)
+        {
+            var user = await _userManager.FindByEmailAsync(userEmail);
+            if (user is null) throw new NotFoundException("User", userEmail);
+            return user;
+        }
+        public async Task<string> GetUserNameAsync(string userId)
+        {
+            var user = await _userManager.Users.FirstAsync(u => u.Id == userId);
+            return user.UserName;
         }
     }
 }

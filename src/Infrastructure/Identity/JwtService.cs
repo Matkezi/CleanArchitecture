@@ -29,7 +29,7 @@ namespace SkipperAgency.Infrastructure.Identity
             var userRoles = await _userManager.GetRolesAsync(user);
             var userRolesString = string.Join(", ", userRoles.ToList());
 
-            var claims = new Claim[]
+            var claims = new[]
             {
                         new Claim(JwtRegisteredClaimNames.Sub, user.Id),
                         new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
