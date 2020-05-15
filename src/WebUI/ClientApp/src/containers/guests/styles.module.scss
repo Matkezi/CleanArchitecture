@@ -1,0 +1,456 @@
+.wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.greeting {
+    font-size: 26px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    margin-top: 10px;
+    color: #23283c !important;
+}
+
+.tos {
+    margin-top: -112px;
+}
+
+.bookingP {
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #161925;
+    margin-bottom: 25px !important;
+}
+
+.chip {
+    margin-right: 5px;
+    margin-top: 10px;
+    width: fit-content;
+    height: 39px !important;
+    border-radius: 19px;
+    background-color: #4f5b8b !important;
+}
+
+.chip span {
+    padding: 25px;
+    color: white;
+}
+
+.chip i {
+    padding-left: 10px;
+    color: white;
+    position: relative;
+}
+
+.formSelect {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.deleteIcon {
+    padding-left: 0px !important;
+    margin-top: 10px !important;
+    color: white !important;
+}
+
+.deleteIcon .fa-times:before {
+    color: white;
+}
+
+
+.bookingCard {
+    border-radius: 12px;
+    box-shadow: 2px 2px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 0.5px #e2e2e2;
+    background-color: #ffffff;
+    margin-top: 20px !important;
+    margin-bottom: 130px !important;
+    padding: 0px !important;
+}
+
+.step1 {
+    height: 15px;
+    width: 102%;
+    display: block;
+    position: relative;
+    background-color: #161925;
+    -webkit-clip-path: polygon(0% 0%, 0% 100%, 95% 100%, 100% 50%, 95% 0%);
+    clip-path: polygon(0% 0%, 0% 100%, 95% 100%, 100% 50%, 95% 0%);
+}
+
+.errorInput {
+    margin-left: 40px;
+    margin-top: -7px;
+}
+
+.step2 {
+    height: 15px;
+    width: 102%;
+    display: block;
+    position: relative;
+    background-color: #bebebe;
+    -webkit-clip-path: polygon(0% 0%, 5% 50%, 0% 100%, 95% 100%, 100% 50%, 95% 0%);
+    clip-path: polygon(0% 0%, 5% 50%, 0% 100%, 95% 100%, 100% 50%, 95% 0%);
+}
+
+.step2Active {
+    background-color: #23395b !important;
+}
+
+.buttonFind:disabled {
+    cursor: initial;
+    background-color: #272d46;
+}
+
+.buttonFind {
+    width: 200px;
+    height: 49.8px;
+    border-radius: 37px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 2px #161925;
+    cursor: pointer;
+    background-color: #161925;
+    margin: 10px 40px;
+    outline: none;
+    float: right;
+
+    span {
+        width: 123px;
+        height: 24.5px;
+        font-size: 18px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.36;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+    }
+}
+
+.previousBtn {
+    width: 162px;
+    height: 49.8px;
+    border-radius: 37px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 2px #161925;
+    background-color: #ffffff;
+    outline: none;
+    cursor: pointer;
+    margin-right: 5px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 40px;
+
+    span {
+        width: 75px;
+        height: 24.5px;
+        font-size: 18px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.36;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000000;
+    }
+}
+
+.sendReq {
+    width: 231px;
+    height: 51px;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    background-color: #161925;
+    outline: none;
+    cursor: pointer;
+    margin-right: 5px;
+    margin-left: 15px;
+    border: none;
+    float: right;
+    margin: 10px 40px;
+
+    span {
+        width: 157px;
+        height: 24.5px;
+        font-size: 18px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.36;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+    }
+}
+
+.step3 {
+    height: 15px;
+    width: 100%;
+    display: block;
+    position: relative;
+    background-color: #bebebe;
+    -webkit-clip-path: polygon(0% 0%, 5% 50%, 0% 100%, 100% 100%, 100% 0%);
+    clip-path: polygon(0% 0%, 5% 50%, 0% 100%, 100% 100%, 100% 0%);
+}
+
+.step3Active {
+    background-color: #4f5b8b;
+}
+
+.stepper {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 88px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 0.5px #707070;
+    background-color: white;
+}
+
+.recomendation {
+    font-size: 18px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #23283c;
+}
+
+.divider {
+    height: 2px;
+    background-color: #23283c !important;
+}
+
+.filter,
+.skills,
+.languages,
+.price {
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #161925;
+    margin: 15px 15px 15px 15px;
+    height: 24.5px;
+}
+
+.skills,
+.languages {
+    cursor: pointer;
+}
+
+.selected {
+    border-bottom: 2px solid #161925;
+    padding-bottom: 2px;
+}
+
+.filter {
+    width: 47px;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.skills {
+    width: 44px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.languages {
+    width: 92.5px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.price {
+    width: 43px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.welcome {
+    font-size: 32px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #23283c;
+}
+
+.photo {
+    width: 116.2px;
+    height: 116.2px;
+    border-radius: 158px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+}
+
+.skipperName {
+    width: 68.5px;
+    font-size: 27px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.37;
+    letter-spacing: normal;
+    text-align: left;
+    color: #161925;
+}
+
+.messageLabel {
+    width: 221px;
+    height: 24.5px;
+    font-size: 18px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #161925;
+    margin-bottom: 15px;
+}
+
+.textField {
+    margin-bottom: 100px !important;
+    width: 100%;
+    border: solid 0.5px #707070;
+    background-color: #ffffff;
+}
+
+.acceptInfo {
+    font-size: 32px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    margin-bottom: 55px;
+    color: #161925;
+}
+
+.time {
+    height: 139.2px;
+    font-size: 32px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #161925;
+}
+
+.stepperContainer {
+    max-width: 70% !important;
+}
+
+@media only screen and (min-width: 960px) {
+    .stepperContainer {
+        max-width: 91.4% !important;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .stepperContainer {
+        max-width: 69.4% !important;
+    }
+}
+
+@media only screen and (min-width: 1700px) {
+    .stepperContainer {
+        max-width: 43.4% !important;
+    }
+}
+
+
+@media only screen and (max-width: 800px) {
+    .wrapper {
+        margin: 25px;
+        margin-top: 0px;
+    }
+
+    .stepperContainer {
+        max-width: 100% !important;
+    }
+
+    .greeting {
+        font-size: 22px;
+    }
+
+    .stepper {
+        border: none;
+    }
+
+    .buttonFind {
+        width: 180px;
+        margin-right: 25px;
+
+        span {
+            font-size: 17px;
+        }
+    }
+
+    .sendReq {
+        width: 165px;
+        margin-right: 25px;
+
+        span {
+            font-size: 17px;
+        }
+    }
+
+    .previousBtn {
+        width: 115px;
+        margin-left: 25px;
+
+        span {
+            font-size: 17px;
+        }
+    }
+
+    .recomendation {
+        font-size: 13px;
+    }
+
+    .welcome {
+        font-size: 25px;
+    }
+
+    .acceptInfo {
+        font-size: 25px;
+    }
+
+    .time {
+        font-size: 24px;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    .photoDesktop {
+        display: none !important;
+    }
+}
+
+@media only screen and (min-width:600px) {
+    .photoMobile {
+        display: none !important;
+    }
+}

@@ -1,0 +1,117 @@
+.heading {
+    font-size: 28px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #23283c;
+}
+
+.booking {
+    width: 303.5px;
+    height: 45.7px;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #161925;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.imageDiv {
+    position: relative;
+    overflow: hidden;
+}
+
+.imageDiv img {
+    position: relative;
+    display: block;
+    width: 257.6px;
+    height: 367.5px;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    box-shadow: 0px 0px 0px 200px white;
+    -webkit-clip-path: polygon(0% 0%, 60% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(0% 0%, 60% 0%, 100% 100%, 0% 100%);
+}
+
+.skipperName {
+    width: 68.5px;
+    height: 45.7px;
+    font-size: 27px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.37;
+    letter-spacing: normal;
+    text-align: left;
+    color: #161925;
+}
+
+.bookingCard {
+    border-radius: 12px;
+    box-shadow: 2px 2px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 0.5px #e2e2e2;
+    background-color: #ffffff;
+    margin-top: 20px !important;
+    margin-bottom: 50px !important;
+    padding: 0px !important;
+}
+
+.icon {
+    position: relative;
+    margin-bottom: -5px !important;
+}
+
+.info {
+    display: inline;
+    font-size: 20px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #000000;
+    padding: 10px;
+}
+
+.userPhoto {
+    width: 116.2px;
+    height: 116.2px;
+    border-radius: 158px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+}
+
+@media only screen and (max-width: 600px) {
+    .heading {
+        font-size: 24px;
+    }
+
+    .imageContainer {
+        max-width: 102%;
+    }
+
+    .info {
+        font-size: 17px;
+    }
+
+    .infoDiv {
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.84);
+        height: 368px;
+    }
+
+}

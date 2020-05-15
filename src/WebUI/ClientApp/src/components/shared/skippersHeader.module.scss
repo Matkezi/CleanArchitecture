@@ -1,0 +1,24 @@
+.headerRow,
+.headerRowSelected {
+    font-size: 18px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #26806b;
+    display: inline;
+    cursor: pointer;
+    padding-bottom: 20px;
+    margin-right: 75.5px;
+}
+
+.headerRowSelected {
+    border-bottom: 2px solid #26806b;
+}
+
+.wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}

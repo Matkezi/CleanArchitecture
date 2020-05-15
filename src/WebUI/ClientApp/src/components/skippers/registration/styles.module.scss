@@ -1,0 +1,251 @@
+.wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.formName {
+    display: block;
+    color: #23395b;
+    font-size: 18px;
+    line-height: 1.36;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.spacing {
+    margin-top: 25px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}
+
+.noPhotoHolder {
+    width: 252.5px;
+    height: 252.5px;
+    border-radius: 158px;
+    border: solid 0.5px #808080;
+}
+
+.pdfFile {
+    display: block;
+    width: fit-content;
+    word-break: break-all;
+    padding: 10px;
+    border-radius: 4px;
+    border: solid 0.5px #ccc;
+}
+
+.licenceFile {
+    display: block;
+    width: 230px;
+    height: 230px;
+    border-radius: 4px;
+    border: solid 0.5px #ccc;
+}
+
+.licenceFile span {
+    display: block;
+    padding: 5px;
+    margin-top: 38%;
+    margin-left: 15px;
+}
+
+.noPhotoHolder span {
+    width: 80%;
+    margin-left: 28.5px;
+    display: block;
+    font-size: 15px;
+    margin-top: 40%;
+}
+
+
+.sectionName {
+    display: block;
+    color: #23395b;
+    font-size: 18px;
+    line-height: 1.36;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+.description {
+    display: block;
+    color: #23395b;
+    font-size: 15px;
+    line-height: 1.36;
+    margin-top: -20px;
+}
+
+.pitchLine {
+    display: block;
+    color: #23395b;
+    font-size: 18px;
+    line-height: 1.36;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+
+.headline,
+.headlineSmall,
+.descriptionSmall {
+    display: block;
+    color: #23395b;
+    font-size: 32px;
+    line-height: 1.36;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.headline {
+    margin-top: 10px;
+}
+
+.headlineSmall {
+    margin-top: 10px;
+}
+
+.error {
+    border: 1px solid red !important;
+}
+
+.headlineSmall,
+.descriptionSmall {
+    font-size: 24px;
+    margin-left: 15px;
+}
+
+.descriptionSmall {
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.autoCompleteSelect,
+.autoCompleteSelect_reg {
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.margin {
+    margin-top: 8px !important;
+}
+
+.autoCompleteSelect_reg {
+    >div:nth-of-type(2) {
+        z-index: 100 !important;
+        position: relative;
+    }
+
+    opacity: 1;
+}
+
+.uploadButton {
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 0.5px #707070;
+    background-color: #161925;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 10px 45px 10px 45px;
+}
+
+.datePicker {
+    width: 100%;
+    border-radius: 4px;
+    margin-top: 8.5px;
+    padding: 5px;
+}
+
+.datePicker div {
+    border: none;
+}
+
+.datePicker:first-child {
+    height: 40px;
+
+    border: 1px solid #ccc;
+}
+
+.photoHolder {
+    width: 273px !important;
+    height: 273px;
+    border-radius: 158px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+}
+
+.licenceHolder {
+    max-width: 350px;
+    max-height: 460px;
+    height: fit-content;
+    width: fit-content;
+    object-fit: fill !important;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+}
+
+.formSelect {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.chip {
+    margin-right: 5px;
+    margin-top: 10px;
+    width: fit-content;
+    height: 48.8px;
+    border-radius: 19px;
+    background-color: #406e8e;
+}
+
+.chip span {
+    padding: 25px;
+    color: white;
+}
+
+.chip i {
+    padding-left: 10px;
+    color: white;
+    position: relative;
+}
+
+.levelOfKnowledge {
+    margin-left: 195px;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.levelDiv {
+    margin-bottom: -15px;
+    margin-left: -15px;
+}
+
+.languageSpan {
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-left: 144px;
+    width: 125px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .firstFormRow {
+        margin-bottom: -30px !important;
+    }
+
+}
+
+@media only screen and (max-width: 800px) {
+    .wrapper {
+        margin: 25px;
+    }
+
+    .headline {
+        font-size: 23px;
+        margin-bottom: 30px;
+    }
+
+    .pitchLine {
+        margin-bottom: 25px;
+    }
+}

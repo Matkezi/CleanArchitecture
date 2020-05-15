@@ -1,0 +1,14 @@
+C:\Projects\SkipperAgency\src\Infrastructure\bin\Debug\netcoreapp3.1\SkipperAgency.Infrastructure.deps.json
+C:\Projects\SkipperAgency\src\Infrastructure\bin\Debug\netcoreapp3.1\SkipperAgency.Infrastructure.dll
+C:\Projects\SkipperAgency\src\Infrastructure\bin\Debug\netcoreapp3.1\SkipperAgency.Infrastructure.pdb
+C:\Projects\SkipperAgency\src\Infrastructure\bin\Debug\netcoreapp3.1\SkipperAgency.Application.dll
+C:\Projects\SkipperAgency\src\Infrastructure\bin\Debug\netcoreapp3.1\SkipperAgency.Domain.dll
+C:\Projects\SkipperAgency\src\Infrastructure\bin\Debug\netcoreapp3.1\SkipperAgency.Application.pdb
+C:\Projects\SkipperAgency\src\Infrastructure\bin\Debug\netcoreapp3.1\SkipperAgency.Domain.pdb
+C:\Projects\SkipperAgency\src\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csprojAssemblyReference.cache
+C:\Projects\SkipperAgency\src\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfoInputs.cache
+C:\Projects\SkipperAgency\src\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfo.cs
+C:\Projects\SkipperAgency\src\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Projects\SkipperAgency\src\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CopyComplete
+C:\Projects\SkipperAgency\src\Infrastructure\obj\Debug\netcoreapp3.1\SkipperAgency.Infrastructure.dll
+C:\Projects\SkipperAgency\src\Infrastructure\obj\Debug\netcoreapp3.1\SkipperAgency.Infrastructure.pdb

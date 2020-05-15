@@ -1,0 +1,27 @@
+.Success {
+    background-color: #379a0b !important;
+}
+
+.Error {
+    background-color: #BA000D !important;
+}
+
+.Info {
+    background-color: #FFA726 !important;
+}
+
+.Message {
+    display: flex;
+    align-items: center;
+}
+
+.Icon {
+    margin-right: 8px;
+
+}
+
+.Root {
+    div {
+        z-index: 100000;
+    }
+}

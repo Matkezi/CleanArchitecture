@@ -1,0 +1,12 @@
+C:\Projects\SkipperAgency\src\Application\bin\Debug\netstandard2.1\SkipperAgency.Application.deps.json
+C:\Projects\SkipperAgency\src\Application\bin\Debug\netstandard2.1\SkipperAgency.Application.dll
+C:\Projects\SkipperAgency\src\Application\bin\Debug\netstandard2.1\SkipperAgency.Application.pdb
+C:\Projects\SkipperAgency\src\Application\bin\Debug\netstandard2.1\SkipperAgency.Domain.dll
+C:\Projects\SkipperAgency\src\Application\bin\Debug\netstandard2.1\SkipperAgency.Domain.pdb
+C:\Projects\SkipperAgency\src\Application\obj\Debug\netstandard2.1\Application.csprojAssemblyReference.cache
+C:\Projects\SkipperAgency\src\Application\obj\Debug\netstandard2.1\Application.AssemblyInfoInputs.cache
+C:\Projects\SkipperAgency\src\Application\obj\Debug\netstandard2.1\Application.AssemblyInfo.cs
+C:\Projects\SkipperAgency\src\Application\obj\Debug\netstandard2.1\Application.csproj.CoreCompileInputs.cache
+C:\Projects\SkipperAgency\src\Application\obj\Debug\netstandard2.1\Application.csproj.CopyComplete
+C:\Projects\SkipperAgency\src\Application\obj\Debug\netstandard2.1\SkipperAgency.Application.dll
+C:\Projects\SkipperAgency\src\Application\obj\Debug\netstandard2.1\SkipperAgency.Application.pdb

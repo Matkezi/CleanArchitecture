@@ -1,0 +1,93 @@
+.inputField input {
+    width: 250px;
+}
+
+.inputField {
+    padding-right: 30px;
+}
+
+.settingsText,
+.settingsText2,
+.settingsText3 {
+    margin: 28px 5px 32px 25px;
+}
+
+.settingsText {
+    font-size: 24px;
+}
+
+.passwordChange {
+    margin-top: 50px;
+}
+
+.settingsText2 {
+    font-size: 19px;
+}
+
+.settingsText3 {
+    font-size: 17px;
+    margin-top: 31px !important;
+    margin-left: 0px !important;
+}
+
+.resetText {
+    margin: 0px 30px 19px;
+}
+
+.resetPass {
+    margin: 0px 5px 29px 5px;
+    text-align: center;
+}
+
+.resetPassword {
+    margin: 28px 5px 32px 5px;
+    font-size: 24px;
+}
+
+.wrapper {
+    max-width: 1000px;
+}
+
+.buttonDiv {
+    margin-right: 31px !important;
+    margin-top: 20px !important;
+}
+
+.buttonSend,
+.buttonChange {
+    width: 170px;
+    height: 44px;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: #161925;
+}
+
+.buttonChange {
+    width: 185px;
+}
+
+.buttonSend:disabled,
+.buttonChange:disabled {
+    background-color: #4b5168;
+    cursor: initial;
+}
+
+.buttonSend span,
+.buttonChange span {
+    width: 82px;
+    height: 24.5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+    .settingsText3 {
+        margin-top: 0px !important;
+        margin-left: 25px !important;
+    }
+
+    .inputField {
+        margin-bottom: 10px !important;
+        margin-top: 10px !important;
+    }
+}
