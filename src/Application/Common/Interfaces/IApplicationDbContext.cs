@@ -28,6 +28,6 @@ namespace SkipperAgency.Application.Common.Interfaces
         DbSet<PreRegisterSkipper> SkipperPreRegistration { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
-        public DbSet<TEntity> Set<TEntity>() where TEntity : class;
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
     }
 }

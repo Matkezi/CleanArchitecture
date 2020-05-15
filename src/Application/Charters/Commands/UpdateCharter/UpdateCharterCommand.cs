@@ -37,24 +37,24 @@ namespace SkipperAgency.Application.Charters.Commands.UpdateCharter
 
             public async Task<Unit> Handle(UpdateCharterCommand request, CancellationToken cancellationToken)
             {
-                var entity = await _context.Charters.FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
+                var charter = await _context.Charters.FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
 
-                if (entity is null)
+                if (charter is null)
                 {
                     throw new NotFoundException(nameof(Charter), request.Id);
                 }
 
-                entity.CharterName = request.CharterName;
-                entity.Address = request.Address;
-                entity.ZipCode = request.ZipCode;
-                entity.City = request.City;
-                entity.CountryId = request.CountryId;
+                charter.CharterName = request.CharterName;
+                charter.Address = request.Address;
+                charter.ZipCode = request.ZipCode;
+                charter.City = request.City;
+                charter.CountryId = request.CountryId;
 
                 await _context.SaveChangesAsync(cancellationToken);
 
                 if (!string.IsNullOrEmpty(request.NewEmail))
                 {
-                    _ = _mediator.Send(new EmailChangeRequestCommand { Email = entity.Email, UserNewEmail = request.NewEmail }, cancellationToken);
+                    _ = _mediator.Send(new EmailChangeRequestCommand { Email = charter.Email, UserNewEmail = request.NewEmail }, cancellationToken);
                 }
 
                 return Unit.Value;
