@@ -1,9 +1,0 @@
-C:\Projects\SkipperAgency\src\Domain\bin\Debug\netstandard2.1\SkipperAgency.Domain.deps.json
-C:\Projects\SkipperAgency\src\Domain\bin\Debug\netstandard2.1\SkipperAgency.Domain.dll
-C:\Projects\SkipperAgency\src\Domain\bin\Debug\netstandard2.1\SkipperAgency.Domain.pdb
-C:\Projects\SkipperAgency\src\Domain\obj\Debug\netstandard2.1\Domain.csprojAssemblyReference.cache
-C:\Projects\SkipperAgency\src\Domain\obj\Debug\netstandard2.1\Domain.AssemblyInfoInputs.cache
-C:\Projects\SkipperAgency\src\Domain\obj\Debug\netstandard2.1\Domain.AssemblyInfo.cs
-C:\Projects\SkipperAgency\src\Domain\obj\Debug\netstandard2.1\Domain.csproj.CoreCompileInputs.cache
-C:\Projects\SkipperAgency\src\Domain\obj\Debug\netstandard2.1\SkipperAgency.Domain.dll
-C:\Projects\SkipperAgency\src\Domain\obj\Debug\netstandard2.1\SkipperAgency.Domain.pdb
