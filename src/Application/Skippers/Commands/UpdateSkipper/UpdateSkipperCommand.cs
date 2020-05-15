@@ -55,7 +55,7 @@ namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
 
             public async Task<Unit> Handle(UpdateSkipperCommand request, CancellationToken cancellationToken)
             {
-                var skipper = await _context.Skipper.Include(x => x.ListOfLanguages).Include(x => x.ListOfSkills).FirstOrDefaultAsync(x => x.Id == request.Id);
+                var skipper = await _context.Skippers.Include(x => x.ListOfLanguages).Include(x => x.ListOfSkills).FirstOrDefaultAsync(x => x.Id == request.Id);
 
                 if (skipper is null)
                 {

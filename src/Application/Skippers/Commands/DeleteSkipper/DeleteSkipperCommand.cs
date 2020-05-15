@@ -22,7 +22,7 @@ namespace SkipperAgency.Application.Skippers.Commands.DeleteSkipper
 
             public async Task<Unit> Handle(DeleteSkipperCommand request, CancellationToken cancellationToken)
             {
-                var entity = await _context.Skipper
+                var entity = await _context.Skippers
                     .FindAsync(request.Id);
 
                 if (entity is null)
@@ -30,7 +30,7 @@ namespace SkipperAgency.Application.Skippers.Commands.DeleteSkipper
                     throw new NotFoundException(nameof(Charter), request.Id);
                 }
 
-                _context.Skipper.Remove(entity);
+                _context.Skippers.Remove(entity);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

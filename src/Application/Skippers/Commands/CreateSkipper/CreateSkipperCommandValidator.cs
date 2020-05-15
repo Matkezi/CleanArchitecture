@@ -14,7 +14,7 @@ namespace SkipperAgency.Application.Skippers.Commands.CreateSkipper
             .EmailAddress()
             .WithMessage("Invalid email format.")
             .Must(email =>
-                context.AppUser.FirstOrDefault(x => x.Email == email) is null &&
+                context.AppUsers.FirstOrDefault(x => x.Email == email) is null &&
                 context.SkipperPreRegistration.FirstOrDefault(x => x.Email == email) is null)
             .WithMessage("Email already taken");
 

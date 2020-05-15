@@ -25,7 +25,7 @@ namespace SkipperAgency.Application.Skippers.Queries.GetAllSkippers
 
             public async Task<IEnumerable<SkipperModel>> Handle(GetAllSkippersQuery request, CancellationToken cancellationToken)
             {
-                return await _context.Skipper
+                return await _context.Skippers
                     .Include(s => s.ListOfSkills).ThenInclude(s => s.Skill)
                     .Include(s => s.ListOfLanguages).ThenInclude(l => l.Language)
                     .ProjectTo<SkipperModel>(_mapper.ConfigurationProvider)

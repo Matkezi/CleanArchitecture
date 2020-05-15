@@ -26,7 +26,7 @@ namespace SkipperAgency.Application.Skippers.Commands.Availability
 
             public async Task<Unit> Handle(UpdateSkipperAvailabilityCommand request, CancellationToken cancellationToken)
             {
-                var skipper = await _context.Skipper
+                var skipper = await _context.Skippers
                     .Include(x => x.Availability)
                     .FirstAsync(s => s.Id == _currentUserService.UserId, cancellationToken);
 

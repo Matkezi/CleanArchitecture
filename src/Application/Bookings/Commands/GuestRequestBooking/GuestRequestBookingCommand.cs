@@ -40,7 +40,7 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
                 booking.SkipperId = request.SkipperId;
                 await _context.SaveChangesAsync(cancellationToken);
 
-                var skipper = await _context.Skipper.FindAsync(booking.SkipperId);
+                var skipper = await _context.Skippers.FindAsync(booking.SkipperId);
 
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingUrl}/step=1";
 

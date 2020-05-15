@@ -26,7 +26,7 @@ namespace SkipperAgency.Application.Skippers.Commands.TrustedSkippers
 
             public async Task<Unit> Handle(UpdateTrustedSkippersCommand request, CancellationToken cancellationToken)
             {
-                var charter = await _context.Charter.Include(c => c.UnTrustedSkippers).Include(c => c.TrustedSkippers).FirstAsync(x => x.Id == _currentUserService.UserId);
+                var charter = await _context.Charters.Include(c => c.UnTrustedSkippers).Include(c => c.TrustedSkippers).FirstAsync(x => x.Id == _currentUserService.UserId);
                 request.Ids.ToList().ForEach(skipperId =>
                 {
                     if (!charter.TrustedSkippers.Select(x => x.SkipperId).Contains(skipperId))

@@ -28,9 +28,9 @@ namespace SkipperAgency.Application.Skippers.Queries.TrustedSkippers
 
             public async Task<IEnumerable<TrustedSkipperModel>> Handle(GetUnTrustedSkippersQuery request, CancellationToken cancellationToken)
             {
-                var charter = await _context.Charter.Include(c => c.UnTrustedSkippers).FirstAsync(x => x.Id == _currentUserService.UserId, cancellationToken);
+                var charter = await _context.Charters.Include(c => c.UnTrustedSkippers).FirstAsync(x => x.Id == _currentUserService.UserId, cancellationToken);
 
-                return await _context.Skipper
+                return await _context.Skippers
                     .Include(s => s.ListOfLanguages)
                     .ThenInclude(l => l.Language)
                     .Where(skipper => charter.UnTrustedSkippers.Select(x => x.SkipperId)

@@ -22,7 +22,7 @@ namespace SkipperAgency.Application.Charters.Commands.DeleteCharter
 
             public async Task<Unit> Handle(DeleteCharterCommand request, CancellationToken cancellationToken)
             {
-                var entity = await _context.Charter
+                var entity = await _context.Charters
                     .FindAsync(request.Id);
 
                 if (entity is null)
@@ -30,7 +30,7 @@ namespace SkipperAgency.Application.Charters.Commands.DeleteCharter
                     throw new NotFoundException(nameof(DeleteCharterCommand), request.Id);
                 }
 
-                _context.Charter.Remove(entity);
+                _context.Charters.Remove(entity);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

@@ -38,7 +38,7 @@ namespace SkipperAgency.Application.Bookings.Commands.CreateBooking
 
             public async Task<Unit> Handle(CreateBookingCommand request, CancellationToken cancellationToken)
             {
-                var charter = await _context.Charter.FindAsync(_currentUserService.UserId);
+                var charter = await _context.Charters.FindAsync(_currentUserService.UserId);
                 if (charter is null)
                 {
                     throw new NotFoundException(nameof(charter), _currentUserService.UserId);

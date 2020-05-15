@@ -7,10 +7,11 @@ namespace SkipperAgency.Application.Common.Interfaces
 {
     public interface IApplicationDbContext
     {
-        DbSet<AppUser> AppUser { get; set; }
-        DbSet<Skipper> Skipper { get; set; }
+        DbSet<AppUser> AppUsers { get; set; }
+        DbSet<Skipper> Skippers { get; set; }
         DbSet<Skill> Skills { get; set; }
-        DbSet<Charter> Charter { get; set; }
+        DbSet<Charter> Charters { get; set; }
+        DbSet<Developer> Developers { get; set; }
         DbSet<Availability> Availabilities { get; set; }
         DbSet<Boat> Boats { get; set; }
         DbSet<Booking> Bookings { get; set; }

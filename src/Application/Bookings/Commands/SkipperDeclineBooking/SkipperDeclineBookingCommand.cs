@@ -50,7 +50,7 @@ namespace SkipperAgency.Application.Bookings.Commands.SkipperDeclineBooking
 
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingUrl}/step=1";
 
-                var skipper = await _context.Skipper.FindAsync(booking.SkipperId);
+                var skipper = await _context.Skippers.FindAsync(booking.SkipperId);
                 await _emailService.SendEmailWithTemplate(
                     new SkipperDeclined(
                         guestName: booking.GuestName,

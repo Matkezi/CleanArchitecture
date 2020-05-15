@@ -25,7 +25,7 @@ namespace SkipperAgency.Application.Charters.Queries.GetAllCharters
 
             public async Task<IEnumerable<CharterModel>> Handle(GetAllChartersQuery request, CancellationToken cancellationToken)
             {
-                return await _context.Charter
+                return await _context.Charters
                     .ProjectTo<CharterModel>(_mapper.ConfigurationProvider)
                     .ToListAsync(cancellationToken);
             }

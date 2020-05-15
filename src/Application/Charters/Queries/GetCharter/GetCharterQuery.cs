@@ -23,7 +23,7 @@ namespace SkipperAgency.Application.Charters.Queries.GetCharter
 
             public async Task<CharterModel> Handle(GetCharterQuery request, CancellationToken cancellationToken)
             {
-                var charter = await _context.Charter.FindAsync(request.Id);
+                var charter = await _context.Charters.FindAsync(request.Id);
                 return _mapper.Map<CharterModel>(charter);
             }
 

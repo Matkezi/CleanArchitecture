@@ -32,7 +32,7 @@ namespace SkipperAgency.Application.Skippers.Queries.Availability.GetAvailableSk
 
             public async Task<IEnumerable<SkipperModel>> Handle(GetAvailableSkippersQuery request, CancellationToken cancellationToken)
             {
-                return await _context.Skipper.Include(s => s.ListOfSkills).ThenInclude(sk => sk.Skill).Include(s => s.Bookings).Include(s => s.Availability)
+                return await _context.Skippers.Include(s => s.ListOfSkills).ThenInclude(sk => sk.Skill).Include(s => s.Bookings).Include(s => s.Availability)
                   .Include(sk => sk.ListOfLanguages).ThenInclude(lang => lang.Language)
                 .Where(skipper => request.ListOfLanguages.Count == 0 || skipper.ListOfLanguages.ConvertAll(lang => lang.Language.EnglishName).Intersect(request.ListOfLanguages).Any())
                 .Where(skipper => skipper.Availability.Any(av => av.AvailableFrom <= request.DateFrom && av.AvailableTo >= request.DateTo))

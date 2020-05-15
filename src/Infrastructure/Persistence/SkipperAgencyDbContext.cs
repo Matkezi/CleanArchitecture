@@ -25,10 +25,11 @@ namespace SkipperAgency.Infrastructure.Persistence
             _currentUserService = currentUserService;
             _dateTime = dateTime;
         }
-        public DbSet<AppUser> AppUser { get; set; }
-        public DbSet<Skipper> Skipper { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<Skipper> Skippers { get; set; }
         public DbSet<Skill> Skills { get; set; }
-        public DbSet<Charter> Charter { get; set; }
+        public DbSet<Charter> Charters { get; set; }
+        public DbSet<Developer> Developers { get; set; }
         public DbSet<Availability> Availabilities { get; set; }
         public DbSet<Boat> Boats { get; set; }
         public DbSet<Booking> Bookings { get; set; }

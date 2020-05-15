@@ -26,7 +26,7 @@ namespace SkipperAgency.Application.Skippers.Queries.Availability.GetSkipperAvai
 
             public async Task<AvailabilityModel> Handle(GetSkipperAvailabilityQuery request, CancellationToken cancellationToken)
             {
-                var skipper = await _context.Skipper
+                var skipper = await _context.Skippers
                     .Include(s => s.Availability)
                     .Include(s => s.Bookings)
                     .FirstAsync(s => s.Id == request.SkipperId, cancellationToken);
