@@ -123,11 +123,6 @@ namespace SkipperAgency.WebUI
                 app.UseHsts();
             }
 
-            app.UseWhen(context => context.Request.Path.StartsWithSegments("/api"), appBuilder =>
-            {
-                appBuilder.UseCustomExceptionHandler();
-            });
-
             app.UseCustomExceptionHandler();
             app.UseHealthChecks("/health");
             app.UseHttpsRedirection();

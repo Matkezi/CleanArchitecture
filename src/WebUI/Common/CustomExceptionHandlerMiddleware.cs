@@ -14,10 +14,10 @@ namespace SkipperAgency.WebUI.Common
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
 
-        public CustomExceptionHandlerMiddleware(RequestDelegate next, ILogger logger)
+        public CustomExceptionHandlerMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
         {
             _next = next;
-            _logger = logger;
+            _logger = loggerFactory.CreateLogger<CustomExceptionHandlerMiddleware>(); ;
         }
 
         public async Task Invoke(HttpContext context)
