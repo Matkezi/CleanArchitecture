@@ -112,9 +112,14 @@ namespace SkipperAgency.WebUI
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
+            { 
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(config =>
+                {
+                    config.SwaggerEndpoint("/swagger/v1/swagger.json", "SkipperBooking API");
+                });
             }
             else
             {
