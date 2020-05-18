@@ -30,6 +30,7 @@ import SkipperTos from './components/shared/tos&pp/skipperTos';
 import CharterTos from './components/shared/tos&pp/charterTos';
 import PrivacyPolicy from './components/shared/tos&pp/privacyPolicy';
 import CharterSettings from './containers/charters/charterSettings';
+import BoatContainer from './containers/charters/boats';
 
 const history = createBrowserHistory();
 
@@ -50,6 +51,7 @@ const App = () => {
           <LoginRoute history={history} exact path="/change-email/email=:email/newEmail=:newEmail/token=:token" component={ChangeEmail} />
           <CharterRoute history={history} exact path="/charter/trusted-skippers" component={TrustedSkippers} />
           <CharterRoute history={history} exact path="/charter/settings" component={CharterSettings} />
+          <CharterRoute history={history} exact path="/charter/boats" component={BoatContainer} />
           <CharterRoute history={history} exact path="/charter/dashboard" component={CharterDashboard} />
           <CharterRoute history={history} exact path="/charter/skipper-profile/:skipperId" component={SkipperProfile} />
           <CharterRoute history={history} exact path="/charter/preregistration" component={SkipperPreregistration} />

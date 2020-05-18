@@ -43,6 +43,7 @@ export const SkipperRegistrationContext = React.createContext<SkipperRegistratio
       licenceData: new Blob(),
       licenceName: ""
     },
+    yearOfFirsLicence: -1,
     skills: [{
       id: "",
       name: "",

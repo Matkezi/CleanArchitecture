@@ -45,8 +45,8 @@ export interface SkipperRegistrationStepData {
         validUntil: string,
         licenceLevel: string,
         licenceName: string
-    }
-    ,
+    },
+    yearOfFirsLicence: number,
     skills: [
         {
             id: string,

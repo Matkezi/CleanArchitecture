@@ -58,11 +58,10 @@ const CreateBookingContainer: React.FC<IProps> = (props: IProps) => {
   }, []);
 
   const closeEditBooking = () => {
-    console.log("Clikcked")
     editBookingContext.setBooking({});
     editBookingContext.setShowEditBooking(false);
     editBookingContext.setShowNewBooking(false);
-}
+  }
 
   const handleDayClick = (day: Date, { selected, disabled }: any) => {
     if (selected && date?.from!) { handleResetClick(); }
@@ -317,6 +316,7 @@ const CreateBookingContainer: React.FC<IProps> = (props: IProps) => {
                               <Grid item className={styles.boatRow} key={boat.id}>
                                 <BoatRow
                                   boat={boat}
+                                  editable={false}
                                   boatSelected={false}
                                   choseBoat={choseBoat}
                                 ></BoatRow>
@@ -335,6 +335,7 @@ const CreateBookingContainer: React.FC<IProps> = (props: IProps) => {
                   <BoatRow
                     boat={editBookingContext.booking.boat!}
                     boatSelected={true}
+                    editable={false}
                     deselectBoat={deselectBoat}
                   ></BoatRow>
                 </Grid>

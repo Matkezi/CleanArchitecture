@@ -17,7 +17,7 @@ const SettingsComponent: React.FC<IProps> = (props: IProps) => {
         <>
             <Formik
                 initialValues={{ email: "", repeatEmail: "" }}
-                onSubmit={(values: any) => props.requestEmailChange(values.email)}
+                onSubmit={(values: any, { resetForm }) => { props.requestEmailChange(values.email); resetForm(); }}
                 validationSchema={Yup.object().shape({
                     email: Yup.string().email().required("Required"),
                     repeatEmail: Yup.string().test('email-match', 'Emails do not match', function (value) {
@@ -109,7 +109,7 @@ const SettingsComponent: React.FC<IProps> = (props: IProps) => {
             </Formik >
             <Formik
                 initialValues={{ currentPassword: "", password: "", repeatPassword: "" }}
-                onSubmit={(values: any) => props.changePassword(values.currentPassword, values.password)}
+                onSubmit={(values: any, { resetForm }) => { props.changePassword(values.currentPassword, values.password); resetForm(); }}
                 validationSchema={Yup.object().shape({
                     currentPassword: Yup.string().required('Required'),
                     password: Yup.string().required("Required"),

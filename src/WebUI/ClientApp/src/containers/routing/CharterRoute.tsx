@@ -61,7 +61,6 @@ const CharterRoute = ({ component: Component, history, ...rest }: any) => {
             alt="logo"
           ></img>
         </Grid>
-        <Grid item xs={1} sm={5}></Grid>
         <Grid
           container
           alignItems="center"
@@ -86,6 +85,15 @@ const CharterRoute = ({ component: Component, history, ...rest }: any) => {
               onClick={() => setActiveTab(2)}
             >
               <span>Skippers</span>
+            </Link>
+          </Grid>
+          <Grid item className={activeTab === 3 ? styles.ActiveNavTab + " " + styles.NavTab : styles.NavTab}>
+            <Link
+              className={styles.Links}
+              to="/charter/boats"
+              onClick={() => setActiveTab(3)}
+            >
+              <span>Boats</span>
             </Link>
           </Grid>
           <Grid item className={styles.NavTab}>
@@ -123,7 +131,7 @@ const CharterRoute = ({ component: Component, history, ...rest }: any) => {
         <Route
           {...rest}
           render={(props: any) =>
-            isCharter() ? <Component {...props} /> : <Redirect to="/login" />
+            isCharter() ? <Component {...props} setActiveTab={setActiveTab} /> : <Redirect to="/login" />
           }
         />
       </ContentLayout>

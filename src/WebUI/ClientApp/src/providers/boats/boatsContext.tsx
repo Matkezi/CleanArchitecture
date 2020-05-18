@@ -1,6 +1,7 @@
 import { IBooatsContext, Boat } from "../../types/Boat";
 import React, { useState } from "react";
 import boatApi from "../../services/shared/boats";
+import { BoatSorter } from '../../helpers/sorters/boatSorter';
 
 export const BoatContext = React.createContext<IBooatsContext>({
   charterBoats: [],
@@ -13,9 +14,9 @@ export const BoatContextProvider: React.ComponentType<React.ReactNode> = props =
   const setCharterBoats = async (type?: string) => {
     let boats = await boatApi.getCharterBoats();
     if (type !== undefined) {
-      boats = boats.filter(boat => boat.type === type)
+      boats = boats.filter(boat => (boat.type as string) === type)
     }
-    setCharterBoatState(boats);
+    setCharterBoatState(BoatSorter.sortBoats(boats));
   };
 
   return (

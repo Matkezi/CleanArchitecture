@@ -124,8 +124,6 @@ const SkipperRegistration: React.FC<RouteComponentProps> = (props: RouteComponen
                     notificationContext.setLoading({ showLoading: false })
                     notificationContext.setSnackbar({ showSnackbar: true, message: err.message, type: NotificationType.Error })
                 }
-
-                //provjeriti jel uspješno               
                 break;
         }
 

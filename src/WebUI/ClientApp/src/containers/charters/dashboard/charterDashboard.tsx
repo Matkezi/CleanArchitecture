@@ -1,35 +1,53 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BookingContext } from '../../../providers/booking/booking';
 import CharterBookingRow from "../../../components/charter/charterBooking/CharterBookingRow";
-import { Divider, Grid } from "@material-ui/core";
+import { Divider, Grid, LinearProgress, withStyles } from "@material-ui/core";
 import CreateBookingContainer from "./createBookingContainer";
 import { EditBookingContext } from "../../../providers/booking/editBookingContext";
 import { Booking } from "../../../types/Booking";
 import BookingApi from "../../../services/shared/booking"
 import styles from './styles.module.scss';
-import { SortBookingHelper } from './../../../helpers/SortBookingsHelper';
+import { SortBookingHelper } from './../../../helpers/sorters/bookingSorter';
 import PlusIcon from '../../../assets/img/icons/plus-icon-green-37.png';
 import DownIcon from '../../../assets/img/icons/down-sort-icon-black-13.png';
 import { NotificationContext } from "../../../providers/notification";
 import { NotificationType } from "../../../types/NotificationProps";
 
+interface IProps {
+    setActiveTab: (tab: number) => void
+}
 
-const CharterDashboard = () => {
+const CustomLinearProgres = withStyles({
+    colorPrimary: {
+        backgroundColor: '#26806b',
+    },
+    barColorPrimary: {
+        backgroundColor: '#B2DFDB',
+    }
+})((props: any) => <LinearProgress {...props} />);
+
+const CharterDashboard: React.FC<IProps> = (props: IProps) => {
     const bookingContext = useContext(BookingContext);
     const editBookingContext = useContext(EditBookingContext);
     const [sorter, setSorter] = useState({ numOfSorter: 0, asc: true });
     const notificationContext = useContext(NotificationContext);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        notificationContext.setLoading({ showLoading: true })
+        props.setActiveTab(1);
+        getBookingsData();
+    }, []);
+
+    const getBookingsData = async () => {
+        setLoading(true);
         try {
-            bookingContext.setCharterBookingsData();
-            notificationContext.setLoading({ showLoading: false })
+            await bookingContext.setCharterBookingsData();
+            setLoading(false);
         } catch (e) {
-            notificationContext.setLoading({ showLoading: false })
+            setLoading(false);
             notificationContext.setSnackbar({ showSnackbar: true, message: e.message, type: NotificationType.Error })
         }
-    }, []);
+    }
 
     useEffect(() => {
         const getCountries = async () => {
@@ -201,11 +219,14 @@ const CharterDashboard = () => {
                                 </Grid>
                             </Grid>
                             <Grid container item xs={12} direction="row" alignItems="center" >
-                                {bookingContext.bookings.map((booking, i) =>
-                                    <div key={i} className={styles.bookingRow}>
-                                        <CharterBookingRow booking={booking} editAction={editBooking} ></CharterBookingRow>
-                                    </div>
-                                )}
+                                {loading ? <CustomLinearProgres className={styles.progressBar} /> :
+                                    <>{bookingContext.bookings.map((booking, i) =>
+                                        <div key={i} className={styles.bookingRow}>
+                                            <CharterBookingRow booking={booking} editAction={editBooking} ></CharterBookingRow>
+                                        </div>
+                                    )}
+                                    </>
+                                }
                             </Grid>
                         </Grid>
                     </div>

@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import TextInput from '../../ui/form/TextInput';
 import { SkipperRegistrationStepData } from "../../../types/SkipperRegistrationContextProps";
-import Grid from '@material-ui/core/Grid';
+import { Grid, FormControl } from '@material-ui/core';
 import styles from './styles.module.scss';
 import mainStyles from '../../ui/main.module.scss';
 import SkipperStepper from '../../shared/skipperStepper';

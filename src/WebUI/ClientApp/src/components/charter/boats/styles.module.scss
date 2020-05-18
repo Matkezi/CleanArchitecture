@@ -1,0 +1,210 @@
+.wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.container {
+    min-width: 1000px;
+    margin-top: 20px;
+}
+
+.divider {
+    height: 1px;
+    width: 100%;
+    margin: 20px 0px 20px 0px !important;
+}
+
+
+.TitleContainer {
+    span {
+        width: 73.5px;
+        height: 37px;
+        font-size: 27px;
+        text-align: left;
+        color: #26806b;
+    }
+}
+
+.newBoat {
+    cursor: pointer;
+
+    span {
+        width: 138.5px;
+        height: 24.5px;
+        font-size: 18px;
+        text-align: left;
+        color: #26806b;
+    }
+}
+
+.plusIcon {
+    width: 28px;
+    height: 28px;
+    margin-bottom: -12px;
+    margin-left: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.newBoatTitle {
+    span {
+        width: 255.5px;
+        height: 37px;
+        font-size: 23px;
+        font-weight: 700;
+        color: #26806b;
+    }
+}
+
+
+.formSelect {
+    display: block;
+    position: relative;
+    border-radius: 4px;
+    width: 100%;
+    margin-top: 8px !important;
+}
+
+.error {
+    border: 1px solid red !important;
+
+    :first-child {
+        :first-child {
+            border: 0px !important;
+        }
+    }
+}
+
+.uploadButton {
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 0.5px #707070;
+    background-color: #161925;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 5px 45px 5px 45px;
+    margin: 20px 0px;
+}
+
+.infoTitle {
+    padding: 15px 0px;
+    margin-top: 15px !important;
+
+    span {
+        width: 149.5px;
+        height: 24.5px;
+        font-size: 18px;
+        font-weight: 700;
+        color: #000000;
+    }
+}
+
+.formContainer {
+    box-shadow: 2px 2px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 0.5px #dadada;
+    margin-top: 20px !important;
+    padding: 25px;
+}
+
+.rotate {
+    transform: rotate(45deg);
+}
+
+.cancleBtn {
+    margin-right: 15px;
+    cursor: pointer;
+    width: 125px;
+    height: 42.8px;
+    border-radius: 37px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    background-color: #ffffff;
+
+    span {
+        width: 40px;
+        height: 24.5px;
+        font-size: 18px;
+        font-weight: 500;
+        color: #000000;
+    }
+}
+
+.saveBtn {
+    cursor: pointer;
+    width: 125px;
+    height: 42.8px;
+    border-radius: 37px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    border: solid 2px #26806b;
+    background-color: #26806b;
+
+    span {
+        width: 40px;
+        height: 24.5px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #ffffff;
+    }
+}
+
+.photoHolder {
+    max-width: 400px !important;
+    max-height: 400px;
+    border-radius: 5px;
+    margin-top: 25px;
+    box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
+    object-fit: contain;
+}
+
+.noPhotoHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 252.5px;
+    height: 152.5px;
+    border-radius: 5px;
+    border: solid 0.5px #cfcfcf;
+    margin-top: 25px;
+
+    div {
+        padding: 20px;
+    }
+}
+
+.boatContainer {
+    margin: 20px 0px;
+}
+
+.boatRow {
+    padding: 10px 0px;
+}
+
+@media only screen and (max-width: 500px) {
+    .container {
+        min-width: 300px;
+    }
+
+    .TitleContainer {
+        span {
+            padding-left: 25px;
+            font-size: 21px;
+        }
+    }
+
+    .newBoatCont {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .newBoat {
+        span {
+            font-size: 15px;
+        }
+    }
+
+    .plusIcon {
+        width: 22px;
+        height: 25px;
+    }
+}

@@ -18,6 +18,22 @@
     padding-right: 15px !important;
 }
 
+.datePicker {
+    width: 100%;
+    border-radius: 4px;
+    margin-top: 8.5px;
+    padding: 5px;
+}
+
+.datePicker div {
+    border: none;
+}
+
+.datePicker:first-child {
+    height: 40px;
+    border: 1px solid #ccc;
+}
+
 .noPhotoHolder {
     width: 252.5px;
     height: 252.5px;
@@ -107,6 +123,12 @@
 
 .error {
     border: 1px solid red !important;
+
+    :first-child {
+        :first-child {
+            border: 0px !important;
+        }
+    }
 }
 
 .headlineSmall,
@@ -150,21 +172,40 @@
     padding: 10px 45px 10px 45px;
 }
 
-.datePicker {
-    width: 100%;
-    border-radius: 4px;
-    margin-top: 8.5px;
-    padding: 5px;
-}
+.dateOfBirth {
+    width: 99% !important;
+    border-radius: 4px !important;
+    height: 38px !important;
+    background-color: white !important;
+    margin-top: 8px;
 
-.datePicker div {
-    border: none;
-}
+    div {
+        border: none !important;
+    }
 
-.datePicker:first-child {
-    height: 40px;
+    ::before,
+    ::after {
+        background-color: unset !important;
+    }
 
-    border: 1px solid #ccc;
+
+    :first-child {
+        ::before {
+            color: #23395b !important;
+        }
+
+        border: 1px solid #ccc !important;
+        border-radius: 4px !important;
+        width: 100%;
+        height: 38px;
+        margin-bottom: 0px !important;
+
+        :first-child {
+
+            border: none !important;
+            margin-left: 6px !important;
+        }
+    }
 }
 
 .photoHolder {
@@ -186,6 +227,7 @@
 .formSelect {
     display: block;
     position: relative;
+    border-radius: 4px;
     width: 100%;
 }
 
