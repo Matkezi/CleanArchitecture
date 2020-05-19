@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import LoginLayout from '../public/loginLayout';
 import ChangeEmailComponent from '../../components/skippers/ChangeEmailComponent';
-import accountApi from '../../services/shared/accountApi';
+import accountApi from '../../services/api/account/accountApi';
 import { LinearProgress } from '@material-ui/core';
 import { NotificationContext } from '../../providers/notification';
 import styles from './styles.module.scss'
+import { CLIENT } from '../../constants/clientRoutes';
 
 interface IProps {
     match: {
@@ -31,7 +32,7 @@ const ChangeEmail: React.FC<IProps> = (props: IProps) => {
             setLoading(false);
             setIsSuccessful(true);
             setTimeout(() => {
-                props.history.push("/login")
+                props.history.push(CLIENT.APP.LOGIN)
             }, 4000);
         } catch (error) {
             setLoading(false);

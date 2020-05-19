@@ -1,6 +1,6 @@
 import { IBooatsContext, Boat } from "../../types/Boat";
 import React, { useState } from "react";
-import boatApi from "../../services/shared/boats";
+import boatApi from "../../services/api/charter/boats";
 import { BoatSorter } from '../../helpers/sorters/boatSorter';
 
 export const BoatContext = React.createContext<IBooatsContext>({

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { IGuestBookingContext, Booking } from "../../types/Booking";
-import bookingApi from "../../services/shared/booking";
+import bookingApi from "../../services/api/shared/booking";
 import { ILanguage } from "../../types/ILanguage";
 import { ISkill } from "../../types/ISkill";
-import skillsApi from "../../services/skipperService/skillsApi";
-import metaApi from "../../services/shared/metaApi";
+import skillsApi from "../../services/api/skipper/skillsApi";
+import metaApi from "../../services/api/meta/metaApi";
 
 export const GuestBookingContext = React.createContext<IGuestBookingContext>({
   step: 1,

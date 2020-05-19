@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import SettingsComponent from '../../components/skippers/SettingsComponent';
 import { CharterContext } from '../../providers/charter/charter';
-import accountApi from '../../services/shared/accountApi';
+import accountApi from '../../services/api/account/accountApi';
 import { NotificationContext } from '../../providers/notification';
 import { NotificationType } from '../../types/NotificationProps';
 

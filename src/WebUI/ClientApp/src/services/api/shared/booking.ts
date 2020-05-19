@@ -1,12 +1,12 @@
-import { api } from '../api';
-import { Booking, SkipperActionEnum } from '../../types/Booking';
-import { Skipper } from '../../types/Skipper';
-import { AvaliableSkipperSearch } from '../../types/Searches';
+import { api } from '../../api';
+import { Booking, SkipperActionEnum } from '../../../types/Booking';
+import { Skipper } from '../../../types/Skipper';
+import { AvaliableSkipperSearch } from '../../../types/Searches';
 
 export default
   {
     getSkipperBookingsPending(): Promise<Booking[]> {
-      return api.get('Booking/skipper/pending')
+      return api.get('SkipperBooking/pending')
     },
     getSkipperBookingsAccepted(): Promise<Booking[]> {
       return api.get('Booking/skipper/accepted')

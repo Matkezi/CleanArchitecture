@@ -47,6 +47,7 @@ namespace SkipperAgency.Infrastructure
                 .AddUserManager<UserManager<AppUser>>()
                 .AddDefaultTokenProviders();
 
+            // PREBACITI AUTORIZACIJU I AUTENTIFIKACIJU
             services.AddScoped<IJwtServicecs, JwtService>();
 
             services.AddTransient<IDateTime, DateTimeService>();

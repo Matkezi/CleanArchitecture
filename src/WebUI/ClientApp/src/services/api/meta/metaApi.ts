@@ -1,6 +1,6 @@
-import { ICountry } from './../../types/ICountry';
-import { api } from '../api';
-import { ILanguage } from '../../types/ILanguage';
+import { ICountry } from '../../../types/ICountry';
+import { api } from '../../api';
+import { ILanguage } from '../../../types/ILanguage';
 
 export default {
     getLanguages(): Promise<ILanguage[]> {

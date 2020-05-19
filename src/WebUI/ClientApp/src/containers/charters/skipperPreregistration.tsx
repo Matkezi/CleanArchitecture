@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import SkipperPreRegistrationForm from "../../components/skippers/registration/skipperPreRegistrationForm";
 import { NotificationContext } from "../../providers/notification";
-import RegistrationApi from "../../services/skipperService/registrationApi"
+import RegistrationApi from "../../services/api/skipper/registrationApi"
 import { SkipperPreRegistration } from "../../types/SkipperRegistrationContextProps";
 import { NotificationType } from "../../types/NotificationProps";
 
@@ -25,7 +25,7 @@ const SkipperPreregistration: React.FC = () => {
     }
     return (
         <React.Fragment>
-            <SkipperPreRegistrationForm savePreregistration={savePreRegistration}></SkipperPreRegistrationForm>       
+            <SkipperPreRegistrationForm savePreregistration={savePreRegistration}></SkipperPreRegistrationForm>
         </React.Fragment>
     )
 }

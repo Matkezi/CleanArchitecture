@@ -1,5 +1,5 @@
-import { api } from '../api';
-import { TrustedSkipperProfile } from '../../types/TrustedSkippers';
+import { api } from '../../api';
+import { TrustedSkipperProfile } from '../../../types/TrustedSkippers';
 
 
 export default

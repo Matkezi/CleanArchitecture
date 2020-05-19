@@ -13,7 +13,7 @@ namespace SkipperAgency.WebUI.Controllers
     [Authorize(Roles = "Admin, Charter")]
     public class BoatController : ApiController
     {
-        [HttpGet("Charter")]
+        [HttpGet("charter")]
         public async Task<ActionResult<IEnumerable<BoatModel>>> GetCharterBoats()
         {
             return Ok(await Mediator.Send(new GetCharterBoatsQuery()));

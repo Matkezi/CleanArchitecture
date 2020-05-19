@@ -10,6 +10,7 @@ import { LoginContext } from "../../providers/login";
 import Logo from '../../assets/img/icons/logo-blue.png';
 import Footer from './Footer';
 import Photo from '../../assets/img/icons/skipper-photo-empty.png'
+import { CLIENT } from "../../constants/clientRoutes";
 
 const SkipperRoute = ({ component: Component, history, ...rest }: any) => {
   const [activeTab, setActiveTab] = useState<number>(0);
@@ -32,31 +33,33 @@ const SkipperRoute = ({ component: Component, history, ...rest }: any) => {
 
   const goToSetting = () => {
     handleClose();
-    history.push("/skipper/settings")
+    history.push(CLIENT.SKIPPER.SETTINGS);
   }
 
   useEffect(() => {
     const getUserData = async () => {
       var userId = getUserId();
       if (userId !== null) {
-        var skipperProfile = await skipperProfileContext.getSkipperById(userId);
-        loginContext.setLoginData({
-          token: getToken(),
-          username: skipperProfile.email,
-          id: userId,
-          role: "Skipper"
-        })
+        try {
+          var skipperProfile = await skipperProfileContext.getSkipperById(userId);
+          loginContext.setLoginData({
+            token: getToken(),
+            username: skipperProfile.email,
+            id: userId,
+            role: "Skipper"
+          })
+        } catch (e) { }
       }
     };
     getUserData();
-    if (window.location.pathname === "/skipper/dashboard") setActiveTab(1);
-    else if (window.location.pathname === "/skipper/availability") setActiveTab(2);
-    else if (window.location.pathname === "/skipper/profile") setActiveTab(3);
+    if (window.location.pathname === CLIENT.SKIPPER.DASHBOARD) setActiveTab(1);
+    else if (window.location.pathname === CLIENT.SKIPPER.AVAILABILITY) setActiveTab(2);
+    else if (window.location.pathname === CLIENT.SKIPPER.PROFILE) setActiveTab(3);
   }, []);
   return (
     <React.Fragment>
       <Grid style={{ padding: 10 }} container justify="space-between" alignItems="center">
-        <Grid item xs={3} onClick={() => history.push("/")}>
+        <Grid item xs={3} onClick={() => history.push(CLIENT.START_PAGE)}>
           <img
             className={styles.Logo}
             src={Logo}
@@ -68,7 +71,7 @@ const SkipperRoute = ({ component: Component, history, ...rest }: any) => {
             <Grid item className={activeTab === 1 ? styles.ActiveNavTab + " " + styles.NavTab : styles.NavTab}>
               <Link
                 className={styles.Links}
-                to="/skipper/dashboard"
+                to={CLIENT.SKIPPER.DASHBOARD}
                 onClick={() => setActiveTab(1)}
               >
                 <span>Bookings</span>
@@ -77,7 +80,7 @@ const SkipperRoute = ({ component: Component, history, ...rest }: any) => {
             <Grid item className={activeTab === 2 ? styles.ActiveNavTab + " " + styles.NavTab : styles.NavTab}>
               <Link
                 className={styles.Links}
-                to="/skipper/availability"
+                to={CLIENT.SKIPPER.AVAILABILITY}
                 onClick={() => setActiveTab(2)}
               >
                 <span>Availability</span>
@@ -86,7 +89,7 @@ const SkipperRoute = ({ component: Component, history, ...rest }: any) => {
             <Grid item className={activeTab === 3 ? styles.ActiveNavTab + " " + styles.NavTab : styles.NavTab}>
               <Link
                 className={styles.Links}
-                to="/skipper/profile"
+                to={CLIENT.SKIPPER.PROFILE}
                 onClick={() => setActiveTab(3)}
               >
                 <span>Profile</span>
@@ -126,7 +129,7 @@ const SkipperRoute = ({ component: Component, history, ...rest }: any) => {
         <Route
           {...rest}
           render={(props: any) =>
-            isSkipper() ? <Component {...props} setActiveTab={setActiveTab} /> : <Redirect to="/login" />
+            isSkipper() ? <Component {...props} setActiveTab={setActiveTab} /> : <Redirect to={CLIENT.APP.LOGIN} />
           }
         />
       </ContentLayout>

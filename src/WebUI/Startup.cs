@@ -48,6 +48,7 @@ namespace SkipperAgency.WebUI
 
             services.AddRazorPages();
 
+            //----->
             var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["AppSettings:Secret"]));
 
             services.AddAuthorization(options =>
@@ -74,6 +75,8 @@ namespace SkipperAgency.WebUI
                     ValidateIssuerSigningKey = true
                 };
             });
+            //<-----
+
 
             // Customise default API behaviour
             services.Configure<ApiBehaviorOptions>(options =>

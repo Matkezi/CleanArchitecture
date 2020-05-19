@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ICharterContext } from '../../types/Charter';
-import charterApi from '../../services/charterService/charterApi';
+import charterApi from '../../services/api/charter/charterApi';
 
 export const CharterContext = React.createContext<ICharterContext>({
     charterData: {

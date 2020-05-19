@@ -5,7 +5,7 @@ import { Divider, Grid, LinearProgress, withStyles } from "@material-ui/core";
 import CreateBookingContainer from "./createBookingContainer";
 import { EditBookingContext } from "../../../providers/booking/editBookingContext";
 import { Booking } from "../../../types/Booking";
-import BookingApi from "../../../services/shared/booking"
+import BookingApi from "../../../services/api/shared/booking"
 import styles from './styles.module.scss';
 import { SortBookingHelper } from './../../../helpers/sorters/bookingSorter';
 import PlusIcon from '../../../assets/img/icons/plus-icon-green-37.png';

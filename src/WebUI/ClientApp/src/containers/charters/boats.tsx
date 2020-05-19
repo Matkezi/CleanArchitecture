@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Boat } from '../../types/Boat';
-import boatsApi from '../../services/shared/boats';
+import boatsApi from '../../services/api/charter/boats';
 import { IBoatType } from '../../types/BoatType';
 import { ILicenceType } from '../../types/LicenceType';
 import AddBoatComponent from '../../components/charter/boats/addBoat';

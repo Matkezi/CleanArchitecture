@@ -11,6 +11,7 @@ import { isSkipper } from '../../../services/appService/authorizationService';
 import 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import BackButton from '../../shared/backButton/BackButton'
+import { CLIENT } from "../../../constants/clientRoutes";
 
 
 interface IProps {
@@ -315,7 +316,7 @@ const SkipperProfileComponent: React.FC<IProps> = (props: IProps) => {
 
     return (
         <div className={styles.wrapper}>
-            {!isSkipper() ? <div className={styles.backButton}><BackButton></BackButton></div> : null}           
+            {!isSkipper() ? <div className={styles.backButton}><BackButton></BackButton></div> : null}
             <div className={styles.headline}>
                 <Grid container direction="row" spacing={4}>
                     <Grid container className={styles.container} item xs={12} sm={4} direction="column">
@@ -600,7 +601,7 @@ const SkipperProfileComponent: React.FC<IProps> = (props: IProps) => {
                             <Divider />
                         </Grid>
                         <Grid container item xs={12}>
-                            <Grid item xs={12}>{showEditBtns && <span className={styles.about}>Availability <i className={"fas fa-pen " + styles.icon} onClick={() => { props.setActiveTab(2); props.history.push("/skipper/availability"); }}></i></span>}</Grid>
+                            <Grid item xs={12}>{showEditBtns && <span className={styles.about}>Availability <i className={"fas fa-pen " + styles.icon} onClick={() => { props.setActiveTab(2); props.history.push(CLIENT.SKIPPER.AVAILABILITY); }}></i></span>}</Grid>
                             <Grid item xs={12}>
                                 <style>{calendarStyle}</style>
                                 <DayPicker

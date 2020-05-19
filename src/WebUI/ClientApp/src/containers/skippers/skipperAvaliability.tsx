@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import DayPicker, { RangeModifier } from "react-day-picker";
 import "react-day-picker/lib/style.css";
-import SkipperApi from "../../services/skipperService/skipperProfileApi";
+import SkipperApi from "../../services/api/skipper/skipperProfileApi";
 import { getUserId } from '../../services/appService/authorizationService';
 import styles from './styles.module.scss'
 import { Grid } from "@material-ui/core";

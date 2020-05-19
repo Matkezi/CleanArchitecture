@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import BookingCard from '../../components/shared/bookingCard/bookingCard'
 import { Booking, SkipperActionEnum } from '../../types/Booking';
-import BookingApi from '../../services/shared/booking'
+import BookingApi from '../../services/api/shared/booking'
 import SkippersHeader from '../../components/shared/skippersHeader'
 import { SkipperStatus } from "../../types/SkipperStatus";
 import Grid from '@material-ui/core/Grid';
@@ -9,6 +9,7 @@ import { Divider } from '@material-ui/core';
 import styles from './styles.module.scss';
 import { NotificationContext } from '../../providers/notification';
 import { NotificationType } from '../../types/NotificationProps';
+import { CLIENT } from '../../constants/clientRoutes';
 
 interface IProps {
     history: any
@@ -93,7 +94,7 @@ const SkipperBooking: React.FC<IProps> = (props: IProps) => {
                             <Grid item xs={12} container>
                                 <Grid item container xs={12}>
                                     <Grid item md={9} xs={12}><p>No booking requests? Update your availability in order to get more chance for bookings requests!</p></Grid>
-                                    <Grid item md={3} xs={12}><button className={styles.redirectBtn} onClick={() => props.history.push("/skipper/availability")}><span>Update availability</span></button></Grid>
+                                    <Grid item md={3} xs={12}><button className={styles.redirectBtn} onClick={() => props.history.push(CLIENT.SKIPPER.AVAILABILITY)}><span>Update availability</span></button></Grid>
                                 </Grid>
                             </Grid>
                             :

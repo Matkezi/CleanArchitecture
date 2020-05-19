@@ -8,10 +8,11 @@ import wrapperStlyes from "./../../../components/skippers/registration/styles.mo
 import { TrustedSkippersContext } from "../../../providers/skippers/trustedSkippers";
 import Grid from "@material-ui/core/Grid";
 import { Divider, LinearProgress, withStyles } from "@material-ui/core";
-import trustedSkippersApi from "../../../services/charterService/trustedSkippersApi";
+import trustedSkippersApi from "../../../services/api/charter/trustedSkippersApi";
 import styles from "./../../../components/charter/trustedSkippers/trustedSkippers.module.scss";
 import { NotificationContext } from "../../../providers/notification";
 import { NotificationType } from "../../../types/NotificationProps";
+import { CLIENT } from "../../../constants/clientRoutes";
 
 interface IProps {
   history: any,
@@ -306,7 +307,7 @@ const TrustedSkippers: React.FC<IProps> = (props: IProps) => {
   };
 
   const viewSkipperProfile = (skipperId: string) => {
-    props.history.push("/charter/skipper-profile/" + skipperId);
+    props.history.push(CLIENT.CHARTER.SKIPPER_PROFILE(skipperId));
   }
 
   return (

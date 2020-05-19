@@ -1,6 +1,6 @@
-import { api } from '../api';
-import { ISkipper } from '../../types/ISkipper';
-import { AvalibilityCalendar } from '../../types/Avalibility';
+import { api } from '../../api';
+import { ISkipper } from '../../../types/ISkipper';
+import { AvalibilityCalendar } from '../../../types/Avalibility';
 
 export default
     {
@@ -9,11 +9,11 @@ export default
         },
         updateSkipper(skipper: ISkipper): Promise<any> {
             return api.put('Skipper/' + skipper.skipperData.id, skipper.skipperData)
-        }, 
+        },
         getSkipperAvalibility(id: string): Promise<AvalibilityCalendar> {
-            return api.get('Skipper/avalibility/' + id);
+            return api.get('Availability/' + id);
         },
         updateSkipperAvalibility(avalibility: AvalibilityCalendar): Promise<any> {
             return api.put('Skipper/avalibility/update', avalibility)
-    }
-};
+        }
+    };

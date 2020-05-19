@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { GuestBookingContext } from "../../providers/booking/guestBooking";
 import { Skipper } from "../../types/Skipper";
-import BookingApi from "../../services/shared/booking"
+import BookingApi from "../../services/api/shared/booking"
 import SkipperCard from "../../components/shared/skipperCard/SkipperCard";
 import styles from './styles.module.scss';
 import { Grid, Divider, Chip, FormControl, InputLabel, Input, Select as MaterialSelect, MenuItem, Checkbox, ListItemText } from "@material-ui/core";
@@ -12,6 +12,7 @@ import { ILanguage } from "../../types/ILanguage";
 import Select from 'react-select';
 import { NotificationContext } from "../../providers/notification";
 import { NotificationType } from "../../types/NotificationProps";
+import { CLIENT } from "../../constants/clientRoutes";
 
 
 interface IProps {
@@ -102,7 +103,7 @@ const GuestStep2: React.FC<IProps> = (props: IProps) => {
     }
 
     const redirectToSkipperProfile = (skipperId: string) => {
-        props.history.push("/guest/skipper-profile/" + skipperId)
+        props.history.push(CLIENT.GUEST.SKIPPER_PROFILE(skipperId));
     }
 
     const handleLanguageAuto = (event: any) => {

@@ -10,6 +10,7 @@ import CharterProfileIcon from '../../assets/img/icons/charter-profile-icon.png'
 import Footer from "./Footer";
 import { LoginContext } from "../../providers/login";
 import { getUserId } from '../../services/appService/authorizationService';
+import { CLIENT } from "../../constants/clientRoutes";
 
 const CharterRoute = ({ component: Component, history, ...rest }: any) => {
   const [activeTab, setActiveTab] = useState<number>(1);
@@ -27,7 +28,7 @@ const CharterRoute = ({ component: Component, history, ...rest }: any) => {
 
   const goToSetting = () => {
     handleClose();
-    history.push("/charter/settings")
+    history.push(CLIENT.CHARTER.SETTINGS)
   }
 
   const performLogout = () => {
@@ -54,7 +55,7 @@ const CharterRoute = ({ component: Component, history, ...rest }: any) => {
   return (
     <React.Fragment>
       <Grid style={{ padding: 10 }} container justify="space-between" alignItems="center">
-        <Grid item xs={3} onClick={() => history.push("/")}>
+        <Grid item xs={3} onClick={() => history.push(CLIENT.START_PAGE)}>
           <img
             className={styles.Logo}
             src={Logo}
@@ -72,7 +73,7 @@ const CharterRoute = ({ component: Component, history, ...rest }: any) => {
           <Grid item className={activeTab === 1 ? styles.ActiveNavTab + " " + styles.NavTab : styles.NavTab}>
             <Link
               className={styles.Links}
-              to="/charter/dashboard"
+              to={CLIENT.CHARTER.DASHBOARD}
               onClick={() => setActiveTab(1)}
             >
               <span>Bookings</span>
@@ -81,7 +82,7 @@ const CharterRoute = ({ component: Component, history, ...rest }: any) => {
           <Grid item className={activeTab === 2 ? styles.ActiveNavTab + " " + styles.NavTab : styles.NavTab}>
             <Link
               className={styles.Links}
-              to="/charter/trusted-skippers"
+              to={CLIENT.CHARTER.TRUSTED_SKIPPERS}
               onClick={() => setActiveTab(2)}
             >
               <span>Skippers</span>
@@ -90,7 +91,7 @@ const CharterRoute = ({ component: Component, history, ...rest }: any) => {
           <Grid item className={activeTab === 3 ? styles.ActiveNavTab + " " + styles.NavTab : styles.NavTab}>
             <Link
               className={styles.Links}
-              to="/charter/boats"
+              to={CLIENT.CHARTER.BOATS}
               onClick={() => setActiveTab(3)}
             >
               <span>Boats</span>
@@ -131,7 +132,7 @@ const CharterRoute = ({ component: Component, history, ...rest }: any) => {
         <Route
           {...rest}
           render={(props: any) =>
-            isCharter() ? <Component {...props} setActiveTab={setActiveTab} /> : <Redirect to="/login" />
+            isCharter() ? <Component {...props} setActiveTab={setActiveTab} /> : <Redirect to={CLIENT.APP.LOGIN} />
           }
         />
       </ContentLayout>
