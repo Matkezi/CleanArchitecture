@@ -31,13 +31,10 @@ namespace SkipperAgency.Application.Skippers.Queries.Availability.GetSkipperAvai
                     .Include(s => s.Bookings)
                     .FirstAsync(s => s.Id == request.SkipperId, cancellationToken);
 
-                // TODO: test this, if it doesn't work go with the one below.
-                return _mapper.Map<AvailabilityModel>(skipper);
-
                 return new AvailabilityModel
                 {
-                    Available = skipper.Availability.Select(availability => (From: availability.AvailableFrom, To: availability.AvailableTo)),
-                    Booked = skipper.Bookings.Select(booking => (From: booking.BookedFrom, To: booking.BookedTo))
+                    Available = skipper.Availability.ConvertAll(avalibility => new DateRangeModel { From = avalibility.AvailableFrom, To = avalibility.AvailableTo }),
+                    Booked = skipper.Bookings.ConvertAll(booking => new DateRangeModel { From = booking.BookedFrom, To = booking.BookedTo })
                 };
             }
 

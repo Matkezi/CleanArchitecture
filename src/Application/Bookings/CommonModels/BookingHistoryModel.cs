@@ -1,5 +1,5 @@
 ﻿using SkipperAgency.Application.Common.Mappings;
-using SkipperAgency.Application.Skippers.Common.Models;
+using SkipperAgency.Application.Skippers.Queries.GetSkipper;
 using SkipperAgency.Domain.Entities;
 using SkipperAgency.Domain.Enums;
 using System;
@@ -12,7 +12,7 @@ namespace SkipperAgency.Application.Bookings.CommonModels
     {
         public int Id { get; set; }
         public string SkipperId { get; set; }
-        public virtual SkipperSimpleModel Skipper { get; set; }
+        public virtual SkipperModel Skipper { get; set; }
         public virtual BookingModel Booking { get; set; }
         public DateTime dateTime { get; set; }
         public BookingRejectedEnum bookingRejected { get; set; }

@@ -19,9 +19,6 @@ export interface IProps {
 }
 
 const BookingCard: React.FC<IProps> = (props: IProps) => {
-
-  console.log(props.booking.boat!.boatPhotoUrl);
-
   return (
     <Grid container direction="row">
       <Grid item xs={3} className={styles.imageDiv}>
