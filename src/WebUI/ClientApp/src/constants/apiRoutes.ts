@@ -55,9 +55,9 @@ export const API = {
     },
     GUEST: {
         BOOKING: {
-            GET: (URL: string): string => `GuestBooking/url/${URL}`,
+            GET_BY_URL: (URL: string): string => `GuestBooking/url/${URL}`,
             GET_AVAILABLE_SKIPPERS: `GuestBooking/available-skippers`,
-            REQUEST: `GuestBooking/request`
+            REQUEST_BOOKING: `GuestBooking/request`
         }
     },
     META: {

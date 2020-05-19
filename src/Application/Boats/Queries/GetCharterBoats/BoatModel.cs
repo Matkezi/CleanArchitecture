@@ -1,8 +1,10 @@
-﻿using SkipperAgency.Domain.Enums;
+﻿using SkipperAgency.Application.Common.Mappings;
+using SkipperAgency.Domain.Entities;
+using SkipperAgency.Domain.Enums;
 
 namespace SkipperAgency.Application.Boats.Queries.GetCharterBoats
 {
-    public class BoatModel
+    public class BoatModel: IMapFrom<Boat>
     {
         public int Id { get; set; }
         public string Name { get; set; }

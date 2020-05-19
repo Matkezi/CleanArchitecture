@@ -24,7 +24,7 @@ export const GuestBookingContextProvider: React.ComponentType<React.ReactNode> =
   const [skills, setSkills] = useState<ISkill[]>([]);
   const [languages, setLanguages] = useState<ILanguage[]>([]);
 
-  const fetchGuestBooking = async (url: String) => {
+  const fetchGuestBooking = async (url: string) => {
     const booking = await bookingApi.getGuestBooking(url);
     setBooking(booking);
     return booking;

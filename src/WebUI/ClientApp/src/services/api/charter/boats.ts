@@ -2,27 +2,20 @@ import { api } from '../../api';
 import { Boat } from "../../../types/Boat"
 import { IBoatType } from '../../../types/BoatType';
 import { ILicenceType } from '../../../types/LicenceType';
+import { API } from '../../../constants/apiRoutes';
 
 export default
   {
     getCharterBoats(): Promise<Boat[]> {
-      return api.get('Boat/charter')
-    },
-    //čita se s fronta - ne valja, treba povući s baceknda, ali za sad ostaje ovako
-    getBoatTypes(): Promise<IBoatType[]> {
-      return api.get('Boat/boat-types')
-    },
-    //isto ka ogore
-    getLicenceTypes(): Promise<ILicenceType[]> {
-      return api.get('Boat/licence-types')
+      return api.get(API.CHARTER.BOATS.GET_CHARTER_BOATS)
     },
     saveBoat(boat: Boat): Promise<any> {
-      return api.post('Boat/', boat);
+      return api.post(API.CHARTER.BOATS.SAVE_BOAT, boat);
     },
     updateBoat(id: number, boat: Boat): Promise<any> {
-      return api.put('Boat/' + id, boat);
+      return api.put(API.CHARTER.BOATS.UPDATE_BOAT(id), boat);
     },
     deleteBoat(id: number): Promise<any> {
-      return api.delete('Boat/' + id);
+      return api.delete(API.CHARTER.BOATS.DELETE_BOAT(id));
     }
   };
