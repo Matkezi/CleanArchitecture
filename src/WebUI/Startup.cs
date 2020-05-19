@@ -48,36 +48,6 @@ namespace SkipperAgency.WebUI
 
             services.AddRazorPages();
 
-            //----->
-            var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["AppSettings:Secret"]));
-
-            services.AddAuthorization(options =>
-            {
-                options.DefaultPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme)
-                    .RequireAuthenticatedUser()
-                    .Build();
-            }).AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(config =>
-            {
-                config.RequireHttpsMetadata = false;
-                config.SaveToken = true;
-                config.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    IssuerSigningKey = signingKey,
-                    ValidateAudience = true,
-                    ValidAudience = Configuration["AppSettings:Audience"],
-                    ValidateIssuer = true,
-                    ValidIssuer = Configuration["AppSettings:Issuer"],
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true
-                };
-            });
-            //<-----
-
-
             // Customise default API behaviour
             services.Configure<ApiBehaviorOptions>(options =>
             {

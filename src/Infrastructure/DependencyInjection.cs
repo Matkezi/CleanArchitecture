@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.Entities;
 using SkipperAgency.Infrastructure.Emails;
@@ -14,6 +17,7 @@ using SkipperAgency.Infrastructure.Identity.ExternalIdentity.Google;
 using SkipperAgency.Infrastructure.Persistence;
 using SkipperAgency.Infrastructure.Services;
 using System;
+using System.Text;
 
 namespace SkipperAgency.Infrastructure
 {
@@ -47,7 +51,33 @@ namespace SkipperAgency.Infrastructure
                 .AddUserManager<UserManager<AppUser>>()
                 .AddDefaultTokenProviders();
 
-            // PREBACITI AUTORIZACIJU I AUTENTIFIKACIJU
+            var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["AppSettings:Secret"]));
+
+            services.AddAuthorization(options =>
+            {
+                options.DefaultPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme)
+                    .RequireAuthenticatedUser()
+                    .Build();
+            }).AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(config =>
+            {
+                config.RequireHttpsMetadata = false;
+                config.SaveToken = true;
+                config.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    IssuerSigningKey = signingKey,
+                    ValidateAudience = true,
+                    ValidAudience = configuration["AppSettings:Audience"],
+                    ValidateIssuer = true,
+                    ValidIssuer = configuration["AppSettings:Issuer"],
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true
+                };
+            });
+
             services.AddScoped<IJwtServicecs, JwtService>();
 
             services.AddTransient<IDateTime, DateTimeService>();
