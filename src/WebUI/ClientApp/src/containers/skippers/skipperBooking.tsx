@@ -87,7 +87,7 @@ const SkipperBooking: React.FC<IProps> = (props: IProps) => {
                 <Grid container item alignItems="center" justify="center" className={styles.bookingContainer}>
                     {bookingsToRender.length > 0 ? bookingsToRender.map((booking, i) =>
                         <Grid item key={i} xs={12} className={styles.bookingCard}>
-                            <BookingCard skipperView={true} pending={currentlySelectedSkipperStatus === SkipperStatus.Pending} showMessage={true} textForDisplay={booking.guestName + " (" + booking.guestNationality!.englishName + ")"} booking={booking} bookingAction={doSkipperAction}></BookingCard>
+                            <BookingCard skipperView={true} pending={currentlySelectedSkipperStatus === SkipperStatus.Pending} showMessage={true} textForDisplay={booking.guestName + " (" + booking.guestNationality!.label + ")"} booking={booking} bookingAction={doSkipperAction}></BookingCard>
                         </Grid>
                     ) :
                         <> {currentlySelectedSkipperStatus === SkipperStatus.Pending ?

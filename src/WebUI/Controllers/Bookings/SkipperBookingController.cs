@@ -17,14 +17,14 @@ namespace SkipperAgency.WebUI.Controllers.Bookings
     {
         [HttpGet]
         [Route("pending")]
-        public async Task<ActionResult<IEnumerable<BookingModel>>> GetSkipperBookingPending()
+        public async Task<ActionResult<IEnumerable<BookingForSkipperModel>>> GetSkipperBookingPending()
         {
             return Ok(await Mediator.Send(new GetSkipperBookingsByStatusQuery { BookingStatus = BookingStatusEnum.SkipperRequestPending }));
         }
 
         [HttpGet]
         [Route("accepted")]
-        public async Task<ActionResult<IEnumerable<BookingModel>>> GetSkipperBookingAccepted()
+        public async Task<ActionResult<IEnumerable<BookingForSkipperModel>>> GetSkipperBookingAccepted()
         {
             return Ok(await Mediator.Send(new GetSkipperBookingsByStatusQuery { BookingStatus = BookingStatusEnum.SkipperAccepted }));
         }

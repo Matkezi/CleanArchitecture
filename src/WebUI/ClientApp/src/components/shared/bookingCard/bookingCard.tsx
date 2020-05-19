@@ -19,11 +19,14 @@ export interface IProps {
 }
 
 const BookingCard: React.FC<IProps> = (props: IProps) => {
+
+  console.log(props.booking.boat!.boatPhotoUrl);
+
   return (
     <Grid container direction="row">
       <Grid item xs={3} className={styles.imageDiv}>
         <div className={styles.imageDiv}>
-          <img src={props.booking.boat!.boathPhotoUrl} alt="" className={styles.image}></img>
+          <img src={props.booking.boat!.boatPhotoUrl} alt="" className={styles.image}></img>
         </div>
       </Grid>
       <Grid container item xs={9} direction="row" justify="space-evenly" spacing={1} className={props.skipperView ? props.pending ? styles.infoDivSkipperPending : styles.infoDivSkipper : styles.infoDiv}>

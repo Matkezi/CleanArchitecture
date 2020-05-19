@@ -27,7 +27,7 @@ const NewBoatForm: React.FC<IProps> = (props2: IProps) => {
 
     const [photo, setPhoto] = useState({
         photoData: { name: "" },
-        photoURL: props2.data ? props2.data.boathPhotoUrl : "",
+        photoURL: props2.data ? props2.data.boatPhotoUrl : "",
         readerData: ""
     });
 
@@ -95,7 +95,7 @@ const NewBoatForm: React.FC<IProps> = (props2: IProps) => {
                             type: props2.data ? props2.data.type : undefined,
                             length: props2.data ? props2.data.length : undefined,
                             minimalRequiredLicence: props2.data ? props2.data.minimalRequiredLicence : undefined,
-                            boathPhotoUrl: props2.data ? props2.data.boathPhotoUrl : photo.photoURL,
+                            boatPhotoUrl: props2.data ? props2.data.boatPhotoUrl : photo.photoURL,
                             charterId: ""
                         }}
                         onSubmit={(values: any) => !props2.showIcon ? props2.updateBoat!(props2.data!.id, values) : props2.saveBoat(values)}
@@ -106,7 +106,7 @@ const NewBoatForm: React.FC<IProps> = (props2: IProps) => {
                             length: Yup.number().required("Required"),
                             type: Yup.string().required("Required"),
                             minimalRequiredLicence: Yup.string().required("Required"),
-                            boathPhotoUrl: Yup.string().required("Required")
+                            boatPhotoUrl: Yup.string().required("Required")
                         })}
                     >
                         {(props: any) => {
@@ -160,9 +160,9 @@ const NewBoatForm: React.FC<IProps> = (props2: IProps) => {
                                     <Grid container spacing={4}>
                                         <Grid item xs={12}>
                                             <Grid item xs={12} container justify="center">
-                                                <input type="file" id='boathPhotoUrl' style={{ display: 'none' }} ref={fileInput => fileInputRef = fileInput} onChange={(event) => { handleChange("boathPhotoUrl")(event.target.files![0].name); handlePhotoChange(event); }} />
+                                                <input type="file" id='boatPhotoUrl' style={{ display: 'none' }} ref={fileInput => fileInputRef = fileInput} onChange={(event) => { handleChange("boatPhotoUrl")(event.target.files![0].name); handlePhotoChange(event); }} />
                                                 {photo.photoURL === "" ?
-                                                    <div className={!props.values.boathPhotoUrl && touched["boathPhotoUrl"] && errors["boathPhotoUrl"] ? styles.noPhotoHolder + " " + styles.error : styles.noPhotoHolder}>
+                                                    <div className={!props.values.boatPhotoUrl && touched["boatPhotoUrl"] && errors["boatPhotoUrl"] ? styles.noPhotoHolder + " " + styles.error : styles.noPhotoHolder}>
                                                         <div>Browse photos from your computer in .jpg, .jpeg. and .png format.</div>
                                                     </div> :
                                                     <CardMedia
@@ -172,8 +172,8 @@ const NewBoatForm: React.FC<IProps> = (props2: IProps) => {
                                                         className={styles.photoHolder}
                                                     />}
                                             </Grid>
-                                            {!props.values.boathPhotoUrl && touched["boathPhotoUrl"] && errors["boathPhotoUrl"] &&
-                                                <Grid item xs={12} container justify="center" style={{ padding: 0 }}> <div className="input-feedback">{errors["boathPhotoUrl"]}</div></Grid>
+                                            {!props.values.boatPhotoUrl && touched["boatPhotoUrl"] && errors["boatPhotoUrl"] &&
+                                                <Grid item xs={12} container justify="center" style={{ padding: 0 }}> <div className="input-feedback">{errors["boatPhotoUrl"]}</div></Grid>
                                             }
                                             <Grid xs={12} item container direction="row" justify="center">
                                                 <Grid item>

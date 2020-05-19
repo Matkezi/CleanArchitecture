@@ -37,7 +37,7 @@ const BoatRow: React.FC<IProps> = (props: IProps) => {
 
   const [photo, setPhoto] = useState({
     photoData: { name: "" },
-    photoURL: boat.boathPhotoUrl,
+    photoURL: boat.boatPhotoUrl,
     readerData: ""
   });
 
@@ -61,7 +61,7 @@ const BoatRow: React.FC<IProps> = (props: IProps) => {
       item
     >
       <Grid item xs={1} container justify="center" alignItems="center">
-        <img className={styles.boatPic} src={props.boat.boathPhotoUrl} alt="boat_pic" />
+        <img className={styles.boatPic} src={props.boat.boatPhotoUrl} alt="boat_pic" />
       </Grid>
       <Divider style={{ height: 60 }} orientation="vertical" />
       <Grid item xs={2}>

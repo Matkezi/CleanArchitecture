@@ -31,7 +31,7 @@ export const SkipperRegistrationContext = React.createContext<SkipperRegistratio
       id: 0,
       englishName: "",
       twoLetterCode: "",
-      lable: "",
+      label: "",
       skipperId: ""
     },
     phoneNumber: "",
@@ -73,7 +73,7 @@ export const SkipperRegistrationContext = React.createContext<SkipperRegistratio
     id: -1,
     englishName: "",
     twoLetterCode: "",
-    lable: "",
+    label: "",
     skipperId: ""
   }],
   getSkills: () => null,
