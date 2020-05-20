@@ -8,7 +8,7 @@ namespace SkipperAgency.Infrastructure.Files
     public class FilesStorageService : AzureStorageService, IFilesStorageService
     {
         public FilesStorageService(IConfiguration configuration) :
-            base(configuration["AzureStorage:AccessKey"], configuration["AzureStorage:ContainerName"])
+            base(configuration["AzureStorage:ConnString"], configuration["AzureStorage:ContainerName"])
         {
         }
 

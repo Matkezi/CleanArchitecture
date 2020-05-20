@@ -16,20 +16,20 @@ namespace SkipperAgency.Infrastructure.Files
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="accessKey"></param>
+        /// <param name="connString"></param>
         /// <param name="containerName"></param>
-        protected AzureStorageService(string accessKey, string containerName)
+        protected AzureStorageService(string connString, string containerName)
         {
-            Init(accessKey, containerName);
+            Init(connString, containerName);
         }
-        private async void Init(string accessKey, string containerName)
+        private async void Init(string connString, string containerName)
         {
             if (string.IsNullOrEmpty(containerName))
             {
                 throw new ArgumentNullException("ContainerName", "Container Name can't be empty");
             }
 
-            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(accessKey);
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connString);
 
             CloudBlobClient cloudBlobClient = storageAccount.CreateCloudBlobClient();
             _blobContainer = cloudBlobClient.GetContainerReference(containerName);
