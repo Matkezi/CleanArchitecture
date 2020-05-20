@@ -48,7 +48,7 @@ const BoatContainer: React.FC<IProps> = (props: IProps) => {
             notificationContext.setLoading({ showLoading: true })
             await boatsApi.saveBoat({
                 ...boatModel,
-                minimalRequiredLicence: (boat.minimalRequiredLicence as unknown as ILicenceType).value,
+                minimalRequiredLicense: (boat.minimalRequiredLicense as unknown as ILicenceType).value,
                 type: (boat.type as unknown as IBoatType).value
             });
             notificationContext.setLoading({ showLoading: false })
@@ -66,7 +66,7 @@ const BoatContainer: React.FC<IProps> = (props: IProps) => {
             await boatsApi.updateBoat(id, {
                 ...boat,
                 id: id,
-                minimalRequiredLicence: (boat.minimalRequiredLicence as unknown as ILicenceType).value,
+                minimalRequiredLicense: (boat.minimalRequiredLicense as unknown as ILicenceType).value,
                 type: (boat.type as unknown as IBoatType).value
             });
             notificationContext.setLoading({ showLoading: false })

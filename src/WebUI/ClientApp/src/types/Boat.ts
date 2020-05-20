@@ -10,7 +10,7 @@ export interface Boat {
     model: string;
     type: IBoatType | string;
     length: number;
-    minimalRequiredLicence: ILicenceType | string;
+    minimalRequiredLicense: ILicenceType | string;
     boatPhotoUrl: string;
     boatPhoto: IFileData,
     charter: Charter;

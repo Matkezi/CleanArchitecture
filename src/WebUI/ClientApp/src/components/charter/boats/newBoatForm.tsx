@@ -60,15 +60,17 @@ const NewBoatForm: React.FC<IProps> = (props2: IProps) => {
         return (
             <Select
                 className={styles.autoCompleteSelect}
-                value={FieldProps.minimalRequiredLicence ? FieldProps.minimalRequiredLicence.label : undefined}
-                id="minimalRequiredLicence"
-                placeholder="Minimal Required Licence"
+                value={FieldProps.minimalRequiredLicense ? FieldProps.minimalRequiredLicense.label : undefined}
+                id="minimalRequiredLicense"
+                placeholder="Minimal Required License"
                 options={LicenceEnum}
                 {...FieldProps.field}
                 onChange={option => FieldProps.form.setFieldValue(FieldProps.field.name, option)}
             />
         )
     }
+
+    console.log(props2.data);
 
     return (
         <Grid container>
@@ -94,7 +96,7 @@ const NewBoatForm: React.FC<IProps> = (props2: IProps) => {
                             model: props2.data ? props2.data.model : "",
                             type: props2.data ? props2.data.type : undefined,
                             length: props2.data ? props2.data.length : undefined,
-                            minimalRequiredLicence: props2.data ? props2.data.minimalRequiredLicence : undefined,
+                            minimalRequiredLicense: props2.data ? props2.data.minimalRequiredLicense : undefined,
                             boatPhotoUrl: props2.data ? props2.data.boatPhotoUrl : photo.photoURL,
                         }}
                         onSubmit={(values: any) => !props2.showIcon ? props2.updateBoat!(props2.data!.id, values) : props2.saveBoat({ ...values, boatPhoto: { nameWithExt: photo.photoData.name, base64Data: photo.readerData } })}
@@ -104,7 +106,7 @@ const NewBoatForm: React.FC<IProps> = (props2: IProps) => {
                             model: Yup.string().required("Required"),
                             length: Yup.number().required("Required"),
                             type: Yup.string().required("Required"),
-                            minimalRequiredLicence: Yup.string().required("Required"),
+                            minimalRequiredLicense: Yup.string().required("Required"),
                             boatPhotoUrl: Yup.string().required("Required")
                         })}
                     >
@@ -148,11 +150,11 @@ const NewBoatForm: React.FC<IProps> = (props2: IProps) => {
                                             )}
                                         </Grid>
                                         <Grid item xs={12} sm={4}>
-                                            <FormControl className={errors["minimalRequiredLicence"] && touched["minimalRequiredLicence"] ? styles.formSelect + " " + styles.margin + " " + styles.error : styles.formSelect + " " + styles.margin}>
-                                                <Field name='minimalRequiredLicence' component={SelectLicenceType} />
+                                            <FormControl className={errors["minimalRequiredLicense"] && touched["minimalRequiredLicense"] ? styles.formSelect + " " + styles.margin + " " + styles.error : styles.formSelect + " " + styles.margin}>
+                                                <Field name='minimalRequiredLicense' component={SelectLicenceType} />
                                             </FormControl>
-                                            {errors["minimalRequiredLicence"] && touched["minimalRequiredLicence"] && (
-                                                <div className="input-feedback">{errors["minimalRequiredLicence"]}</div>
+                                            {errors["minimalRequiredLicense"] && touched["minimalRequiredLicense"] && (
+                                                <div className="input-feedback">{errors["minimalRequiredLicense"]}</div>
                                             )}
                                         </Grid>
                                     </Grid>

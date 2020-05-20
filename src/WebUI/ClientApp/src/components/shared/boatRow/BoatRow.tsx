@@ -27,7 +27,7 @@ const BoatRow: React.FC<IProps> = (props: IProps) => {
 
   const boat: Boat = {
     ...props.boat,
-    minimalRequiredLicence: LicenceEnum.filter(l => l.id === (props.boat.minimalRequiredLicence as unknown as number))[0],
+    minimalRequiredLicense: LicenceEnum.filter(l => l.id === (props.boat.minimalRequiredLicense as unknown as number))[0],
     type: BoatTypeEnum.filter(b => b.id === (props.boat.type as unknown as number))[0]
   }
 
