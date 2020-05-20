@@ -1,6 +1,7 @@
 import { Charter } from "./Charter";
 import { IBoatType } from "./BoatType";
 import { ILicenceType } from "./LicenceType";
+import IFileData from "./IFileData";
 
 export interface Boat {
     id: number;
@@ -11,6 +12,7 @@ export interface Boat {
     length: number;
     minimalRequiredLicence: ILicenceType | string;
     boatPhotoUrl: string;
+    boatPhoto: IFileData,
     charter: Charter;
 }
 

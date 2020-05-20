@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using SkipperAgency.Domain.ValueObjects;
+using SkipperAgency.Application.Common.Models;
 
 namespace SkipperAgency.Application.Boats.Commands.CreateBoat
 {

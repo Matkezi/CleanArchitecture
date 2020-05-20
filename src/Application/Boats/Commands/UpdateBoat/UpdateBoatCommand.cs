@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using SkipperAgency.Application.Common.Exceptions;
 using SkipperAgency.Domain.Entities;
 using SkipperAgency.Domain.ValueObjects;
+using SkipperAgency.Application.Common.Models;
 
 namespace SkipperAgency.Application.Boats.Commands.UpdateBoat
 {

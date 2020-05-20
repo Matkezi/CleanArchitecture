@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using FluentValidation;
+using SkipperAgency.Application.Common.Models;
 using SkipperAgency.Domain.Common;
 using SkipperAgency.Domain.ValueObjects;
 

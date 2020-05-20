@@ -96,9 +96,8 @@ const NewBoatForm: React.FC<IProps> = (props2: IProps) => {
                             length: props2.data ? props2.data.length : undefined,
                             minimalRequiredLicence: props2.data ? props2.data.minimalRequiredLicence : undefined,
                             boatPhotoUrl: props2.data ? props2.data.boatPhotoUrl : photo.photoURL,
-                            charterId: ""
                         }}
-                        onSubmit={(values: any) => !props2.showIcon ? props2.updateBoat!(props2.data!.id, values) : props2.saveBoat(values)}
+                        onSubmit={(values: any) => !props2.showIcon ? props2.updateBoat!(props2.data!.id, values) : props2.saveBoat({ ...values, boatPhoto: { nameWithExt: photo.photoData.name, base64Data: photo.readerData } })}
                         validationSchema={Yup.object().shape({
                             name: Yup.string().required("Required"),
                             manufacturer: Yup.string().required("Required"),
