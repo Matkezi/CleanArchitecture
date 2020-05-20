@@ -42,10 +42,12 @@ const BoatContainer: React.FC<IProps> = (props: IProps) => {
     }, [])
 
     const saveBoat = async (boat: Boat) => {
+        const boatModel = boat;
+        delete boatModel.boatPhotoUrl;
         try {
             notificationContext.setLoading({ showLoading: true })
             await boatsApi.saveBoat({
-                ...boat,
+                ...boatModel,
                 minimalRequiredLicence: (boat.minimalRequiredLicence as unknown as ILicenceType).value,
                 type: (boat.type as unknown as IBoatType).value
             });
