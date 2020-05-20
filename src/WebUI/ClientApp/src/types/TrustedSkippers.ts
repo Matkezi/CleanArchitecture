@@ -9,7 +9,7 @@ export enum TrustedSkippersAction {
 
 export interface TrustedSkipperProfile {
     id: string,
-    imageURL: string,
+    imageUrl: string,
     firstName: string,
     yearOfFirstLicence: number,
     listOfLanguages: ILanguage[]

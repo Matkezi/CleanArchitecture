@@ -221,6 +221,11 @@
     }
 }
 
+.linearProgress {
+    width: 100%;
+    margin-top: -3px;
+}
+
 .cancleBtn:disabled {
     cursor: initial;
 }
