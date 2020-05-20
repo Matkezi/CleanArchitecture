@@ -322,17 +322,19 @@ const TrustedSkippers: React.FC<IProps> = (props: IProps) => {
             ></SkippersHeader>
             <Divider style={{ marginTop: 20 }} />
           </Grid>
-          <Grid
-            container
-            item
-            spacing={4}
-            alignItems="center"
-            justify="center"
-            className={styles.cardContainer}
-          >
-            {loading ?
+          {loading ?
+            <Grid container xs={12}>
               <CustomLinearProgres />
-              :
+            </Grid>
+            :
+            <Grid
+              container
+              item
+              spacing={4}
+              alignItems="center"
+              justify="center"
+              className={styles.cardContainer}
+            >
               <>
                 {trustedSkippersContext.skippersToRender.map(skipper => (
                   <Grid item className={styles.card} key={skipper.id}>
@@ -345,8 +347,7 @@ const TrustedSkippers: React.FC<IProps> = (props: IProps) => {
                   </Grid>
                 ))}
               </>
-            }
-          </Grid>
+            </Grid>}
           <Grid item>
             <TrustedSkippersFooter
               updateTrustedSkippersAction={updateTrustedSkippersAction}

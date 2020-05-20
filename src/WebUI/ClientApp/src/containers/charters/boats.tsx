@@ -95,7 +95,7 @@ const BoatContainer: React.FC<IProps> = (props: IProps) => {
             {!loading ?
                 <BoatsList boats={boatContext.charterBoats} saveBoat={saveBoat} updateBoat={updateBoat} deleteBoat={deleteBoat} />
                 :
-                <CustomLinearProgres />
+                <CustomLinearProgres className={styles.linearProgress} />
             }
         </div>
     );

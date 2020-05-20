@@ -138,98 +138,103 @@ const CharterDashboard: React.FC<IProps> = (props: IProps) => {
                     <Grid item xs={12} style={{ marginTop: 15 }}>
                         <Divider />
                     </Grid>
-                    {editBookingContext.showEditBooking || editBookingContext.showNewBooking ?
-                        <CreateBookingContainer countries={bookingContext.countries} saveBooking={saveBooking}></CreateBookingContainer> : null}
-                    <div className={styles.bookingContainer}>
-                        <Grid container xs={12} item>
-                            <Grid container xs={12} item justify="space-around" alignItems="center" className={styles.sorterDiv} style={{ marginBottom: 15 }}>
-                                <Grid item xs={1} container direction="row">
-                                    <div className={sorter.numOfSorter === 0 ? styles.filterLabel + " " + styles.clicked : styles.filterLabel} onClick={() => sortBookings(0)}>
-                                        <Grid item container direction="row" xs={12}>
-                                            <Grid item xs={10}>
-                                                Status
-                                            </Grid>
-                                            {sorter.numOfSorter === 0 && <Grid item xs={2}>
-                                                {!sorter.asc ? <img alt="" width={12} height={12} style={{ transform: "rotate(180deg)" }} src={DownIcon} className={styles.sortIcon} /> :
-                                                    <img alt="" width={12} height={12} src={DownIcon} className={styles.sortIcon} />}
-                                            </Grid>}
-                                        </Grid>
-                                    </div>
-                                </Grid>
-                                <Grid item xs={2} container direction="row">
-                                    <Grid item container xs={7}>
-                                        <div className={sorter.numOfSorter === 1 ? styles.filterLabel + " " + styles.clicked : styles.filterLabel} onClick={() => sortBookings(1)}>
-                                            <Grid item container direction="row" xs={12}>
-                                                <Grid item xs={9}>
-                                                    Guest
-                                            </Grid>
-                                                {sorter.numOfSorter === 1 && <Grid item xs={2}>
-                                                    {!sorter.asc ? <img alt="" width={12} height={12} style={{ transform: "rotate(180deg)" }} src={DownIcon} className={styles.sortIcon} /> :
-                                                        <img alt="" width={12} height={12} src={DownIcon} className={styles.sortIcon} />}
-                                                </Grid>
-                                                }
-                                            </Grid>
-                                        </div>
-                                    </Grid>
-                                </Grid>
-                                <Grid item xs={2} container direction="row">
-                                    <Grid item container xs={6}>
-                                        <div className={sorter.numOfSorter === 2 ? styles.filterLabel + " " + styles.clicked : styles.filterLabel} onClick={() => sortBookings(2)}>
-                                            <Grid item container direction="row" xs={12}>
-                                                <Grid item xs={9}>
-                                                    Boat
-                                            </Grid>
-                                                {sorter.numOfSorter === 2 && <Grid item xs={2}>
-                                                    {!sorter.asc ? <img alt="" width={12} height={12} style={{ transform: "rotate(180deg)" }} src={DownIcon} className={styles.sortIcon} /> :
-                                                        <img alt="" width={12} height={12} src={DownIcon} className={styles.sortIcon} />}
-                                                </Grid>}
-                                            </Grid>
-                                        </div>
-                                    </Grid>
-                                </Grid>
-                                <Grid item xs={2} container direction="row">
-                                    <Grid item container xs={8}>
-                                        <div className={sorter.numOfSorter === 3 ? styles.filterLabel + " " + styles.clicked : styles.filterLabel} onClick={() => sortBookings(3)}>
-                                            <Grid item container direction="row" xs={12}>
-                                                <Grid item xs={9}>
-                                                    Skipper
-                                            </Grid>
-                                                {sorter.numOfSorter === 3 && <Grid item xs={2}>
-                                                    {!sorter.asc ? <img alt="" width={12} height={12} style={{ transform: "rotate(180deg)" }} src={DownIcon} className={styles.sortIcon} /> :
-                                                        <img alt="" width={12} height={12} src={DownIcon} className={styles.sortIcon} />}
-                                                </Grid>}
-                                            </Grid>
-                                        </div>
-                                    </Grid>
-                                </Grid>
-                                <Grid item xs={3} container direction="row">
-                                    <Grid item xs={5} container>
-                                        <div className={sorter.numOfSorter === 4 ? styles.filterLabel + " " + styles.clicked : styles.filterLabel} onClick={() => sortBookings(4)}>
-                                            <Grid item container direction="row" xs={12}>
-                                                <Grid item xs={8}>
-                                                    Dates
-                                            </Grid>
-                                                {sorter.numOfSorter === 4 && <Grid item xs={2}>
-                                                    {!sorter.asc ? <img alt="" width={12} height={12} style={{ transform: "rotate(180deg)" }} src={DownIcon} className={styles.sortIcon} /> :
-                                                        <img alt="" width={12} height={12} src={DownIcon} className={styles.sortIcon} />}
-                                                </Grid>}
-                                            </Grid>
-                                        </div>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid container item xs={12} direction="row" alignItems="center" >
-                                {loading ? <CustomLinearProgres className={styles.progressBar} /> :
-                                    <>{bookingContext.bookings.map((booking, i) =>
-                                        <div key={i} className={styles.bookingRow}>
-                                            <CharterBookingRow booking={booking} editAction={editBooking} ></CharterBookingRow>
-                                        </div>
-                                    )}
-                                    </>
-                                }
-                            </Grid>
+                    {loading ?
+                        <Grid item xs={12}>
+                            <CustomLinearProgres className={styles.progressBar} />
                         </Grid>
-                    </div>
+                        :
+                        <>
+                            {editBookingContext.showEditBooking || editBookingContext.showNewBooking ?
+                                <CreateBookingContainer countries={bookingContext.countries} saveBooking={saveBooking}></CreateBookingContainer> : null}
+                            <div className={styles.bookingContainer}>
+                                <Grid container xs={12} item>
+                                    <Grid container xs={12} item justify="space-around" alignItems="center" className={styles.sorterDiv} style={{ marginBottom: 15 }}>
+                                        <Grid item xs={1} container direction="row">
+                                            <div className={sorter.numOfSorter === 0 ? styles.filterLabel + " " + styles.clicked : styles.filterLabel} onClick={() => sortBookings(0)}>
+                                                <Grid item container direction="row" xs={12}>
+                                                    <Grid item xs={10}>
+                                                        Status
+                                            </Grid>
+                                                    {sorter.numOfSorter === 0 && <Grid item xs={2}>
+                                                        {!sorter.asc ? <img alt="" width={12} height={12} style={{ transform: "rotate(180deg)" }} src={DownIcon} className={styles.sortIcon} /> :
+                                                            <img alt="" width={12} height={12} src={DownIcon} className={styles.sortIcon} />}
+                                                    </Grid>}
+                                                </Grid>
+                                            </div>
+                                        </Grid>
+                                        <Grid item xs={2} container direction="row">
+                                            <Grid item container xs={7}>
+                                                <div className={sorter.numOfSorter === 1 ? styles.filterLabel + " " + styles.clicked : styles.filterLabel} onClick={() => sortBookings(1)}>
+                                                    <Grid item container direction="row" xs={12}>
+                                                        <Grid item xs={9}>
+                                                            Guest
+                                            </Grid>
+                                                        {sorter.numOfSorter === 1 && <Grid item xs={2}>
+                                                            {!sorter.asc ? <img alt="" width={12} height={12} style={{ transform: "rotate(180deg)" }} src={DownIcon} className={styles.sortIcon} /> :
+                                                                <img alt="" width={12} height={12} src={DownIcon} className={styles.sortIcon} />}
+                                                        </Grid>
+                                                        }
+                                                    </Grid>
+                                                </div>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid item xs={2} container direction="row">
+                                            <Grid item container xs={6}>
+                                                <div className={sorter.numOfSorter === 2 ? styles.filterLabel + " " + styles.clicked : styles.filterLabel} onClick={() => sortBookings(2)}>
+                                                    <Grid item container direction="row" xs={12}>
+                                                        <Grid item xs={9}>
+                                                            Boat
+                                            </Grid>
+                                                        {sorter.numOfSorter === 2 && <Grid item xs={2}>
+                                                            {!sorter.asc ? <img alt="" width={12} height={12} style={{ transform: "rotate(180deg)" }} src={DownIcon} className={styles.sortIcon} /> :
+                                                                <img alt="" width={12} height={12} src={DownIcon} className={styles.sortIcon} />}
+                                                        </Grid>}
+                                                    </Grid>
+                                                </div>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid item xs={2} container direction="row">
+                                            <Grid item container xs={8}>
+                                                <div className={sorter.numOfSorter === 3 ? styles.filterLabel + " " + styles.clicked : styles.filterLabel} onClick={() => sortBookings(3)}>
+                                                    <Grid item container direction="row" xs={12}>
+                                                        <Grid item xs={9}>
+                                                            Skipper
+                                            </Grid>
+                                                        {sorter.numOfSorter === 3 && <Grid item xs={2}>
+                                                            {!sorter.asc ? <img alt="" width={12} height={12} style={{ transform: "rotate(180deg)" }} src={DownIcon} className={styles.sortIcon} /> :
+                                                                <img alt="" width={12} height={12} src={DownIcon} className={styles.sortIcon} />}
+                                                        </Grid>}
+                                                    </Grid>
+                                                </div>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid item xs={3} container direction="row">
+                                            <Grid item xs={5} container>
+                                                <div className={sorter.numOfSorter === 4 ? styles.filterLabel + " " + styles.clicked : styles.filterLabel} onClick={() => sortBookings(4)}>
+                                                    <Grid item container direction="row" xs={12}>
+                                                        <Grid item xs={8}>
+                                                            Dates
+                                            </Grid>
+                                                        {sorter.numOfSorter === 4 && <Grid item xs={2}>
+                                                            {!sorter.asc ? <img alt="" width={12} height={12} style={{ transform: "rotate(180deg)" }} src={DownIcon} className={styles.sortIcon} /> :
+                                                                <img alt="" width={12} height={12} src={DownIcon} className={styles.sortIcon} />}
+                                                        </Grid>}
+                                                    </Grid>
+                                                </div>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid container item xs={12} direction="row" alignItems="center" >
+                                        <>{bookingContext.bookings.map((booking, i) =>
+                                            <div key={i} className={styles.bookingRow}>
+                                                <CharterBookingRow booking={booking} editAction={editBooking} ></CharterBookingRow>
+                                            </div>
+                                        )}
+                                        </>
+                                    </Grid>
+                                </Grid>
+                            </div>
+                        </>}
                 </Grid>
             </div>
         </div>
