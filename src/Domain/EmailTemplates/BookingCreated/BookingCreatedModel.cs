@@ -9,7 +9,7 @@
             BoatName = boatName;
             BookedFrom = bookedFrom;
             BookedTo = bookedTo;
-            BookingUrl = bookingUrl;
+            BookingURL = bookingUrl;
         }
 
         public string GuestName { get; }
@@ -17,6 +17,6 @@
         public string BoatName { get; }
         public string BookedFrom { get; }
         public string BookedTo { get; }
-        public string BookingUrl { get; }
+        public string BookingURL { get; }
     }
 }
