@@ -14,7 +14,7 @@ namespace SkipperAgency.Infrastructure.Emails
             _fluentEmail = fluentEmail;
         }
 
-        public Task SendEmailWithTemplate(NewSkipperNotice mailTemplate)
+        public Task SendEmailWithTemplate(NewSkipperNoticeModel mailTemplate)
         {
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
@@ -25,7 +25,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .SendAsync();
         }
 
-        public Task SendEmailWithTemplate(ConfirmEmail mailTemplate)
+        public Task SendEmailWithTemplate(ConfirmEmailModel mailTemplate)
         {
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
@@ -36,7 +36,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .SendAsync();
         }
 
-        public Task SendEmailWithTemplate(PreRegisteredNotice mailTemplate)
+        public Task SendEmailWithTemplate(PreRegisteredNoticeModel mailTemplate)
         {
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
@@ -47,7 +47,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .SendAsync();
         }
 
-        public Task SendEmailWithTemplate(BookingCreated mailTemplate)
+        public Task SendEmailWithTemplate(BookingCreatedModel mailTemplate)
         {
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
@@ -58,7 +58,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .SendAsync();
         }
 
-        public Task SendEmailWithTemplate(BookingRequested mailTemplate)
+        public Task SendEmailWithTemplate(BookingRequestedModel mailTemplate)
         {
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
@@ -69,7 +69,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .SendAsync();
         }
 
-        public Task SendEmailWithTemplate(SkipperAccepted mailTemplate)
+        public Task SendEmailWithTemplate(SkipperAcceptedModel mailTemplate)
         {
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
@@ -80,7 +80,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .SendAsync();
         }
 
-        public Task SendEmailWithTemplate(SkipperBookingRequested mailTemplate)
+        public Task SendEmailWithTemplate(SkipperBookingRequestedModel mailTemplate)
         {
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
@@ -102,7 +102,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .SendAsync();
         }
 
-        public Task SendEmailWithTemplate(PasswordReset mailTemplate)
+        public Task SendEmailWithTemplate(PasswordResetModel mailTemplate)
         {
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
@@ -113,7 +113,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .SendAsync();
         }
 
-        public Task SendEmailWithTemplate(ChangeEmail mailTemplate)
+        public Task SendEmailWithTemplate(ChangeEmailModel mailTemplate)
         {
             return _fluentEmail
                 .To(mailTemplate.ToEmail)

@@ -1,8 +1,8 @@
 ﻿namespace SkipperAgency.Domain.EmailTemplateModels
 {
-    public class PasswordReset : EmailMessageAbstract
+    public class PasswordResetModel : EmailMessageAbstract
     {
-        public PasswordReset(string toEmail, string fullName, string passwordResetUrl) : base(toEmail)
+        public PasswordResetModel(string toEmail, string fullName, string passwordResetUrl) : base(toEmail)
         {
             FullName = fullName;
             PasswordResetUrl = passwordResetUrl;

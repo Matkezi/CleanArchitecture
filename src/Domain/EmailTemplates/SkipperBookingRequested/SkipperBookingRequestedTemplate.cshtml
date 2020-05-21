@@ -1,0 +1,19 @@
+﻿@model dynamic
+<div class='container'>
+    <div class='card'>
+        <div class='header'>
+            <h2>Skipper Agency</h2>
+        </div>
+        <h3>Poštovani @Model.SkipperName,</h3>
+        <h4>Gost @Model.GuestName je zatražio vaš angažman kod Chartera @Model.CharterName na brodu @Model.BoatName. Imate 72 sata da odgovorite na zahtjev, 
+        ukoliko to ne učinite gost će moći odabrati druge Skippere.</h4>
+        <h4>Pregled Vašeg zahtjeva možete pogledati <a class='link' href='@Model.Bookings'>ovdje</a>.</h4>
+        <h4>
+            </br>Vaš Skipper Agency tim.
+        </h4>
+        <h5>E-mail je automatski generiran, te molimo da ne odgovarate na isti.</h5>
+        <div class='footer'>
+            <h6>© Skipper Agency d.o.o </br>Trg 2, Zagreb</br>OIB 321332132153</h6>
+        </div>
+    </div>
+</div> 

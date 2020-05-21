@@ -1,8 +1,8 @@
 ﻿namespace SkipperAgency.Domain.EmailTemplateModels
 {
-    public class NewSkipperNotice : EmailMessageAbstract
+    public class NewSkipperNoticeModel : EmailMessageAbstract
     {
-        public NewSkipperNotice(string toEmail, string skipperFullName, string skipperEmail) : base(toEmail)
+        public NewSkipperNoticeModel(string toEmail, string skipperFullName, string skipperEmail) : base(toEmail)
         {
             SkipperFullName = skipperFullName;
             SkipperEmail = skipperEmail;

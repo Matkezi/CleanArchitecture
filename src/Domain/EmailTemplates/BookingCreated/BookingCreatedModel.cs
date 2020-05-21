@@ -1,8 +1,8 @@
 ﻿namespace SkipperAgency.Domain.EmailTemplateModels
 {
-    public class BookingCreated : EmailMessageAbstract
+    public class BookingCreatedModel : EmailMessageAbstract
     {
-        public BookingCreated(string toEmail, string guestName, string charterName, string boatName, string bookedFrom, string bookedTo, string bookingUrl) : base(toEmail)
+        public BookingCreatedModel(string toEmail, string guestName, string charterName, string boatName, string bookedFrom, string bookedTo, string bookingUrl) : base(toEmail)
         {
             GuestName = guestName;
             CharterName = charterName;

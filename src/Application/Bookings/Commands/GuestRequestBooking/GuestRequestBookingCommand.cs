@@ -45,7 +45,7 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingUrl}/step=1";
 
                 await _emailService.SendEmailWithTemplate(
-                    new BookingRequested(
+                    new BookingRequestedModel(
                         guestName: booking.GuestName,
                         toEmail: booking.GuestEmail,
                         skipperName: skipper.FullName,
@@ -54,7 +54,7 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
 
                 string callbackUrl2 = $"{_configuration["AppSettings:AppServerUrl"]}/skipper/dashboard"; 
                 _ = _emailService.SendEmailWithTemplate(
-                     new SkipperBookingRequested(
+                     new SkipperBookingRequestedModel(
                          guestName: booking.GuestName,
                          toEmail: skipper.Email,
                          skipperName: skipper.FullName,

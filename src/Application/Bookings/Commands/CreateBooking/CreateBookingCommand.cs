@@ -67,7 +67,7 @@ namespace SkipperAgency.Application.Bookings.Commands.CreateBooking
                 
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingUrl}/step=1";
                 _ = _emailService.SendEmailWithTemplate(
-                    new BookingCreated(
+                    new BookingCreatedModel(
                         guestName: request.GuestName,
                         toEmail: booking.GuestEmail,
                         charterName: charter.CharterName,

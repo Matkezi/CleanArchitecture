@@ -32,7 +32,7 @@ namespace SkipperAgency.Application.Identity.Commands.EmailChangeRequest
 
                 // TODO: fullname in an email
                 _ = _emailService.SendEmailWithTemplate(
-                    new ChangeEmail(
+                    new ChangeEmailModel(
                         toEmail: request.Email,
                         fullName: request.Email,
                         changeEmailUrl: callbackUrl

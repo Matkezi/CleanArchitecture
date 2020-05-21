@@ -1,8 +1,8 @@
 ﻿namespace SkipperAgency.Domain.EmailTemplateModels
 {
-    public class ChangeEmail : EmailMessageAbstract
+    public class ChangeEmailModel : EmailMessageAbstract
     {
-        public ChangeEmail(string toEmail, string fullName, string changeEmailUrl) : base(toEmail)
+        public ChangeEmailModel(string toEmail, string fullName, string changeEmailUrl) : base(toEmail)
         {
             FullName = fullName;
             ChangeEmailUrl = changeEmailUrl;
