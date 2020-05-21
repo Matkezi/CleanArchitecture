@@ -21,7 +21,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .CC(mailTemplate.Cc)
                 .BCC(mailTemplate.Bcc)
                 .Subject($"{mailTemplate.SkipperFullName} just joined Skipper Agency")
-                .UsingTemplateFromFile("./wwwroot/Templates/Emails/NewSkipperNotice.cshtml", mailTemplate)
+                .UsingTemplateFromFile("../Domain/EmailTemplates/NewSkipperNotice/NewSkipperNoticeTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -32,7 +32,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .CC(mailTemplate.Cc)
                 .BCC(mailTemplate.Bcc)
                 .Subject($"Welcome to Skipper Agency")
-                .UsingTemplateFromFile("./wwwroot/Templates/Emails/ConfirmEmail.cshtml", mailTemplate)
+                .UsingTemplateFromFile("../Domain/EmailTemplates/ConfirmEmail/ConfirmEmailTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -43,7 +43,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .CC(mailTemplate.Cc)
                 .BCC(mailTemplate.Bcc)
                 .Subject($"Skipper Agency New Skipper")
-                .UsingTemplateFromFile("./wwwroot/Templates/Emails/PreRegisteredNotice.cshtml", mailTemplate)
+                .UsingTemplateFromFile("../Domain/EmailTemplates/PreRegisteredNotice/PreRegisteredNoticeTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -54,7 +54,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .CC(mailTemplate.Cc)
                 .BCC(mailTemplate.Bcc)
                 .Subject($"Skipper Booking Created")
-                .UsingTemplateFromFile("./wwwroot/Templates/Emails/BookingCreated.cshtml", mailTemplate)
+                .UsingTemplateFromFile("../Domain/EmailTemplates/PreRegisteredNotice/BookingCreated/BookingCreatedTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -65,7 +65,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .CC(mailTemplate.Cc)
                 .BCC(mailTemplate.Bcc)
                 .Subject($"Skipper Booking Requested")
-                .UsingTemplateFromFile("./wwwroot/Templates/Emails/BookingRequested.cshtml", mailTemplate)
+                .UsingTemplateFromFile("../Domain/EmailTemplates/PreRegisteredNotice/BookingRequested/BookingRequestedTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -76,7 +76,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .CC(mailTemplate.Cc)
                 .BCC(mailTemplate.Bcc)
                 .Subject($"Skipper Booking Accepted")
-                .UsingTemplateFromFile("./wwwroot/Templates/Emails/SkipperBookingRequested.cshtml", mailTemplate)
+                .UsingTemplateFromFile("../Domain/EmailTemplates/PreRegisteredNotice/SkipperBookingRequested/SkipperBookingRequestedTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -87,7 +87,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .CC(mailTemplate.Cc)
                 .BCC(mailTemplate.Bcc)
                 .Subject($"Skipper Booking Accepted")
-                .UsingTemplateFromFile("./wwwroot/Templates/Emails/SkipperAccepted.cshtml", mailTemplate)
+                .UsingTemplateFromFile("../Domain/EmailTemplates/PreRegisteredNotice/SkipperAccepted/SkipperAcceptedTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -98,7 +98,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .CC(mailTemplate.Cc)
                 .BCC(mailTemplate.Bcc)
                 .Subject($"Skipper Booking Declined")
-                .UsingTemplateFromFile("./wwwroot/Templates/Emails/SkipperDeclined.cshtml", mailTemplate)
+                .UsingTemplateFromFile("../Domain/EmailTemplates/PreRegisteredNotice/SkipperDeclined/SkipperDeclinedTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -109,7 +109,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .CC(mailTemplate.Cc)
                 .BCC(mailTemplate.Bcc)
                 .Subject("Skipper Agency Password Reset")
-                .UsingTemplateFromFile("./wwwroot/Templates/Emails/PasswordReset.cshtml", mailTemplate)
+                .UsingTemplateFromFile("../Domain/EmailTemplates/PreRegisteredNotice/PasswordReset/PasswordResetTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -120,7 +120,7 @@ namespace SkipperAgency.Infrastructure.Emails
                 .CC(mailTemplate.Cc)
                 .BCC(mailTemplate.Bcc)
                 .Subject("Skipper Agency Change Email")
-                .UsingTemplateFromFile("./wwwroot/Templates/Emails/ChangeEmail.cshtml", mailTemplate)
+                .UsingTemplateFromFile("../Domain/EmailTemplates/PreRegisteredNotice/ChangeEmail/ChangeEmailTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
     }
