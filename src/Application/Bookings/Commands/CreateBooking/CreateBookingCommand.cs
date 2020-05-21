@@ -66,7 +66,7 @@ namespace SkipperAgency.Application.Bookings.Commands.CreateBooking
                 await _context.SaveChangesAsync(cancellationToken);
                 
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingUrl}/step=1";
-                _ = _emailService.SendEmailWithTemplate(
+                var response = await _emailService.SendEmailWithTemplate(
                     new BookingCreatedModel(
                         guestName: request.GuestName,
                         toEmail: booking.GuestEmail,

@@ -1,5 +1,6 @@
 ﻿using SkipperAgency.Domain.EmailTemplateModels;
 using System.Threading.Tasks;
+using FluentEmail.Core.Models;
 
 namespace SkipperAgency.Application.Common.Interfaces
 {
@@ -8,7 +9,7 @@ namespace SkipperAgency.Application.Common.Interfaces
         Task SendEmailWithTemplate(NewSkipperNoticeModel mailTemplate);
         Task SendEmailWithTemplate(ConfirmEmailModel mailTemplate);
         Task SendEmailWithTemplate(PreRegisteredNoticeModel mailTemplate);
-        Task SendEmailWithTemplate(BookingCreatedModel mailTemplate);
+        Task<SendResponse> SendEmailWithTemplate(BookingCreatedModel mailTemplate);
         Task SendEmailWithTemplate(BookingRequestedModel mailTemplate);
         Task SendEmailWithTemplate(SkipperBookingRequestedModel mailTemplate);
         Task SendEmailWithTemplate(SkipperAcceptedModel mailTemplate);

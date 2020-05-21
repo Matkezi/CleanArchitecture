@@ -1,11 +1,12 @@
 ﻿using FluentEmail.Core;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.EmailTemplateModels;
+using FluentEmail.Core.Models;
 using System.Threading.Tasks;
 
 namespace SkipperAgency.Infrastructure.Emails
 {
-    public class EmailService : IEmailService
+    public class EmailService: IEmailService
     {
         private readonly IFluentEmail _fluentEmail;
 
@@ -47,12 +48,12 @@ namespace SkipperAgency.Infrastructure.Emails
                 .SendAsync();
         }
 
-        public Task SendEmailWithTemplate(BookingCreatedModel mailTemplate)
+        public async Task<SendResponse> SendEmailWithTemplate(BookingCreatedModel mailTemplate)
         {
-            return _fluentEmail
+            return await _fluentEmail
                 .To(mailTemplate.ToEmail)
-                .CC(mailTemplate.Cc)
-                .BCC(mailTemplate.Bcc)
+                .CC("joturic13@gmail.com")
+                .BCC("josip.turic@brainit.agency")
                 .Subject($"Skipper Booking Created")
                 .UsingTemplateFromFile("../Domain/EmailTemplates/BookingCreated/BookingCreatedTemplate.cshtml", mailTemplate)
                 .SendAsync();
