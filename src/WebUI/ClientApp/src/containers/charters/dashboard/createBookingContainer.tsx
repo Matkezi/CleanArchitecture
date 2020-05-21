@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Button, Divider, Grid, FormControl } from "@material-ui/core";
+import { Divider, Grid, FormControl } from "@material-ui/core";
 import { EditBookingContext } from "../../../providers/booking/editBookingContext";
 import BoatRow from "../../../components/shared/boatRow/BoatRow";
 import EditGuest from "../../../components/charter/editGuest/EditGuest";
@@ -344,7 +344,7 @@ const CreateBookingContainer: React.FC<IProps> = (props: IProps) => {
           <Divider />
           <p className={styles.SubTitles}>Period of Booking</p>
           <Grid container>
-            <Grid item xs={12}>
+            <Grid item xs={12} container justify="center">
               <style>{calendarStyle}</style>
               <DayPicker
                 onDayClick={handleDayClick}
@@ -362,7 +362,7 @@ const CreateBookingContainer: React.FC<IProps> = (props: IProps) => {
                   !date?.to &&
                   "First day is " +
                   dateHelper.formatOneDate(date.from) +
-                  ". Please select the last day."}
+                  " Please select the last day."}
                 {date?.from &&
                   date?.to &&
                   `Selected from ${dateHelper.formatOneDate(date.from)} to
@@ -388,19 +388,19 @@ const CreateBookingContainer: React.FC<IProps> = (props: IProps) => {
           <EditGuest countries={props.countries}></EditGuest>
           <Grid container justify="space-between">
             <Grid item xs={6}>
+            </Grid>
+            <Grid item xs={6}>
               <button className={styles.previousBtn} onClick={() => closeEditBooking()}>
                 <span>Cancel</span>
               </button>
-            </Grid>
-            <Grid item xs={6}>
-              <Button
+              <button
                 className={styles.SaveButton}
                 onClick={() => props.saveBooking()}
               >
                 <span className={styles.SaveButtonText}>
                   Save & Send to Guest
                 </span>
-              </Button>
+              </button>
             </Grid>
           </Grid>
         </div>
