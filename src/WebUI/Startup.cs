@@ -15,6 +15,10 @@ using System;
 using System.IO;
 using System.Reflection;
 using SkipperAgency.WebUI.Common;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace SkipperAgency.WebUI
 {
@@ -112,9 +116,14 @@ namespace SkipperAgency.WebUI
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
+            { 
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(config =>
+                {
+                    config.SwaggerEndpoint("/swagger/v1/swagger.json", "SkipperBooking API");
+                });
             }
             else
             {

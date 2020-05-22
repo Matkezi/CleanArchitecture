@@ -1,14 +1,14 @@
 import React, { useEffect, useState, useContext } from 'react';
 import BookingCard from '../../components/shared/bookingCard/bookingCard'
 import { Booking, SkipperActionEnum } from '../../types/Booking';
-import BookingApi from '../../services/shared/booking'
+import BookingApi from '../../services/api/shared/booking'
 import SkippersHeader from '../../components/shared/skippersHeader'
 import { SkipperStatus } from "../../types/SkipperStatus";
-import Grid from '@material-ui/core/Grid';
-import { Divider } from '@material-ui/core';
+import { Grid, Divider, LinearProgress } from '@material-ui/core';
 import styles from './styles.module.scss';
 import { NotificationContext } from '../../providers/notification';
 import { NotificationType } from '../../types/NotificationProps';
+import { CLIENT } from '../../constants/clientRoutes';
 
 interface IProps {
     history: any
@@ -20,6 +20,7 @@ const SkipperBooking: React.FC<IProps> = (props: IProps) => {
     const [initialAcceptedSkippers, setInitialAcceptedSkippers] = useState<Booking[]>([]);
     const [bookingsToRender, setBookingsToRender] = useState<Booking[]>([]);
     const notificationContext = useContext(NotificationContext);
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         updateInitialSkippersFromBackend();
@@ -27,7 +28,7 @@ const SkipperBooking: React.FC<IProps> = (props: IProps) => {
     );
 
     const updateInitialSkippersFromBackend = async () => {
-        notificationContext.setLoading({ showLoading: true });
+        setLoading(true);
         try {
             var pending = await BookingApi.getSkipperBookingsPending();
             setInitialPendingSkippers([...pending]);
@@ -40,14 +41,13 @@ const SkipperBooking: React.FC<IProps> = (props: IProps) => {
             if (currentlySelectedSkipperStatus === SkipperStatus.Approved) {
                 setBookingsToRender([...accepted]);
             }
+            setLoading(false);
         } catch (e) {
+            setLoading(true);
             notificationContext.setSnackbar({ showSnackbar: true, message: e.message, type: NotificationType.Error })
-        } finally {
-            notificationContext.setLoading({ showLoading: false });
         }
 
     }
-
 
     const doSkipperAction = async (id: number, action: SkipperActionEnum) => {
         notificationContext.setLoading({ showLoading: true });
@@ -83,25 +83,30 @@ const SkipperBooking: React.FC<IProps> = (props: IProps) => {
                     <SkippersHeader showDeclined={false} color="#23395b" updateSkipperStatus={updateBookingSkipperStatus}></SkippersHeader>
                     <Divider style={{ marginTop: 20 }} />
                 </Grid>
-                <Grid container item alignItems="center" justify="center" className={styles.bookingContainer}>
-                    {bookingsToRender.length > 0 ? bookingsToRender.map((booking, i) =>
-                        <Grid item key={i} xs={12} className={styles.bookingCard}>
-                            <BookingCard skipperView={true} pending={currentlySelectedSkipperStatus === SkipperStatus.Pending} showMessage={true} textForDisplay={booking.guestName + " (" + booking.guestNationality!.englishName + ")"} booking={booking} bookingAction={doSkipperAction}></BookingCard>
-                        </Grid>
-                    ) :
-                        <> {currentlySelectedSkipperStatus === SkipperStatus.Pending ?
-                            <Grid item xs={12} container>
-                                <Grid item container xs={12}>
-                                    <Grid item md={9} xs={12}><p>No booking requests? Update your availability in order to get more chance for bookings requests!</p></Grid>
-                                    <Grid item md={3} xs={12}><button className={styles.redirectBtn} onClick={() => props.history.push("/skipper/availability")}><span>Update availability</span></button></Grid>
-                                </Grid>
+                {loading ?
+                    <Grid item container xs={12}>
+                        <LinearProgress className={styles.linearProgress} />
+                    </Grid>
+                    :
+                    <Grid container item alignItems="center" justify="center" className={styles.bookingContainer}>
+                        {bookingsToRender.length > 0 ? bookingsToRender.map((booking, i) =>
+                            <Grid item key={i} xs={12} className={styles.bookingCard}>
+                                <BookingCard skipperView={true} pending={currentlySelectedSkipperStatus === SkipperStatus.Pending} showMessage={true} textForDisplay={booking.guestName + " (" + booking.guestNationality!.label + ")"} booking={booking} bookingAction={doSkipperAction}></BookingCard>
                             </Grid>
-                            :
-                            <Grid><div>There are no requests to show.</div></Grid>
+                        ) :
+                            <> {currentlySelectedSkipperStatus === SkipperStatus.Pending ?
+                                <Grid item xs={12} container>
+                                    <Grid item container xs={12}>
+                                        <Grid item md={9} xs={12}><p>No booking requests? Update your availability in order to get more chance for bookings requests!</p></Grid>
+                                        <Grid item md={3} xs={12}><button className={styles.redirectBtn} onClick={() => props.history.push(CLIENT.SKIPPER.AVAILABILITY)}><span>Update availability</span></button></Grid>
+                                    </Grid>
+                                </Grid>
+                                :
+                                <Grid><div>There are no requests to show.</div></Grid>
+                            }
+                            </>
                         }
-                        </>
-                    }
-                </Grid>
+                    </Grid>}
             </Grid>
         </div>
     )

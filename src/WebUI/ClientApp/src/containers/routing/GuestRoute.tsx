@@ -6,6 +6,7 @@ import ContentLayout from "./ContentLayout";
 import { GuestBookingContext } from "../../providers/booking/guestBooking";
 import Logo from '../../assets/img/icons/logo-blue.png';
 import Footer from "./Footer";
+import { CLIENT } from "../../constants/clientRoutes";
 
 const SkipperRoute = ({ component: Component, history, ...rest }: any) => {
     const [activeTab, setActiveTab] = useState<number>(1);
@@ -17,7 +18,7 @@ const SkipperRoute = ({ component: Component, history, ...rest }: any) => {
     return (
         <React.Fragment>
             <Grid style={{ padding: 10 }} container justify="space-between" alignItems="center">
-                <Grid item xs={3} onClick={() => history.push("/")}>
+                <Grid item xs={3} onClick={() => history.push(CLIENT.START_PAGE)}>
                     <img
                         className={styles.Logo}
                         src={Logo}
@@ -35,7 +36,7 @@ const SkipperRoute = ({ component: Component, history, ...rest }: any) => {
                     <Grid item className={activeTab === 1 ? styles.ActiveNavTab + " " + styles.NavTab : styles.NavTab}>
                         <Link
                             className={styles.Links}
-                            to={"/guest/booking/" + guestBookingContext.booking.bookingURL! + "/step=1"}
+                            to={CLIENT.GUEST.BOOKING(guestBookingContext.booking.bookingURL!, "1")}
                             onClick={() => setActiveTab(1)}
                         >
                             <span>My booking</span>

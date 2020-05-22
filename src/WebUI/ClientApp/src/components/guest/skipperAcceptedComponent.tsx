@@ -34,7 +34,7 @@ const SkipperAcceptedComponent: React.FC<IProps> = (props: IProps) => {
                 <Grid item xs={3} container direction="column" className={styles.imageContainer}>
                     <Grid item>
                         <div className={styles.imageDiv}>
-                            <img src={props.booking.boat!.boathPhotoUrl} alt="" className={styles.image} />
+                            <img src={props.booking.boat!.boatPhotoUrl} alt="" className={styles.image} />
                         </div>
                     </Grid>
                     {/* Ovo je za Relju */}

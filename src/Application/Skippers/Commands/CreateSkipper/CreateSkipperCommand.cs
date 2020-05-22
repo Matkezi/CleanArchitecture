@@ -51,7 +51,7 @@ namespace SkipperAgency.Application.Skippers.Commands.CreateSkipper
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/confirm-email?email={skipper.Email}&token={HttpUtility.UrlEncode(emailConfirmationToken)}";
 
                 await _emailService.SendEmailWithTemplate(
-                    new ConfirmEmail(
+                    new ConfirmEmailModel(
                         toEmail: skipper.Email,
                         fullName: skipper.FullName,
                         callbackUrl: callbackUrl
@@ -59,7 +59,7 @@ namespace SkipperAgency.Application.Skippers.Commands.CreateSkipper
 
 
                 _ =_emailService.SendEmailWithTemplate(
-                    new NewSkipperNotice(
+                    new NewSkipperNoticeModel(
                         toEmail: _configuration["AppSettings:MainCharterEmail"],
                         skipperFullName: skipper.FullName,
                         skipperEmail: skipper.Email

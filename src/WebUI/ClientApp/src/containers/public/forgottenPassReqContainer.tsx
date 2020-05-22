@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import LoginLayout from './loginLayout';
 import ForgottenPasswordRequest from '../../components/shared/login/forgottenPasswordReq';
-import accountApi from '../../services/shared/accountApi';
+import accountApi from '../../services/api/account/accountApi';
 import { LinearProgress } from '@material-ui/core';
 import styles from './login/styles.module.scss';
 

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { LoginProps, ILoginData } from "../types/LoginProps";
-import loginApi from "../services/appService/loginApi";
+import loginApi from "../services/api/account/loginApi";
 import { useHistory } from "react-router-dom";
+import { CLIENT } from "../constants/clientRoutes";
 
 export const LoginContext = React.createContext<LoginProps>({
   loginData: {
@@ -29,11 +30,11 @@ export const LoginProvider: React.ComponentType<React.ReactNode> = props => {
     setLoginData(loginResponse);
     window.localStorage.setItem("authToken", loginResponse.token);
     if (loginResponse.role === "Skipper") {
-      history.push("/skipper/dashboard");
+      history.push(CLIENT.SKIPPER.DASHBOARD);
     } else if (loginResponse.role === "Charter") {
-      history.push("/charter/dashboard");
+      history.push(CLIENT.CHARTER.DASHBOARD);
     } else if (loginResponse.role === "Admin") {
-      history.push("/charter/dashboard");
+      history.push(CLIENT.CHARTER.DASHBOARD);
     }
   };
 
@@ -42,11 +43,11 @@ export const LoginProvider: React.ComponentType<React.ReactNode> = props => {
     setLoginData({ ...loginResponse });
     window.localStorage.setItem("authToken", loginResponse.token);
     if (loginResponse.role === "Skipper") {
-      history.push("/skipper/dashboard");
+      history.push(CLIENT.SKIPPER.DASHBOARD);
     } else if (loginResponse.role === "Charter") {
-      history.push("/charter/dashboard");
+      history.push(CLIENT.CHARTER.DASHBOARD);
     } else if (loginResponse.role === "Admin") {
-      history.push("/charter/dashboard");
+      history.push(CLIENT.CHARTER.DASHBOARD);
     }
   };
   return (

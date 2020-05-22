@@ -3,9 +3,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Configuration;
+using SkipperAgency.Application.Boats.Queries.GetCharterBoats;
 using SkipperAgency.Application.Common.Exceptions;
 using SkipperAgency.Application.Common.ExtensionMethods;
 using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Application.Metadata.Queries.GetCountries;
 using SkipperAgency.Domain.EmailTemplateModels;
 using SkipperAgency.Domain.Entities;
 using SkipperAgency.Domain.Enums;
@@ -15,11 +17,13 @@ namespace SkipperAgency.Application.Bookings.Commands.CreateBooking
     public class CreateBookingCommand : IRequest
     {
         public int Id { get; set; }
+        public BoatModel Boat { get; set; }
         public DateTime BookedFrom { get; set; }
         public DateTime BookedTo { get; set; }
         public string OnboardingLocation { get; set; }
         public string GuestName { get; set; }
         public string GuestEmail { get; set; }
+        public CountryModel GuestNationality { get; set; }
 
         public class Handler : IRequestHandler<CreateBookingCommand>
         {
@@ -47,11 +51,12 @@ namespace SkipperAgency.Application.Bookings.Commands.CreateBooking
                 var booking = new Booking
                 {
                     CharterId = charter.Id,
-                    BoatId = request.Id,
+                    BoatId = request.Boat.Id,
                     BookedFrom = request.BookedFrom,
                     BookedTo = request.BookedTo,
                     GuestName = request.GuestName,
                     GuestEmail = request.GuestEmail,
+                    GuestNationalityId = request.GuestNationality.Id,
                     OnBoardingLocation = request.OnboardingLocation,
                     Status = BookingStatusEnum.SkipperRequestPending,
                     BookingUrl = RandomUrl.GetRandomUrl(),
@@ -61,8 +66,8 @@ namespace SkipperAgency.Application.Bookings.Commands.CreateBooking
                 await _context.SaveChangesAsync(cancellationToken);
                 
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingUrl}/step=1";
-                _ = _emailService.SendEmailWithTemplate(
-                    new BookingCreated(
+                var response = await _emailService.SendEmailWithTemplate(
+                    new BookingCreatedModel(
                         guestName: request.GuestName,
                         toEmail: booking.GuestEmail,
                         charterName: charter.CharterName,

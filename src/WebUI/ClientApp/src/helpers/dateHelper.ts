@@ -18,7 +18,6 @@ export class dateHelper {
             .toLocaleDateString("hr-HR")
             .replace('. ', '.')
             .replace('. ', '.')
-            .replace('.', '')
             .toString();
     }
 }

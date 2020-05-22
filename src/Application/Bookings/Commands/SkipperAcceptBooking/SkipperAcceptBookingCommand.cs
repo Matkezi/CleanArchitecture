@@ -35,7 +35,7 @@ namespace SkipperAgency.Application.Bookings.Commands.SkipperAcceptBooking
 
                 var skipper = await _context.Skippers.FindAsync(booking.SkipperId);
                 await _emailService.SendEmailWithTemplate(
-                    new SkipperAccepted(
+                    new SkipperAcceptedModel(
                         guestName: booking.GuestName,
                         toEmail: booking.GuestEmail,
                         skipperName: skipper.FullName,

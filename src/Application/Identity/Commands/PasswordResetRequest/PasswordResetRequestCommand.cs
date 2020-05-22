@@ -30,7 +30,7 @@ namespace SkipperAgency.Application.Identity.Commands.PasswordResetRequest
 
                 // TODO: fullname in an email
                 _ = _emailService.SendEmailWithTemplate(
-                    new Domain.EmailTemplateModels.PasswordReset(
+                    new Domain.EmailTemplateModels.PasswordResetModel(
                         toEmail: request.Email,
                         fullName: request.Email,
                         passwordResetUrl: callbackUrl

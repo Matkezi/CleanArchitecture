@@ -5,7 +5,7 @@ import { RouteComponentProps } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import GuestStep2 from "./guestStep2Container";
 import GuestStep3 from "./guestStep3Container";
-import BookingApi from "../../services/shared/booking";
+import BookingApi from "../../services/api/shared/booking";
 import { BookingStatusEnum } from "../../types/Booking";
 import { StepperHelper } from '../../helpers/StepperHelper';
 import styles from './styles.module.scss';

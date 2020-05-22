@@ -21,6 +21,12 @@
     height: 30px;
 }
 
+.progressBar {
+    width: 100%;
+    min-width: 1000px;
+    //background-color: #26806b !important;
+}
+
 .rotate {
     transform: rotate(45deg);
 }
@@ -173,7 +179,8 @@
 }
 
 .SaveButton {
-    width: 251px;
+    cursor: pointer;
+    width: 200px;
     height: 48.8px;
     border-radius: 37px !important;
     box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
@@ -241,7 +248,7 @@
 }
 
 .previousBtn {
-    width: 162px;
+    width: 120px;
     height: 49.8px;
     border-radius: 37px;
     box-shadow: 0 1px 2px 0 rgba(100, 100, 100, 0.5);
@@ -249,16 +256,13 @@
     background-color: #ffffff;
     outline: none;
     cursor: pointer;
-    margin-right: 5px;
     float: left;
-    margin-top: 10px;
-    margin-left: 40px;
+    margin-left: 18px;
+    margin-right: 28px;
 
     span {
-        width: 75px;
-        height: 24.5px;
-        font-size: 18px;
-        font-weight: 500;
+        font-size: 14px;
+        font-weight: bold;
         font-stretch: normal;
         font-style: normal;
         line-height: 1.36;

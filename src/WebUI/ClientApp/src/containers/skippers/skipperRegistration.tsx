@@ -14,7 +14,8 @@ import { NotificationType } from '../../types/NotificationProps';
 import { ISkill } from '../../types/ISkill';
 import { RouteComponentProps } from 'react-router-dom';
 import styles from "./styles.module.scss"
-import SkipperApi from '../../services/skipperService/registrationApi'
+import SkipperApi from '../../services/api/skipper/registrationApi'
+import { CLIENT } from '../../constants/clientRoutes';
 
 const SkipperRegistration: React.FC<RouteComponentProps> = (props: RouteComponentProps<any>) => {
     const skipperRegistrationContext = useContext(SkipperRegistrationContext);
@@ -118,14 +119,12 @@ const SkipperRegistration: React.FC<RouteComponentProps> = (props: RouteComponen
                     notificationContext.setSnackbar({ showSnackbar: true, message: "You completed your profile!", type: NotificationType.Success })
                     setTimeout(async () => {
                         await loginContext.doLogin({ email: skipperRegistrationContext.stepData!.email, password: skipperRegistrationContext.stepData!.password, rememberMe: true });
-                        props.history.push("/skipper/profile");
+                        props.history.push(CLIENT.SKIPPER.PROFILE);
                     }, 4100);
                 } catch (err) {
                     notificationContext.setLoading({ showLoading: false })
                     notificationContext.setSnackbar({ showSnackbar: true, message: err.message, type: NotificationType.Error })
                 }
-
-                //provjeriti jel uspješno               
                 break;
         }
 

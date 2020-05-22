@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SkipperAgency.Application.Common.Interfaces;
+using SkipperAgency.Application.Skippers.Queries.Availability.Common.Models;
 using SkipperAgency.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace SkipperAgency.Application.Skippers.Commands.Availability
 {
     public class UpdateSkipperAvailabilityCommand : IRequest
     {
-        public IEnumerable<(DateTime From, DateTime To)> Available { get; set; }
+        public IEnumerable<DateRangeModel> Available { get; set; }
         public class Handler : IRequestHandler<UpdateSkipperAvailabilityCommand>
         {
             private readonly IApplicationDbContext _context;

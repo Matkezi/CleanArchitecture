@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import trustedSkippersApi from '../../services/charterService/trustedSkippersApi';
+import trustedSkippersApi from '../../services/api/charter/trustedSkippersApi';
 import { TrustedSkipperProfile, TrustedSkippersAction, TrustedSkippersProps } from '../../types/TrustedSkippers'
 import { SkipperStatus } from "../../types/SkipperStatus";
 
@@ -8,7 +8,7 @@ export const TrustedSkippersContext = React.createContext<TrustedSkippersProps>(
     currentlySelectedSkipperStatus: SkipperStatus.Pending,
     initialPendingSkippers: [],
     initialAcceptedSkippers: [],
-    initialDeclinedSkippers: [],  
+    initialDeclinedSkippers: [],
     pendingSkippers: [],
     acceptedSkippers: [],
     declinedSkippers: [],
@@ -34,7 +34,7 @@ export const TrustedSkippersProvider: React.ComponentType<React.ReactNode> = pro
     const [pendingSkippers, setPendingSkippers] = useState<string[]>([]);
     const [acceptedSkippers, setAcceptedSkippers] = useState<string[]>([]);
     const [declinedSkippers, setDeclinedSkippers] = useState<string[]>([]);
-    const [skippersToRender, setSkippersToRender] = useState<TrustedSkipperProfile[]>([]);    
+    const [skippersToRender, setSkippersToRender] = useState<TrustedSkipperProfile[]>([]);
 
     const getInitialPendingSkippers = async () => {
         return await trustedSkippersApi.getPendingSkippers();

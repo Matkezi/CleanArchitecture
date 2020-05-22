@@ -16,9 +16,9 @@ namespace SkipperAgency.WebUI.Controllers.Bookings
     {
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BookingModel>>> GetAll(GetAllCharterBookingsQuery command)
+        public async Task<ActionResult<IEnumerable<BookingModel>>> GetAll()
         {
-            return Ok(await Mediator.Send(command));
+            return Ok(await Mediator.Send(new GetAllCharterBookingsQuery()));
         }
         
         [HttpGet("{id}")]

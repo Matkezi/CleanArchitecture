@@ -65,7 +65,7 @@ const EditGuest: React.FC<IProps> = (props: IProps) => {
             onChange={e =>
               editBookingContext.setBooking({
                 ...editBookingContext.booking,
-                crewSize: e.target.value
+                crewSize: e.target.value as unknown as number
               })
             }
           ></input>

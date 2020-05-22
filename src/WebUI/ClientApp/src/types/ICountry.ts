@@ -2,6 +2,6 @@ export interface ICountry {
     id: number,
     englishName: string,
     twoLetterCode: string,
-    lable: string,
+    label: string,
     skipperId: string
 }

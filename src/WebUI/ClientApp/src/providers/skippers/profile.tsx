@@ -1,31 +1,33 @@
 import React, { useState } from 'react';
 import { ISkipperContext, ISkipper } from '../../types/ISkipper';
-import skipperProfileApi from '../../services/skipperService/skipperProfileApi';
-import skillsApi from '../../services/skipperService/skillsApi';
+import skipperProfileApi from '../../services/api/skipper/skipperProfileApi';
+import skillsApi from '../../services/api/skipper/skillsApi';
 import { ISkill } from '../../types/ISkill';
 
+const skipperDataEmpty: ISkipper["skipperData"] = {
+    id: "",
+    oib: "",
+    email: "",
+    newEmail: "",
+    firstName: "",
+    newPassword: "",
+    lastName: "",
+    dateOfBirth: "",
+    address: "",
+    zipCode: "",
+    city: "",
+    phoneNumber: "",
+    country: "",
+    price: 0,
+    userPhotoUrl: "",
+    skipperInsurancePolicy: "",
+    personalSummary: "",
+    listOfSkills: [{ id: -1, name: "", icon: "" }],
+    listOfLanguages: [{ id: -1, label: "", levelOfKnowledge: -1 }]
+};
+
 export const SkipperProfileContext = React.createContext<ISkipperContext>({
-    skipperData: {
-        id: "",
-        oib: "",
-        email: "",
-        newEmail: "",
-        firstName: "",
-        newPassword: "",
-        lastName: "",
-        dateOfBirth: "",
-        address: "",
-        zipCode: "",
-        city: "",
-        phoneNumber: "",
-        country: "",
-        price: 0,
-        userPhotoUrl: "",
-        skipperInsurancePolicy: "",
-        personalSummary: "",
-        listOfSkills: [{ id: -1, name: "", icon: "" }],
-        listOfLanguages: [{ id: -1, label: "", levelOfKnowledge: -1 }]
-    },
+    skipperData: skipperDataEmpty,
     skills: [],
     getSkipperById: (id: string) => null,
     updateSkipper: (skipper: ISkipper) => null,
@@ -34,7 +36,7 @@ export const SkipperProfileContext = React.createContext<ISkipperContext>({
 
 export const SkipperProfileProvider: React.ComponentType<React.ReactNode> = props => {
 
-    const [skipperData, setSkipperData] = useState();
+    const [skipperData, setSkipperData] = useState<ISkipper["skipperData"]>({ ...skipperDataEmpty });
     const [skills, setSkills] = useState<ISkill[]>([]);
 
     const getSkipperById = async (id: string) => {

@@ -1,0 +1,119 @@
+﻿@model dynamic
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap' rel='stylesheet'>
+    <style>
+        :root {
+            --accent: #476C9D;
+            --gray: #E5E5E5;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            justify-content: center;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            margin: 20px 20px;
+            width: 100%;
+            max-width: 680px;
+            border: 1px solid #E5E5E5;
+        }
+
+        .header, .footer {
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header {
+            background-color: #476C9D;
+        }
+
+        .footer {
+            background-color: #E5E5E5;
+        }
+
+        .link {
+            text-decoration: none;
+            font-weight: 700;
+            color: #476C9D;
+        }
+
+        h2, h3, h4, h5, h6 {
+            margin: 0px 60px;
+            padding: 0px;
+        }
+
+        h2 {
+            font-size: 41px;
+            font-weight: 700;
+            color: white;
+        }
+
+        h3 {
+            margin-top: 80px;
+            margin-bottom: 5px;
+            font-size: 19px;
+            font-weight: 600;
+        }
+
+        h4 {
+            margin-top: 35px;
+            line-height: 22px;
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        h5 {
+            margin-top: 140px;
+            margin-bottom: 60px;
+            font-size: 11px;
+            font-weight: 400;
+        }
+
+        h6 {
+            font-weight: 400;
+            font-size: 11px;
+            line-height: 16px;
+        }
+
+        bold {
+            font-weight: 700;
+        }
+
+        .container {
+            display: block;
+            background-color: #F9F9F9;
+        }
+
+        .card {
+            display: block;
+            margin: 0px 0px;
+        }
+
+        .header, .footer {
+            display: block;
+            padding-top: 30px;
+        }
+    </style>
+</head>
+<div class='container'>
+    <div class='card'>
+        <div class='header'>
+            <h2>Skipper Agency</h2>
+        </div>
+        <h3>Poštovani @Model.Fullname,</h3>
+        <h4>Za Vaš račun zatražena je promjena emaila.</h4>
+        <h4>Potvrdite novi email ovdje: <a class='link' href='@Model.ChangeEmail'>ovdje</a>.</h4>
+        <h4>
+            </br>Vaš Skipper Agency tim.
+        </h4>
+        <h5>E-mail je automatski generiran, te molimo da ne odgovarate na isti.</h5>
+        <div class='footer'>
+            <h6>© Skipper Agency d.o.o </br>Trg 2, Zagreb</br>OIB 321332132153</h6>
+        </div>
+    </div>
+</div> 

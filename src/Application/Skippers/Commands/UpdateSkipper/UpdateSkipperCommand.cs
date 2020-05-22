@@ -14,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using SkipperAgency.Application.Common.ExtensionMethods;
 using SkipperAgency.Domain.ValueObjects;
+using SkipperAgency.Application.Common.Models;
 
 namespace SkipperAgency.Application.Skippers.Commands.UpdateSkipper
 {

@@ -4,6 +4,7 @@ using SkipperAgency.Domain.Enums;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using SkipperAgency.Application.Skills.Queries.GetAllSkills;
 
 namespace SkipperAgency.WebUI.Controllers
 {
@@ -13,7 +14,7 @@ namespace SkipperAgency.WebUI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SkillModel>>> GetAll()
         {
-            return Ok(await Mediator.Send(new GetSkillQuery()));
+            return Ok(await Mediator.Send(new GetAllSkillsQuery()));
         }
 
         [HttpGet("{id}")]

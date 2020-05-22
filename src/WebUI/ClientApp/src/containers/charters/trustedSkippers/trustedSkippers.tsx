@@ -7,15 +7,26 @@ import { SkipperStatus } from "../../../types/SkipperStatus";
 import wrapperStlyes from "./../../../components/skippers/registration/styles.module.scss";
 import { TrustedSkippersContext } from "../../../providers/skippers/trustedSkippers";
 import Grid from "@material-ui/core/Grid";
-import { Divider } from "@material-ui/core";
-import trustedSkippersApi from "../../../services/charterService/trustedSkippersApi";
+import { Divider, LinearProgress, withStyles } from "@material-ui/core";
+import trustedSkippersApi from "../../../services/api/charter/trustedSkippersApi";
 import styles from "./../../../components/charter/trustedSkippers/trustedSkippers.module.scss";
 import { NotificationContext } from "../../../providers/notification";
 import { NotificationType } from "../../../types/NotificationProps";
+import { CLIENT } from "../../../constants/clientRoutes";
 
 interface IProps {
-  history: any
+  history: any,
+  setActiveTab: (tab: number) => void
 }
+
+const CustomLinearProgres = withStyles({
+  colorPrimary: {
+    backgroundColor: '#26806b',
+  },
+  barColorPrimary: {
+    backgroundColor: '#B2DFDB',
+  }
+})((props: any) => <LinearProgress {...props} className={styles.linearProgress} />);
 
 const useStateWithLocalStorage = (localStorageKey: string) => {
   const [value, setValue] = useState(localStorage.getItem(localStorageKey) || '');
@@ -31,14 +42,16 @@ const TrustedSkippers: React.FC<IProps> = (props: IProps) => {
   const [pendingSkippers, setPendingSkippers] = useStateWithLocalStorage('pending');
   const [approvedSkippers, setApprovedSkippers] = useStateWithLocalStorage('approved');
   const [declinedSkippers, setDeclinedSkippers] = useStateWithLocalStorage('declined');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    props.setActiveTab(2);
     updateInitialSkippersFromBackend(true);
     putInContextFromLocalstorage();
   }, []);
 
   const updateInitialSkippersFromBackend = async (showLoading: boolean) => {
-    notificationContext.setLoading({ showLoading: showLoading });
+    setLoading(showLoading);
     try {
       trustedSkippersContext.setPendingSkippers([]);
       trustedSkippersContext.setAcceptedSkippers([]);
@@ -68,15 +81,14 @@ const TrustedSkippers: React.FC<IProps> = (props: IProps) => {
       ) {
         trustedSkippersContext.setSkippersToRender([...declined]);
       }
+      setLoading(false);
     } catch (e) {
-      notificationContext.setLoading({ showLoading: false });
+      setLoading(false);
       notificationContext.setSnackbar({
         showSnackbar: true,
         message: e.message,
         type: NotificationType.Error
       });
-    } finally {
-      notificationContext.setLoading({ showLoading: false });
     }
   };
 
@@ -241,7 +253,7 @@ const TrustedSkippers: React.FC<IProps> = (props: IProps) => {
         }
         break;
       case TrustedSkippersAction.Accept:
-        notificationContext.setLoading({ showLoading: true })
+        setLoading(true);
         try {
           switch (trustedSkippersContext.currentlySelectedSkipperStatus) {
             case SkipperStatus.Pending:
@@ -256,7 +268,7 @@ const TrustedSkippers: React.FC<IProps> = (props: IProps) => {
               break;
           }
 
-          notificationContext.setLoading({ showLoading: false })
+          setLoading(false);
           notificationContext.setSnackbar({ showSnackbar: true, message: "Trusted skippers updated!", type: NotificationType.Success })
         } catch (e) {
           notificationContext.setSnackbar({ showSnackbar: true, message: e.message, type: NotificationType.Error })
@@ -264,7 +276,7 @@ const TrustedSkippers: React.FC<IProps> = (props: IProps) => {
         updateInitialSkippersFromBackend(false);
         break;
       case TrustedSkippersAction.Decline:
-        notificationContext.setLoading({ showLoading: true })
+        setLoading(true);
         try {
           switch (trustedSkippersContext.currentlySelectedSkipperStatus) {
             case SkipperStatus.Pending:
@@ -278,7 +290,7 @@ const TrustedSkippers: React.FC<IProps> = (props: IProps) => {
               );
               break;
           }
-          notificationContext.setLoading({ showLoading: false })
+          setLoading(false);
           notificationContext.setSnackbar({ showSnackbar: true, message: "Trusted skippers updated!", type: NotificationType.Success })
         } catch (e) {
           notificationContext.setSnackbar({ showSnackbar: true, message: e.message, type: NotificationType.Error })
@@ -295,7 +307,7 @@ const TrustedSkippers: React.FC<IProps> = (props: IProps) => {
   };
 
   const viewSkipperProfile = (skipperId: string) => {
-    props.history.push("/charter/skipper-profile/" + skipperId);
+    props.history.push(CLIENT.CHARTER.SKIPPER_PROFILE(skipperId));
   }
 
   return (
@@ -310,25 +322,32 @@ const TrustedSkippers: React.FC<IProps> = (props: IProps) => {
             ></SkippersHeader>
             <Divider style={{ marginTop: 20 }} />
           </Grid>
-          <Grid
-            container
-            item
-            spacing={4}
-            alignItems="center"
-            justify="center"
-            className={styles.cardContainer}
-          >
-            {trustedSkippersContext.skippersToRender.map(skipper => (
-              <Grid item className={styles.card} key={skipper.id}>
-                <TrustedSkippersProfileCard
-                  checked={isSkipperChecked(skipper.id)}
-                  trustedSkipperProfile={skipper}
-                  viewSkipperProfile={viewSkipperProfile}
-                  updateSkipperSelected={updateSkipperSelected}
-                ></TrustedSkippersProfileCard>
-              </Grid>
-            ))}
-          </Grid>
+          {loading ?
+            <Grid container xs={12}>
+              <CustomLinearProgres />
+            </Grid>
+            :
+            <Grid
+              container
+              item
+              spacing={4}
+              alignItems="center"
+              justify="center"
+              className={styles.cardContainer}
+            >
+              <>
+                {trustedSkippersContext.skippersToRender.map(skipper => (
+                  <Grid item className={styles.card} key={skipper.id}>
+                    <TrustedSkippersProfileCard
+                      checked={isSkipperChecked(skipper.id)}
+                      trustedSkipperProfile={skipper}
+                      viewSkipperProfile={viewSkipperProfile}
+                      updateSkipperSelected={updateSkipperSelected}
+                    ></TrustedSkippersProfileCard>
+                  </Grid>
+                ))}
+              </>
+            </Grid>}
           <Grid item>
             <TrustedSkippersFooter
               updateTrustedSkippersAction={updateTrustedSkippersAction}

@@ -40,7 +40,7 @@ namespace SkipperAgency.Application.Skippers.Commands.PreCreateSkipper
                 await _context.SaveChangesAsync(cancellationToken);
 
                 await _emailService.SendEmailWithTemplate(
-                    new PreRegisteredNotice(
+                    new PreRegisteredNoticeModel(
                         toEmail: _configuration["AppSettings:MainCharterEmail"],
                         callbackUrl: skipper.Url
                     ));

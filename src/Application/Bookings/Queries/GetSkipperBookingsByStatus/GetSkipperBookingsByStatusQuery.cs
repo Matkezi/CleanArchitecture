@@ -12,11 +12,11 @@ using SkipperAgency.Domain.Enums;
 
 namespace SkipperAgency.Application.Bookings.Queries.GetSkipperBookingsByStatus
 {
-    public class GetSkipperBookingsByStatusQuery : IRequest<IEnumerable<BookingModel>>
+    public class GetSkipperBookingsByStatusQuery : IRequest<IEnumerable<BookingForSkipperModel>>
     {
         public BookingStatusEnum BookingStatus { get; set; }
 
-        public class Handler : IRequestHandler<GetSkipperBookingsByStatusQuery, IEnumerable<BookingModel>>
+        public class Handler : IRequestHandler<GetSkipperBookingsByStatusQuery, IEnumerable<BookingForSkipperModel>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -29,13 +29,13 @@ namespace SkipperAgency.Application.Bookings.Queries.GetSkipperBookingsByStatus
                 _currentUserService = currentUserService;
             }
 
-            public async Task<IEnumerable<BookingModel>> Handle(GetSkipperBookingsByStatusQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<BookingForSkipperModel>> Handle(GetSkipperBookingsByStatusQuery request, CancellationToken cancellationToken)
             {
                 return await _context.Bookings
                     .Include(b => b.Skipper).Include(b => b.Boat)
                     .Include(b => b.Charter).Include(b => b.GuestNationality)
                     .Where(b => b.Skipper.Id == _currentUserService.UserId && b.Status == request.BookingStatus)
-                    .ProjectTo<BookingModel>(_mapper.ConfigurationProvider)
+                    .ProjectTo<BookingForSkipperModel>(_mapper.ConfigurationProvider)
                     .ToListAsync(cancellationToken);
             }
 

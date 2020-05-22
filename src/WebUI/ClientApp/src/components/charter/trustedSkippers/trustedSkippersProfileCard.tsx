@@ -37,7 +37,7 @@ const TrustedSkippersProfileCard: React.FC<IProps> = (props: IProps) => {
             <Grid item>
               <img
                 className={styles.avatar}
-                src={props.trustedSkipperProfile.imageURL}
+                src={props.trustedSkipperProfile.imageUrl}
                 title="Skipper Profile"
                 alt="" />
             </Grid>

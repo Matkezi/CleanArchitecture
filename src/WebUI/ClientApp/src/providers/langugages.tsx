@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ILanguage } from './../types/ILanguage';
 import { LanguageFunc } from "../types/LanguageProps";
-import metaApi from "../services/shared/metaApi";
+import metaApi from "../services/api/meta/metaApi";
 
 export const LanguageContext = React.createContext<LanguageFunc>({
     languages: [],

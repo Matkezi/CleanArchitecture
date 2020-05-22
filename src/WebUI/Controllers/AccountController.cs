@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SkipperAgency.Application.Common.Models;
+using SkipperAgency.Application.Identity.Commands.ChangePassword;
 using SkipperAgency.Application.Identity.Commands.ConfirmEmail;
 using SkipperAgency.Application.Identity.Commands.EmailChange;
 using SkipperAgency.Application.Identity.Commands.EmailChangeRequest;
@@ -55,6 +56,14 @@ namespace SkipperAgency.WebUI.Controllers
         [HttpPost("password-reset/{email}/{token}/{newPassword}")]
         [AllowAnonymous]
         public async Task<IActionResult> PasswordReset(PasswordResetCommand command)
+        {
+            await Mediator.Send(command);
+            return NoContent();
+        }
+
+        [HttpPost("change-password")]
+        [Authorize(Roles = "Admin, Skipper, Charter")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordCommand command)
         {
             await Mediator.Send(command);
             return NoContent();

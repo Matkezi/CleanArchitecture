@@ -15,7 +15,7 @@ namespace SkipperAgency.Infrastructure.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -153,6 +153,7 @@ namespace SkipperAgency.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("SkipperAgency.Domain.Entities.AppUser", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
@@ -281,6 +282,9 @@ namespace SkipperAgency.Infrastructure.Persistence.Migrations
 
                     b.Property<string>("CharterId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<double>("Length")
                         .HasColumnType("float");
@@ -647,6 +651,13 @@ namespace SkipperAgency.Infrastructure.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("Charter");
+                });
+
+            modelBuilder.Entity("SkipperAgency.Domain.Entities.Developer", b =>
+                {
+                    b.HasBaseType("SkipperAgency.Domain.Entities.AppUser");
+
+                    b.HasDiscriminator().HasValue("Developer");
                 });
 
             modelBuilder.Entity("SkipperAgency.Domain.Entities.Skipper", b =>

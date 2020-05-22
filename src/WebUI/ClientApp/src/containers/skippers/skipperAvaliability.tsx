@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import DayPicker, { RangeModifier } from "react-day-picker";
 import "react-day-picker/lib/style.css";
-import SkipperApi from "../../services/skipperService/skipperProfileApi";
+import SkipperApi from "../../services/api/skipper/skipperProfileApi";
 import { getUserId } from '../../services/appService/authorizationService';
 import styles from './styles.module.scss'
-import { Grid } from "@material-ui/core";
+import { Grid, LinearProgress } from "@material-ui/core";
 import { dateHelper } from '../../helpers/dateHelper';
 import { NotificationContext } from "../../providers/notification";
 import { NotificationType } from "../../types/NotificationProps";
@@ -25,6 +25,7 @@ const SkipperAvalibility: React.FC<IProps> = (props: IProps) => {
   const [availableEndDays, setAvailableEndDates] = useState<Date[]>([]);
   const [message, setMessage] = useState("Select days on calendar to mark them as available in order to get bookings or click on selected range to remove it.");
   const [markedDays, setMarkedDays] = useState(0);
+  const [loading, setLoading] = useState<boolean>(false);
   const notificationContext = useContext(NotificationContext);
 
   useEffect(() => {
@@ -103,6 +104,7 @@ const SkipperAvalibility: React.FC<IProps> = (props: IProps) => {
   }
 
   const getAvalibility = async () => {
+    setLoading(true);
     var avalibilityData = await SkipperApi.getSkipperAvalibility(getUserId());
     setBooked(avalibilityData.booked.map<RangeModifier>(date => {
       var from = new Date(date.from);
@@ -122,10 +124,12 @@ const SkipperAvalibility: React.FC<IProps> = (props: IProps) => {
     }));
     getBookedRange(avalibilityData.booked);
     getAvailableRange(avalibilityData.available);
+    setLoading(false);
   }
 
   const updateAvalibility = async () => {
     notificationContext.setLoading({ showLoading: true });
+    setMarkedDays(0);
     try {
       await SkipperApi.updateSkipperAvalibility({
         available: avaliable,
@@ -408,6 +412,11 @@ const SkipperAvalibility: React.FC<IProps> = (props: IProps) => {
             </Grid>
           </Grid>
         </Grid>
+        {loading &&
+          <Grid item xs={12} container>
+            <LinearProgress className={styles.linearProgress} />
+          </Grid>
+        }
       </Grid>
     </div>
   );

@@ -53,7 +53,7 @@ namespace SkipperAgency.Application.Charters.Commands.CreateCharter
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/confirm-email?email={charter.Email}&token={HttpUtility.UrlEncode(emailConfirmationToken)}";
 
                 await _emailService.SendEmailWithTemplate(
-                    new ConfirmEmail(
+                    new ConfirmEmailModel(
                         toEmail: charter.Email,
                         fullName: charter.CharterName,
                         callbackUrl: callbackUrl

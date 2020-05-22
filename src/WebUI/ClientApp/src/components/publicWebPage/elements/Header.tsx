@@ -3,6 +3,7 @@ import { Grid } from "@material-ui/core";
 import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
 import Logo from '../../../assets/img/icons/logo-white.png';
+import { CLIENT } from "../../../constants/clientRoutes";
 
 const PublicHeader = ({ component: Component, ...rest }: any) => {
     const [activeTab, setActiveTab] = useState<number>(1);
@@ -27,7 +28,7 @@ const PublicHeader = ({ component: Component, ...rest }: any) => {
                     <Grid item className={activeTab === 1 ? styles.LoginActiveNavTab + " " + styles.LoginNavTab : styles.LoginNavTab}>
                         <Link
                             className={styles.LoginLinks}
-                            to="/"
+                            to={CLIENT.START_PAGE}
                             onClick={() => setActiveTab(1)}
                         >
                             <span>Landing</span>
@@ -36,7 +37,7 @@ const PublicHeader = ({ component: Component, ...rest }: any) => {
                     <Grid item className={activeTab === 2 ? styles.LoginActiveNavTab + " " + styles.LoginNavTab : styles.LoginNavTab}>
                         <Link
                             className={styles.LoginLinks}
-                            to="/public/about"
+                            to={CLIENT.PUBLIC.ABOUT}
                             onClick={() => setActiveTab(2)}
                         >
                             <span>About</span>
@@ -45,7 +46,7 @@ const PublicHeader = ({ component: Component, ...rest }: any) => {
                     <Grid item className={activeTab === 3 ? styles.LoginActiveNavTab + " " + styles.LoginNavTab : styles.LoginNavTab}>
                         <Link
                             className={styles.LoginLinks}
-                            to="/login"
+                            to={CLIENT.APP.LOGIN}
                             onClick={() => setActiveTab(3)}
                         >
                             <span>Login</span>

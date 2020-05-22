@@ -30,6 +30,8 @@ import SkipperTos from './components/shared/tos&pp/skipperTos';
 import CharterTos from './components/shared/tos&pp/charterTos';
 import PrivacyPolicy from './components/shared/tos&pp/privacyPolicy';
 import CharterSettings from './containers/charters/charterSettings';
+import BoatContainer from './containers/charters/boats';
+import { CLIENT } from './constants/clientRoutes';
 
 const history = createBrowserHistory();
 
@@ -42,28 +44,29 @@ const App = () => {
         <LoadingConsumer />
         <SnackbarConsumer />
         <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/public/about" component={AboutPage} />
-          <LoginRoute history={history} exact path="/login" component={SkipperLogin} secondaryColor={true} />
-          <LoginRoute history={history} exact path="/login/forgotten-password" component={ForgottenPassReqContainer} />
-          <LoginRoute history={history} exact path="/password-reset/email=:email/token=:token" component={ForgottenPassword} />
-          <LoginRoute history={history} exact path="/change-email/email=:email/newEmail=:newEmail/token=:token" component={ChangeEmail} />
-          <CharterRoute history={history} exact path="/charter/trusted-skippers" component={TrustedSkippers} />
-          <CharterRoute history={history} exact path="/charter/settings" component={CharterSettings} />
-          <CharterRoute history={history} exact path="/charter/dashboard" component={CharterDashboard} />
-          <CharterRoute history={history} exact path="/charter/skipper-profile/:skipperId" component={SkipperProfile} />
-          <CharterRoute history={history} exact path="/charter/preregistration" component={SkipperPreregistration} />
-          <SkipperRegisterRoute history={history} exact path="/skipper/registration/:url?/:stepNumber?" component={SkipperRegistration} />
-          <SkipperRoute history={history} exact path="/skipper/profile" component={SkipperProfile} />
-          <SkipperRoute history={history} exact path="/skipper/settings" component={SkipperSettings} />
-          <SkipperRoute history={history} exact path="/skipper/availability" component={SkipperAvalibility} />
-          <SkipperRoute history={history} exact path="/skipper/dashboard" component={SkipperBooking} />
-          <GuestRoute history={history} exact path="/guest/booking/:bookingUrl/step:stepNumber?" component={GuestBookingContainer} />
-          <GuestRoute history={history} exact path="/guest/skipper-profile/:skipperId" component={SkipperProfile} />
-          <DocumentRoute history={history} exact path="/public/tos-guest" component={GuestTos} />
-          <DocumentRoute history={history} exact path="/public/tos-skipper" component={SkipperTos} />
-          <DocumentRoute history={history} exact path="/public/tos-charter" component={CharterTos} />
-          <DocumentRoute history={history} exact path="/public/privacy-policy" component={PrivacyPolicy} />
+          <Route exact path={CLIENT.START_PAGE} component={LandingPage} />
+          <Route exact path={CLIENT.PUBLIC.ABOUT} component={AboutPage} />
+          <LoginRoute history={history} exact path={CLIENT.APP.LOGIN} component={SkipperLogin} secondaryColor={true} />
+          <LoginRoute history={history} exact path={CLIENT.APP.FORGOTTEN_PASSWORD} component={ForgottenPassReqContainer} />
+          <LoginRoute history={history} exact path={CLIENT.APP.PASSWORD_RESET()} component={ForgottenPassword} />
+          <LoginRoute history={history} exact path={CLIENT.APP.CHANGE_EMAIL()} component={ChangeEmail} />
+          <CharterRoute history={history} exact path={CLIENT.CHARTER.TRUSTED_SKIPPERS} component={TrustedSkippers} />
+          <CharterRoute history={history} exact path={CLIENT.CHARTER.SETTINGS} component={CharterSettings} />
+          <CharterRoute history={history} exact path={CLIENT.CHARTER.BOATS} component={BoatContainer} />
+          <CharterRoute history={history} exact path={CLIENT.CHARTER.DASHBOARD} component={CharterDashboard} />
+          <CharterRoute history={history} exact path={CLIENT.CHARTER.SKIPPER_PROFILE()} component={SkipperProfile} />
+          <CharterRoute history={history} exact path={CLIENT.CHARTER.SKIPPER_PREREGISTRATION} component={SkipperPreregistration} />
+          <SkipperRegisterRoute history={history} exact path={CLIENT.SKIPPER.REGISTRATION()} component={SkipperRegistration} />
+          <SkipperRoute history={history} exact path={CLIENT.SKIPPER.PROFILE} component={SkipperProfile} />
+          <SkipperRoute history={history} exact path={CLIENT.SKIPPER.SETTINGS} component={SkipperSettings} />
+          <SkipperRoute history={history} exact path={CLIENT.SKIPPER.AVAILABILITY} component={SkipperAvalibility} />
+          <SkipperRoute history={history} exact path={CLIENT.SKIPPER.DASHBOARD} component={SkipperBooking} />
+          <GuestRoute history={history} exact path={CLIENT.GUEST.BOOKING()} component={GuestBookingContainer} />
+          <GuestRoute history={history} exact path={CLIENT.GUEST.SKIPPER_PROFILE()} component={SkipperProfile} />
+          <DocumentRoute history={history} exact path={CLIENT.PUBLIC.TOS.GUEST} component={GuestTos} />
+          <DocumentRoute history={history} exact path={CLIENT.PUBLIC.TOS.SKIPPER} component={SkipperTos} />
+          <DocumentRoute history={history} exact path={CLIENT.PUBLIC.TOS.CHARTER} component={CharterTos} />
+          <DocumentRoute history={history} exact path={CLIENT.PUBLIC.PRIVACY_POLICY} component={PrivacyPolicy} />
         </Switch>
       </Store>
     </Router>

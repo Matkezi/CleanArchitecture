@@ -32,10 +32,6 @@ namespace SkipperAgency.Infrastructure.Identity
             if (!await _userManager.CheckPasswordAsync(user, password))
                 throw new UnauthorizedAccessException("Invalid password.");
 
-            var isUserEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
-            if (!isUserEmailConfirmed)
-                throw new ConfirmEmailException(user.Email, "Verification email sent. Please check your email.");
-
             var token = await _jwtFactory.GenerateEncodedToken(user);
             var roles = await GetUserRoles(user.UserName);
             return (

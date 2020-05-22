@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import SkipperRegistrationContextProps, { SkipperRegistrationStepData } from '../../types/SkipperRegistrationContextProps';
-import skipperApi from '../../services/skipperService/registrationApi';
-import skillsApi from '../../services/skipperService/skillsApi';
+import skipperApi from '../../services/api/skipper/registrationApi';
+import skillsApi from '../../services/api/skipper/skillsApi';
 import { ISkill } from '../../types/ISkill';
 import { ICountry } from '../../types/ICountry';
-import metaApi from '../../services/shared/metaApi';
+import metaApi from '../../services/api/meta/metaApi';
 
 
 export const SkipperRegistrationContext = React.createContext<SkipperRegistrationContextProps>({
@@ -31,7 +31,7 @@ export const SkipperRegistrationContext = React.createContext<SkipperRegistratio
       id: 0,
       englishName: "",
       twoLetterCode: "",
-      lable: "",
+      label: "",
       skipperId: ""
     },
     phoneNumber: "",
@@ -43,6 +43,7 @@ export const SkipperRegistrationContext = React.createContext<SkipperRegistratio
       licenceData: new Blob(),
       licenceName: ""
     },
+    yearOfFirsLicence: -1,
     skills: [{
       id: "",
       name: "",
@@ -72,7 +73,7 @@ export const SkipperRegistrationContext = React.createContext<SkipperRegistratio
     id: -1,
     englishName: "",
     twoLetterCode: "",
-    lable: "",
+    label: "",
     skipperId: ""
   }],
   getSkills: () => null,

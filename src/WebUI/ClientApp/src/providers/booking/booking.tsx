@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BookingsContext, Booking } from "../../types/Booking";
-import bookingApi from "../../services/shared/booking";
-import metaApi from "../../services/shared/metaApi";
+import bookingApi from "../../services/api/shared/booking";
+import metaApi from "../../services/api/meta/metaApi";
 import { ICountry } from "../../types/ICountry";
 
 export const BookingContext = React.createContext<BookingsContext>({

@@ -7,7 +7,7 @@ import { getUserId, getSkipperIDFromUrl } from '../../services/appService/author
 import { NotificationContext } from "../../providers/notification";
 import { NotificationType } from "../../types/NotificationProps";
 import { RangeModifier } from "react-day-picker";
-import SkipperApi from '../../services/skipperService/skipperProfileApi';
+import SkipperApi from '../../services/api/skipper/skipperProfileApi';
 
 interface IProps {
     history: any,

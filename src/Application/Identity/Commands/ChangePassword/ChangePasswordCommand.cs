@@ -7,7 +7,7 @@ namespace SkipperAgency.Application.Identity.Commands.ChangePassword
 {
     public class ChangePasswordCommand : IRequest
     {
-        public string UserEmail { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
         public string NewPassword { get; set; }
 
@@ -22,7 +22,7 @@ namespace SkipperAgency.Application.Identity.Commands.ChangePassword
 
             public async Task<Unit> Handle(ChangePasswordCommand request, CancellationToken cancellationToken)
             {
-                await _identityService.ChangePassword(request.UserEmail, request.Password, request.NewPassword);
+                await _identityService.ChangePassword(request.Email, request.Password, request.NewPassword);
                 return Unit.Value;
             }
         }
