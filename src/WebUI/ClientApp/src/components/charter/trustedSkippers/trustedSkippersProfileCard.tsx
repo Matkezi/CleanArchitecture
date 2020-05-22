@@ -27,9 +27,6 @@ const GreenCheckbox = withStyles({
 })((props: any) => <Checkbox color="default" {...props} />);
 
 const TrustedSkippersProfileCard: React.FC<IProps> = (props: IProps) => {
-
-
-  console.log(props.trustedSkipperProfile.imageUrl);
   return (
     <>
       <Grid container item xs={12}>
