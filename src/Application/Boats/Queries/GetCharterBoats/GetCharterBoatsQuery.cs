@@ -28,7 +28,7 @@ namespace SkipperAgency.Application.Boats.Queries.GetCharterBoats
             public async Task<IEnumerable<BoatModel>> Handle(GetCharterBoatsQuery request, CancellationToken cancellationToken)
             {
                 return await _context.Boats
-                    .Where(x => x.CharterId == _currentUserService.UserId)
+                    .Where(x => x.CharterId == _currentUserService.UserId && x.IsActive == true)
                     .ProjectTo<BoatModel>(_mapper.ConfigurationProvider)
                     .ToListAsync(cancellationToken);
             }

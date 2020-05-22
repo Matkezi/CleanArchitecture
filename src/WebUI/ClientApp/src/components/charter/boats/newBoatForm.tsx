@@ -9,6 +9,7 @@ import { Formik, Field } from 'formik';
 import Select from 'react-select';
 import TextInput from "../../ui/form/TextInput";
 import { Boat } from '../../../types/Boat';
+import { FileStorageHelper } from '../../../helpers/fileStorageHelper';
 
 interface IProps {
     closeForm: () => void,
@@ -28,7 +29,7 @@ const NewBoatForm: React.FC<IProps> = (props2: IProps) => {
     const [photo, setPhoto] = useState({
         photoData: { name: "" },
         photoURL: props2.data ? props2.data.boatPhotoUrl : "",
-        readerData: ""
+        base64Data: ""
     });
 
     const handlePhotoChange = (event: any) => {
@@ -37,7 +38,7 @@ const NewBoatForm: React.FC<IProps> = (props2: IProps) => {
         if (event.target.files[0] instanceof Blob) {
             reader.readAsDataURL(event.target.files[0]);
             reader.onloadend = () => {
-                setPhoto({ photoData: event.target.files[0], photoURL: URL.createObjectURL(event.target.files[0]), readerData: reader.result as string });
+                setPhoto({ photoData: event.target.files[0], photoURL: URL.createObjectURL(event.target.files[0]), base64Data: FileStorageHelper.formatBase64Data(reader.result as string) });
             }
         }
     }
@@ -69,9 +70,6 @@ const NewBoatForm: React.FC<IProps> = (props2: IProps) => {
             />
         )
     }
-
-    console.log(props2.data);
-
     return (
         <Grid container>
             {props2.showIcon &&
@@ -99,7 +97,7 @@ const NewBoatForm: React.FC<IProps> = (props2: IProps) => {
                             minimalRequiredLicense: props2.data ? props2.data.minimalRequiredLicense : undefined,
                             boatPhotoUrl: props2.data ? props2.data.boatPhotoUrl : photo.photoURL,
                         }}
-                        onSubmit={(values: any) => !props2.showIcon ? props2.updateBoat!(props2.data!.id, values) : props2.saveBoat({ ...values, boatPhoto: { nameWithExt: photo.photoData.name, base64Data: photo.readerData } })}
+                        onSubmit={(values: any) => !props2.showIcon ? props2.updateBoat!(props2.data!.id, values) : props2.saveBoat({ ...values, boatPhoto: { nameWithExt: photo.photoData.name, base64Data: photo.base64Data } })}
                         validationSchema={Yup.object().shape({
                             name: Yup.string().required("Required"),
                             manufacturer: Yup.string().required("Required"),

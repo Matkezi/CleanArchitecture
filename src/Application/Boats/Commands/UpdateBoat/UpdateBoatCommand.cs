@@ -59,7 +59,6 @@ namespace SkipperAgency.Application.Boats.Commands.UpdateBoat
                     boat.BoatPhotoUrl = photoUri;
                 }
 
-                await _context.Boats.AddAsync(boat, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

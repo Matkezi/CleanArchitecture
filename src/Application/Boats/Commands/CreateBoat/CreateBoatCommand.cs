@@ -25,11 +25,13 @@ namespace SkipperAgency.Application.Boats.Commands.CreateBoat
         {
             private readonly IApplicationDbContext _context;
             private readonly IFilesStorageService _filesStorageService;
+            private readonly ICurrentUserService _currentUserService;
 
-            public Handler(IApplicationDbContext context, IFilesStorageService filesStorageService)
+            public Handler(IApplicationDbContext context, IFilesStorageService filesStorageService, ICurrentUserService currentUserService)
             {
                 _context = context;
                 _filesStorageService = filesStorageService;
+                _currentUserService = currentUserService;
             }
 
             public async Task<Unit> Handle(CreateBoatCommand request, CancellationToken cancellationToken)
@@ -41,7 +43,8 @@ namespace SkipperAgency.Application.Boats.Commands.CreateBoat
                     Model = request.Model,
                     Type = request.Type,
                     Length = request.Length,
-                    MinimalRequiredLicense = request.MinimalRequiredLicense
+                    MinimalRequiredLicense = request.MinimalRequiredLicense,
+                    CharterId = _currentUserService.UserId
                 };
 
                 if (request.BoatPhoto != null)

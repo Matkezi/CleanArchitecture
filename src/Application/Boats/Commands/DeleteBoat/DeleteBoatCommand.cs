@@ -31,9 +31,7 @@ namespace SkipperAgency.Application.Boats.Commands.DeleteBoat
                     throw new NotFoundException(nameof(Boat), request.Id);
                 }
 
-                await _filesStorageService.DeleteCloudAsync(boat.BoatPhotoUrl);
-
-                _context.Boats.Remove(boat);
+                boat.IsActive = false;
 
                 await _context.SaveChangesAsync(cancellationToken);
 

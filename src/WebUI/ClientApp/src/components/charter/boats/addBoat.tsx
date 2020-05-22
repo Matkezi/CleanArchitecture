@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Grid, Divider } from '@material-ui/core';
 import styles from './styles.module.scss';
 import PlusIcon from '../../../assets/img/icons/plus-icon-green-37.png';
 import NewBoatForm from './newBoatForm';
 import { Boat } from '../../../types/Boat';
+import { BoatContext } from '../../../providers/boats/boatsContext';
 
 interface IProps {
     saveBoat: (boat: Boat) => void
@@ -11,7 +12,8 @@ interface IProps {
 
 const AddBoatComponent: React.FC<IProps> = (props: IProps) => {
 
-    const [addingNewBoat, setAddingNewBoat] = useState(false);
+    const boatContext = useContext(BoatContext);
+    const [addingNewBoat, setAddingNewBoat] = useState(boatContext.showForm);
     const [photo, setPhoto] = useState({
         photoData: { name: "" },
         photoURL: "",
@@ -39,16 +41,16 @@ const AddBoatComponent: React.FC<IProps> = (props: IProps) => {
                         </div>
                     </Grid>
                     <Grid item container sm={3} xs={6} alignItems="flex-end" justify="flex-end" className={styles.newBoatCont}>
-                        {!addingNewBoat && <div className={styles.newBoat} onClick={() => setAddingNewBoat(true)}>
+                        {!boatContext.showForm && <div className={styles.newBoat} onClick={() => { setAddingNewBoat(true); boatContext.setShowForm(true); }}>
                             <span>Add New Boat</span>
                             <img alt="" src={PlusIcon} className={styles.plusIcon} />
                         </div>}
                     </Grid>
                 </Grid>
                 <Divider className={styles.divider} />
-                {addingNewBoat &&
+                {addingNewBoat && boatContext.showForm &&
                     <Grid item container xs={12}>
-                        <NewBoatForm showIcon={true} title="Adding New Boat" closeForm={() => setAddingNewBoat(false)} handleChange={handleChange} photoURL={photo.photoURL} saveBoat={props.saveBoat} />
+                        <NewBoatForm showIcon={true} title="Adding New Boat" closeForm={() => { setAddingNewBoat(false); boatContext.setShowForm(false); }} handleChange={handleChange} photoURL={photo.photoURL} saveBoat={props.saveBoat} />
                     </Grid>
                 }
             </Grid>

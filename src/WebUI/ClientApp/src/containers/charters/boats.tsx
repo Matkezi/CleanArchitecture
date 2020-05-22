@@ -46,12 +46,13 @@ const BoatContainer: React.FC<IProps> = (props: IProps) => {
         delete boatModel.boatPhotoUrl;
         try {
             notificationContext.setLoading({ showLoading: true })
-            await boatsApi.saveBoat({
+            await boatContext.saveBoat({
                 ...boatModel,
-                minimalRequiredLicense: (boat.minimalRequiredLicense as unknown as ILicenceType).value,
-                type: (boat.type as unknown as IBoatType).value
+                minimalRequiredLicense: (boat.minimalRequiredLicense as unknown as ILicenceType).id,
+                type: (boat.type as unknown as IBoatType).id
             });
             notificationContext.setLoading({ showLoading: false })
+            boatContext.setShowForm(false);
             notificationContext.setSnackbar({ showSnackbar: true, message: "Boat saved!", type: NotificationType.Success })
             getBoats();
         } catch (err) {
@@ -63,11 +64,11 @@ const BoatContainer: React.FC<IProps> = (props: IProps) => {
     const updateBoat = async (id: number, boat: Boat) => {
         try {
             notificationContext.setLoading({ showLoading: true })
-            await boatsApi.updateBoat(id, {
+            await boatContext.updateBoat(id, {
                 ...boat,
                 id: id,
-                minimalRequiredLicense: (boat.minimalRequiredLicense as unknown as ILicenceType).value,
-                type: (boat.type as unknown as IBoatType).value
+                minimalRequiredLicense: (boat.minimalRequiredLicense as unknown as ILicenceType).id,
+                type: (boat.type as unknown as IBoatType).id
             });
             notificationContext.setLoading({ showLoading: false })
             notificationContext.setSnackbar({ showSnackbar: true, message: "Boat updated!", type: NotificationType.Success })
@@ -81,7 +82,7 @@ const BoatContainer: React.FC<IProps> = (props: IProps) => {
     const deleteBoat = async (id: number) => {
         try {
             notificationContext.setLoading({ showLoading: true })
-            await boatsApi.deleteBoat(id);
+            await boatContext.deleteBoat(id);
             notificationContext.setLoading({ showLoading: false })
             notificationContext.setSnackbar({ showSnackbar: true, message: "Boat deleted!", type: NotificationType.Success })
             getBoats();

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Grid, Divider, Button, Modal, Paper } from "@material-ui/core";
 import styles from "./styles.module.scss";
 import { Boat } from "../../../types/Boat";
@@ -8,6 +8,7 @@ import DeleteIcon from '../../../assets/img/icons/delete-icon-31.png';
 import NewBoatForm from '../../charter/boats/newBoatForm';
 import { LicenceEnum } from '../../../helpers/enums/LicenceEnum'
 import { BoatTypeEnum } from '../../../helpers/enums/BoatEnum';
+import { BoatContext } from "../../../providers/boats/boatsContext";
 
 export interface IProps {
   boat: Boat;
@@ -24,6 +25,7 @@ const BoatRow: React.FC<IProps> = (props: IProps) => {
 
   const [showEdit, setShowEdit] = useState(false);
   const [deleteData, setDeleteData] = useState({ showDelete: false, id: -1, boatName: "" });
+  const boatContext = useContext(BoatContext);
 
   const boat: Boat = {
     ...props.boat,
@@ -106,7 +108,7 @@ const BoatRow: React.FC<IProps> = (props: IProps) => {
             className={styles.icon}
             src={EditIcon}
             alt="edit"
-            onClick={() => setShowEdit(true)}
+            onClick={() => { setShowEdit(true); }}
           ></img>
           <img
             onClick={() => preformDelete(props.boat.id, props.boat.name)}
@@ -117,7 +119,7 @@ const BoatRow: React.FC<IProps> = (props: IProps) => {
         </Grid>
       }
       {showEdit &&
-        <NewBoatForm updateBoat={props.updateBoat} data={boat} showIcon={!showEdit} title="" closeForm={() => setShowEdit(false)} handleChange={handleChange} photoURL={photo.photoURL} saveBoat={props.saveBoat!} />}
+        <NewBoatForm updateBoat={props.updateBoat} data={boat} showIcon={!showEdit} title="" closeForm={() => { setShowEdit(false) }} handleChange={handleChange} photoURL={photo.photoURL} saveBoat={props.saveBoat!} />}
       {deleteData.showDelete &&
         <Grid container item xs={12}>
           <Modal open={deleteData.showDelete} className={styles.Modal} onClose={() => setDeleteData({ ...deleteData, showDelete: false })}>
@@ -125,7 +127,7 @@ const BoatRow: React.FC<IProps> = (props: IProps) => {
               <Grid container>
                 <Grid item container xs={12} justify="center">Are you sure you want to delete boat &nbsp; <b>{deleteData.boatName}</b>?</Grid>
                 <Grid item container xs={12} justify="center" className={styles.buttonsCont}>
-                  <button className={styles.cancelDeleteBtn}><span>Cancel</span></button>
+                  <button className={styles.cancelDeleteBtn} onClick={() => { setDeleteData({ ...deleteData, showDelete: false }) }}><span>Cancel</span></button>
                   <button className={styles.deleteBoatBtn} onClick={() => { setDeleteData({ ...deleteData, showDelete: false }); props.deleteBoat!(deleteData.id); }}><span>Yes</span></button>
                 </Grid>
               </Grid>
