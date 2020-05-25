@@ -14,10 +14,10 @@ export default
         getDeclinedSkippers(): Promise<TrustedSkipperProfile> {
             return api.get(API.CHARTER.SKIPPERS.UNTRUSTED)
         },
-        updateTrustedSkippers(trustedSkippers: string[]): Promise<any> {
+        updateTrustedSkippers(trustedSkippers: { ids: string[] }): Promise<any> {
             return api.put(API.CHARTER.SKIPPERS.UPDATE_TRUSTED, trustedSkippers)
         },
-        updateUnTrustedSkippers(untrustedSkippers: string[]): Promise<any> {
+        updateUnTrustedSkippers(untrustedSkippers: { ids: string[] }): Promise<any> {
             return api.put(API.CHARTER.SKIPPERS.UPDATE_UNTRUSTED, untrustedSkippers)
         }
     };

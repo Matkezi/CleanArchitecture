@@ -258,12 +258,12 @@ const TrustedSkippers: React.FC<IProps> = (props: IProps) => {
           switch (trustedSkippersContext.currentlySelectedSkipperStatus) {
             case SkipperStatus.Pending:
               await trustedSkippersApi.updateTrustedSkippers(
-                trustedSkippersContext.pendingSkippers
+                { ids: trustedSkippersContext.pendingSkippers }
               );
               break;
             case SkipperStatus.Declined:
               await trustedSkippersApi.updateTrustedSkippers(
-                trustedSkippersContext.declinedSkippers
+                { ids: trustedSkippersContext.declinedSkippers }
               );
               break;
           }
@@ -281,12 +281,12 @@ const TrustedSkippers: React.FC<IProps> = (props: IProps) => {
           switch (trustedSkippersContext.currentlySelectedSkipperStatus) {
             case SkipperStatus.Pending:
               await trustedSkippersApi.updateUnTrustedSkippers(
-                trustedSkippersContext.pendingSkippers
+                { ids: trustedSkippersContext.pendingSkippers }
               );
               break;
             case SkipperStatus.Approved:
               await trustedSkippersApi.updateUnTrustedSkippers(
-                trustedSkippersContext.acceptedSkippers
+                { ids: trustedSkippersContext.acceptedSkippers }
               );
               break;
           }
