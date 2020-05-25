@@ -42,9 +42,9 @@ namespace SkipperAgency.Infrastructure.Emails
                 .SendAsync();
         }
 
-        public async Task<SendResponse> SendEmailWithTemplate(BookingCreatedModel mailTemplate)
+        public Task SendEmailWithTemplate(BookingCreatedModel mailTemplate)
         {
-            return await _fluentEmail
+            return _fluentEmail
                 .To(mailTemplate.ToEmail)
                 .Subject($"Skipper Booking Created")
                 .UsingTemplateFromFile("../Domain/EmailTemplates/BookingCreated/BookingCreatedTemplate.cshtml", mailTemplate)

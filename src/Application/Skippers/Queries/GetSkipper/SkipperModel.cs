@@ -1,7 +1,9 @@
-﻿using SkipperAgency.Application.Common.Mappings;
+﻿using SkipperAgency.Application.Bookings.CommonModels;
+using SkipperAgency.Application.Common.Mappings;
 using SkipperAgency.Application.Metadata.Queries.GetCountries;
 using SkipperAgency.Application.Skills.Queries.GetSkill;
 using SkipperAgency.Application.Skippers.Common.Models;
+using SkipperAgency.Application.Skippers.Queries.Availability.Common.Models;
 using SkipperAgency.Domain.Entities;
 using System.Collections.Generic;
 
@@ -22,9 +24,11 @@ namespace SkipperAgency.Application.Skippers.Queries.GetSkipper
         public string PhoneNumber { get; set; }
         public string PersonalSummary { get; set; }
         public string UserPhotoUrl { get; set; }
+        public AvailabilityModel Availability { get; set; }
         public CountryModel Country { get; set; }
+        public IEnumerable<BookingModel> Bookings { get; set; }
         public SkipperLicenseModel UserLicense { get; set; }
-        public IEnumerable<SkillModel> ListOfSkills { get; set; }
+        public List<SkillModel> ListOfSkills { get; set; }
         public IEnumerable<SkipperLanguageModel> ListOfLanguages { get; set; }
     }
 }

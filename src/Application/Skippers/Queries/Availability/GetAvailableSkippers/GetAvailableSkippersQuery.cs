@@ -32,15 +32,17 @@ namespace SkipperAgency.Application.Skippers.Queries.Availability.GetAvailableSk
 
             public async Task<IEnumerable<SkipperModel>> Handle(GetAvailableSkippersQuery request, CancellationToken cancellationToken)
             {
-                return await _context.Skippers.Include(s => s.ListOfSkills).ThenInclude(sk => sk.Skill).Include(s => s.Bookings).Include(s => s.Availability)
+                var skippers = _context.Skippers.Include(s => s.ListOfSkills).ThenInclude(sk => sk.Skill).Include(s => s.Bookings).Include(s => s.Availability)
                   .Include(sk => sk.ListOfLanguages).ThenInclude(lang => lang.Language)
-                .Where(skipper => request.ListOfLanguages.Count == 0 || skipper.ListOfLanguages.ConvertAll(lang => lang.Language.EnglishName).Intersect(request.ListOfLanguages).Any())
-                .Where(skipper => skipper.Availability.Any(av => av.AvailableFrom <= request.DateFrom && av.AvailableTo >= request.DateTo))
-                .Where(skipper => !skipper.Bookings.Any(book => (book.BookedFrom >= request.DateFrom && book.BookedFrom <= request.DateTo) ||
+                  .ProjectTo<SkipperModel>(_mapper.ConfigurationProvider)
+                  .Where(skipper => request.ListOfLanguages.Count == 0 || skipper.ListOfLanguages.Select(lang => lang.Label).Intersect(request.ListOfLanguages).Any())
+                   .Where(skipper => !skipper.Bookings.Any(book => (book.BookedFrom >= request.DateFrom && book.BookedFrom <= request.DateTo) ||
                                                         (book.BookedTo >= request.DateFrom && book.BookedTo <= request.DateTo)))
-                .OrderByDescending(skipper => skipper.ListOfSkills.ConvertAll(s => s.Skill.Name).FindAll(s => request.RequiredSkills.Contains(s)).Count)
-                .ProjectTo<SkipperModel>(_mapper.ConfigurationProvider)
-                .ToListAsync(cancellationToken);
+                  .ToList();
+                return skippers
+                .Where(skipper => skipper.Availability.Available.Any(av => av.From <= request.DateFrom && av.To >= request.DateTo));
+
+                //.OrderByDescending(skipper => skipper.ListOfSkills.Select(s => s.Name).Where(s => request.RequiredSkills.Contains(s)).Count);
             }
 
         }

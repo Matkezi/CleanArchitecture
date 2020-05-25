@@ -11,6 +11,7 @@ namespace SkipperAgency.WebUI.Controllers
     [Authorize]
     public class SkillController : ApiController
     {
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SkillModel>>> GetAll()
         {
