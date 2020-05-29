@@ -1,4 +1,5 @@
-﻿using SkipperAgency.Application.Bookings.CommonModels;
+﻿using AutoMapper;
+using SkipperAgency.Application.Bookings.CommonModels;
 using SkipperAgency.Application.Common.Mappings;
 using SkipperAgency.Application.Metadata.Queries.GetCountries;
 using SkipperAgency.Application.Skills.Queries.GetSkill;
@@ -23,12 +24,20 @@ namespace SkipperAgency.Application.Skippers.Queries.GetSkipper
         public string City { get; set; }
         public string PhoneNumber { get; set; }
         public string PersonalSummary { get; set; }
+        public int YearOfFirstLicense { get; set; }
         public string UserPhotoUrl { get; set; }
-        public AvailabilityModel Availability { get; set; }
+        public IEnumerable<BookingDateRangeModel> Booked { get; set; }
+        public IEnumerable<AvailabilityDateRangeModel> Available { get; set; }
         public CountryModel Country { get; set; }
         public IEnumerable<BookingModel> Bookings { get; set; }
         public SkipperLicenseModel UserLicense { get; set; }
         public List<SkillModel> ListOfSkills { get; set; }
         public IEnumerable<SkipperLanguageModel> ListOfLanguages { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<Skipper, SkipperModel>()
+                   .ForMember(dest => dest.Available, opt => opt.MapFrom(src => src.Availability));
+        }
     }
 }

@@ -3,6 +3,7 @@ import { Booking, SkipperActionEnum } from '../../../types/Booking';
 import { Skipper } from '../../../types/Skipper';
 import { AvaliableSkipperSearch } from '../../../types/Searches';
 import { API } from '../../../constants/apiRoutes';
+import { IRequestedBookingModel } from '../../../types/IRequestedBookingModel';
 
 export default
   {
@@ -33,7 +34,7 @@ export default
     getAvaliableSkippers(skipperSearch: AvaliableSkipperSearch): Promise<Skipper[]> {
       return api.post(API.GUEST.BOOKING.GET_AVAILABLE_SKIPPERS, skipperSearch)
     },
-    postGuestAction(booking: Booking): Promise<Booking> {
-      return api.put(API.GUEST.BOOKING.REQUEST_BOOKING, booking)
+    postGuestAction(requestedBooking: IRequestedBookingModel): Promise<Booking> {
+      return api.put(API.GUEST.BOOKING.REQUEST_BOOKING, requestedBooking)
     },
   };

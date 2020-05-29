@@ -1,12 +1,15 @@
-﻿@model dynamic
+﻿@using SkipperAgency.Domain.EmailTemplateModels
+@model SkipperBookingRequestedModel
 <div class='container'>
     <div class='card'>
         <div class='header'>
             <h2>Skipper Agency</h2>
         </div>
         <h3>Poštovani @Model.SkipperName,</h3>
-        <h4>Gost @Model.GuestName je zatražio vaš angažman kod Chartera @Model.CharterName na brodu @Model.BoatName. Imate 72 sata da odgovorite na zahtjev, 
-        ukoliko to ne učinite gost će moći odabrati druge Skippere.</h4>
+        <h4>
+            Gost @Model.GuestName je zatražio vaš angažman kod Chartera @Model.CharterName na brodu @Model.BoatName. Imate 72 sata da odgovorite na zahtjev,
+            ukoliko to ne učinite gost će moći odabrati druge Skippere.
+        </h4>
         <h4>Pregled Vašeg zahtjeva možete pogledati <a class='link' href='@Model.Bookings'>ovdje</a>.</h4>
         <h4>
             </br>Vaš Skipper Agency tim.

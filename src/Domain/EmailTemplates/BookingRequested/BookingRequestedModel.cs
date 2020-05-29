@@ -2,15 +2,15 @@
 {
     public class BookingRequestedModel : EmailMessageAbstract
     {
-        public BookingRequestedModel(string toEmail, string guestName, string skipperName, string bookingUrl) : base(toEmail)
+        public BookingRequestedModel(string toEmail, string guestName, string skipperName, string bookingURL) : base(toEmail)
         {
             GuestName = guestName;
             SkipperName = skipperName;
-            BookingUrl = bookingUrl;
+            BookingURL = bookingURL;
         }
 
         public string GuestName { get; }
         public string SkipperName { get; }
-        public string BookingUrl { get; }
+        public string BookingURL { get; }
     }
 }

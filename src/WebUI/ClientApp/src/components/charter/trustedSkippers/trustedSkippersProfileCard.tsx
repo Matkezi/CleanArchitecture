@@ -53,7 +53,7 @@ const TrustedSkippersProfileCard: React.FC<IProps> = (props: IProps) => {
                 </Grid>
                 <Grid item>
                   <span className={styles.cardProperty + " " + styles.skipperYearOfExperience}>
-                    {props.trustedSkipperProfile.yearOfFirstLicence}
+                    {props.trustedSkipperProfile.yearOfFirstLicense}
                   </span>
                 </Grid>
               </Grid>

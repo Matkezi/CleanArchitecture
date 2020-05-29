@@ -20,7 +20,7 @@ export interface Skipper {
     listOfSkills: Skill[];
     listOfLanguages: ILanguage[];
     price: number;
-    yearOfFirstLicence: number;
+    yearOfFirstLicense: number;
 }
 
 export interface Skill {

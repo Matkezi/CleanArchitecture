@@ -45,11 +45,19 @@ const GuestBookingContainer = (props: RouteComponentProps<any>) => {
   const sendRequestToSkipper = async () => {
     notificationContext.setLoading({ showLoading: true })
     try {
+
       const booking = await BookingApi.postGuestAction(
-        guestBookingContext.booking
+        {
+          bookingId: guestBookingContext.booking.id!,
+          guestEmail: guestBookingContext.booking.guestEmail!,
+          skipperId: guestBookingContext.booking.skipperId!,
+        }
       );
+      debugger;
+      console.log(booking);
       guestBookingContext.setBooking(booking);
       clearIntervals();
+      console.log(new Date(booking.skipperRequestTime!).getTime());
       getTime(new Date(booking.skipperRequestTime!).getTime());
     } catch (e) {
       notificationContext.setSnackbar({ showSnackbar: true, message: e.message, type: NotificationType.Error })
@@ -63,12 +71,12 @@ const GuestBookingContainer = (props: RouteComponentProps<any>) => {
   // Update the count down every 1 second
   function getTime(skipperRequestTime: number) {
     intervalId = window.setInterval(function () {
+      console.log(skipperRequestTime);
       // Get today's date and time
       var now = new Date().getTime();
       var deadline = skipperRequestTime + (1000 * 60 * 60 * 24 * 2);
       // Find the distance between now and the count down date
       var distance = (deadline - now);
-
       if (distance < 0) return;
 
       // Time calculations for days, hours, minutes and seconds
@@ -92,7 +100,6 @@ const GuestBookingContainer = (props: RouteComponentProps<any>) => {
       window.clearInterval(i);
     }
   }
-
   return (
     <div className={styles.wrapper}>
       {guestBookingContext.booking.status! ===

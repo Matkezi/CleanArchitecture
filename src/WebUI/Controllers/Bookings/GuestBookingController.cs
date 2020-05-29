@@ -32,8 +32,7 @@ namespace SkipperAgency.WebUI.Controllers.Bookings
         [AllowAnonymous]
         public async Task<IActionResult> GuestRequestBooking(GuestRequestBookingCommand command)
         {
-            await Mediator.Send(command);
-            return NoContent();
+            return Ok(await Mediator.Send(command));
         }
 
     }
