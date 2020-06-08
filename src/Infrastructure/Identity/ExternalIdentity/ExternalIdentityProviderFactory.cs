@@ -15,19 +15,14 @@ namespace SkipperAgency.Infrastructure.Identity.ExternalIdentity
             _serviceProvider = serviceProvider;
         }
 
-        public IExternalIdentityProvider GetExternalIdentityProvider(ExternalIdentityProviderEnum externalIdentity)
-        {
-            switch (externalIdentity)
+        public IExternalIdentityProvider GetExternalIdentityProvider(ExternalIdentityProviderEnum externalIdentity) 
+            => externalIdentity switch
             {
-                case ExternalIdentityProviderEnum.Facebook:
-                    return (IExternalIdentityProvider)_serviceProvider.GetService(typeof(FacebookIdentityProvider)); ;
-                case ExternalIdentityProviderEnum.Google:
-                    return (IExternalIdentityProvider)_serviceProvider.GetService(typeof(GoogleIdentityProvider)); ;
-                default:
-                    throw new ArgumentException("No Supported External Identity."); ; ;
-            }
-
-        }
-
+                ExternalIdentityProviderEnum.Facebook => (IExternalIdentityProvider) _serviceProvider.GetService(
+                    typeof(FacebookIdentityProvider)),
+                ExternalIdentityProviderEnum.Google => (IExternalIdentityProvider) _serviceProvider.GetService(
+                    typeof(GoogleIdentityProvider)),
+                _ => throw new ArgumentOutOfRangeException(nameof(externalIdentity), externalIdentity, "Not Supported External Identity.")
+            };
     }
 }
