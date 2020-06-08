@@ -11,7 +11,7 @@ export interface TrustedSkipperProfile {
     id: string,
     imageUrl: string,
     firstName: string,
-    yearOfFirstLicence: number,
+    yearOfFirstLicense: number,
     listOfLanguages: ILanguage[]
 }
 

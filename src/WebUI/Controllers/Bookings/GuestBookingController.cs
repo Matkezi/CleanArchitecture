@@ -20,7 +20,7 @@ namespace SkipperAgency.WebUI.Controllers.Bookings
             return Ok(await Mediator.Send(new GetBookingByUrlQuery { Url = url }));
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("available-skippers")]
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<SkipperModel>>> GetAvailableSkippersForBooking(GetAvailableSkippersQuery command)
@@ -32,8 +32,7 @@ namespace SkipperAgency.WebUI.Controllers.Bookings
         [AllowAnonymous]
         public async Task<IActionResult> GuestRequestBooking(GuestRequestBookingCommand command)
         {
-            await Mediator.Send(command);
-            return NoContent();
+            return Ok(await Mediator.Send(command));
         }
 
     }

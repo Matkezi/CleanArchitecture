@@ -13,7 +13,7 @@ namespace SkipperAgency.Application.Skippers.Commands.Availability
 {
     public class UpdateSkipperAvailabilityCommand : IRequest
     {
-        public IEnumerable<DateRangeModel> Available { get; set; }
+        public IEnumerable<AvailabilityDateRangeModel> Available { get; set; }
         public class Handler : IRequestHandler<UpdateSkipperAvailabilityCommand>
         {
             private readonly IApplicationDbContext _context;

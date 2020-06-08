@@ -7,29 +7,33 @@ using SkipperAgency.Domain.EmailTemplateModels;
 using SkipperAgency.Domain.Enums;
 using System.Threading;
 using System.Threading.Tasks;
+using SkipperAgency.Application.Bookings.CommonModels;
+using AutoMapper;
 
 namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
 {
-    public class GuestRequestBookingCommand : IRequest
+    public class GuestRequestBookingCommand : IRequest<BookingModel>
     {
         public string GuestEmail { get; set; }
         public int BookingId { get; set; }
         public string SkipperId { get; set; }
 
-        public class Handler : IRequestHandler<GuestRequestBookingCommand>
+        public class Handler : IRequestHandler<GuestRequestBookingCommand, BookingModel>
         {
             private readonly IEmailService _emailService;
             private readonly IConfiguration _configuration;
             private readonly IApplicationDbContext _context;
+            private readonly IMapper _mapper;
 
-            public Handler(IEmailService emailService, IConfiguration configuration, IApplicationDbContext context)
+            public Handler(IEmailService emailService, IMapper mapper, IConfiguration configuration, IApplicationDbContext context)
             {
                 _emailService = emailService;
                 _configuration = configuration;
                 _context = context;
+                _mapper = mapper;
             }
 
-            public async Task<Unit> Handle(GuestRequestBookingCommand request, CancellationToken cancellationToken)
+            public async Task<BookingModel> Handle(GuestRequestBookingCommand request, CancellationToken cancellationToken)
             {
                 var booking = await _context.Bookings
                     .Include(x => x.Charter)
@@ -38,6 +42,7 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
 
                 booking.Status = BookingStatusEnum.SkipperRequested;
                 booking.SkipperId = request.SkipperId;
+                booking.SkipperRequestTime = DateTime.Now;
                 await _context.SaveChangesAsync(cancellationToken);
 
                 var skipper = await _context.Skippers.FindAsync(booking.SkipperId);
@@ -49,7 +54,7 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
                         guestName: booking.GuestName,
                         toEmail: booking.GuestEmail,
                         skipperName: skipper.FullName,
-                        bookingUrl: callbackUrl
+                        bookingURL: callbackUrl
                     ));
 
                 string callbackUrl2 = $"{_configuration["AppSettings:AppServerUrl"]}/skipper/dashboard"; 
@@ -62,8 +67,7 @@ namespace SkipperAgency.Application.Bookings.Commands.GuestRequestBooking
                          boatName: booking.Boat.Name,
                          bookings: callbackUrl2
                      ));
-
-                return Unit.Value;
+                return _mapper.Map<BookingModel>(booking);
             }
         }
     }

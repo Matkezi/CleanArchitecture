@@ -10,6 +10,7 @@ namespace SkipperAgency.WebUI.Controllers
     [Authorize]
     public class MetaController : ApiController
     {
+        [AllowAnonymous]
         [HttpGet]
         [Route("languages")]
         public async Task<ActionResult<IEnumerable<LanguageModel>>> GetLanguages()

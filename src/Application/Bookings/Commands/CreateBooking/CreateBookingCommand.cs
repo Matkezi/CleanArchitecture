@@ -24,6 +24,7 @@ namespace SkipperAgency.Application.Bookings.Commands.CreateBooking
         public string GuestName { get; set; }
         public string GuestEmail { get; set; }
         public CountryModel GuestNationality { get; set; }
+        public int CrewSize { get; set; }
 
         public class Handler : IRequestHandler<CreateBookingCommand>
         {
@@ -60,13 +61,14 @@ namespace SkipperAgency.Application.Bookings.Commands.CreateBooking
                     OnBoardingLocation = request.OnboardingLocation,
                     Status = BookingStatusEnum.SkipperRequestPending,
                     BookingUrl = RandomUrl.GetRandomUrl(),
+                    CrewSize = request.CrewSize
                 };
 
                 await _context.Bookings.AddAsync(booking, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
                 
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingUrl}/step=1";
-                var response = await _emailService.SendEmailWithTemplate(
+                _ =  _emailService.SendEmailWithTemplate(
                     new BookingCreatedModel(
                         guestName: request.GuestName,
                         toEmail: booking.GuestEmail,

@@ -44,7 +44,8 @@ namespace SkipperAgency.WebUI
             services.AddHealthChecks()
                 .AddDbContextCheck<SkipperAgencyDbContext>();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddRazorPages();
 

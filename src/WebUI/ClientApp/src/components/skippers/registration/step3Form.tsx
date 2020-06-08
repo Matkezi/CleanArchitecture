@@ -31,7 +31,7 @@ export const SkipperRegistrationFormStep3: React.FC<IProps> = (props) => {
   const [licencePDF, setLicencePDF] = useState({ data: { name: "" } });
   const [licenceImage, setLicenceImage] = useState({ data: { name: "" }, url: props.values ? props.values.licenceURL : "" });
   const [blob, setBlob] = useState<string>();
-  const [yearOfFirstLicence, setYearOfFirstLicence] = useState<number>();
+  const [yearOfFirstLicense, setYearOfFirstLicense] = useState<number>();
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
@@ -44,7 +44,7 @@ export const SkipperRegistrationFormStep3: React.FC<IProps> = (props) => {
         name: licencePDF.data.name ? licencePDF.data.name : licenceImage.data.name
       },
       licenceURL: licenceImage.url,
-      yearOfFirstLicence: yearOfFirstLicence,
+      yearOfFirstLicense: yearOfFirstLicense,
       price: price
     }
     props.saveStep3(saveData);
@@ -186,8 +186,8 @@ export const SkipperRegistrationFormStep3: React.FC<IProps> = (props) => {
                 <span className={styles.description} style={{ marginTop: 0, marginBottom: -20 }}>Insert year when your first ever licence was issued.</span>
               </Grid>
               <Grid item sm={6} xs={12}>
-                <TextInput handleChange={e => setYearOfFirstLicence(e.target.value as unknown as number)} errors={[]} id='YearOfFirstLicence'
-                  value={yearOfFirstLicence as unknown as string} type="number" placeholder="Year of first licence" />
+                <TextInput handleChange={e => setYearOfFirstLicense(e.target.value as unknown as number)} errors={[]} id='YearOfFirstLicense'
+                  value={yearOfFirstLicense as unknown as string} type="number" placeholder="Year of first license" />
               </Grid>
             </Grid>
             <Grid container spacing={4}>

@@ -12,6 +12,9 @@ export interface IProps {
 }
 
 const SkipperCard: React.FC<IProps> = (props: IProps) => {
+
+  console.log(props.skipper.yearOfFirstLicense);
+
   return (
     <React.Fragment>
       <Grid container direction="row" className={styles.skipperCard}>
@@ -41,8 +44,8 @@ const SkipperCard: React.FC<IProps> = (props: IProps) => {
                   <img alt="" src={YearsOfSailing} height={34} width={34} />
                 </Grid>
                 <Grid item xs={8} container alignItems="flex-start">
-                  <p className={styles.years}>{(new Date(Date.now()).getFullYear() - props.skipper.yearOfFirstLicence) 
-                  === 1 ? <>1 year</> : <>(new Date(Date.now()).getFullYear() - props.skipper.yearOfFirstLicence).toString() years</>}</p>
+                  <p className={styles.years}>{(new Date(Date.now()).getFullYear() - props.skipper.yearOfFirstLicense)
+                    === 1 ? <>1 year</> : <>{(new Date(Date.now()).getFullYear() - props.skipper.yearOfFirstLicense).toString()} years</>}</p>
                 </Grid>
               </Grid>
             </Grid>

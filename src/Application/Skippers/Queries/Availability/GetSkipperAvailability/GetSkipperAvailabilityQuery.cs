@@ -33,8 +33,8 @@ namespace SkipperAgency.Application.Skippers.Queries.Availability.GetSkipperAvai
 
                 return new AvailabilityModel
                 {
-                    Available = skipper.Availability.ConvertAll(avalibility => new DateRangeModel { From = avalibility.AvailableFrom, To = avalibility.AvailableTo }),
-                    Booked = skipper.Bookings.ConvertAll(booking => new DateRangeModel { From = booking.BookedFrom, To = booking.BookedTo })
+                    Available = skipper.Availability.ConvertAll(avalibility => new AvailabilityDateRangeModel { From = avalibility.AvailableFrom, To = avalibility.AvailableTo }),
+                    Booked = skipper.Bookings.ConvertAll(booking => new BookingDateRangeModel { From = booking.BookedFrom, To = booking.BookedTo })
                 };
             }
 

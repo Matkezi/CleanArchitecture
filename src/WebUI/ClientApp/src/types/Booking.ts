@@ -24,7 +24,7 @@ export interface Booking {
   guestEmail?: string;
   guestTOS?: boolean
   guestNationality?: ICountry;
-  crewSize?: number;
+  crewSize?: string;
   guestMessege?: string;
   skipperRequestTime?: Date
 }

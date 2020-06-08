@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Application.Skippers.Queries.GetSkipper;
+using SkipperAgency.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,15 +33,18 @@ namespace SkipperAgency.Application.Skippers.Queries.Availability.GetAvailableSk
 
             public async Task<IEnumerable<SkipperModel>> Handle(GetAvailableSkippersQuery request, CancellationToken cancellationToken)
             {
-                return await _context.Skippers.Include(s => s.ListOfSkills).ThenInclude(sk => sk.Skill).Include(s => s.Bookings).Include(s => s.Availability)
-                  .Include(sk => sk.ListOfLanguages).ThenInclude(lang => lang.Language)
-                .Where(skipper => request.ListOfLanguages.Count == 0 || skipper.ListOfLanguages.ConvertAll(lang => lang.Language.EnglishName).Intersect(request.ListOfLanguages).Any())
-                .Where(skipper => skipper.Availability.Any(av => av.AvailableFrom <= request.DateFrom && av.AvailableTo >= request.DateTo))
-                .Where(skipper => !skipper.Bookings.Any(book => (book.BookedFrom >= request.DateFrom && book.BookedFrom <= request.DateTo) ||
-                                                        (book.BookedTo >= request.DateFrom && book.BookedTo <= request.DateTo)))
-                .OrderByDescending(skipper => skipper.ListOfSkills.ConvertAll(s => s.Skill.Name).FindAll(s => request.RequiredSkills.Contains(s)).Count)
-                .ProjectTo<SkipperModel>(_mapper.ConfigurationProvider)
-                .ToListAsync(cancellationToken);
+                var skippers = await _context.Skippers.Include(s => s.ListOfSkills).ThenInclude(sk => sk.Skill)
+                                   .Include(s => s.Bookings)
+                                   .Include(s => s.Availability)
+                                 .Include(sk => sk.ListOfLanguages).ThenInclude(lang => lang.Language)
+                                 .Where(skipper =>
+                                 (!request.ListOfLanguages.Any() || skipper.ListOfLanguages.Any(lang => request.ListOfLanguages.Any(rl => rl == lang.Language.EnglishName))) &&
+                                 skipper.Availability.Any(x => x.AvailableFrom <= request.DateFrom && x.AvailableTo >= request.DateTo) &&
+                                 !skipper.Bookings.Any(booking => booking.BookedFrom >= request.DateFrom && booking.BookedFrom <= request.DateTo || (booking.BookedTo >= request.DateFrom && booking.BookedTo <= request.DateTo)))
+                                 .OrderByDescending(s => s.ListOfSkills.Select(x => x.Skill.Name).Where(skillName => request.RequiredSkills.Contains(skillName)).Count())
+                                 .ProjectTo<SkipperModel>(_mapper.ConfigurationProvider)
+                                 .ToListAsync();
+                return skippers;
             }
 
         }
