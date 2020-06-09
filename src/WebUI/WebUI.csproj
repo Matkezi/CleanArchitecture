@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <RootNamespace>SkipperAgency.WebUI</RootNamespace>
     <AssemblyName>SkipperAgency.WebUI</AssemblyName>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>

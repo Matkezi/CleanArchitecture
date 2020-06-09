@@ -4,6 +4,7 @@ using SkipperAgency.Application.Skippers.Commands.TrustedSkippers;
 using SkipperAgency.Application.Skippers.Queries.TrustedSkippers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace SkipperAgency.WebUI.Controllers
 {
@@ -35,9 +36,9 @@ namespace SkipperAgency.WebUI.Controllers
         [Route("trusted")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateTrustedSkippers(UpdateTrustedSkippersCommand command)
+        public async Task<IActionResult> UpdateTrustedSkippers(IEnumerable<string> Ids)
         {
-            await Mediator.Send(command);
+            await Mediator.Send(new UpdateTrustedSkippersCommand { Ids = Ids });
             return NoContent();
         }
 
@@ -45,9 +46,9 @@ namespace SkipperAgency.WebUI.Controllers
         [Route("untrusted")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateUnTrustedSkippers(UpdateUnTrustedSkippersCommand command)
+        public async Task<IActionResult> UpdateUnTrustedSkippers(IEnumerable<string> Ids)
         {
-            await Mediator.Send(command);
+            await Mediator.Send(new UpdateUnTrustedSkippersCommand { Ids = Ids });
             return NoContent();
         }
     }
