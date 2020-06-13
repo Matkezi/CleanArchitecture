@@ -1,8 +1,9 @@
 ﻿using FluentEmail.Core;
 using SkipperAgency.Application.Common.Interfaces;
 using SkipperAgency.Domain.EmailTemplateModels;
-using FluentEmail.Core.Models;
 using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
 
 namespace SkipperAgency.Infrastructure.Emails
 {
@@ -20,7 +21,7 @@ namespace SkipperAgency.Infrastructure.Emails
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
                 .Subject($"{mailTemplate.SkipperFullName} just joined Skipper Agency")
-                .UsingTemplateFromFile("../Domain/EmailTemplates/NewSkipperNotice/NewSkipperNoticeTemplate.cshtml", mailTemplate)
+                .UsingTemplateFromFile($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/EmailTemplates/NewSkipperNotice/NewSkipperNoticeTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -29,7 +30,7 @@ namespace SkipperAgency.Infrastructure.Emails
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
                 .Subject($"Welcome to Skipper Agency")
-                .UsingTemplateFromFile("../Domain/EmailTemplates/ConfirmEmail/ConfirmEmailTemplate.cshtml", mailTemplate)
+                .UsingTemplateFromFile($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/EmailTemplates/ConfirmEmail/ConfirmEmailTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -38,7 +39,7 @@ namespace SkipperAgency.Infrastructure.Emails
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
                 .Subject($"Skipper Agency New Skipper")
-                .UsingTemplateFromFile("../Domain/EmailTemplates/PreRegisteredNotice/PreRegisteredNoticeTemplate.cshtml", mailTemplate)
+                .UsingTemplateFromFile($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/EmailTemplates/PreRegisteredNotice/PreRegisteredNoticeTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -47,7 +48,7 @@ namespace SkipperAgency.Infrastructure.Emails
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
                 .Subject($"Skipper Booking Created")
-                .UsingTemplateFromFile("../Domain/EmailTemplates/BookingCreated/BookingCreatedTemplate.cshtml", mailTemplate)
+                .UsingTemplateFromFile($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/EmailTemplates/BookingCreated/BookingCreatedTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -56,7 +57,7 @@ namespace SkipperAgency.Infrastructure.Emails
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
                 .Subject($"Skipper Booking Requested")
-                .UsingTemplateFromFile("../Domain/EmailTemplates/BookingRequested/BookingRequestedTemplate.cshtml", mailTemplate)
+                .UsingTemplateFromFile($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/EmailTemplates/BookingRequested/BookingRequestedTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -65,7 +66,7 @@ namespace SkipperAgency.Infrastructure.Emails
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
                 .Subject($"Skipper Booking Accepted")
-                .UsingTemplateFromFile("../Domain/EmailTemplates/SkipperAccepted/SkipperAcceptedTemplate.cshtml", mailTemplate)
+                .UsingTemplateFromFile($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/EmailTemplates/SkipperAccepted/SkipperAcceptedTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -74,7 +75,7 @@ namespace SkipperAgency.Infrastructure.Emails
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
                 .Subject($"Skipper Booking Accepted")
-                .UsingTemplateFromFile("../Domain/EmailTemplates/SkipperBookingRequested/SkipperBookingRequestedTemplate.cshtml", mailTemplate)
+                .UsingTemplateFromFile($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/EmailTemplates/SkipperBookingRequested/SkipperBookingRequestedTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -83,7 +84,7 @@ namespace SkipperAgency.Infrastructure.Emails
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
                 .Subject($"Skipper Booking Declined")
-                .UsingTemplateFromFile("../Domain/EmailTemplates/SkipperDeclined/SkipperDeclinedTemplate.cshtml", mailTemplate)
+                .UsingTemplateFromFile($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/EmailTemplates/SkipperDeclined/SkipperDeclinedTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -92,7 +93,7 @@ namespace SkipperAgency.Infrastructure.Emails
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
                 .Subject("Skipper Agency Password Reset")
-                .UsingTemplateFromFile("../Domain/EmailTemplates/PasswordReset/PasswordResetTemplate.cshtml", mailTemplate)
+                .UsingTemplateFromFile($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/EmailTemplates/PasswordReset/PasswordResetTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
 
@@ -101,7 +102,7 @@ namespace SkipperAgency.Infrastructure.Emails
             return _fluentEmail
                 .To(mailTemplate.ToEmail)
                 .Subject("Skipper Agency Change Email")
-                .UsingTemplateFromFile("../Domain/EmailTemplates/ChangeEmail/ChangeEmailTemplate.cshtml", mailTemplate)
+                .UsingTemplateFromFile($"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}/EmailTemplates/ChangeEmail/ChangeEmailTemplate.cshtml", mailTemplate)
                 .SendAsync();
         }
     }
