@@ -10,6 +10,9 @@ export default
     getSkipperBookingsPending(): Promise<Booking[]> {
       return api.get(API.SKIPPER.BOOKING.PENDING)
     },
+    getSkipperResponseBookingsPending(): Promise<Booking[]> {
+      return api.get(API.SKIPPER.BOOKING.REQUESTED)
+    },
     getSkipperBookingsAccepted(): Promise<Booking[]> {
       return api.get(API.SKIPPER.BOOKING.ACCEPTED)
     },

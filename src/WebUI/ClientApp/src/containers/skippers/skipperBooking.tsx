@@ -30,7 +30,7 @@ const SkipperBooking: React.FC<IProps> = (props: IProps) => {
     const updateInitialSkippersFromBackend = async () => {
         setLoading(true);
         try {
-            var pending = await BookingApi.getSkipperBookingsPending();
+            var pending = await BookingApi.getSkipperResponseBookingsPending();
             setInitialPendingSkippers([...pending]);
             if (currentlySelectedSkipperStatus === SkipperStatus.Pending) {
                 setBookingsToRender([...pending]);

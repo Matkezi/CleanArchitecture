@@ -37,6 +37,7 @@ export const API = {
             PENDING: `SkipperBooking/pending`,
             ACCEPTED: `SkipperBooking/accepted`,
             ACCEPT: `SkipperBooking/accept`,
+            REQUESTED: `SkipperBooking/requested`,
             DECLINE: `SkipperBooking/decline`,
         },
         PROFILE: {

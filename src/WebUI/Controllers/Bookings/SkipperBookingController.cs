@@ -16,6 +16,12 @@ namespace SkipperAgency.WebUI.Controllers.Bookings
     public class SkipperBookingController : ApiController
     {
         [HttpGet]
+        [Route("requested")]
+        public async Task<ActionResult<IEnumerable<BookingForSkipperModel>>> GetSkipperRequuestedBooking()
+        {
+            return Ok(await Mediator.Send(new GetSkipperBookingsByStatusQuery { BookingStatus = BookingStatusEnum.SkipperRequested }));
+        }
+        [HttpGet]
         [Route("pending")]
         public async Task<ActionResult<IEnumerable<BookingForSkipperModel>>> GetSkipperBookingPending()
         {
