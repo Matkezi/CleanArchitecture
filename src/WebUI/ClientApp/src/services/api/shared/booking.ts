@@ -16,14 +16,11 @@ export default
     getSkipperBookingsAccepted(): Promise<Booking[]> {
       return api.get(API.SKIPPER.BOOKING.ACCEPTED)
     },
-    postSkipperAction(id: number, skipperAction: SkipperActionEnum): Promise<Booking> {
-      return api.put('Booking/skipper-action/' + id + "/" + skipperAction)
-    },
     skipperAcceptBooking(id: number): Promise<Booking> {
-      return api.put(API.SKIPPER.BOOKING.ACCEPT, id)
+      return api.put(API.SKIPPER.BOOKING.ACCEPT+"/"+id)
     },
     skipperDeclineBooking(id: number): Promise<Booking> {
-      return api.put(API.SKIPPER.BOOKING.DECLINE, id)
+      return api.put(API.SKIPPER.BOOKING.DECLINE+"/"+id)
     },
     getCharterBookings(): Promise<Booking[]> {
       return api.get(API.CHARTER.BOOKINGS.GET_ALL)

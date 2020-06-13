@@ -52,7 +52,12 @@ const SkipperBooking: React.FC<IProps> = (props: IProps) => {
     const doSkipperAction = async (id: number, action: SkipperActionEnum) => {
         notificationContext.setLoading({ showLoading: true });
         try {
-            await BookingApi.postSkipperAction(id, action);
+            console.log(action);
+            if (SkipperActionEnum.Decline) {
+                await BookingApi.skipperDeclineBooking(id);
+            } else {
+                await BookingApi.skipperAcceptBooking(id);
+            }
             notificationContext.setSnackbar({ showSnackbar: true, message: "Action sucessful!", type: NotificationType.Success })
             updateInitialSkippersFromBackend();
         } catch (e) {

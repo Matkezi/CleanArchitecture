@@ -34,13 +34,13 @@ namespace SkipperAgency.Application.Bookings.Commands.SkipperAcceptBooking
                 string callbackUrl = $"{_configuration["AppSettings:AppServerUrl"]}/guest/booking/{booking.BookingUrl}/step=1";
 
                 var skipper = await _context.Skippers.FindAsync(booking.SkipperId);
-                await _emailService.SendEmailWithTemplate(
-                    new SkipperAcceptedModel(
-                        guestName: booking.GuestName,
-                        toEmail: booking.GuestEmail,
-                        skipperName: skipper.FullName,
-                        bookingUrl: callbackUrl
-                    ));
+                //await _emailService.SendEmailWithTemplate(
+                //    new SkipperAcceptedModel(
+                //        guestName: booking.GuestName,
+                //        toEmail: booking.GuestEmail,
+                //        skipperName: skipper.FullName,
+                //        bookingUrl: callbackUrl
+                //    ));
 
                 return Unit.Value;
             }

@@ -35,21 +35,23 @@ namespace SkipperAgency.WebUI.Controllers.Bookings
             return Ok(await Mediator.Send(new GetSkipperBookingsByStatusQuery { BookingStatus = BookingStatusEnum.SkipperAccepted }));
         }
 
-        [HttpPut("accept")]
+        [HttpPut]
+        [Route("accept/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> SkipperAcceptBooking(SkipperAcceptBookingCommand command)
+        public async Task<IActionResult> SkipperAcceptBooking(int id)
         {
-            await Mediator.Send(command);
+            await Mediator.Send(new SkipperAcceptBookingCommand { Id = id });
             return NoContent();
         }
 
-        [HttpPut("decline")]
+        [HttpPut]
+        [Route("decline/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> SkipperDeclineBooking(SkipperDeclineBookingCommand command)
+        public async Task<IActionResult> SkipperDeclineBooking(int id)
         {
-            await Mediator.Send(command);
+            await Mediator.Send(new SkipperDeclineBookingCommand { Id = id });
             return NoContent();
         }
 
